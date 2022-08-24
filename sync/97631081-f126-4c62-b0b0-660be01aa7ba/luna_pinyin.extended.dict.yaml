@@ -45,6 +45,7 @@ import_tables:
   - luna_pinyin.hanyu
   - luna_pinyin.poetry
   - luna_pinyin.cn_en
+  - luna_pinyin.emoji
 ...
 
 一一列舉		1
