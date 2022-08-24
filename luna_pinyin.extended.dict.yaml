@@ -76,4 +76,6 @@ import_tables:
   - luna_pinyin.emoji
   # 颜文字
   - meow_emoji
+  # 自定义
+  - luna_pinyin.custom_phrase
 ...
