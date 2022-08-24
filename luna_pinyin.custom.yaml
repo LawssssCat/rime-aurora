@@ -153,3 +153,21 @@ patch:
       "$": ["¥", "$", "€", "£", "¢", "¤"]
       "<": ["《", "〈", "«", "<"]
       ">": ["》", "〉", "»", ">"]
+##############################################################
+#
+#  emoji
+#
+# see https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E4%BA%94simplifier
+#
+  switches/+: # 可用 F4 查看选项
+    - name: emoji_suggestion
+      reset: 1
+      states: [ "❌️", "😁️" ] # 0为关闭、1为开启
+  switcher/save_options/+: # 记忆选择
+    - emoji_suggestion
+  engine/filters/@before 0:
+    simplifier@emoji_suggestion
+  emoji_suggestion:
+    opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
+    option_name: emoji_suggestion # 对应 switches 中的 name
+    # tips: all # 字符转换范围

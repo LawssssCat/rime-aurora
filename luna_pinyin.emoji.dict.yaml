@@ -12,7 +12,90 @@ use_preset_vocabulary: true
 ...
 
 # table begins
-
+°	du	10
+♂	nan	10
+♀	nv	10
+↑	shang	10
+↓	xia	10
+♥	xin	10
+★	xing	10
+✩	xing	10
+♪	yin fu	10
+♫	yin fu	10
+→	you	10
+↗	you shang	10
+↘	you xia	10
+←	zuo	10
+↖	zuo shang	10
+↙	zuo xia	10
+√	gou	10
+×	cha	10
+囗	kuang	10
+⑨		jiu	10
+∵	because	10
+∴	therefore	10
+~	sim	10
+∈	in	10
+⊂	subset	10
+⊆	subseteq	10
+∑	sum	10
+∏	prod	10
+∫	int	10
+∮	oint	10
+∀	forall	10
+∃	exists	10
+∇	nabla	10
+∆	triangle	10
+∞	infty	10
+≐	doteq	10
+Α	alpha	10
+Β	beta	10
+Γ	gamma	10
+Δ	delta	10
+Ε	epsilon	10
+Ζ	zeta	10
+Η	eta	10
+Θ	theta	10
+Ι	iota	10
+Κ	kappa	10
+Λ	lambda	10
+Μ	mu	10
+Ν	nu	10
+Ξ	xi	10
+Ο	omicron	10
+Π	pi	10
+Ρ	rho	10
+Σ	sigma	10
+Τ	tau	10
+Υ	upsilon	10
+Φ	phi	10
+Χ	chi	10
+Ψ	psi	10
+Ω	omega	10
+α	alpha	10
+β	beta	10
+γ	gamma	10
+δ	delta	10
+ε	epsilon	10
+ζ	zeta	10
+η	eta	10
+θ	theta	10
+ι	iota	10
+κ	kappa	10
+λ	lambda	10
+μ	mu	10
+ν	nu	10
+ξ	xi	10
+ο	omicron	10
+π	pi	10
+ρ	rho	10
+σ	sigma	10
+τ	tau	10
+υ	upsilon	10
+φ	phi	10
+χ	chi	10
+ψ	psi	10
+ω	omega	10
 ©️	ban quan	99
 ©️	ban quan fu hao	99
 ©️	fu hao	99
@@ -4981,89 +5064,3 @@ use_preset_vocabulary: true
 🧀️	nai lao	99
 🧀️	qi si	99
 	ping guo	99
-°	du	10
-♂	nan	10
-♀	nv	10
-↑	shang	10
-↓	xia	10
-♥	xin	10
-★	xing	10
-✩	xing	10
-♪	yin fu	10
-♫	yin fu	10
-→	you	10
-↗	you shang	10
-↘	you xia	10
-←	zuo	10
-↖	zuo shang	10
-↙	zuo xia	10
-√	gou	10
-×	cha	10
-囗	kuang	10
-
-⑨		jiu	10
-∵	because	10
-∴	therefore	10
-~	sim	10
-∈	in	10
-⊂	subset	10
-⊆	subseteq	10
-∑	sum	10
-∏	prod	10
-∫	int	10
-∮	oint	10
-∀	forall	10
-∃	exists	10
-∇	nabla	10
-∆	triangle	10
-∞	infty	10
-≐	doteq	10
-	10
-Α	alpha	10
-Β	beta	10
-Γ	gamma	10
-Δ	delta	10
-Ε	epsilon	10
-Ζ	zeta	10
-Η	eta	10
-Θ	theta	10
-Ι	iota	10
-Κ	kappa	10
-Λ	lambda	10
-Μ	mu	10
-Ν	nu	10
-Ξ	xi	10
-Ο	omicron	10
-Π	pi	10
-Ρ	rho	10
-Σ	sigma	10
-Τ	tau	10
-Υ	upsilon	10
-Φ	phi	10
-Χ	chi	10
-Ψ	psi	10
-Ω	omega	10
-α	alpha	10
-β	beta	10
-γ	gamma	10
-δ	delta	10
-ε	epsilon	10
-ζ	zeta	10
-η	eta	10
-θ	theta	10
-ι	iota	10
-κ	kappa	10
-λ	lambda	10
-μ	mu	10
-ν	nu	10
-ξ	xi	10
-ο	omicron	10
-π	pi	10
-ρ	rho	10
-σ	sigma	10
-τ	tau	10
-υ	upsilon	10
-φ	phi	10
-χ	chi	10
-ψ	psi	10
-ω	omega	10
