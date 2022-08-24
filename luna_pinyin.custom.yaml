@@ -25,6 +25,12 @@ patch:
 
 ##########################################################
 #
+# 候选词数量
+#
+  "menu/page_size": 9
+
+##########################################################
+#
 # 補靪功能：將朙月拼音的詞庫修改爲朙月拼音擴充詞庫
 #
 # 作者：瑾昀 <cokunhui@gmail.com>
@@ -171,3 +177,11 @@ patch:
     opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
     option_name: emoji_suggestion # 对应 switches 中的 name
     # tips: all # 字符转换范围
+##############################################################
+#
+#  中英文混输的设置
+#
+# Rx: BlindingDark/rime-easy-en:customize:schema=double_pinyin_flypy
+# 若要启用 easy_en，取消注释下面两行
+  __include: easy_en:/patch
+  easy_en/initial_quality: -0.618 
