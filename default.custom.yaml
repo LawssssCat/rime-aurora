@@ -6,4 +6,5 @@ customization:
   rime_version: 1.5.3
 patch:
   schema_list:
-    - {schema: luna_pinyin}
+    - schema: luna_pinyin # 全拼
+    - schema: easy_en # 英文

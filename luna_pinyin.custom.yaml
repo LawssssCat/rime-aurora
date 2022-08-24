@@ -25,6 +25,12 @@ patch:
 
 ##########################################################
 #
+# 候选词数量
+#
+  "menu/page_size": 9
+
+##########################################################
+#
 # 補靪功能：將朙月拼音的詞庫修改爲朙月拼音擴充詞庫
 #
 # 作者：瑾昀 <cokunhui@gmail.com>
@@ -159,15 +165,47 @@ patch:
 #
 # see https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E4%BA%94simplifier
 #
-  switches/+: # 可用 F4 查看选项
-    - name: emoji_suggestion
-      reset: 1
-      states: [ "❌️", "😁️" ] # 0为关闭、1为开启
-  switcher/save_options/+: # 记忆选择
-    - emoji_suggestion
+  switches/@next: # 可用 F4 查看选项
+    name: emoji_suggestion
+    reset: 1
+    states: [ "❌️", "😁️" ] # 0为关闭、1为开启
+  switcher/save_options/@next: # 记忆选择
+    emoji_suggestion
   engine/filters/@before 0:
     simplifier@emoji_suggestion
   emoji_suggestion:
     opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
     option_name: emoji_suggestion # 对应 switches 中的 name
     # tips: all # 字符转换范围
+##############################################################
+#
+#  中英文混输的设置
+#
+# Rx: BlindingDark/rime-easy-en:customize:schema=double_pinyin_flypy
+# 若要启用 easy_en，取消注释下面两行
+  __include: easy_en:/patch
+  easy_en/initial_quality: -0.618 
+##############################################################
+#
+#  优化输出结果？？？ 
+#
+# Rx: lotem/rime-octagram-data:customize:schema=luna_pinyin,model=hans
+#
+  __include: grammar:/hant
+##############################################################
+#
+#  优化选词？？？ 
+#
+# Rx: BlindingDark/rime-lua-select-character:customize:schema=luna_pinyin {
+  __include: lua_select_character:/patch
+# }
+##############################################################
+#
+#  rq输出日期、sj输出时间
+# 
+# 参考：
+# https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E7%A4%BA%E4%BE%8B-9
+# https://www.zhihu.com/question/268770492/answer/2190114796
+#
+  engine/translators/@next:                  
+    lua_translator@time_translator
