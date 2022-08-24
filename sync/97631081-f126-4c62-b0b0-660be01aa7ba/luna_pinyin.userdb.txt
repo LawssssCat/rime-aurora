@@ -1,0 +1,258 @@
+# Rime user dictionary
+#@/db_name	luna_pinyin.userdb
+#@/db_type	userdb
+#@/rime_version	1.5.3
+#@/tick	474
+#@/user_id	97631081-f126-4c62-b0b0-660be01aa7ba
+a 	啊	c=1 d=0.263158 t=474
+an li 	案例	c=2 d=1.76721 t=466
+an zhuang 	安裝	c=1 d=0.451581 t=474
+ba gu wen 	八股文	c=1 d=0.50409 t=474
+ban 	版	c=0 d=0.0470011 t=474
+bao cun 	保存	c=2 d=1.06009 t=474
+bao han 	包含	c=1 d=1 t=378
+ben di 	本地	c=1 d=0.329559 t=474
+bi 	比	c=2 d=1.81465 t=383
+bi ji 	筆記	c=1 d=0.755784 t=474
+bi jiao 	比較	c=1 d=1 t=337
+bian ji 	編輯	c=3 d=1.0042 t=474
+bian ji qi 	編輯器	c=1 d=0.32628 t=474
+bian ma 	編碼	c=1 d=1 t=310
+bing 	並	c=1 d=1 t=471
+bo ke 	博客	c=1 d=0.241714 t=474
+bu 	不	c=2 d=0.684057 t=474
+bu shu 	部署	c=3 d=1.57615 t=474
+bu yi yang 	不一樣	c=2 d=1.97045 t=338
+bu zhou 	步驟	c=1 d=1 t=390
+can kao 	參考	c=3 d=1.54486 t=474
+cang ku 	倉庫	c=1 d=0.501576 t=474
+cao zuo 	操作	c=1 d=0.752014 t=474
+chang ku 	長褲	c=1 d=0.499074 t=474
+chang yong 	常用	c=2 d=1.28295 t=474
+cheng xu 	程序	c=2 d=0.707341 t=474
+chong xin 	重新	c=2 d=0.856513 t=474
+chuang jian 	創建	c=8 d=5.96142 t=474
+ci dian 	詞典	c=13 d=5.4479 t=474
+ci ku 	詞庫	c=1 d=1 t=405
+cong 	從	c=1 d=1 t=465
+da kai 	打開	c=1 d=1 t=437
+dan 	但	c=1 d=1 t=329
+dao 	到	c=2 d=0.988087 t=474
+dao chu 	導出	c=1 d=1 t=358
+dao ru 	導入	c=2 d=1.94649 t=368
+de 	的	c=13 d=5.5578 t=474
+deng 	等	c=1 d=0.460704 t=474
+di fang 	地方	c=0 d=0.0891366 t=474
+dian feng shan 	電風扇	c=1 d=0.238115 t=474
+dian ji 	點擊	c=1 d=0.313486 t=474
+dian ying 	電影	c=1 d=0.276651 t=474
+ding qi 	定期	c=1 d=0.810584 t=474
+ding zhi 	定製	c=1 d=0.634448 t=474
+dong feng po 	東風破	c=1 d=0.484325 t=474
+duan yu 	短語	c=2 d=0.591939 t=474
+dui yu 	對於	c=1 d=0.272532 t=474
+duo 	多	c=1 d=1 t=344
+duo la 	哆啦	c=1 d=0.822835 t=474
+er 	而	c=1 d=1 t=372
+fa xing 	發行	c=0 d=0.0470011 t=474
+fa xing ban 	發行版	c=2 d=0.954276 t=474
+fan jian 	繁簡	c=1 d=0.33454 t=474
+fang an 	方案	c=8 d=3.54378 t=474
+fang shi 	方式	c=1 d=1 t=354
+fei 	非	c=2 d=1.01416 t=474
+fei tun 	肥臀	c=1 d=0.255381 t=474
+fu he 	符合	c=1 d=0.733447 t=474
+gai 	該	c=1 d=1 t=431
+gai nian 	概念	c=1 d=1 t=305
+ge 	各	c=2 d=1.46648 t=474
+ge ren 	個人	c=3 d=1.14749 t=474
+ge shi 	格式	c=2 d=1.7788 t=381
+ge zhong 	各種	c=1 d=0.349938 t=474
+gen ju 	根據	c=1 d=0.790571 t=474
+geng gai 	更改	c=2 d=1.75225 t=474
+geng xin 	更新	c=1 d=0.814647 t=474
+gong ju 	工具	c=1 d=0.289384 t=474
+gong neng 	功能	c=1 d=0.615697 t=474
+gou cheng 	構成	c=1 d=0.465334 t=474
+gu tai 	固態	c=1 d=1 t=370
+guan 	管	c=1 d=0.479505 t=474
+guan fang 	官方	c=9 d=5.19075 t=474
+guan li 	管理	c=1 d=0.697676 t=474
+guan li qi 	管理器	c=1 d=0.489192 t=474
+guan wang 	官網	c=2 d=0.857535 t=474
+guan xi 	關係	c=1 d=0.786628 t=474
+han yi 	含義	c=1 d=0.562705 t=474
+hao 	好	c=1 d=1 t=385
+he 	和	c=6 d=2.57933 t=474
+he 	鶴	c=1 d=0.396531 t=474
+he bing 	合併	c=1 d=0.927743 t=474
+hong gao liang 	紅高粱	c=2 d=0.546443 t=474
+hou 	後	c=1 d=1 t=411
+huai 	壞	c=1 d=0.369723 t=474
+huo 	或	c=1 d=0.337902 t=474
+huo zhe 	活着	c=1 d=0.26054 t=474
+ji 	及	c=2 d=1.00592 t=474
+ji chu 	基礎	c=1 d=0.588605 t=474
+ji ge 	幾個	c=2 d=1.21308 t=474
+ji lu 	記錄	c=1 d=0.606531 t=474
+ji yu 	基於	c=1 d=0.718924 t=474
+jia she 	假設	c=1 d=1 t=396
+jian jie 	簡潔	c=1 d=0.327915 t=474
+jian ti 	簡體	c=2 d=0.913852 t=474
+jian xie 	簡寫	c=1 d=0.298197 t=474
+jiang 	將	c=1 d=1 t=366
+jiang wen 	姜文	c=3 d=0.831512 t=474
+jin liang 	儘量	c=1 d=1 t=351
+jiong yue 	囧月	c=1 d=1 t=398
+ju ti 	具體	c=1 d=0.554327 t=474
+jun 	均	c=1 d=1 t=443
+jun ke 	均可	c=2 d=1.52205 t=455
+kai men 	開門	c=1 d=0.23457 t=474
+kai xin 	開心	c=1 d=0.650509 t=474
+ke shi hua 	可視化	c=1 d=0.323033 t=474
+ke yi 	可以	c=1 d=0.373439 t=474
+kuai jie jian 	快捷鍵	c=1 d=0.666977 t=474
+kuai zhao 	快照	c=6 d=2.98465 t=474
+kuo chong 	擴充	c=1 d=1 t=406
+lai yuan 	來源	c=1 d=1 t=360
+lang 	狼	c=2 d=0.48951 t=474
+lao she 	老舍	c=1 d=0.268474 t=474
+le 	了	c=2 d=1.83527 t=463
+li zi 	例子	c=2 d=0.691621 t=474
+liang 	量	c=2 d=1.97531 t=341
+liang ge 	兩個	c=1 d=1 t=304
+liang zhong 	兩種	c=1 d=1 t=380
+lie ju 	列舉	c=1 d=0.600496 t=474
+liu 	流	c=1 d=0.687289 t=474
+lu xun 	魯迅	c=1 d=0.261846 t=474
+luo tuo xiang zi 	駱駝祥子	c=2 d=0.532938 t=474
+ma biao 	碼錶	c=8 d=5.66181 t=436
+meng 	夢	c=1 d=0.826959 t=474
+mian 	麪	c=1 d=1 t=451
+ming yue 	朙月	c=2 d=1.9802 t=403
+mo ren 	默認	c=1 d=0.847894 t=474
+mo xing 	模型	c=2 d=0.844093 t=474
+mo yan 	莫言	c=1 d=0.249075 t=474
+mu lu 	目錄	c=6 d=3.59329 t=474
+nei rong 	內容	c=5 d=3.89241 t=474
+ni shi 	你是	c=3 d=1.51878 t=474
+nong cun 	農村	c=0 d=0.0305746 t=474
+pei zhi 	配置	c=3 d=1.14201 t=474
+pi lao 	疲勞	c=1 d=0.25284 t=474
+pin ci 	頻次	c=1 d=1 t=313
+pin yin 	拼音	c=2 d=1.9802 t=404
+ping tai 	平臺	c=1 d=0.38868 t=474
+qi ta 	其他	c=1 d=1 t=359
+qi zhong 	其中	c=2 d=1.99501 t=435
+qie 	且	c=1 d=1 t=334
+qie huan 	切換	c=4 d=1.81777 t=474
+quan 	全	c=1 d=0.386741 t=474
+quan zhong 	權重	c=1 d=0.299692 t=474
+ru 	乳	c=1 d=0.254107 t=474
+ru 	如	c=3 d=1.91452 t=474
+sa 	撒	c=0 d=0.0891366 t=474
+she zhi 	設置	c=1 d=0.423162 t=474
+sheng cheng 	生成	c=1 d=0.97531 t=474
+sheng qi 	升起	c=1 d=0.282239 t=474
+sheng si 	生死	c=1 d=0.251579 t=474
+sheng xiao 	生效	c=2 d=0.870139 t=474
+shi 	使	c=1 d=0.318224 t=474
+shi 	是	c=8 d=3.001 t=474
+shi 	時	c=2 d=0.823432 t=474
+shi shi 	實施	c=1 d=0.235746 t=474
+shi yong 	使用	c=7 d=2.68201 t=474
+shu 	書	c=2 d=0.494429 t=474
+shu 	鼠	c=1 d=0.477114 t=474
+shu ju 	數據	c=2 d=0.742577 t=474
+shu ru 	輸入	c=3 d=1.56973 t=474
+shu ru fa 	輸入法	c=5 d=2.06938 t=474
+shuang pin 	雙拼	c=1 d=0.398519 t=474
+sun shi 	損失	c=1 d=1 t=348
+suo fa sheng 	所發生	c=0 d=0.0891366 t=474
+suo fa sheng di fang sa 	所發生地方撒	c=1 d=0.895834 t=474
+suo yi 	所以	c=0 d=0.0305746 t=474
+suo yi nong cun 	所以農村	c=1 d=0.307279 t=474
+ta men 	他們	c=1 d=1 t=330
+tai yang 	太陽	c=1 d=0.279431 t=474
+ti gong 	提供	c=1 d=1 t=327
+tian jia 	添加	c=2 d=0.713804 t=474
+tong bu 	同步	c=5 d=3.12893 t=474
+tong guo 	通過	c=1 d=0.375311 t=474
+tu ku 	圖庫	c=1 d=1 t=402
+tui jian 	推薦	c=1 d=1 t=362
+wa 	蛙	c=1 d=0.250324 t=474
+wei 	爲	c=3 d=1.79169 t=474
+wei cheng 	圍城	c=2 d=0.574445 t=474
+wei e 	巍峨	c=1 d=0.358796 t=474
+wei kan 	未看	c=1 d=0.256661 t=474
+wei le 	爲了	c=2 d=0.680645 t=474
+wei zhi 	位置	c=1 d=1 t=408
+wen ben 	文本	c=3 d=2.89335 t=323
+wen dang 	文檔	c=13 d=6.6574 t=474
+wen jian 	文件	c=17 d=7.3043 t=474
+wen jian jia 	文件夾	c=4 d=2.51564 t=474
+wen zhang 	文章	c=1 d=1 t=311
+wo 	我	c=1 d=0.869358 t=474
+wo de 	我的	c=1 d=0.644036 t=474
+xi guan 	習慣	c=2 d=1.55108 t=474
+xia 	下	c=4 d=2.07915 t=474
+xia mian 	下面	c=4 d=2.1963 t=474
+xia zai 	下載	c=2 d=1.04934 t=474
+xiang mu 	項目	c=1 d=0.463013 t=474
+xiang xi 	詳細	c=1 d=0.591555 t=474
+xiao 	小	c=1 d=0.242926 t=474
+xiao guo 	效果	c=1 d=1 t=350
+xiao lang 	小狼	c=1 d=0.292293 t=474
+xiao lang hao 	小狼毫	c=1 d=0.474734 t=474
+xie bu ya zheng 	邪不壓正	c=1 d=0.285076 t=474
+xin 	心	c=1 d=0.65377 t=474
+xin xi 	信息	c=4 d=1.68571 t=474
+xiong di 	兄弟	c=1 d=0.25924 t=474
+xiu gai 	修改	c=4 d=1.50948 t=474
+xu yao 	需要	c=1 d=0.311923 t=474
+xuan dan 	選單	c=2 d=1.20798 t=474
+xuan xiang 	選項	c=1 d=0.45612 t=474
+yan 	眼	c=1 d=0.647265 t=474
+yan jing 	眼睛	c=1 d=0.878096 t=474
+yang shi 	樣式	c=1 d=0.631284 t=474
+yi 	一	c=0 d=0.1 t=418
+yi dui duo 	一對多	c=1 d=0.778801 t=474
+yi yang 	一樣	c=1 d=1 t=333
+yin qing 	引擎	c=1 d=0.470011 t=474
+yin ru 	引入	c=2 d=0.619185 t=474
+yin yong 	引用	c=2 d=1.83527 t=462
+yong hu 	用戶	c=12 d=5.68587 t=474
+you 	有	c=1 d=0.348192 t=474
+you dian 	優點	c=1 d=0.390628 t=474
+yu hua 	餘華	c=1 d=0.257947 t=474
+yu ju 	語句	c=1 d=0.683861 t=474
+yu she 	預設	c=1 d=0.506617 t=474
+yu yan 	語言	c=1 d=0.516851 t=474
+yue du 	閱讀	c=1 d=1 t=386
+yun xing shi 	運行時	c=1 d=0.436049 t=474
+zai 	在	c=5 d=3.79475 t=474
+zhang yi mou 	張藝謀	c=1 d=0.273898 t=474
+zhao chang 	照常	c=1 d=0.280832 t=474
+zhao dao 	找到	c=2 d=1.95123 t=468
+zhe 	這	c=1 d=1 t=457
+zhe ge 	這個	c=2 d=1.98511 t=448
+zhe li 	這裏	c=1 d=1 t=422
+zhe shi 	這是	c=1 d=0.353455 t=474
+zheng zhuan 	正傳	c=1 d=0.264477 t=474
+zhi dao 	指導	c=1 d=0.540641 t=474
+zhi ding 	制定	c=2 d=1.91216 t=460
+zhi ding 	指定	c=2 d=1.83527 t=461
+zhi ding yi 	制定一	c=1 d=1 t=419
+zhong 	中	c=2 d=1.37421 t=474
+zhuan yi 	轉移	c=1 d=1 t=355
+zhuang tai 	狀態	c=1 d=0.458406 t=474
+zi dian 	字典	c=2 d=0.964796 t=474
+zi ding 	自定	c=1 d=1 t=424
+zi ding yi 	自定義	c=6 d=1.64036 t=474
+zi dong 	自動	c=1 d=0.970446 t=474
+zi fu 	字符	c=1 d=0.404542 t=474
+zi ji 	自己	c=1 d=0.737123 t=474
+zi ku 	字庫	c=1 d=0.305746 t=474
+zi liao 	資料	c=1 d=0.839457 t=474
+zuo chu 	作出	c=1 d=0.729789 t=474
+zuo fa 	做法	c=1 d=1 t=364

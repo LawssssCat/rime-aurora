@@ -1,0 +1,4980 @@
+# Rime dictionary
+# encoding: utf-8
+
+---
+name: luna_pinyin.emoji
+version: "2017.02.10"
+sort: by_weight
+use_preset_vocabulary: true
+...
+
+# table begins
+
+©️	ban quan	99
+©️	ban quan fu hao	99
+©️	fu hao	99
+®️	fu hao	99
+®️	zhu ce	99
+®️	zhu ce biao ji	99
+®️	zhu ce shang biao	99
+‼️	fu hao	99
+‼️	hong se shuang gan tan hao	99
+‼️	jing tan	99
+‼️	jing ya	99
+‼️	shuang gan tan hao	99
+‼️	shuang jing tan hao	99
+⁉️	fu hao	99
+⁉️	gan tan hao jia wen hao	99
+⁉️	jing tan hao jia wen hao	99
+⁉️	jing wen	99
+⁉️	jing ya huai yi	99
+™️	fu hao	99
+™️	shang biao	99
+ℹ️	fu hao	99
+ℹ️	xin xi	99
+ℹ️	zi xun	99
+↔️	fu hao	99
+↔️	zuo you	99
+↔️	zuo you jian tou	99
+↕️	fu hao	99
+↕️	shang xia	99
+↕️	shang xia jian tou	99
+↖️	fu hao	99
+↖️	jian tou	99
+↖️	xi bei zhi xiang de jian tou	99
+↖️	zuo shang	99
+↖️	zuo shang jian tou	99
+↗️	fu hao	99
+↗️	jian tou	99
+↗️	you shang	99
+↗️	you shang jian tou	99
+↘️	dong nan zhi xiang de jian tou	99
+↘️	fu hao	99
+↘️	jian tou	99
+↘️	you xia	99
+↘️	you xia jian tou	99
+↙️	fu hao	99
+↙️	jian tou	99
+↙️	xi nan zhi xiang de jian tou	99
+↙️	zuo xia	99
+↙️	zuo xia jian tou	99
+↩️	fu hao	99
+↩️	xiang zuo hui zhuan	99
+↩️	zuo hui zhuan	99
+↪️	fu hao	99
+↪️	xiang you hui zhuan	99
+↪️	you hui zhuan	99
+∞	wu qiong	99
+∞	wu qiong da	99
+⌚️	biao	99
+⌚️	biao pan	99
+⌚️	ji xie biao	99
+⌚️	ming biao	99
+⌚️	shi jian	99
+⌚️	shi ying biao	99
+⌚️	shou biao	99
+⌚️	wan biao	99
+⌛️	deng dai	99
+⌛️	ji shi	99
+⌛️	sha lou	99
+⌛️	shi jian	99
+⌨️	jian pan	99
+⏩	jia su	99
+⏩	kuai jin	99
+⏩	kuai jin jian	99
+⏩	xiang you fu hao	99
+⏩	you shuang san jiao	99
+⏪	dao tui jian	99
+⏪	jian su	99
+⏪	kuai tui	99
+⏪	xiang zuo fu hao	99
+⏫	fu hao	99
+⏫	shang chuan	99
+⏫	xiang shang fu hao	99
+⏬	fu hao	99
+⏬	xia zai	99
+⏬	xiang xia fu hao	99
+⏭️	kuai jin jian	99
+⏮️	dao tui jian	99
+⏯️	bo fang zan ting jian	99
+⏰	nao ling	99
+⏰	nao zhong	99
+⏰	ti xing	99
+⏱️	miao biao	99
+⏲️	ding shi qi shi zhong	99
+⏲️	shi zhong	99
+⏳	sha lou	99
+⏸️	zan ting	99
+⏸️	zan ting lu zhi	99
+⏹️	ting zhi lu zhi	99
+⏹️	ting zhi mei ti fu hao	99
+⏺️	lu zhi	99
+Ⓜ️	di tie	99
+Ⓜ️	fu hao	99
+▪️	hei dian	99
+▶️	bo fang jian	99
+▶️	san jiao	99
+▶️	xia yi ge	99
+▶️	xiang you	99
+▶️	you san jiao	99
+▼	xia san jiao	99
+◀️	san jiao	99
+◀️	shang yi ge	99
+◀️	xiang zuo	99
+◽️	bai se fang kuai	99
+◾️	hei fang kuai	99
+☀️	qing lang	99
+☀️	qing tian	99
+☀️	ri shi	99
+☀️	tai yang	99
+☀️	tai yang she xian	99
+☀️	tian qi	99
+☀️	yang guang	99
+☁️	duo yun	99
+☁️	fu yun	99
+☁️	tian qi	99
+☁️	wu yun	99
+☁️	yin tian	99
+☁️	yun	99
+☁️	yun cai	99
+☁️	yun duan	99
+☁️	yun duo	99
+☂️	bao hu san	99
+☂️	san	99
+☂️	yu san	99
+☃️	dui xue ren	99
+☃️	xue	99
+☃️	xue ren	99
+☃️	️ xue	99
+☄️	ha lei hui xing	99
+☄️	hui xing	99
+☄️	sao ba xing	99
+☄️	sao zhou xing	99
+☎️	da dian hua	99
+☎️	dian hua	99
+☎️	lai dian	99
+☎️	shang wu	99
+☎️	zhi dian	99
+☎️	zuo ji	99
+☑️	da gou	99
+☑️	fu hao	99
+☑️	fu xuan kuang	99
+☑️	gou xuan	99
+☑️	que ding	99
+☑️	xuan zhong	99
+☑️	yi gou xuan	99
+☔️	cheng san	99
+☔️	da san	99
+☔️	san	99
+☔️	tian qi	99
+☔️	xia yu	99
+☔️	xia yu tian	99
+☔️	yu	99
+☔️	yu di	99
+☔️	yu san	99
+☔️	yu shui	99
+☔️	yu tian	99
+☔️	zhou yu	99
+☕️	can yin	99
+☕️	cha	99
+☕️	he ka fei	99
+☕️	hong cha	99
+☕️	ka bu qi nuo	99
+☕️	ka fei	99
+☕️	ka fei bei	99
+☕️	ka fei dian	99
+☕️	mo ka	99
+☕️	nai cha	99
+☕️	re yin	99
+☕️	re yin liao	99
+☕️	xia wu cha	99
+☕️	yin liao	99
+☘️	san ye cao	99
+☘️	xing yun cao	99
+☝️	di yi	99
+☝️	shi zhi	99
+☝️	shou shi	99
+☝️	yi ge	99
+☟	shi zhi xiang xia	99
+☠️	ju du	99
+☠️	ku lou	99
+☠️	ku lou tou	99
+☢️	fang she xing	99
+☢️	fang she xing biao zhi	99
+☢️	fu she	99
+☣️	sheng wu wei hai	99
+☦️	dong zheng jiao shi zi jia	99
+☦️	zheng jiao hui shi zi	99
+☪️	xing yue	99
+☪️	xing yue biao zhi	99
+☮️	fan zhan	99
+☮️	fan zhan biao zhi	99
+☮️	he ping biao zhi	99
+☯️	tai ji	99
+☯️	yin yang	99
+☸️	fa lun	99
+☹️	bu gao xing de lian	99
+☹️	bu kai xin	99
+☹️	ku nao	99
+☹️	sheng qi de lian	99
+☺️	biao qing	99
+☺️	de yi	99
+☺️	kai xin	99
+☺️	wei xiao	99
+☺️	xiao	99
+☺️	xiao lian	99
+♈️	bai yang zuo	99
+♈️	mu yang zuo	99
+♈️	xing zuo	99
+♉️	jin niu zuo	99
+♉️	xing zuo	99
+♊️	shuang zi zuo	99
+♊️	xing zuo	99
+♋️	ju xie zuo	99
+♋️	xing zuo	99
+♌️	shi zi zuo	99
+♌️	xing zuo	99
+♍️	chu nv zuo	99
+♍️	xing zuo	99
+♎️	tian cheng zuo	99
+♎️	xing zuo	99
+♏️	tian xie zuo	99
+♏️	xing zuo	99
+♐️	she shou zuo	99
+♐️	xing zuo	99
+♑️	mo jie zuo	99
+♑️	xing zuo	99
+♒️	shui ping zuo	99
+♒️	xing zuo	99
+♓️	shuang yu zuo	99
+♓️	xing zuo	99
+♠️	biao zhi	99
+♠️	hei tao	99
+♣️	biao zhi	99
+♣️	cao hua	99
+♣️	hei mei hua	99
+♣️	mei hua	99
+♥️	biao zhi	99
+♥️	hong tao	99
+♥️	hong xin	99
+♥️	tao xin	99
+♦️	biao zhi	99
+♦️	fang kuai	99
+♦️	fang pian	99
+♦️	hong fang kuai	99
+♨️	pao tang	99
+♨️	re shui	99
+♨️	re tang	99
+♨️	wen quan	99
+♨️	xiu xi	99
+♻️	fu hao	99
+♻️	huan bao	99
+♻️	hui shou	99
+♻️	xun huan	99
+♿️	biao zhi	99
+♿️	can ji fu hao	99
+♿️	can zhang	99
+♿️	can zhang ren shi	99
+♿️	lun yi	99
+⚒️	chui zi he gao	99
+⚓️	chuan mao	99
+⚓️	du lun	99
+⚓️	fu hao	99
+⚓️	gang kou	99
+⚓️	hai yun	99
+⚓️	mao	99
+⚔️	jiao cha de jian	99
+⚔️	jue dou	99
+⚖️	gong ping cheng	99
+⚖️	tian cheng	99
+⚖️	tian ping	99
+⚗️	zheng liu qi	99
+⚙️	chi lun	99
+⚙️	ji xie	99
+⚛️	wu li	99
+⚛️	yuan zi fu hao	99
+⚜️	jin bai he	99
+⚜️	xiang gen yuan wei	99
+⚜️	yuan wei	99
+⚜️	yuan wei hua	99
+⚠️	biao zhi	99
+⚠️	jin ji tong zhi	99
+⚠️	jing gao	99
+⚠️	jing shi	99
+⚠️	wei xian	99
+⚠️	zhu yi	99
+⚠️	zhu yi shi xiang	99
+⚡️	biao zhi	99
+⚡️	gao ya fu hao	99
+⚡️	shan dian	99
+⚡️	shou cheng shan dian	99
+⚪️	bai se yuan quan	99
+⚫️	hei se yuan quan	99
+⚰️	guan cai	99
+⚰️	guan guo	99
+⚰️	ling jiu	99
+⚱️	gu hui guan	99
+⚱️	gu hui he	99
+⚱️	gu hui tan	99
+⚽️	guo zu	99
+⚽️	ti qiu	99
+⚽️	yun dong	99
+⚽️	zu qiu	99
+⚽️	zu qiu dui	99
+⚽️	zu qiu sai	99
+⚾️	bang qiu	99
+⚾️	yun dong	99
+⛄️	dui xue ren	99
+⛄️	tian qi	99
+⛄️	xue	99
+⛄️	xue ren	99
+⛅️	duo yun	99
+⛅️	duo yun zhuan qing	99
+⛅️	qing jian duo yun	99
+⛅️	tian qi	99
+⛅️	yin tian	99
+⛈️	bao yu	99
+⛈️	dian shan lei ming	99
+⛈️	lei yu jiao jia	99
+⛈️	lei yu yun	99
+⛈️	yu	99
+⛎	she fu zuo	99
+⛎	xing zuo	99
+⛏️	chu tou	99
+⛏️	tie gao	99
+⛑️	an quan mao	99
+⛑️	jiu sheng an quan mao	99
+⛓️	lian tiao	99
+⛔️	biao zhi	99
+⛔️	jin xing	99
+⛔️	jin zhi	99
+⛔️	jin zhi jin ru	99
+⛔️	jin zhi shi ru	99
+⛩️	niao ju	99
+⛩️	ri ben shen she	99
+⛩️	shen she	99
+⛪️	jian zhu	99
+⛪️	jiao tang	99
+⛪️	jie hun	99
+⛪️	li bai tang	99
+⛪️	sheng tang	99
+⛪️	zuo li bai	99
+⛰️	gao shan	99
+⛰️	shan feng	99
+⛱️	du jia	99
+⛱️	san	99
+⛱️	tai yang san	99
+⛱️	zhe yang san	99
+⛲️	gong yuan	99
+⛲️	huo dong	99
+⛲️	pen quan	99
+⛲️	pen shui chi	99
+⛳️	da gao er fu	99
+⛳️	gao er fu	99
+⛳️	gao er fu qiu	99
+⛳️	gao er fu qiu dong	99
+⛳️	yun dong	99
+⛴️	du chuan	99
+⛴️	du lun	99
+⛴️	shui shang ba shi	99
+⛵️	fan chuan	99
+⛵️	hai shang huo dong	99
+⛵️	jiao tong	99
+⛵️	ma tou	99
+⛵️	you ting	99
+⛷️	hua xue	99
+⛷️	hua xue yun dong yuan	99
+⛷️	shuang ban	99
+⛸️	bing dao xie	99
+⛸️	hua bing	99
+⛸️	liu bing xie	99
+⛹️	da lan qiu	99
+⛹️	lan qiu bi sai	99
+⛹️	yun dong	99
+⛹️	zai yun qiu de ren	99
+⛹️‍♀️	da lan qiu	99
+⛹️‍♀️	lan qiu bi sai	99
+⛹️‍♀️	yun dong	99
+⛹️‍♀️	zai yun qiu de ren	99
+⛺️	huo dong	99
+⛺️	lu ying	99
+⛺️	ye ying	99
+⛺️	zhang peng	99
+⛽️	huo dong	99
+⛽️	jia you	99
+⛽️	jia you zhan	99
+⛽️	ran liao	99
+⛽️	ran liao beng	99
+⛽️	xiu xi qu	99
+✂️	gong ju	99
+✂️	jian dao	99
+✂️	jian zi	99
+✂️	xiu jian	99
+✅	biao zhi	99
+✅	gou hao	99
+✅	que ding	99
+✅	wan cheng	99
+✅	yun xu	99
+✅	zheng que	99
+✈️	fei ji	99
+✈️	fei wang	99
+✈️	fei xing	99
+✈️	guo hang	99
+✈️	hang kong	99
+✈️	ji chang	99
+✈️	jiao tong	99
+✈️	lv xing	99
+✉️	shang wu	99
+✉️	xie xin	99
+✉️	xin feng	99
+✉️	xin jian	99
+✉️	xun xi	99
+✉️	you jian	99
+✊	jian chi	99
+✊	jian chi xia qu	99
+✊	quan tou	99
+✊	shi tou	99
+✊	shou shi	99
+✊	xuan shi	99
+✋	bu xing	99
+✋	ji zhang	99
+✋	ru lai shen zhang	99
+✋	shou shi	99
+✋	shou zhang	99
+✋	zhang	99
+✌️	jian dao	99
+✌️	jian dao shou	99
+✌️	sheng li	99
+✌️	shou shi	99
+✌️	ye	99
+✌️	ying le	99
+✍️	shu xie	99
+✍️	xie zi	99
+✏️	qian bi	99
+✏️	xie zuo	99
+✒️	gang bi	99
+✔️	da gou	99
+✔️	fu hao	99
+✔️	gou hao	99
+✔️	zheng que	99
+✖️	cheng	99
+✖️	cheng hao	99
+✖️	cuo wu	99
+✖️	da cha	99
+✖️	fu hao	99
+✝️	ji du jiao	99
+✝️	shi zi jia	99
+✡️	da wei zhi xing	99
+✡️	liu mang xing	99
+✡️	suo luo men feng yin	99
+✡️	you tai xing	99
+✡️	you tai xing hui	99
+✨	liang jing jing	99
+✨	shan liang	99
+✨	shan liang de	99
+✨	shan shuo de xing xing	99
+✨	tian wen	99
+✨	xing xing	99
+✳️	fu hao	99
+✳️	lv xing hao	99
+✳️	xing hao	99
+✳️	xing xing fu hao	99
+✴️	ba jiao xing	99
+✴️	da cha fu hao	99
+✴️	fu hao	99
+❄️	chu xue	99
+❄️	di yi chang xue	99
+❄️	jiang xue	99
+❄️	rui xue	99
+❄️	tian qi	99
+❄️	xia xue	99
+❄️	xue	99
+❄️	xue hua	99
+❇️	qing zhu	99
+❇️	tiao fu xing	99
+❌	cuo	99
+❌	cuo wu	99
+❌	fu hao	99
+❌	hong cha	99
+❌	jin zhi	99
+❌	ju jue	99
+❎	bu yun xu	99
+❎	cha hao	99
+❎	da cha fu hao	99
+❎	fu hao	99
+❎	wei wan cheng	99
+❓	fu hao	99
+❓	hong se wen hao	99
+❓	wen hao	99
+❓	yi wen	99
+❔	bai se wen hao	99
+❔	fu hao	99
+❔	wen hao	99
+❔	yi wen	99
+❕	bai se gan tan hao	99
+❕	fu hao	99
+❕	gan tan hao	99
+❕	jing tan	99
+❕	jing tan hao	99
+❕	jing ya	99
+❗️	fu hao	99
+❗️	hong se gan tan hao	99
+❗️	jing tan	99
+❗️	jing tan hao	99
+❗️	jing ya	99
+❣️	xin qing gan tan hao	99
+❤️	ai	99
+❤️	ai xin	99
+❤️	fu hao	99
+❤️	hong se de xin	99
+❤️	re qing	99
+❤️	tao xin	99
+❤️	xi huan	99
+❤️	xin	99
+➕	fu hao	99
+➕	guan zhu	99
+➕	jia	99
+➕	jia hao	99
+➖	fu hao	99
+➖	jian	99
+➖	jian hao	99
+➗	chu	99
+➗	chu hao	99
+➗	fu hao	99
+➡️	fu hao	99
+➡️	jian tou	99
+➡️	xiang you jian tou	99
+➡️	you	99
+➡️	you jian tou	99
+➡️	you zhuan	99
+➰	fu hao	99
+➰	juan qu huan	99
+➰	wan qu xian	99
+➿	biao zhi	99
+➿	fu hao	99
+➿	shuang juan qu huan	99
+➿	shuang wan qu xian	99
+⤴️	fu hao	99
+⤴️	zhuan xiang qian fang	99
+⤵️	fu hao	99
+⤵️	zhuan xiang hou fang	99
+⬅️	fu hao	99
+⬅️	jian tou	99
+⬅️	xiang zuo jian tou	99
+⬅️	zuo	99
+⬅️	zuo jian tou	99
+⬅️	zuo zhuan	99
+⬆️	fu hao	99
+⬆️	jian tou	99
+⬆️	shang	99
+⬆️	shang jian tou	99
+⬆️	xiang shang jian tou	99
+⬇️	fu hao	99
+⬇️	jian tou	99
+⬇️	xia	99
+⬇️	xiang xia jian tou	99
+⬛️	hei xian da fang kuang	99
+⬜️	bai xian da fang kuang	99
+⭐️	dan huang xing xing	99
+⭐️	fu hao	99
+⭐️	wu jiao xing	99
+⭐️	xing xing	99
+⭕️	fu hao	99
+⭕️	hong se yuan quan	99
+⭕️	quan quan	99
+⭕️	yuan quan	99
+⭕️	yuan xing	99
+⭕️	zheng que	99
+〰️	bo lang	99
+〰️	bo lang xian	99
+〰️	bo lang xing po zhe hao	99
+〰️	fu hao	99
+〽️	chang ge fu hao	99
+〽️	fu hao	99
+〽️	ge ji hao	99
+〽️	ge yao kai shi ji hao	99
+〽️	zhong ri han biao dian	99
+㊗️	fu hao	99
+㊗️	gong he	99
+㊗️	qing zhu	99
+㊗️	zhu	99
+㊗️	zhu an kang	99
+㊗️	zhu fu	99
+㊗️	zhu he	99
+㊙️	fu hao	99
+㊙️	mi	99
+㊙️	mi fang	99
+㊙️	mi mi	99
+㊙️	yin si	99
+🀄️	hong zhong	99
+🀄️	huo dong	99
+🀄️	ma jiang	99
+🀄️	zhong	99
+🃏	huo dong	99
+🃏	pu ke pai	99
+🃏	wan pai	99
+🃏	wang pai	99
+🃏	xiao chou	99
+🃏	xiao wang	99
+🃏	zhi pai	99
+🅰️	biao zhi	99
+🅰️	xue xing	99
+🅱️	biao zhi	99
+🅱️	xue xing	99
+🅾️	biao zhi	99
+🅾️	xue xing	99
+🅿️	biao zhi	99
+🅿️	ting che	99
+🅿️	ting che chang	99
+🆎	biao zhi	99
+🆎	xue xing	99
+🆑	fu hao	99
+🆑	qing chu	99
+🆑	qing ling	99
+🆑	qing ling jian	99
+🆒	fu hao	99
+🆒	ku	99
+🆒	qing liang	99
+🆓	fu hao	99
+🆓	mian fei	99
+🆓	zi you	99
+🆔	fu hao	99
+🆔	shen fen	99
+🆔	shen fen zheng	99
+🆕	fu hao	99
+🆕	xin	99
+🆕	xin jian	99
+🆖	bu gan	99
+🆖	bu hao	99
+🆖	bu xing	99
+🆖	fu hao	99
+🆗	fu hao	99
+🆗	hao	99
+🆗	mei wen ti	99
+🆘	fu hao	99
+🆘	hu jiu	99
+🆘	jiu ming	99
+🆘	qiu jiu	99
+🆙	ding	99
+🆙	fu hao	99
+🆚	bi	99
+🆚	bi sai	99
+🆚	dui bi	99
+🆚	dui kang	99
+🆚	fu hao	99
+🇦🇨	a sen song dao	99
+🇦🇩	an dao er	99
+🇦🇩	an dao er gong he guo	99
+🇦🇪	a la bo lian he da gong guo	99
+🇦🇪	a la bo lian he qiu zhang guo	99
+🇦🇪	a lian qiu	99
+🇦🇫	a fu han	99
+🇦🇬	an de ka ji ba bu da	99
+🇦🇬	an ti gua he ba bu da	99
+🇦🇮	an gui la	99
+🇦🇱	a er ba ni ya	99
+🇦🇲	ya mei ni ya	99
+🇦🇴	an ge la	99
+🇦🇶	nan ji zhou	99
+🇦🇷	a gen ting	99
+🇦🇷	nan mei tan ge	99
+🇦🇸	mei shu sa mo ya	99
+🇦🇹	ao di li	99
+🇦🇹	yin yue zhi bang	99
+🇦🇺	ao da li ya	99
+🇦🇺	dai shu guo	99
+🇦🇼	a lu ba	99
+🇦🇽	ao lan qun dao	99
+🇦🇿	a sai bai jiang	99
+🇦🇿	ya sai bai ran	99
+🇧🇦	bo shi ni ya	99
+🇧🇦	bo si ni ya	99
+🇧🇦	bo si ni ya he hei sai ge wei	99
+🇧🇧	ba ba duo si	99
+🇧🇧	ba bei duo	99
+🇧🇩	meng jia la	99
+🇧🇩	meng jia la guo	99
+🇧🇪	bi li shi	99
+🇧🇫	bu ji na fa suo	99
+🇧🇬	bao jia li ya	99
+🇧🇬	mei gui wang guo	99
+🇧🇭	ba lin	99
+🇧🇮	bu long di	99
+🇧🇮	pu long de	99
+🇧🇯	bei nan	99
+🇧🇯	bei ning	99
+🇧🇯	you zong zhi guo	99
+🇧🇱	sheng ba tai lei mi dao	99
+🇧🇲	bai mu da	99
+🇧🇳	wen lai	99
+🇧🇴	bo li wei ya	99
+🇧🇶	he lan jia lei bi qu	99
+🇧🇷	ba xi	99
+🇧🇷	sang ba wu zhe	99
+🇧🇷	sen ba wu zhe	99
+🇧🇸	ba ha ma	99
+🇧🇹	bu dan	99
+🇧🇻	bu wei dao	99
+🇧🇼	bo ci wa na	99
+🇧🇼	bo zha na	99
+🇧🇼	bo zi wa na	99
+🇧🇾	bai e luo si	99
+🇧🇿	bei li si	99
+🇧🇿	bo li zi	99
+🇨🇦	feng ye zhi guo	99
+🇨🇦	jia na da	99
+🇨🇩	gang guo min zhu gong he guo	99
+🇨🇫	zhong fei gong he guo	99
+🇨🇬	gang guo gong he guo	99
+🇨🇭	rui shi	99
+🇨🇮	ke te di wa	99
+🇨🇮	xiang ya hai an	99
+🇨🇰	ku ke qun dao	99
+🇨🇱	zhi li	99
+🇨🇲	ka mai long	99
+🇨🇳	wu xing hong qi	99
+🇨🇳	zhong guo	99
+🇨🇳	zhong guo guo qi	99
+🇨🇳	zhong hua ren min gong he guo	99
+🇨🇳	zhong hua ren min gong he guo guo qi	99
+🇨🇴	ge lun bi ya	99
+🇨🇵	ke li po dun dao	99
+🇨🇷	ge si da li jia	99
+🇨🇺	gu ba	99
+🇨🇻	fu de jiao	99
+🇨🇻	wei de jiao	99
+🇨🇼	ku la suo	99
+🇨🇽	sheng dan dao	99
+🇨🇾	sai pu lei si	99
+🇨🇾	sai pu lu si	99
+🇨🇿	jie ke	99
+🇨🇿	jie ke gong he guo	99
+🇩🇪	de guo	99
+🇩🇪	de guo guo qi	99
+🇩🇪	ri er man zhan che	99
+🇩🇬	di ge jia xi ya dao	99
+🇩🇯	ji bu de	99
+🇩🇯	ji bu ti	99
+🇩🇰	dan mai	99
+🇩🇲	duo mi ni ke	99
+🇩🇴	duo mi ni jia gong he guo	99
+🇩🇴	duo ming ni jia gong he guo	99
+🇩🇿	a er ji li ya	99
+🇪🇦	xiu da he mei li li ya	99
+🇪🇨	e gua duo er	99
+🇪🇪	ai sha ni ya	99
+🇪🇬	ai ji	99
+🇪🇭	xi sa ha la	99
+🇪🇷	e li chui ya	99
+🇪🇷	e li te li ya	99
+🇪🇸	xi ban ya	99
+🇪🇸	xi ban ya guo qi	99
+🇪🇹	ai sai e bi ya	99
+🇪🇹	yi suo bi ya	99
+🇪🇺	ou meng	99
+🇫🇮	fen lan	99
+🇫🇮	he lan	99
+🇫🇯	fei ji	99
+🇫🇰	fu ke lan qun dao	99
+🇫🇲	mi ke luo ni xi ya	99
+🇫🇴	fa luo qun dao	99
+🇫🇷	fa guo	99
+🇫🇷	fa guo guo qi	99
+🇫🇷	gao lu xiong ji	99
+🇬🇦	jia peng	99
+🇬🇧	bu lie dian	99
+🇬🇧	da bu lie dian	99
+🇬🇧	ying guo	99
+🇬🇧	ying guo guo qi	99
+🇬🇩	ge lin na da	99
+🇬🇩	ge rui na da	99
+🇬🇪	ge lu ji ya	99
+🇬🇪	qiao zhi ya gong he guo	99
+🇬🇫	fa shu gui ya na	99
+🇬🇬	ge en xi dao	99
+🇬🇭	jia na	99
+🇬🇮	zhi bu luo tuo	99
+🇬🇱	ge ling lan	99
+🇬🇲	gan bi ya	99
+🇬🇲	gang bi ya	99
+🇬🇳	ji nei ya	99
+🇬🇵	gua de luo pu	99
+🇬🇵	gua de luo pu dao	99
+🇬🇶	chi dao ji nei ya	99
+🇬🇷	xi la	99
+🇬🇸	nan qiao zhi ya dao he nan sang wei qi qun dao	99
+🇬🇹	gua de ma la	99
+🇬🇹	wei de ma la	99
+🇬🇺	guan dao	99
+🇬🇼	ji nei ya bi shao	99
+🇬🇼	ji nei ya bi suo	99
+🇬🇾	gai ya na	99
+🇬🇾	gui ya na	99
+🇭🇰	xiang gang	99
+🇭🇰	zhong guo xiang gang te bie xing zheng qu	99
+🇭🇰	zi jing hua qi	99
+🇭🇲	he de dao he mai ke tang na qun dao	99
+🇭🇳	hong dou la si	99
+🇭🇷	ge zi jun	99
+🇭🇷	ke luo ai xi ya	99
+🇭🇷	ke luo de ya	99
+🇭🇹	hai di	99
+🇭🇺	xiong ya li	99
+🇮🇨	jia na li qun dao	99
+🇮🇩	yin du ni xi ya	99
+🇮🇩	yin ni	99
+🇮🇪	ai er lan	99
+🇮🇱	yi se lie	99
+🇮🇲	man en dao	99
+🇮🇳	kong que zhi guo	99
+🇮🇳	yin du	99
+🇮🇴	ying shu yin du yang ling di	99
+🇮🇶	yi la ke	99
+🇮🇷	yi lang	99
+🇮🇸	bing dao	99
+🇮🇹	yi da li	99
+🇮🇹	yi da li guo qi	99
+🇯🇪	ze xi dao	99
+🇯🇲	ya mai jia	99
+🇯🇴	yue dan	99
+🇯🇵	ri ben	99
+🇯🇵	ri ben guo qi	99
+🇯🇵	ri zhang qi	99
+🇯🇵	ying hua zhi guo	99
+🇰🇪	ken ni ya	99
+🇰🇪	ken ya	99
+🇰🇬	ji er ji si	99
+🇰🇬	ji er ji si si tan	99
+🇰🇭	jian bu zhai	99
+🇰🇮	ji li ba si	99
+🇰🇲	ge mo	99
+🇰🇲	ke mo luo	99
+🇰🇲	xiang dao	99
+🇰🇳	sheng ji ci he ni wei si	99
+🇰🇳	sheng ke li si duo fu ji ni wei si	99
+🇰🇵	bei han	99
+🇰🇵	chao xian	99
+🇰🇷	han guo	99
+🇰🇷	han guo guo qi	99
+🇰🇷	nan han	99
+🇰🇷	tai ji hu	99
+🇰🇷	tai ji qi	99
+🇰🇼	ke wei te	99
+🇰🇾	kai man qun dao	99
+🇰🇿	ha sa ke	99
+🇰🇿	ha sa ke si tan	99
+🇱🇦	lao wo	99
+🇱🇦	liao guo	99
+🇱🇧	li ba nen	99
+🇱🇨	sheng lu xi ya	99
+🇱🇮	lie zhi dun shi deng	99
+🇱🇮	lie zhi dun si deng	99
+🇱🇰	si li lan ka	99
+🇱🇷	lai bi rui ya	99
+🇱🇷	li bi li ya	99
+🇱🇸	lai suo tuo	99
+🇱🇹	li tao wan	99
+🇱🇺	lu sen bao	99
+🇱🇻	la tuo wei ya	99
+🇱🇾	li bi ya	99
+🇲🇦	mo luo ge	99
+🇲🇨	mo na ge	99
+🇲🇩	mo er duo wa	99
+🇲🇪	hei shan	99
+🇲🇫	sheng ma ding	99
+🇲🇬	ma da jia si jia	99
+🇲🇭	ma shao er qun dao	99
+🇲🇰	ma qi dun	99
+🇲🇱	ma li	99
+🇲🇲	mian dian	99
+🇲🇳	meng gu	99
+🇲🇴	ao men	99
+🇲🇴	zhong guo ao men te bie xing zheng qu	99
+🇲🇵	bei ma li ya na qun dao	99
+🇲🇶	ma ding ni ke	99
+🇲🇶	ma ti ni ke	99
+🇲🇷	mao li ta ni ya	99
+🇲🇸	meng te sai la te	99
+🇲🇸	meng te sai la te dao	99
+🇲🇸	meng te se la te dao	99
+🇲🇹	ma er ta	99
+🇲🇺	mao li qiu si	99
+🇲🇻	ma er dai fu	99
+🇲🇻	ma er de fu	99
+🇲🇼	ma la wei	99
+🇲🇽	gao yuan xiong ying	99
+🇲🇽	mo xi ge	99
+🇲🇾	ma lai xi ya	99
+🇲🇾	xi he xiang jiao wang guo	99
+🇲🇿	mo san bi ke	99
+🇲🇿	mo sang bi ke	99
+🇳🇦	na mi bi ya	99
+🇳🇨	xin ka li duo ni ya	99
+🇳🇨	xin ka li duo ni ya qun dao	99
+🇳🇪	ni ri er	99
+🇳🇪	sha zhong zhi guo	99
+🇳🇫	nuo fu ke dao	99
+🇳🇬	fei zhou xiong ying	99
+🇳🇬	nai ji li ya	99
+🇳🇬	ni ri li ya	99
+🇳🇮	ni jia la gua	99
+🇳🇱	feng che zhi guo	99
+🇳🇱	he lan	99
+🇳🇴	nuo wei	99
+🇳🇴	wan dao guo	99
+🇳🇵	ni po er	99
+🇳🇵	si miao zhi guo	99
+🇳🇷	nao lu	99
+🇳🇺	niu ai	99
+🇳🇿	niu xi lan	99
+🇳🇿	xin xi lan	99
+🇴🇲	a man	99
+🇵🇦	ba na ma	99
+🇵🇪	bi lu	99
+🇵🇪	mi lu	99
+🇵🇫	fa shu bo li ni xi ya	99
+🇵🇬	ba bu ya niu ji nei ya	99
+🇵🇬	ba bu ya xin ji nei ya	99
+🇵🇭	fei lv bin	99
+🇵🇰	ba ji si tan	99
+🇵🇱	bo lan	99
+🇵🇲	sheng pi ai er he mi ke long	99
+🇵🇳	pi te ke en	99
+🇵🇷	bo duo li ge	99
+🇵🇸	ba le si tan	99
+🇵🇹	pu tao ya	99
+🇵🇼	bo liu	99
+🇵🇼	pa lao	99
+🇵🇾	ba la gui	99
+🇶🇦	ka da	99
+🇶🇦	ka ta er	99
+🇷🇪	liu ni wang	99
+🇷🇪	liu ni wang dao	99
+🇷🇴	luo ma ni ya	99
+🇷🇸	sai er wei ya	99
+🇷🇺	e guo	99
+🇷🇺	e guo guo qi	99
+🇷🇺	e luo si	99
+🇷🇼	lu an da	99
+🇷🇼	lu wang da	99
+🇸🇦	sha te a la bai	99
+🇸🇦	sha te a la bo	99
+🇸🇦	sha wu de a la bo	99
+🇸🇧	suo luo men qun dao	99
+🇸🇨	sai she er	99
+🇸🇨	sai xi er	99
+🇸🇩	huo lu guo	99
+🇸🇩	su dan	99
+🇸🇪	rui dian	99
+🇸🇬	shi cheng	99
+🇸🇬	xin jia po	99
+🇸🇭	sheng he lei na	99
+🇸🇮	si luo wei ni ya	99
+🇸🇮	si luo wen ni ya	99
+🇸🇯	si wa er ba te he yang ma yan qun dao	99
+🇸🇰	si luo fa ke	99
+🇸🇱	sai la li ang	99
+🇸🇲	sheng ma li nuo	99
+🇸🇳	sai nei jia er	99
+🇸🇴	fei zhou zhi jiao	99
+🇸🇴	suo ma li	99
+🇸🇴	suo ma li ya	99
+🇸🇷	su li nan	99
+🇸🇸	nan su dan	99
+🇸🇸	nan su dan gong he guo	99
+🇸🇹	sheng duo mei he pu lin xi bi	99
+🇸🇹	sheng duo mei ji pu lin xi bi	99
+🇸🇻	sa er wa duo	99
+🇸🇻	sa er wa duo gong he guo	99
+🇸🇽	he shu sheng ma ding	99
+🇸🇽	sheng ma ding dao	99
+🇸🇾	xu li ya	99
+🇸🇿	shi wa ji lan	99
+🇸🇿	si wei shi lan	99
+🇹🇦	te li si tan da ku ni ya	99
+🇹🇨	te ke si he kai ke si qun dao	99
+🇹🇨	tu ke si ji kai ke si qun dao	99
+🇹🇩	zha de	99
+🇹🇫	fa shu nan bu ling di	99
+🇹🇬	duo ge	99
+🇹🇭	tai guo	99
+🇹🇭	wan fu zhi guo	99
+🇹🇯	ta ji ke	99
+🇹🇯	ta ji ke si tan	99
+🇹🇰	tuo ke lao	99
+🇹🇱	dong di wen	99
+🇹🇲	tu ku man	99
+🇹🇲	tu ku man si tan	99
+🇹🇳	gan lan zhi guo	99
+🇹🇳	tu ni si	99
+🇹🇳	tu ni xi ya	99
+🇹🇴	dong jia	99
+🇹🇴	tang jia	99
+🇹🇷	tu er qi	99
+🇹🇷	xing yue qi	99
+🇹🇹	qian li da ji tuo ba ge	99
+🇹🇹	te li ni da he duo ba ge	99
+🇹🇻	tu wa lu	99
+🇹🇿	tan sang ni ya	99
+🇹🇿	tan shang ni ya	99
+🇺🇦	wu ke lan	99
+🇺🇬	wu gan da	99
+🇺🇲	mei guo ben tu wai xiao dao yu	99
+🇺🇸	mei guo	99
+🇺🇸	mei guo guo qi	99
+🇺🇸	shan mu da shu	99
+🇺🇸	xing tiao qi	99
+🇺🇾	wu la gui	99
+🇺🇿	wu zi bie ke	99
+🇺🇿	wu zi bie ke si tan	99
+🇻🇦	fan di gang	99
+🇻🇦	luo ma jiao ting	99
+🇻🇨	sheng wen sen	99
+🇻🇨	sheng wen sen te	99
+🇻🇨	sheng wen sen te he ge lin na ding si	99
+🇻🇪	wei nei rui la	99
+🇻🇬	ying shu wei er jing qun dao	99
+🇻🇬	ying shu wei jing qun dao	99
+🇻🇮	mei shu wei er jing qun dao	99
+🇻🇮	mei shu wei jing qun dao	99
+🇻🇳	yue nan	99
+🇻🇺	wa nu a tu	99
+🇻🇺	wan na du	99
+🇼🇫	wa li si he fu tu na qun dao	99
+🇼🇸	sa mo ya	99
+🇼🇸	sa mo ya qun dao	99
+🇽🇰	ke suo wo	99
+🇾🇪	ye men	99
+🇾🇹	ma yue te dao	99
+🇿🇦	nan fei	99
+🇿🇲	shang bi ya	99
+🇿🇲	zan bi ya	99
+🇿🇼	jin ba bu wei	99
+🇿🇼	xin ba wei	99
+🈂️	xiao fei	99
+🈚️	fu hao	99
+🈚️	mei you	99
+🈚️	mian fei	99
+🈚️	wu	99
+🈯️	fu hao	99
+🈯️	yu ding	99
+🈯️	zhi	99
+🈯️	zhi ding	99
+🈲️	fu hao	99
+🈲️	jin	99
+🈲️	jin zhi	99
+🈳️	fu hao	99
+🈳️	kong	99
+🈳️	kong wei	99
+🈳️	you kong wei	99
+🈴️	fu hao	99
+🈴️	he	99
+🈴️	he ge	99
+🈴️	shi he	99
+🈵️	fu hao	99
+🈵️	man	99
+🈵️	yi man	99
+🈶️	fu hao	99
+🈶️	shou fei	99
+🈶️	you	99
+🈷️	fu hao	99
+🈷️	yue	99
+🈷️	yue fei	99
+🈷️	yue fen	99
+🈸️	fu hao	99
+🈸️	shen	99
+🈸️	shen qing	99
+🈹️	da zhe	99
+🈹️	fu hao	99
+🈹️	ge	99
+🈹️	ge rou	99
+🈹️	rang li	99
+🈺️	fu hao	99
+🈺️	ying	99
+🈺️	ying ye	99
+🈺️	ying ye zhong	99
+🉐️	de	99
+🉐️	fu hao	99
+🉐️	huo de	99
+🉐️	shou yi	99
+🉐️	te jia	99
+🉑️	fu hao	99
+🉑️	jie shou	99
+🉑️	ke	99
+🉑️	xu ke	99
+🌀	long juan feng	99
+🌀	tai feng	99
+🌀	tian qi	99
+🌀	xuan wo	99
+🌁	tian qi	99
+🌁	wu mai	99
+🌁	wu meng meng	99
+🌁	wu qi	99
+🌁	wu suo jin men	99
+🌂	san	99
+🌂	tian qi	99
+🌂	yu san	99
+🌃	wan shang	99
+🌃	xing kong	99
+🌃	xing ye	99
+🌃	ye jing	99
+🌃	ye se	99
+🌃	zi ran	99
+🌄	ri chu	99
+🌄	ri chu feng	99
+🌄	ri luo	99
+🌄	ri luo shan gu	99
+🌄	shan jian ri chu	99
+🌄	zi ran	99
+🌅	hai shang ri chu	99
+🌅	ri chu	99
+🌅	zi ran	99
+🌆	bang wan	99
+🌆	du shi	99
+🌆	huang hun	99
+🌆	mu se	99
+🌆	xi yang	99
+🌆	zi ran	99
+🌇	huang hun	99
+🌇	xi yang	99
+🌇	xi yang xi xia	99
+🌇	zi ran	99
+🌈	cai hong	99
+🌈	hong	99
+🌈	zi ran	99
+🌉	da qiao	99
+🌉	ye jing	99
+🌉	zi ran	99
+🌊	bo lang	99
+🌊	chao xi	99
+🌊	hai lang	99
+🌊	hai shui	99
+🌊	ju lang	99
+🌊	lang	99
+🌊	lang hua	99
+🌊	zi ran	99
+🌋	huo huo shan	99
+🌋	huo shan	99
+🌋	huo shan pen fa	99
+🌋	zi ran	99
+🌌	hei ye	99
+🌌	tian wen	99
+🌌	yin he	99
+🌌	yin he xi	99
+🌌	zi ran	99
+🌍	di qiu	99
+🌍	fei zhou	99
+🌍	fei zhou da lu	99
+🌍	jia yuan	99
+🌍	ou zhou fei zhou	99
+🌍	xing qiu	99
+🌎	bei ban qiu	99
+🌎	di qiu	99
+🌎	mei zhou	99
+🌏	di qiu	99
+🌏	dong ban qiu	99
+🌏	ya zhou	99
+🌏	ya zhou ao zhou	99
+🌐	di qiu	99
+🌐	zi wu xian	99
+🌑	tian wen	99
+🌑	xin yue	99
+🌒	mei yue	99
+🌒	tian wen	99
+🌓	shang xian yue	99
+🌓	tian wen	99
+🌔	tian wen	99
+🌔	ying tu yue	99
+🌕	man yue	99
+🌕	tian wen	99
+🌖	kui tu yue	99
+🌖	tian wen	99
+🌗	tian wen	99
+🌗	xia xian yue	99
+🌘	can yue	99
+🌘	tian wen	99
+🌙	can yue	99
+🌙	e mei yue	99
+🌙	tian wen	99
+🌙	xin yue	99
+🌙	yue liang	99
+🌙	yue ya	99
+🌚	tian wen	99
+🌚	xin yue	99
+🌛	shang xian yue	99
+🌛	tian wen	99
+🌛	yue liang	99
+🌜	tian wen	99
+🌜	xia xian yue	99
+🌜	yue liang	99
+🌝	man yue	99
+🌝	tian wen	99
+🌝	yue liang	99
+🌞	nuan yang yang	99
+🌞	shai tai yang	99
+🌞	tai yang	99
+🌞	tai yang shen	99
+🌞	tian wen	99
+🌟	shan yao de xing xing	99
+🌟	tian wen	99
+🌟	xing	99
+🌟	xing guang	99
+🌟	xing mang	99
+🌟	xing xing	99
+🌠	hui xing	99
+🌠	liu xing	99
+🌠	tian wen	99
+🌡️	wen du ji	99
+🌤️	duo yun	99
+🌥️	yin tian	99
+🌦️	tai yang yu	99
+🌦️	yu	99
+🌦️	zhen yu	99
+🌧️	xia yu	99
+🌧️	yu	99
+🌨️	xia xue	99
+🌩️	shan dian	99
+🌪️	long juan feng	99
+🌫️	wu	99
+🌫️	wu mai	99
+🌬️	chui qi	99
+🌭️	re gou	99
+🌮️	mo xi ge juan	99
+🌮️	ta ke	99
+🌯️	mo xi ge juan bing	99
+🌰	ban li	99
+🌰	jian guo	99
+🌰	li	99
+🌰	li zi	99
+🌰	song zi	99
+🌰	zhen zi	99
+🌰	zhi wu	99
+🌱	qing miao	99
+🌱	xiao shu miao	99
+🌱	you miao	99
+🌱	zhi wu	99
+🌲	chang lv qiao mu	99
+🌲	chang qing shu	99
+🌲	shu	99
+🌲	shu mu	99
+🌲	song shu	99
+🌲	xiao shu	99
+🌲	yi ke shu	99
+🌲	zhi wu	99
+🌳	da shu	99
+🌳	luo ye qiao mu	99
+🌳	luo ye shu	99
+🌳	shu	99
+🌳	zhi wu	99
+🌴	shu	99
+🌴	zhi wu	99
+🌴	zong lv	99
+🌴	zong lv shu	99
+🌵	xian ren zhang	99
+🌵	zhi wu	99
+🌶️	hong la jiao	99
+🌶️	la jiao	99
+🌷	hu die lan	99
+🌷	hua	99
+🌷	yu jin xiang	99
+🌷	zhi wu	99
+🌸	hua	99
+🌸	ying hua	99
+🌸	zhi wu	99
+🌹	hua	99
+🌹	lang man	99
+🌹	mei gui	99
+🌹	mei gui hua	99
+🌹	yue ji	99
+🌹	zhi wu	99
+🌺	fu rong	99
+🌺	fu sang hua	99
+🌺	hua	99
+🌺	hua duo	99
+🌺	zhi wu	99
+🌻	kui hua	99
+🌻	xiang ri kui	99
+🌻	xiao kui	99
+🌻	zhi wu	99
+🌼	chu ju	99
+🌼	feng xin zi	99
+🌼	hua	99
+🌼	hua duo	99
+🌼	kai hua	99
+🌼	qun hua	99
+🌼	zhi wu	99
+🌽	yu mi	99
+🌽	yu mi sui	99
+🌽	zhi wu	99
+🌾	dao sui	99
+🌾	shui dao	99
+🌾	zhi wu	99
+🌿	cao yao	99
+🌿	shu zhi	99
+🌿	xiang cao	99
+🌿	zhi wu	99
+🌿	zhong yao	99
+🍀	hao yun	99
+🍀	si ye cao	99
+🍀	xing yun cao	99
+🍀	zhi wu	99
+🍁	feng ye	99
+🍁	hong ye	99
+🍁	zhi wu	99
+🍂	huang ye	99
+🍂	ku ye	99
+🍂	luo ye	99
+🍂	shu ye	99
+🍂	zhi wu	99
+🍃	feng chui luo ye	99
+🍃	luo ye	99
+🍃	lv ye	99
+🍃	ye pian	99
+🍃	ye zi	99
+🍃	zhi wu	99
+🍄	gu	99
+🍄	mo gu	99
+🍄	xun lei	99
+🍄	zhi wu	99
+🍅	fan jia	99
+🍅	fan qie	99
+🍅	shui guo	99
+🍅	xi hong shi	99
+🍆	jia	99
+🍆	jia zi	99
+🍆	shui guo	99
+🍇	pu tao	99
+🍇	shui guo	99
+🍇	ti zi	99
+🍈	ha mi gua	99
+🍈	shui guo	99
+🍈	tian gua	99
+🍉	gua gua	99
+🍉	shui guo	99
+🍉	xi gua	99
+🍊	cheng	99
+🍊	cheng zi	99
+🍊	gan ju	99
+🍊	jin ju	99
+🍊	ju	99
+🍊	ju zi	99
+🍊	mi ju	99
+🍊	shui guo	99
+🍊	tian cheng	99
+🍊	tian mi ju	99
+🍊	xiang cheng	99
+🍋	ning	99
+🍋	ning meng	99
+🍋	shui guo	99
+🍌	shui guo	99
+🍌	xiang jiao	99
+🍍	bo luo	99
+🍍	feng li	99
+🍍	shui guo	99
+🍎	hong fu shi	99
+🍎	hong ping guo	99
+🍎	ping guo	99
+🍎	she guo	99
+🍎	shui guo	99
+🍏	da qing guo	99
+🍏	ping guo	99
+🍏	qing guo	99
+🍏	qing ping guo	99
+🍏	shui guo	99
+🍐	li	99
+🍐	li zi	99
+🍐	shui guo	99
+🍐	xiang li	99
+🍐	xue li	99
+🍐	ya li	99
+🍑	mi tao	99
+🍑	shui guo	99
+🍑	shui mi tao	99
+🍑	tao	99
+🍑	tao zi	99
+🍒	guo shi	99
+🍒	shui guo	99
+🍒	ying tao	99
+🍓	cao mei	99
+🍓	hong mei	99
+🍓	jiang guo	99
+🍓	shui guo	99
+🍔	han bao	99
+🍔	han bao bao	99
+🍔	han pu bao	99
+🍔	mai dang lao	99
+🍔	shi wu	99
+🍔	su shi dian	99
+🍕	bi sa	99
+🍕	bi sa pian	99
+🍕	chi pi sa	99
+🍕	pi sa	99
+🍕	pi sa bing	99
+🍕	pi sa pian	99
+🍕	shi wu	99
+🍖	gu tou rou	99
+🍖	rou chuan	99
+🍖	rou gu	99
+🍖	rou gu tou	99
+🍖	shi wu	99
+🍗	ji tui	99
+🍗	shi wu	99
+🍗	zha ji	99
+🍘	shi wu	99
+🍙	fan tuan	99
+🍙	shi wu	99
+🍚	bai mi fan	99
+🍚	shi wu	99
+🍛	ga li	99
+🍛	ga li fan	99
+🍛	ka li fan	99
+🍛	shi wu	99
+🍜	ban mian	99
+🍜	chi mian	99
+🍜	fang bian mian	99
+🍜	ji dan mian	99
+🍜	la mian	99
+🍜	leng mian	99
+🍜	mian tiao	99
+🍜	pao mian	99
+🍜	shi wu	99
+🍜	tang mian	99
+🍜	wan mian	99
+🍜	yi wan mian tiao	99
+🍜	zheng wan	99
+🍝	mian tiao	99
+🍝	shi wu	99
+🍝	yi da li mian	99
+🍝	yi da li mian tiao	99
+🍝	yi mian	99
+🍞	mian bao	99
+🍞	shi wu	99
+🍞	tu si	99
+🍟	ken de ji	99
+🍟	shi wu	99
+🍟	shu tiao	99
+🍠	di gua	99
+🍠	fan shu	99
+🍠	hong shu	99
+🍠	kao di gua	99
+🍠	kao hong shu	99
+🍠	shi wu	99
+🍠	shu	99
+🍠	zi shu	99
+🍡	nuo mi tuan	99
+🍡	rou wan	99
+🍡	shi wu	99
+🍡	tuan zi	99
+🍡	wan zi	99
+🍡	xiao wan zi	99
+🍢	chuan chuan	99
+🍢	guan dong zhu	99
+🍢	shi wu	99
+🍣	san wen yu	99
+🍣	shi wu	99
+🍣	shou si	99
+🍤	chao xia	99
+🍤	da xia	99
+🍤	shi wu	99
+🍤	tian fu luo	99
+🍤	xia ren	99
+🍤	zha xia	99
+🍥	niu er bing	99
+🍥	shi wu	99
+🍥	xue bing	99
+🍥	yu ban	99
+🍦	bing ji ling	99
+🍦	bing qi lin	99
+🍦	ha gen da si	99
+🍦	sheng dai	99
+🍦	shi wu	99
+🍦	shuang qi lin	99
+🍦	tian tong	99
+🍦	xue gao	99
+🍧	bao bing	99
+🍧	shi wu	99
+🍨	bing ji ling	99
+🍨	bing qi lin	99
+🍨	shi wu	99
+🍨	xue gao	99
+🍩	duo na quan	99
+🍩	mian bao quan	99
+🍩	shi wu	99
+🍩	tian tian quan	99
+🍪	ao li ao	99
+🍪	bing gan	99
+🍪	qu qi	99
+🍪	qu qi bing	99
+🍪	shi wu	99
+🍪	su bing	99
+🍫	de fu	99
+🍫	mai li su	99
+🍫	qiao ke li	99
+🍫	shi wu	99
+🍬	mi tang	99
+🍬	nai tang	99
+🍬	niu ya tang	99
+🍬	shi wu	99
+🍬	tang	99
+🍬	tang guo	99
+🍭	bang bang tang	99
+🍭	shi wu	99
+🍮	bu ding	99
+🍮	jiao tang bu ding	99
+🍮	shi wu	99
+🍮	tian dian	99
+🍮	tian pin	99
+🍯	feng mi guan	99
+🍯	mi guan	99
+🍯	shi wu	99
+🍰	cao mei dan gao	99
+🍰	dan gao	99
+🍰	dan gao dian	99
+🍰	mu si	99
+🍰	shi wu	99
+🍰	tian shi	99
+🍱	bian dang	99
+🍱	he fan	99
+🍱	jian can	99
+🍱	kuai can	99
+🍱	shi wu	99
+🍲	bao tang	99
+🍲	chi huo guo	99
+🍲	dong tian chi huo guo	99
+🍲	huo guo	99
+🍲	nong tang	99
+🍲	re qi teng teng	99
+🍲	re tang	99
+🍲	shi wu	99
+🍳	jian dan	99
+🍳	jian ji dan	99
+🍳	peng ren	99
+🍳	shi wu	99
+🍴	can ju	99
+🍴	can ting	99
+🍴	dao cha	99
+🍴	shi wu	99
+🍴	xi can	99
+🍴	yong can	99
+🍵	cha	99
+🍵	cha bei	99
+🍵	cha dao	99
+🍵	cha shui	99
+🍵	cha tang	99
+🍵	cha wei	99
+🍵	cha yi	99
+🍵	he cha	99
+🍵	lv cha	99
+🍵	mo cha	99
+🍵	pin cha	99
+🍵	yin liao	99
+🍶	bai jiu	99
+🍶	jiu ping he jiu bei	99
+🍶	qing jiu	99
+🍶	yin liao	99
+🍷	gan hong	99
+🍷	hong jiu	99
+🍷	hong jiu bei	99
+🍷	jiu bei	99
+🍷	mei jiu	99
+🍷	pin jiu	99
+🍷	pu tao jiu	99
+🍷	yin liao	99
+🍸	ji wei jiu	99
+🍸	ji wei jiu bei	99
+🍸	ji wei jiu jiu bei	99
+🍸	jiu bei	99
+🍸	yin liao	99
+🍹	guo zhi	99
+🍹	leng yin	99
+🍹	re dai yin pin	99
+🍹	xian zha	99
+🍹	yin liao	99
+🍺	gan bei	99
+🍺	he pi jiu	99
+🍺	he yi bei	99
+🍺	pi jiu	99
+🍺	pi jiu bei	99
+🍺	yin liao	99
+🍻	bu zui bu gui	99
+🍻	gan bei	99
+🍻	jing jiu	99
+🍻	ju bei	99
+🍻	peng bei	99
+🍻	pi jiu	99
+🍻	pi jiu bei	99
+🍻	su zui	99
+🍻	yin jiu	99
+🍻	yin liao	99
+🍼	nai ping	99
+🍼	wei nai	99
+🍽️	dao cha he can pan	99
+🍽️	xi shi can ju	99
+🍾️	ruan mu sai ping	99
+🍾️	xiang bin jiu	99
+🍿️	bao mi hua	99
+🎀	duan dai	99
+🎀	hu die jie	99
+🎀	qing zhu	99
+🎀	si dai	99
+🎁	hui li	99
+🎁	li he	99
+🎁	li pin	99
+🎁	li wu	99
+🎁	qing zhu	99
+🎁	sheng dan li wu	99
+🎁	shou dao li wu	99
+🎁	zhan yi	99
+🎂	cao mei dan gao	99
+🎂	da shou	99
+🎂	dan gao	99
+🎂	mei wei dan gao	99
+🎂	qing zhu	99
+🎂	sheng kuai	99
+🎂	sheng ri	99
+🎂	sheng ri dan gao	99
+🎂	sheng ri kuai le	99
+🎂	sheng ri pa	99
+🎃	nan gua	99
+🎃	nan gua deng	99
+🎃	nan gua deng long	99
+🎃	qing zhu	99
+🎃	wan sheng jie	99
+🎄	qing zhu	99
+🎄	sheng dan	99
+🎄	sheng dan jie	99
+🎄	sheng dan shu	99
+🎄	sheng dan ye	99
+🎅	qing zhu	99
+🎅	sheng dan kuai le	99
+🎅	sheng dan lao gong gong	99
+🎅	sheng dan lao ren	99
+🎅	sheng dan lao ye ye	99
+🎅	sheng dan qi xi	99
+🎆	hua huo	99
+🎆	ji dian	99
+🎆	li hua	99
+🎆	qing zhu	99
+🎆	xuan lan	99
+🎆	yan hua	99
+🎆	yan huo	99
+🎇	hua huo	99
+🎇	li hua	99
+🎇	qing zhu	99
+🎇	xian nv bang	99
+🎇	yan hua	99
+🎇	yan huo	99
+🎈	qi qiu	99
+🎈	qing dian	99
+🎈	qing zhu	99
+🎉	gou wu kuang huan jie	99
+🎉	kuang huan	99
+🎉	kuang huan jie	99
+🎉	la pao	99
+🎉	li bin hua	99
+🎉	pai dui	99
+🎉	pai dui li bin hua	99
+🎉	qing dian	99
+🎉	qing zhu	99
+🎊	cai se sui zhi	99
+🎊	qing zhu	99
+🎊	sui hua cai qiu	99
+🎊	tang guo qiu	99
+🎋	qi xi	99
+🎋	qi xi jie	99
+🎋	qi xi shu	99
+🎋	qing zhu	99
+🎋	xu yuan	99
+🎍	men song	99
+🎍	pen zai	99
+🎍	ri ben xin nian	99
+🎍	zhi wu	99
+🎍	zhu jie	99
+🎍	zhu shi pin	99
+🎎	fu fu	99
+🎎	fu qi	99
+🎎	hun li	99
+🎎	hun qing	99
+🎎	jie hun	99
+🎎	qing zhu	99
+🎎	ri ben nv er jie	99
+🎎	ri shi ren ou	99
+🎎	xin hun fu fu	99
+🎎	yong yuan xing fu	99
+🎏	li yu qi	99
+🎏	qing zhu	99
+🎏	ri ben nan er jie	99
+🎐	feng ling	99
+🎐	feng ling jie	99
+🎐	qing zhu	99
+🎑	qing zhu	99
+🎑	zhong qiu	99
+🎑	zhong qiu jie	99
+🎒	bei bao	99
+🎒	huo dong	99
+🎒	shang xue	99
+🎒	shi ye shi	99
+🎒	shu bao	99
+🎒	shuang jian bao	99
+🎓	bi ye	99
+🎓	bi ye mao	99
+🎓	bi ye sheng	99
+🎓	bi ye zhao	99
+🎓	jie ye shi	99
+🎓	qing zhu	99
+🎖️	jun gong xun zhang	99
+🎖️	jun gong zhang	99
+🎗️	huang si dai	99
+🎗️	ti xing dai	99
+🎙️	hua tong	99
+🎙️	mai ke feng	99
+🎚️	dian ping hua kuai	99
+🎚️	shui ping hua kuai	99
+🎛️	kong zhi xuan niu	99
+🎞️	dian ying jiao juan hua mian	99
+🎞️	jiao pian	99
+🎟️	ru chang quan	99
+🎠	er tong le yuan	99
+🎠	huo dong	99
+🎠	xuan mu	99
+🎠	xuan zhuan mu ma	99
+🎠	you le chang	99
+🎠	you le yuan	99
+🎡	huo dong	99
+🎡	mo tian lun	99
+🎡	you le chang	99
+🎢	guo shan che	99
+🎢	huo dong	99
+🎢	yu le	99
+🎢	yun xiao fei che	99
+🎣	diao yu	99
+🎣	diao yu chang	99
+🎣	huo dong	99
+🎣	yun dong	99
+🎤	chang ge	99
+🎤	huo dong	99
+🎤	mai ke feng	99
+🎤	yin yue	99
+🎤	yu le	99
+🎥	dian ying	99
+🎥	fang ying	99
+🎥	huo dong	99
+🎥	she xiang ji	99
+🎥	she ying ji	99
+🎦	dian ying yuan	99
+🎦	fang ying shi	99
+🎦	huo dong	99
+🎦	kan dian ying	99
+🎦	ying yuan	99
+🎧	er ji	99
+🎧	yin yue	99
+🎨	diao se ban	99
+🎨	hui hua	99
+🎨	huo dong	99
+🎨	mei shu	99
+🎨	shang se	99
+🎨	tiao se ban	99
+🎨	yan liao	99
+🎨	yi shu	99
+🎩	fu zhuang	99
+🎩	li mao	99
+🎩	mao	99
+🎩	mao zi	99
+🎩	xi ju	99
+🎪	huo dong	99
+🎪	ma xi tuan	99
+🎫	huo dong	99
+🎫	men piao	99
+🎫	piao	99
+🎫	piao ju	99
+🎫	ru chang quan	99
+🎬	chang ji ban	99
+🎬	dian ying	99
+🎬	dian ying da ban	99
+🎬	huo dong	99
+🎬	ju zu	99
+🎬	pai she	99
+🎭	biao yan yi shu	99
+🎭	jia mian	99
+🎭	jue se	99
+🎭	mian ju	99
+🎭	shuang huang	99
+🎭	tou xiang	99
+🎭	xiang sheng	99
+🎮	da you xi	99
+🎮	dian shi you le qi	99
+🎮	shi pin you xi	99
+🎮	shou bing	99
+🎮	wan you xi	99
+🎮	yao gan	99
+🎮	you xi	99
+🎮	you xi ji	99
+🎮	you xi shou bing	99
+🎯	ba xin	99
+🎯	biao ba	99
+🎯	ming zhong	99
+🎯	zheng zhong hong xin	99
+🎯	zhi jie ming zhong	99
+🎰	chi jiao zi lao hu	99
+🎰	du chang	99
+🎰	lao hu ji	99
+🎰	you xi	99
+🎱	tai qiu	99
+🎱	zhuang qiu	99
+🎱	zhuo qiu	99
+🎲	du bo	99
+🎲	tou zi	99
+🎳	bao ling qiu	99
+🎴	hua pu ke pai	99
+🎴	hua zha pai	99
+🎴	pu ke pai	99
+🎴	zhi pai	99
+🎵	bei jing yin yue	99
+🎵	bo fang qi	99
+🎵	qu mu	99
+🎵	xiao ye qu	99
+🎵	yin fu	99
+🎵	yin yue	99
+🎵	yin yue ju	99
+🎵	yin yue ke	99
+🎶	xuan lv	99
+🎶	yin fu	99
+🎶	yin yue	99
+🎷	sa ke si	99
+🎷	sa ke si feng	99
+🎷	sa ke si guan	99
+🎷	yin yue	99
+🎸	ji ta	99
+🎸	yin yue	99
+🎹	dan gang qin	99
+🎹	dian zi qin	99
+🎹	gang qin	99
+🎹	jian pan	99
+🎹	qin	99
+🎹	qin jian	99
+🎹	yin yue	99
+🎹	yin yue jian pan	99
+🎺	la ba	99
+🎺	xiao hao	99
+🎺	yin yue	99
+🎻	xiao ti qin	99
+🎻	yin yue	99
+🎼	yin yue hui	99
+🎼	yin yue	99
+🎼	yue pu	99
+🎽	bei xin	99
+🎽	wang qiu shan	99
+🎽	yun dong	99
+🎽	yun dong bei xin	99
+🎽	yun dong shan	99
+🎾	wang qiu	99
+🎾	yun dong	99
+🎿	hua bing	99
+🎿	hua xue	99
+🎿	hua xue chang	99
+🎿	hua xue xie	99
+🎿	shuang ban	99
+🎿	yun dong	99
+🏀	da qiu	99
+🏀	kou lan	99
+🏀	lan qiu	99
+🏀	lan qiu sai	99
+🏀	qiu sai	99
+🏀	yun dong	99
+🏁	ge zi qi	99
+🏁	sai che	99
+🏁	yun dong	99
+🏁	zhong dian	99
+🏂	dan ban	99
+🏂	dan ban hua xue	99
+🏂	hua xue	99
+🏂	hua xue ban	99
+🏂	xue ban	99
+🏂	xue de hua ban	99
+🏂	yun dong	99
+🏃	ben pao	99
+🏃	chen pao	99
+🏃	kai pao	99
+🏃	ma la song	99
+🏃	pao bu	99
+🏃	pao bu zhe	99
+🏃	sai pao	99
+🏃	yun dong	99
+🏃‍♀️	ben pao	99
+🏃‍♀️	chen pao	99
+🏃‍♀️	kai pao	99
+🏃‍♀️	ma la song	99
+🏃‍♀️	pao bu	99
+🏃‍♀️	pao bu zhe	99
+🏃‍♀️	sai pao	99
+🏃‍♀️	yun dong	99
+🏄	chong lang	99
+🏄	chong lang zhe	99
+🏄	yun dong	99
+🏄‍♀️	chong lang	99
+🏄‍♀️	chong lang zhe	99
+🏄‍♀️	yun dong	99
+🏅️	jin pai	99
+🏅️	yun dong hui jiang pai	99
+🏅️	yun dong jiang pai	99
+🏆	duo guan	99
+🏆	guan jun	99
+🏆	huo jiang	99
+🏆	jiang bei	99
+🏆	yun dong	99
+🏇	sai ma	99
+🏇	sai ma qi shi	99
+🏇	yun dong	99
+🏈	gan lan qiu	99
+🏈	mei shi gan lan qiu	99
+🏈	mei shi zu qiu	99
+🏈	yun dong	99
+🏉	gan lan qiu	99
+🏉	yun dong	99
+🏊	you shui	99
+🏊	you yong	99
+🏊	you yong chi	99
+🏊	you yong guan	99
+🏊	you yong zhe	99
+🏊	yun dong	99
+🏊‍♀️	you shui	99
+🏊‍♀️	you yong	99
+🏊‍♀️	you yong chi	99
+🏊‍♀️	you yong guan	99
+🏊‍♀️	you yong zhe	99
+🏊‍♀️	yun dong	99
+🏋️	ju zhong yuan	99
+🏋️	ju zhong zhe	99
+🏋️‍♀️	ju zhong yuan	99
+🏋️‍♀️	ju zhong zhe	99
+🏌️	da gao er fu	99
+🏌️	gao er fu qiu shou	99
+🏌️	yun dong	99
+🏌️‍♀️	da gao er fu	99
+🏌️‍♀️	gao er fu qiu shou	99
+🏌️‍♀️	yun dong	99
+🏍️	mo tuo che	99
+🏎️	sai che	99
+🏏️	ban qiu	99
+🏐️	pai qiu	99
+🏑️	qu gun qiu	99
+🏒️	bing qiu	99
+🏒️	bing shang qu gun qiu	99
+🏓️	ping pang qiu	99
+🏔️	xue shan	99
+🏕️	lu ying	99
+🏕️	lu ying hua ka	99
+🏖️	hai bin	99
+🏖️	sha tan	99
+🏗️	fang wu gou zao	99
+🏘️	zhu zhai jian zhu	99
+🏙️	cheng shi hua ka	99
+🏙️	du shi feng guang	99
+🏚️	fei qi jian zhu	99
+🏚️	wei fang	99
+🏛️	gu dian jian zhu	99
+🏜️	sha mo	99
+🏜️	sha mo hua ka	99
+🏝️	huang dao	99
+🏝️	huang dao hua ka	99
+🏝️	wu ren dao	99
+🏞️	guo jia gong yuan	99
+🏟️	ti yu chang	99
+🏠	bie shu	99
+🏠	fang wu	99
+🏠	fang zi	99
+🏠	jia	99
+🏠	jian zhu	99
+🏠	lou fang	99
+🏠	wu qi	99
+🏠	zhu jia	99
+🏠	zhu zhai	99
+🏠	zhu zhai lou	99
+🏡	bie shu	99
+🏡	fang wu	99
+🏡	fang zi	99
+🏡	jia	99
+🏡	jian zhu	99
+🏡	mu wu	99
+🏡	ting yuan	99
+🏡	wu qi	99
+🏡	yang fang	99
+🏡	zhu jia	99
+🏡	zhu zhai	99
+🏢	ban gong da lou	99
+🏢	ban gong lou	99
+🏢	jian zhu	99
+🏣	jian zhu	99
+🏣	ri ben you ju	99
+🏣	you ju	99
+🏤	jian zhu	99
+🏤	ou zhou you ju	99
+🏤	you ju	99
+🏥	jian zhu	99
+🏥	kan bing	99
+🏥	yi yuan	99
+🏦	jian zhu	99
+🏦	yin xing	99
+🏧	jian zhu	99
+🏧	qu kuan ji	99
+🏧	ti kuan ji	99
+🏧	zi dong gui yuan ji	99
+🏧	zi dong qu kuan ji	99
+🏨	bin guan	99
+🏨	fan dian	99
+🏨	jian zhu	99
+🏨	jiu dian	99
+🏨	lv guan	99
+🏩	ai qing lv guan	99
+🏩	bin guan	99
+🏩	jian zhu	99
+🏩	lian ai lv guan	99
+🏩	qing ren jiu dian	99
+🏪	bian li dian	99
+🏪	bian li shang dian	99
+🏪	jian zhu	99
+🏪	shi duo dian	99
+🏫	jian zhu	99
+🏫	xue xiao	99
+🏬	bai huo da lou	99
+🏬	bai huo gong si	99
+🏬	bai huo shang dian	99
+🏬	jian zhu	99
+🏭	gong chang	99
+🏭	gong ye qu	99
+🏭	jian zhu	99
+🏮	deng long	99
+🏮	jiu guan	99
+🏮	ju jiu wu	99
+🏮	ju jiu wu deng long	99
+🏮	qing zhu	99
+🏯	cheng bao	99
+🏯	jian zhu	99
+🏯	ri ben cheng bao	99
+🏰	cheng bao	99
+🏰	jian zhu	99
+🏰	ou zhou cheng bao	99
+🏳️	bai se qi zhi	99
+🏳️	ju bai qi	99
+🏳️	tou xiang	99
+🏳️‍🌈	cai hong qi	99
+🏳️‍🌈	tong xing lian jiao ao	99
+🏳️‍🌈	tong xing lian jiao ao qi	99
+🏳️‍🌈	tong xing lian jiao ao ri	99
+🏳️‍🌈	tong xing lian jiao ao you xing	99
+🏳️‍🌈	tong xing lian you xing	99
+🏳️‍🌈	tong xing lian zi hao	99
+🏳️‍🌈	tong xing lian zi hao qi	99
+🏳️‍🌈	tong xing lian zi hao ri	99
+🏳️‍🌈	tong xing lian zi hao you xing	99
+🏴️	hei se qi zhi	99
+🏴️	ju hei qi	99
+🏴️	piao yang de hai dao qi	99
+🏴️	si wang zhi qi	99
+🏵️	mei gui hua jie	99
+🏵️	qiang wei hua shi	99
+🏵️	yuan hua shi	99
+🏷️	biao qian	99
+🏸️	yu mao qiu	99
+🏹️	gong jian	99
+🏹️	gong nu	99
+🏺️	liang er xi jing guan	99
+🏺️	shuang er ping	99
+🏺️	shuang er xi jing tuo yuan tu guan	99
+🏻	qian fu se	99
+🏻	qian se	99
+🏼	fu se	99
+🏼	rou se	99
+🏽	shen rou se	99
+🏾	zong he fu se	99
+🏾	zong se	99
+🏿	shen se	99
+🏿	shen zong se	99
+🐀	dong wu	99
+🐀	lao shu	99
+🐁	bai lao shu	99
+🐁	bai shu	99
+🐁	dong wu	99
+🐁	lao shu	99
+🐁	xiao bai shu	99
+🐂	dong wu	99
+🐂	gong niu	99
+🐂	niu	99
+🐃	dong wu	99
+🐃	niu	99
+🐃	shui niu	99
+🐄	dong wu	99
+🐄	mu niu	99
+🐄	nai niu	99
+🐄	niu	99
+🐅	dong wu	99
+🐅	lao hu	99
+🐆	bao	99
+🐆	dong wu	99
+🐆	hua bao	99
+🐇	dong wu	99
+🐇	tu zi	99
+🐈	dong wu	99
+🐈	jia mao	99
+🐈	mao	99
+🐈	mao mi	99
+🐉	dong wu	99
+🐉	long	99
+🐉	qing long	99
+🐊	dong wu	99
+🐊	e yu	99
+🐋	dong wu	99
+🐋	jing yu	99
+🐋	mo xiang jing	99
+🐌	dong wu	99
+🐌	wo niu	99
+🐍	da mang	99
+🐍	dong wu	99
+🐍	mang	99
+🐍	she	99
+🐎	dong wu	99
+🐎	ma	99
+🐎	ma er	99
+🐎	sai ma	99
+🐎	shen ma	99
+🐎	xiao ma	99
+🐏	dong wu	99
+🐏	gong yang	99
+🐐	dong wu	99
+🐐	shan yang	99
+🐐	yang	99
+🐑	dong wu	99
+🐑	fang yang	99
+🐑	gao	99
+🐑	jin yang	99
+🐑	mian yang	99
+🐑	mie mie	99
+🐑	yang	99
+🐑	yang gao	99
+🐑	yang yang	99
+🐒	dong wu	99
+🐒	hou	99
+🐒	hou er	99
+🐒	hou wang	99
+🐒	hou zi	99
+🐓	da ming	99
+🐓	dong wu	99
+🐓	gong ji	99
+🐔	dong wu	99
+🐔	ji	99
+🐔	xiao ji	99
+🐔	xiao ji tou	99
+🐕	dong wu	99
+🐕	gou	99
+🐖	dong wu	99
+🐖	zhu	99
+🐗	dong wu	99
+🐗	gong zhu	99
+🐗	ye zhu	99
+🐗	ye zhu tou	99
+🐗	zhu	99
+🐗	zhu tou	99
+🐘	da xiang	99
+🐘	dong wu	99
+🐘	xiang	99
+🐘	xiao xiang	99
+🐙	ba zhao yu	99
+🐙	dong wu	99
+🐙	you yu	99
+🐙	zhang yu	99
+🐚	bei ke	99
+🐚	dong wu	99
+🐚	hai bei	99
+🐚	hai luo	99
+🐚	shan bei	99
+🐛	chong	99
+🐛	chong zi	99
+🐛	dong wu	99
+🐛	mao chong	99
+🐛	mao mao chong	99
+🐛	qing chong	99
+🐛	tang bao	99
+🐜	chong zi	99
+🐜	dong wu	99
+🐜	ma yi	99
+🐝	dong wu	99
+🐝	mi feng	99
+🐝	qin lao de mi feng	99
+🐞	dong wu	99
+🐞	jia ke chong	99
+🐞	piao chong	99
+🐟	bu yu	99
+🐟	dong wu	99
+🐟	ji yu	99
+🐟	li yu	99
+🐟	lu yu	99
+🐟	xue yu	99
+🐟	yin yu	99
+🐟	yu	99
+🐠	da yu	99
+🐠	dong wu	99
+🐠	hai yu	99
+🐠	re dai yu	99
+🐠	xiao yu er	99
+🐠	yu	99
+🐠	yu er	99
+🐡	dong wu	99
+🐡	he tun	99
+🐢	dong wu	99
+🐢	gui	99
+🐢	shen gui	99
+🐢	wu gui	99
+🐣	chu sheng	99
+🐣	dong wu	99
+🐣	fu hua	99
+🐣	fu xiao ji	99
+🐣	po ke	99
+🐣	po ke er chu	99
+🐣	tuo ke er chu	99
+🐣	tuo qiao er chu	99
+🐣	xiao ji	99
+🐤	dong wu	99
+🐤	ji bao bao	99
+🐤	ji zai lian	99
+🐤	xiao ji	99
+🐤	xiao ji bao bao	99
+🐥	dong wu	99
+🐥	xiao ji	99
+🐥	zheng mian de ji bao bao	99
+🐥	zheng mian de xiao ji	99
+🐥	zheng mian de xiao ji bao bao	99
+🐦	dong wu	99
+🐦	ge zi	99
+🐦	niao	99
+🐦	niao er	99
+🐦	xiao niao	99
+🐦	xiao niao lian	99
+🐧	dong wu	99
+🐧	qi e	99
+🐧	qi e lian	99
+🐨	dong wu	99
+🐨	kao la	99
+🐨	ke la xiong	99
+🐨	shu dai xiong	99
+🐨	wu wei xiong	99
+🐩	dong wu	99
+🐩	gou	99
+🐩	gui bin gou	99
+🐩	gui fu quan	99
+🐩	juan mao gou	99
+🐩	juan mao shi zi gou	99
+🐩	quan	99
+🐩	shi zi gou	99
+🐪	dan feng luo tuo	99
+🐪	dan feng tuo	99
+🐪	dong wu	99
+🐪	luo tuo	99
+🐫	dong wu	99
+🐫	luo tuo	99
+🐫	shuang feng luo tuo	99
+🐫	shuang feng tuo	99
+🐬	dong wu	99
+🐬	hai tun	99
+🐭	dong wu	99
+🐭	hao zi	99
+🐭	lao shu	99
+🐭	lao shu lian	99
+🐭	shu	99
+🐭	shu lian	99
+🐮	da niu	99
+🐮	dong wu	99
+🐮	dong wu biao qing	99
+🐮	mu niu	99
+🐮	niu	99
+🐮	niu lian	99
+🐮	niu niu	99
+🐯	dong wu	99
+🐯	hu	99
+🐯	hu lian	99
+🐯	hu tou	99
+🐯	lao hu	99
+🐯	lao hu lian	99
+🐯	xiao hu	99
+🐰	bai tu	99
+🐰	da bai tu	99
+🐰	dong wu	99
+🐰	tu	99
+🐰	tu lian	99
+🐰	tu tu	99
+🐰	tu zi	99
+🐰	tu zi lian	99
+🐰	xiao bai tu	99
+🐰	yang tu zi	99
+🐱	da lian mao	99
+🐱	dong wu	99
+🐱	jia fei mao	99
+🐱	mao	99
+🐱	mao er	99
+🐱	mao lian	99
+🐱	mao mao	99
+🐱	miao	99
+🐱	miao miao	99
+🐱	miao wu	99
+🐱	miao xing ren	99
+🐱	yang mao	99
+🐲	dong wu	99
+🐲	long	99
+🐲	long lian	99
+🐲	long tou	99
+🐲	long wang	99
+🐲	zhong guo long	99
+🐳	dong wu	99
+🐳	jing	99
+🐳	jing yu	99
+🐳	pen shui	99
+🐳	pen shui jing yu	99
+🐴	dong wu	99
+🐴	ma	99
+🐴	ma lian	99
+🐴	ma tou	99
+🐴	shen ma	99
+🐵	dong wu	99
+🐵	hou	99
+🐵	hou lian	99
+🐵	hou zi	99
+🐵	hou zi lian	99
+🐶	a gou	99
+🐶	ai quan	99
+🐶	dong wu	99
+🐶	fei	99
+🐶	gong gou	99
+🐶	gou	99
+🐶	gou er	99
+🐶	gou gai bu le chi shi	99
+🐶	gou lian	99
+🐶	gou zai	99
+🐶	gou zi	99
+🐶	huang gou	99
+🐶	ji wa wa	99
+🐶	kan men gou	99
+🐶	ke ai	99
+🐶	la bu la duo	99
+🐶	mai meng	99
+🐶	wang wang	99
+🐶	xiao gou	99
+🐶	yang gou	99
+🐶	you quan	99
+🐷	ba jie	99
+🐷	da zhu	99
+🐷	dong wu	99
+🐷	hong zhu	99
+🐷	lan zhu	99
+🐷	mai dou	99
+🐷	mu zhu	99
+🐷	pang cheng zhu	99
+🐷	xiao zhu	99
+🐷	zhu	99
+🐷	zhu lian	99
+🐷	zhu tou	99
+🐷	zhu yi yang de dui you	99
+🐷	zhu zhu	99
+🐸	dong wu	99
+🐸	dong wu biao qing	99
+🐸	qing wa	99
+🐸	qing wa lian	99
+🐸	wa	99
+🐸	xiao qing wa	99
+🐹	cang shu	99
+🐹	cang shu lian	99
+🐹	dong wu	99
+🐺	dong wu	99
+🐺	lang	99
+🐺	lang lian	99
+🐻	da xiong	99
+🐻	dong wu	99
+🐻	gou xiong	99
+🐻	tai di	99
+🐻	xiao xiong	99
+🐻	xiong	99
+🐻	xiong lian	99
+🐻	xiong xiong	99
+🐻	xiong yang	99
+🐼	da xiong mao	99
+🐼	dong wu	99
+🐼	guo bao	99
+🐼	mao xiong	99
+🐼	xiao xiong mao	99
+🐼	xiong mao	99
+🐼	xiong mao lian	99
+🐽	dong wu	99
+🐽	zhu bi	99
+🐾	dong wu	99
+🐾	dong wu zu yin	99
+🐾	zhang yin	99
+🐾	zhao yin	99
+🐿️	hua li shu	99
+🐿️	jin hua shu	99
+🐿️	jin li shu	99
+🐿️	song shu	99
+👀	ca liang yan jing	99
+👀	deng yan	99
+👀	hei yan quan	99
+👀	kan	99
+👀	mu	99
+👀	qi guan	99
+👀	yan	99
+👀	yan jing	99
+👀	zheng kai yan	99
+👁️	yan jing	99
+👂	er	99
+👂	er dong	99
+👂	er duo	99
+👂	lian bu qi guan	99
+👂	long	99
+👂	qi guan	99
+👂	qing ting	99
+👂	ting	99
+👃	bi	99
+👃	bi kong	99
+👃	bi liang	99
+👃	bi sai	99
+👃	bi tou	99
+👃	bi yan	99
+👃	bi yi	99
+👃	bi zi	99
+👃	hu xi	99
+👃	long bi	99
+👃	qi guan	99
+👃	wen	99
+👄	chun	99
+👄	hong chun	99
+👄	lian bu qi guan	99
+👄	qi guan	99
+👄	qin zui	99
+👄	shuo hua	99
+👄	xiang wen	99
+👄	zui	99
+👄	zui ba	99
+👄	zui chun	99
+👅	chang	99
+👅	qi guan	99
+👅	she tou	99
+👆	shang mian	99
+👆	shi zhi	99
+👆	shou shi	99
+👆	xiang shang	99
+👆	xiang shang shou shi	99
+👇	chuo	99
+👇	shou shi	99
+👇	xia mian	99
+👇	xiang xia	99
+👇	xiang xia shou shi	99
+👈	shou shi	99
+👈	xiang zuo	99
+👈	xiang zuo shou shi	99
+👈	zuo bian	99
+👉	shou shi	99
+👉	xiang you	99
+👉	xiang you shou shi	99
+👉	you bian	99
+👊	da ji	99
+👊	hui quan	99
+👊	quan tou	99
+👊	quan tou shou shi	99
+👊	shou shi	99
+👊	ying zhan	99
+👋	bai bai	99
+👋	hui shou	99
+👋	ni hao	99
+👋	shou	99
+👋	shou shi	99
+👋	zai jian	99
+👋	zhao shou	99
+👌	hao	99
+👌	mei wen ti	99
+👌	que ren shou shi	99
+👌	shou shi	99
+👍	biao yang	99
+👍	cheng zan	99
+👍	dian zan	99
+👍	ding gua gua	99
+👍	fei chang hao	99
+👍	shen de ren xin	99
+👍	shou shi	99
+👍	shu mu zhi	99
+👍	shu qi mu zhi	99
+👍	te zan	99
+👍	ting zan	99
+👍	yi bai ge zan	99
+👍	zan	99
+👎	bi shi	99
+👎	bu hao	99
+👎	cai	99
+👎	cha jin	99
+👎	chao feng	99
+👎	mu zhi chao xia	99
+👎	qie	99
+👎	shou shi	99
+👏	ci chu ying you zhang sheng	99
+👏	ci wai ying you zhang sheng	99
+👏	gu gu zhang	99
+👏	gu zhang	99
+👏	huan ying	99
+👏	pai shou	99
+👏	shou shi	99
+👏	zhang sheng	99
+👐	mei ban fa	99
+👐	shou	99
+👐	shou shi	99
+👐	shuang shou zhang kai	99
+👐	shuang zhang	99
+👐	tan kai shou	99
+👐	wu neng wei li	99
+👐	zhang kai shuang shou	99
+👑	fu zhuang	99
+👑	huang guan	99
+👑	huang zu	99
+👑	wang guan	99
+👒	fu zhuang	99
+👒	li mao	99
+👒	mao	99
+👒	mao zi	99
+👒	shi nv mao	99
+👓	fu zhuang	99
+👓	jin shi	99
+👓	jing kuang	99
+👓	yan jing	99
+👔	chen shan	99
+👔	chen shan ling dai	99
+👔	fu zhuang	99
+👔	ling dai	99
+👔	yi fu	99
+👔	zheng zhuang	99
+👕	chen shan	99
+👕	fu zhuang	99
+👕	shan	99
+👕	shang yi	99
+👕	xiu xian zhuang	99
+👕	yuan ling shan	99
+👖	chang ku	99
+👖	fu zhuang	99
+👖	ku	99
+👖	ku zi	99
+👖	niu zai ku	99
+👗	fu zhuang	99
+👗	lian yi qun	99
+👗	qun zi	99
+👗	yang zhuang	99
+👗	yi fu	99
+👘	fu zhuang	99
+👘	he fu	99
+👘	ri shi fu zhuang	99
+👘	yu yi	99
+👙	bi ji ni	99
+👙	fu zhuang	99
+👙	nei yi	99
+👙	san dian shi	99
+👙	yong zhuang	99
+👚	fu zhuang	99
+👚	shang yi	99
+👛	fu zhuang	99
+👛	ling qian bao	99
+👛	qian bao	99
+👜	fu zhuang	99
+👜	kua bao	99
+👜	shou ti bao	99
+👜	ti bao	99
+👝	fu zhuang	99
+👝	he bao	99
+👝	pi bao	99
+👝	qian bao	99
+👝	xiao bao bao	99
+👞	fu zhuang	99
+👞	pi xie	99
+👟	chao xie	99
+👟	fu zhuang	99
+👟	xie	99
+👟	xiu xian xie	99
+👟	yun dong xie	99
+👠	fu zhuang	99
+👠	gao gen	99
+👠	gao gen xie	99
+👠	xie	99
+👡	fu zhuang	99
+👡	liang xie	99
+👢	fu zhuang	99
+👢	xue	99
+👢	xue zi	99
+👢	zhang xue	99
+👣	jiao bu	99
+👣	jiao yin	99
+👣	qi guan	99
+👣	shuang jiao	99
+👣	zu ji	99
+👣	zu yin	99
+👤	ban shen xiang	99
+👤	dan ren	99
+👤	ge ren	99
+👤	ke ren zhang hu	99
+👤	ren wu jian ying	99
+👤	tou xiang	99
+👥	duo ren	99
+👥	shuang ren	99
+👥	tou xiang	99
+👦	er zi	99
+👦	tou xiang	99
+👧	tou xiang	99
+👧	xiao luo li	99
+👨	fu qin	99
+👨	lao die	99
+👨	tou xiang	99
+👨‍⚕️	wei sheng gong zuo zhe	99
+👨‍⚕️	yi hu ren yuan	99
+👨‍⚕️	yi wu ren yuan	99
+👨‍⚖️	fa guan	99
+👨‍✈️	fei ji jia shi yuan	99
+👨‍✈️	fei xing yuan	99
+👨‍❤️‍👨	xiong di qing shen	99
+👨‍❤️‍💋‍👨	qin wen	99
+👨‍🌾	nong fu	99
+👨‍🌾	nong min	99
+👨‍🍳	chu shi	99
+👨‍🍳	chu zi	99
+👨‍🎓	tong xue	99
+👨‍🎓	xue sheng	99
+👨‍🎤	ge shou	99
+👨‍🎤	ge xing	99
+👨‍🎤	ge zhe	99
+👨‍🎨	yi shu da shi	99
+👨‍🎨	yi shu gong zuo zhe	99
+👨‍🎨	yi shu jia	99
+👨‍🏫	lao shi	99
+👨‍🏭	gong ren	99
+👨‍👨‍👦	liang ba yi wa	99
+👨‍👨‍👦	yi jia san kou	99
+👨‍👨‍👦‍👦	liang ba liang er	99
+👨‍👨‍👦‍👦	yi jia si kou	99
+👨‍👨‍👧	liang ba yi wa	99
+👨‍👨‍👧	yi jia san kou	99
+👨‍👨‍👧‍👦	yi jia si kou	99
+👨‍👨‍👧‍👧	liang ge ba ba he liang ge nv er	99
+👨‍👨‍👧‍👧	yi jia si kou	99
+👨‍👩‍👦	yi jia san kou	99
+👨‍👩‍👦	yi suo de nan	99
+👨‍👩‍👦‍👦	ba ba ma ma he liang ge er zi	99
+👨‍👩‍👦‍👦	shuang long zhi jia	99
+👨‍👩‍👦‍👦	yi jia si kou	99
+👨‍👩‍👧	yi jia san kou	99
+👨‍👩‍👧‍👦	er nv shuang quan	99
+👨‍👩‍👧‍👦	jia you er nv	99
+👨‍👩‍👧‍👦	yi jia si kou	99
+👨‍👩‍👧‍👦	you er you nv	99
+👨‍👩‍👧‍👧	ba ma he liang ge nv er	99
+👨‍👩‍👧‍👧	shuang feng zhi jia	99
+👨‍👩‍👧‍👧	yi jia ren	99
+👨‍👩‍👧‍👧	yi jia si kou	99
+👨‍💻	ji shi	99
+👨‍💼	shang ban zu	99
+👨‍💼	zhi yuan	99
+👨‍🔧	ji gong	99
+👨‍🔧	ji xie shi	99
+👨‍🔬	ke xue jia	99
+👨‍🚀	yu hang yuan	99
+👨‍🚒	jiu huo dui yuan	99
+👨‍🚒	xiao fang yuan	99
+👩	mu qin	99
+👩	tou xiang	99
+👩‍⚕️	wei sheng gong zuo zhe	99
+👩‍⚕️	yi hu ren yuan	99
+👩‍⚕️	yi wu ren yuan	99
+👩‍⚖️	fa guan	99
+👩‍✈️	fei ji jia shi yuan	99
+👩‍✈️	fei xing yuan	99
+👩‍❤️‍👩	gui mi qing yi	99
+👩‍❤️‍👩	jie mei qing shen	99
+👩‍❤️‍👩	la la	99
+👩‍❤️‍💋‍👩	la la zhi wen	99
+👩‍❤️‍💋‍👩	qin wen	99
+👩‍🌾	nong fu	99
+👩‍🌾	nong min	99
+👩‍🍳	chu shi	99
+👩‍🍳	chu zi	99
+👩‍🎓	tong xue	99
+👩‍🎓	xue sheng	99
+👩‍🎤	ge shou	99
+👩‍🎤	ge xing	99
+👩‍🎤	ge zhe	99
+👩‍🎨	yi shu da shi	99
+👩‍🎨	yi shu gong zuo zhe	99
+👩‍🎨	yi shu jia	99
+👩‍🏫	lao shi	99
+👩‍🏭	gong ren	99
+👩‍👩‍👦	liang ge ma ma he er zi	99
+👩‍👩‍👦	yi jia san kou	99
+👩‍👩‍👦‍👦	liang ma liang wa	99
+👩‍👩‍👦‍👦	yi jia si kou	99
+👩‍👩‍👧	liang ma yi wa	99
+👩‍👩‍👧	yi jia san kou	99
+👩‍👩‍👧‍👦	liang ma liang wa	99
+👩‍👩‍👧‍👦	yi jia si kou	99
+👩‍👩‍👧‍👧	liang ma liang nv er	99
+👩‍👩‍👧‍👧	yi jia si kou	99
+👩‍💻	ji shi	99
+👩‍💼	shang ban zu	99
+👩‍💼	zhi yuan	99
+👩‍🔧	ji gong	99
+👩‍🔧	ji xie shi	99
+👩‍🔬	ke xue jia	99
+👩‍🚀	yu hang yuan	99
+👩‍🚒	jiu huo dui yuan	99
+👩‍🚒	xiao fang yuan	99
+👪	fu mu yu er zi	99
+👪	jia ren	99
+👪	jia ting	99
+👪	quan jia fu	99
+👪	tuan ju	99
+👪	tuan yuan	99
+👪	xing fu jia ting	99
+👪	yi jia ren	99
+👪	yi jia san kou	99
+👫	jia ren	99
+👫	qian shou	99
+👫	qing lv	99
+👬	ge lia	99
+👬	hao ji you	99
+👬	jia ren	99
+👬	peng you	99
+👬	qian shou	99
+👬	xiong di	99
+👬	you hao	99
+👬	you qing	99
+👭	gui mi	99
+👭	hao gui mi	99
+👭	hao peng you	99
+👭	jia ren	99
+👭	jie mei	99
+👭	lia jie mei	99
+👭	peng you	99
+👭	qian shou	99
+👭	you qing	99
+👮	jing cha	99
+👮	jing cha ge ge	99
+👮	jing cha shu shu	99
+👮	jing guan	99
+👮	min jing	99
+👮	tou xiang	99
+👮‍♀️	jing cha	99
+👮‍♀️	jing cha a yi	99
+👮‍♀️	jing cha jie jie	99
+👮‍♀️	jing guan	99
+👮‍♀️	min jing	99
+👮‍♀️	tou xiang	99
+👯	tiao wu de tu nv lang	99
+👯	tou xiang	99
+👯	tu nv lang	99
+👯‍♂️	tiao wu de tu nan lang	99
+👯‍♂️	tou xiang	99
+👯‍♂️	tu nan lang	99
+👰	hun sha	99
+👰	jie hun	99
+👰	niang zi	99
+👰	tou xiang	99
+👰	xin niang	99
+👱	jin fa	99
+👱	jin fa de nan ren	99
+👱	jin fa de ren	99
+👱	jin fa nan zi	99
+👱	nian qing ren	99
+👱	tou xiang	99
+👱	xi fang nan ren	99
+👱	xi fang ren	99
+👱‍♀️	jin fa	99
+👱‍♀️	jin fa de nv ren	99
+👱‍♀️	jin fa de ren	99
+👱‍♀️	jin fa nv lang	99
+👱‍♀️	nian qing ren	99
+👱‍♀️	tou xiang	99
+👱‍♀️	xi fang nv ren	99
+👱‍♀️	xi fang ren	99
+👲	di zhu	99
+👲	gua pi mao	99
+👲	tou xiang	99
+👲	tu hao	99
+👳	bao tou jin	99
+👳	bao tou jin de nan ren	99
+👳	tou jin	99
+👳	tou xiang	99
+👳‍♀️	bao tou jin	99
+👳‍♀️	bao tou jin de nv ren	99
+👳‍♀️	tou jin	99
+👳‍♀️	tou xiang	99
+👴	lao nian	99
+👴	lao ren	99
+👴	lao tou	99
+👴	lao tou zi	99
+👴	lao ye ye	99
+👴	tou xiang	99
+👴	ye	99
+👴	ye ye	99
+👴	zhang bei	99
+👴	zu fu	99
+👵	lao ban	99
+👵	lao fu ren	99
+👵	lao nai nai	99
+👵	lao tai tai	99
+👵	nai nai	99
+👵	tou xiang	99
+👵	wai po	99
+👵	zu mu	99
+👶	bao bao	99
+👶	guai bao bao	99
+👶	tou xiang	99
+👶	xin sheng er	99
+👶	ying er	99
+👶	ying you er	99
+👶	you er	99
+👶	yu er	99
+👷	gong ren	99
+👷	jian zhu gong ren	99
+👷	shi gong	99
+👷	tou xiang	99
+👷‍♀️	gong ren	99
+👷‍♀️	jian zhu gong ren	99
+👷‍♀️	shi gong	99
+👷‍♀️	tou xiang	99
+👸	bai xue gong zhu	99
+👸	gong zhu	99
+👸	hui gu niang	99
+👸	tong hua	99
+👸	tou xiang	99
+👹	e gui	99
+👹	guai wu	99
+👹	gui guai	99
+👹	mo gui	99
+👹	shi ren mo mian ju	99
+👹	tou xiang	99
+👺	tian gou	99
+👺	tou xiang	99
+👺	yao guai	99
+👻	gui hun	99
+👻	gui lian	99
+👻	tou xiang	99
+👻	yao guai	99
+👻	you ling	99
+👼	tian shi	99
+👼	tian shi bao bao	99
+👼	tou xiang	99
+👽	tou xiang	99
+👽	wai xing ren	99
+👾	guai shou	99
+👾	tou xiang	99
+👾	xiao jing ling	99
+👿	e mo	99
+👿	mao huo	99
+👿	tong hua	99
+👿	tou xiang	99
+👿	xiao e mo	99
+💀	ku lou	99
+💀	ku lou tou	99
+💀	si wang	99
+💀	tou gu	99
+💀	tou xiang	99
+💁	chan pin ming xing	99
+💁	fu wu yuan	99
+💁	ke fu	99
+💁	tou xiang	99
+💁‍♂️	chan pin ming xing	99
+💁‍♂️	fu wu yuan	99
+💁‍♂️	ke fu	99
+💁‍♂️	tou xiang	99
+💂	tou xiang	99
+💂	wei bing	99
+💂	wei shi	99
+💂‍♀️	tou xiang	99
+💂‍♀️	wei bing	99
+💂‍♀️	wei shi	99
+💃	tan ge	99
+💃	tiao wu	99
+💃	tiao wu zhe	99
+💃	tou xiang	99
+💃	wu dao jia	99
+💃	wu nv	99
+💃	wu xie	99
+💃	wu zhe	99
+💄	bian se chun gao	99
+💄	chun cai	99
+💄	chun gao	99
+💄	chun mi	99
+💄	chun zhuang	99
+💄	huo dong	99
+💄	kou hong	99
+💅	huo dong	99
+💅	mei jia	99
+💅	mo zhi jia you	99
+💅	zhi jia you	99
+💆	an mo	99
+💆	mei rong	99
+💆	tou bu an mo	99
+💆	tou xiang	99
+💆‍♂️	an mo	99
+💆‍♂️	mei rong	99
+💆‍♂️	tou bu an mo	99
+💆‍♂️	tou xiang	99
+💇	chang fa	99
+💇	jian fa	99
+💇	jian liu hai	99
+💇	jian tou	99
+💇	jian tou fa	99
+💇	li fa	99
+💇	li fa shi	99
+💇	ti tou	99
+💇	tou xiang	99
+💇‍♂️	chang fa	99
+💇‍♂️	jian fa	99
+💇‍♂️	jian liu hai	99
+💇‍♂️	jian tou	99
+💇‍♂️	jian tou fa	99
+💇‍♂️	li fa	99
+💇‍♂️	li fa shi	99
+💇‍♂️	ti tou	99
+💇‍♂️	tou xiang	99
+💈	fa lang	99
+💈	huo dong	99
+💈	li fa	99
+💈	li fa dian	99
+💉	chou xue	99
+💉	da zhen	99
+💉	huo dong	99
+💉	yi liao	99
+💉	zhen ji	99
+💉	zhen tong	99
+💉	zhu she	99
+💉	zhu she qi	99
+💊	chi yao	99
+💊	huo dong	99
+💊	jiao nang	99
+💊	yao	99
+💊	yao wan	99
+💊	yao xiao	99
+💊	yi liao	99
+💋	chun yin	99
+💋	hong chun	99
+💋	jie wen	99
+💋	lang man	99
+💋	qin yi kou	99
+💋	qin zui	99
+💋	wen	99
+💌	lang man	99
+💌	qing shu	99
+💌	yi wen feng zhen	99
+💍	hun jie	99
+💍	jie zhi	99
+💍	ke la	99
+💍	lang man	99
+💍	shou shi	99
+💍	zhi huan	99
+💍	zuan jie	99
+💎	bao shi	99
+💎	lang man	99
+💎	zhu bao	99
+💎	zuan shi	99
+💏	ai qing tian mi	99
+💏	jie wen	99
+💏	lang man	99
+💏	qin wen	99
+💐	cha hua	99
+💐	hua	99
+💐	hua shu	99
+💐	hua yi	99
+💐	lang man	99
+💐	peng hua	99
+💐	xian hua	99
+💑	ai qing	99
+💑	ai qing tian mi	99
+💑	fu fu	99
+💑	lang man	99
+💑	lian ren	99
+💑	qing lv	99
+💑	tian chang di jiu	99
+💑	tian mi ai qing	99
+💑	xiang xin ai qing	99
+💒	hun li	99
+💒	jiao tang	99
+💒	lang man	99
+💓	ai	99
+💓	ai qing	99
+💓	lang man	99
+💓	tiao dong de xin	99
+💓	xi huan	99
+💓	xin dong	99
+💓	xin tiao	99
+💔	lang man	99
+💔	shang xin	99
+💔	shi lian	99
+💔	xin sui	99
+💕	lang man	99
+💕	liang ke xin	99
+💕	xin	99
+💕	xin xin xiang yin	99
+💖	lang man	99
+💖	shan liang de xin	99
+💖	shan yao de xin	99
+💖	xin	99
+💗	ai	99
+💗	ai xin	99
+💗	jin zhang	99
+💗	lang man	99
+💗	xin dong	99
+💗	xin tiao	99
+💗	yue dong de xin	99
+💘	lang man	99
+💘	yi jian chuan xin	99
+💘	yi jian zhong qing	99
+💙	cai xin	99
+💙	lan se de xin	99
+💙	lan se xin xing	99
+💙	lan xin	99
+💙	lang man	99
+💚	cai xin	99
+💚	lang man	99
+💚	lv se de xin	99
+💚	lv se xin xing	99
+💚	lv xin	99
+💛	cai xin	99
+💛	huang se de xin	99
+💛	huang se xin xing	99
+💛	huang xin	99
+💛	lang man	99
+💜	cai xin	99
+💜	lang man	99
+💜	zi se de xin	99
+💜	zi se xin xing	99
+💜	zi xin	99
+💝	ai xin li wu	99
+💝	bang shang duan dai de xin	99
+💝	lang man	99
+💝	shi yi si dai de xin	99
+💞	lang man	99
+💞	wu dong de xin	99
+💞	xin xin xiang yin	99
+💞	xuan zhuan de xin	99
+💞	xuan zhuan de xin xing	99
+💟	lang man	99
+💟	xin xing zhuang shi	99
+💠	zuan shi	99
+💡	deng pao	99
+💡	dian deng	99
+💡	dian deng pao	99
+💡	dian zi	99
+💡	xiang fa	99
+💢	fen nu	99
+💢	qi fen	99
+💢	qing jin	99
+💢	sheng qi	99
+💢	xin qing	99
+💢	xin qing bu hao	99
+💣	hong	99
+💣	xin qing	99
+💣	zha dan	99
+💤	chen shui	99
+💤	han sheng	99
+💤	han shui	99
+💤	shen shui	99
+💤	shu shui	99
+💤	shui jiao	99
+💤	shui mian	99
+💤	wan an	99
+💤	xin qing	99
+💥	bao zha	99
+💥	peng zhuang	99
+💥	xin qing	99
+💦	bu shui	99
+💦	chao qiang bu shui	99
+💦	han	99
+💦	han shui	99
+💦	hui han ru yu	99
+💦	liu han	99
+💦	shui di	99
+💦	shui zhu	99
+💦	xin ku	99
+💦	xin qing	99
+💧	han di	99
+💧	han yan	99
+💧	shui di	99
+💧	tian shi zhi lei	99
+💧	xiao di	99
+💧	xin qing	99
+💧	yan lei	99
+💨	ji pao	99
+💨	kuai pao	99
+💨	tao li	99
+💨	tao pao	99
+💨	xin qing	99
+💨	zhen feng	99
+💩	ba	99
+💩	bian bian	99
+💩	chou wei	99
+💩	da bian	99
+💩	fen bian	99
+💩	gou shi	99
+💩	la du zi	99
+💩	la shi	99
+💩	la xi	99
+💩	pai bian	99
+💩	shi	99
+💩	su bian	99
+💩	xin qing	99
+💪	er tou ji	99
+💪	ji rou	99
+💪	jia you	99
+💪	nu li	99
+💪	qiang zhuang	99
+💪	shou bi	99
+💪	xin qing	99
+💪	xiu ji rou	99
+💫	liu xing	99
+💫	tou yun mu xuan	99
+💫	xin qing	99
+💫	yun tou zhuan xiang	99
+💫	yun xuan	99
+💬	dui hua qi pao	99
+💬	fa yan	99
+💬	fa yan qi qiu	99
+💬	fa yan zhong	99
+💬	shuo hua	99
+💬	xin qing	99
+💭	biao zhi	99
+💭	kao lv	99
+💭	si kao	99
+💭	si kao zhong	99
+💭	xiang fa	99
+💭	xiang xiang zhong	99
+💯	bai dian	99
+💯	man fen	99
+💯	xin qing	99
+💯	yi bai fen	99
+💰	jin qian	99
+💰	jin ri te jia	99
+💰	ling qian	99
+💰	qian	99
+💰	qian dai	99
+💰	xian yi	99
+💰	yin zi	99
+💱	huo bi dui huan	99
+💱	shang wu	99
+💲	jin qian	99
+💲	mei jin	99
+💲	mei yuan	99
+💲	mei yuan fu hao	99
+💳	jin qian	99
+💳	xin yong ka	99
+💴	jin qian	99
+💴	ri yuan	99
+💴	yi die ri yuan	99
+💵	jin qian	99
+💵	mei yuan	99
+💵	yi die mei yuan	99
+💶	jin qian	99
+💶	ou yuan	99
+💶	yi die ou yuan	99
+💷	jin qian	99
+💷	ying bang	99
+💸	jin qian	99
+💸	kui sun	99
+💸	po cai	99
+💸	po chan	99
+💸	qian fei le	99
+💹	zhang	99
+💺	fei ji zuo yi	99
+💺	jiao tong	99
+💺	yi zi	99
+💺	zuo wei	99
+💺	zuo yi	99
+💻	bi ji ben dian nao	99
+💻	dian nao	99
+💻	ge ren dian nao	99
+💻	ge ren ji suan ji	99
+💻	xin xi	99
+💻	ying mu	99
+💼	gong shi bao	99
+💼	gong wen bao	99
+💼	shang ban	99
+💼	shang wu	99
+💼	xin xi	99
+💽	die pian	99
+💽	guang die	99
+💽	mi ni guang die	99
+💽	xin xi	99
+💽	zhuan ji	99
+💾	ruan die	99
+💾	ruan pan	99
+💾	xin xi	99
+💾	zi liao	99
+💿	guang die	99
+💿	guang pan	99
+💿	xin xi	99
+📀	guang die	99
+📀	guang pan	99
+📀	xin xi	99
+📁	guan wen jian jia	99
+📁	shang wu	99
+📁	wen jian jia	99
+📁	zi liao jia	99
+📂	kai qi zi liao jia	99
+📂	kai wen jian jia	99
+📂	shang wu	99
+📂	wen jian jia	99
+📃	dang an	99
+📃	shang wu	99
+📃	wen jian	99
+📃	wen shu	99
+📃	xin zhi	99
+📃	ye mian	99
+📃	zi liao	99
+📄	dang an	99
+📄	shang wu	99
+📄	wen jian	99
+📄	xin zhi	99
+📄	ye mian	99
+📄	zheng shu	99
+📄	zhi	99
+📄	zi liao	99
+📅	ri li	99
+📅	ri qi	99
+📅	shang wu	99
+📆	ri li	99
+📆	shang wu	99
+📆	si kai de ri li	99
+📇	ka pian suo yin	99
+📇	ming pian	99
+📇	ming pian jia	99
+📇	ming pian zhi zuo	99
+📇	shang wu	99
+📇	suo yin ka	99
+📈	shang wu	99
+📈	shou yi bao biao	99
+📈	tu biao	99
+📈	xiang shang qu shi tu	99
+📈	ye ji shang zhang	99
+📈	zhang	99
+📈	zhang shi	99
+📉	die	99
+📉	die shi	99
+📉	kui sun bao biao	99
+📉	shang wu	99
+📉	tu biao	99
+📉	xiang xia qu shi tu	99
+📉	ye ji xia hua	99
+📊	chang tiao tu	99
+📊	shang wu	99
+📊	tiao xing tu	99
+📊	zhang tiao tu	99
+📊	zhi fang tu	99
+📋	jian qie ban	99
+📋	jian tie ban	99
+📋	shang wu	99
+📋	zhan tie ban	99
+📋	zhu yi shi xiang	99
+📌	shang wu	99
+📌	tu ding	99
+📍	da tou ding	99
+📍	shang wu	99
+📍	yuan tu ding	99
+📎	fu jian	99
+📎	hui wen zhen	99
+📎	hui xing zhen	99
+📎	shang wu	99
+📎	zhi jia	99
+📏	shang wu	99
+📏	zhi chi	99
+📐	san jiao chi	99
+📐	shang wu	99
+📑	biao qian ye	99
+📑	shang wu	99
+📑	shu qian	99
+📑	shu qian biao qian	99
+📒	ben zi	99
+📒	bi ji	99
+📒	ji shi bu	99
+📒	shang wu	99
+📒	zhang ben	99
+📓	bi ji ben	99
+📓	shang wu	99
+📓	ying ke bi ji ben	99
+📔	bi ji ben	99
+📔	huang pi bi ji ben	99
+📔	shang wu	99
+📕	bei wang lu	99
+📕	hong pi shu	99
+📕	hong se shu ben	99
+📕	shang wu	99
+📖	cha xun	99
+📖	da kai de shu ben	99
+📖	fan shu	99
+📖	shang wu	99
+📖	shu	99
+📖	shu ben	99
+📖	tu shu	99
+📗	jiao ke shu	99
+📗	lv se shu ben	99
+📗	shang wu	99
+📘	lan pi shu	99
+📘	lan se shu ben	99
+📘	shang wu	99
+📙	bi ji ben	99
+📙	cheng pi shu	99
+📙	ju se shu ben	99
+📙	shang wu	99
+📚	shang wu	99
+📚	shu ben	99
+📚	shu dui	99
+📚	shu ji	99
+📛	ming pai	99
+📛	shang wu	99
+📛	xing ming pai	99
+📜	juan zhou	99
+📜	juan zong	99
+📜	shang wu	99
+📜	yang pi zhi juan	99
+📝	bei wang	99
+📝	bei wang lu	99
+📝	bi lu	99
+📝	ji lu	99
+📝	ji shi	99
+📝	xin xi	99
+📞	dian hua	99
+📞	dian hua ting tong	99
+📞	shang wu	99
+📞	ting tong	99
+📞	tong xun	99
+📟	chuan hu ji	99
+📟	hu ji	99
+📟	shang wu	99
+📠	chuan zhen	99
+📠	chuan zhen ji	99
+📠	xin xi	99
+📡	tong xun	99
+📡	wei xing tian xian	99
+📡	wei xing tong xun	99
+📡	xin xi	99
+📢	guang bo	99
+📢	kuo yin la ba	99
+📢	kuo yin qi	99
+📢	la ba	99
+📢	xin xi	99
+📣	chuan bo	99
+📣	chuan sheng tong	99
+📣	da la ba	99
+📣	da sheng gong	99
+📣	jia you	99
+📣	la ba	99
+📣	la ba tong	99
+📣	la la dui	99
+📣	xin xi	99
+📤	fa jian xiang	99
+📤	fa jian xiang tuo pan	99
+📤	shang wu	99
+📥	shang wu	99
+📥	shou jian xiang	99
+📥	shou jian xiang tuo pan	99
+📦	bao guo	99
+📦	da bao	99
+📦	feng zhuang	99
+📦	huo wu	99
+📦	li pin	99
+📦	shou jian	99
+📦	xiang zi	99
+📦	zhi xiang	99
+📧	dian you	99
+📧	dian zi you jian	99
+📧	shang wu	99
+📧	you jian	99
+📨	lai xin	99
+📨	shang wu	99
+📨	shou jian xia	99
+📨	yue du you jian	99
+📩	dian zi you jian	99
+📩	fa song you jian	99
+📩	fa you jian	99
+📩	xin xi	99
+📪	shang wu	99
+📪	shou xin	99
+📪	xin xiang	99
+📪	you xiang	99
+📫	ji xin	99
+📫	xin xi	99
+📫	xin xiang	99
+📫	you xiang	99
+📫	you xin ji chu	99
+📬	shang wu	99
+📬	you lai xin	99
+📬	you xiang	99
+📭	da kai de you xiang	99
+📭	mei you lai xin	99
+📭	shang wu	99
+📭	you xiang	99
+📮	xin xi	99
+📮	you tong	99
+📮	you xiang	99
+📯	hao jiao	99
+📯	yin yue	99
+📯	you zheng hao jiao	99
+📯	you zheng la ba	99
+📰	bao kan	99
+📰	bao zhi	99
+📰	xin wen	99
+📰	xin xi	99
+📱	shou ji	99
+📱	shou ji ke	99
+📱	xin xi	99
+📱	xing dong dian hua	99
+📱	yi dong dian hua	99
+📱	zhi neng ji	99
+📲	da dian hua	99
+📲	dian hua	99
+📲	jie dian hua	99
+📲	xin xi	99
+📳	xin xi	99
+📳	zhen dong	99
+📳	zhen dong mo shi	99
+📴	dian hua guan ji	99
+📴	guan ji	99
+📴	guan ji mo shi	99
+📴	shou ji guan ji	99
+📴	xin xi	99
+📴	yi dong dian hua guan ji	99
+📵	biao zhi	99
+📵	jin yong shou ji	99
+📵	jin zhi tong hua	99
+📶	shou xun	99
+📶	xin hao	99
+📶	xin hao qiang du	99
+📶	xin hao zhuang kuang	99
+📶	xin xi	99
+📷	dan fan	99
+📷	mei yan xiang ji	99
+📷	pai zhao	99
+📷	xiang ji	99
+📷	xin xi	99
+📷	zhao xiang	99
+📷	zhao xiang ji	99
+📸️	shan guang deng	99
+📸️	xiang ji shan guang deng	99
+📹	lu xiang	99
+📹	lu ying	99
+📹	she xiang	99
+📹	she xiang ji	99
+📹	she ying	99
+📹	she ying ji	99
+📹	xin xi	99
+📺	dian shi	99
+📺	dian shi ji	99
+📺	mei ti	99
+📺	xin xi	99
+📻	guang bo	99
+📻	mei ti	99
+📻	shou yin ji	99
+📻	ting guang bo	99
+📻	xin xi	99
+📼	lu xiang dai	99
+📼	lu ying dai	99
+📼	xin xi	99
+📽️	dian ying fang ying ji	99
+📿️	nian zhu	99
+🔀	fu hao	99
+🔀	sui ji bo fang	99
+🔁	dan qu bo fang	99
+🔁	fu hao	99
+🔁	xun huan	99
+🔁	xun huan bo fang	99
+🔂	bo fang yi ci	99
+🔂	dan qu xun huan	99
+🔂	fu hao	99
+🔃	chong xin bo fang	99
+🔃	chong xin du qu	99
+🔃	chong xin zai ru	99
+🔃	shang wu	99
+🔃	xun huan	99
+🔃	chong zai	99
+🔄	fu hao	99
+🔄	lie biao xun huan	99
+🔄	xun huan	99
+🔄	zhong xin zheng li	99
+🔅	di liang du	99
+🔆	gao liang du	99
+🔇	jing yin	99
+🔈	di yin liang yang sheng qi	99
+🔉	yang sheng qi	99
+🔊	gao yin la ba	99
+🔊	sheng yin	99
+🔊	xin xi	99
+🔊	yang sheng qi	99
+🔊	yin liang	99
+🔋	chong dian	99
+🔋	dian chi	99
+🔋	dian liang	99
+🔋	gong ju	99
+🔌	cha tou	99
+🔌	dian cha tou	99
+🔌	dian yuan	99
+🔌	gong ju	99
+🔍	cha xun	99
+🔍	fang da jing	99
+🔍	gong ju	99
+🔍	sou suo	99
+🔍	sou xun	99
+🔎	fang da jing	99
+🔎	gong ju	99
+🔎	qing bao	99
+🔎	xiang qing	99
+🔎	xiang xi	99
+🔏	gong ju	99
+🔏	yin mi	99
+🔏	yin si	99
+🔐	an quan	99
+🔐	gong ju	99
+🔐	jia mi	99
+🔑	gong ju	99
+🔑	jin yao shi	99
+🔑	yao shi	99
+🔒	gong ju	99
+🔒	shang suo	99
+🔒	suo	99
+🔒	suo ding	99
+🔒	suo tou	99
+🔓	gong ju	99
+🔓	jie suo	99
+🔓	kai suo	99
+🔔	ding	99
+🔔	gong ju	99
+🔔	ling dang	99
+🔔	ti xing	99
+🔔	xiang ling	99
+🔔	zhong sheng	99
+🔕	jin zhi xiang ling	99
+🔖	gong ju	99
+🔖	shu qian	99
+🔗	gong ju	99
+🔗	huan kou	99
+🔗	lian jie	99
+🔗	tie suo	99
+🔘	an niu	99
+🔘	dan xuan an niu	99
+🔘	gong ju	99
+🔘	yuan xing an niu	99
+🔙	fan hui	99
+🔙	fu hao	99
+🔙	hou tui	99
+🔙	tui hui	99
+🔚	fu hao	99
+🔚	jie shu	99
+🔚	mo wei	99
+🔚	zhi ban	99
+🔛	fu hao	99
+🔛	kai qi	99
+🔛	qi yong	99
+🔜	fu hao	99
+🔜	kuai jin	99
+🔜	kuai su	99
+🔝	fu hao	99
+🔝	shang fang	99
+🔝	shang sheng	99
+🔝	zhi ding	99
+🔞	biao zhi	99
+🔞	cheng ren	99
+🔞	cheng ren jie mu	99
+🔞	shao er bu yi	99
+🔞	shi ba jin	99
+🔞	wei cheng nian	99
+🔞	wei cheng nian jin zhi	99
+🔟	fu hao	99
+🔟	shi	99
+🔠	da xie zi mu	99
+🔠	fu hao	99
+🔠	ying wen da xie	99
+🔡	fu hao	99
+🔡	xiao xie zi mu	99
+🔡	ying wen xiao xie	99
+🔢	fu hao	99
+🔢	shu zi	99
+🔣	fu hao	99
+🔣	te shu fu hao	99
+🔤	fu hao	99
+🔤	qie huan shu ru	99
+🔤	ying wen shu ru fa	99
+🔤	ying wen zi	99
+🔥	chai huo	99
+🔥	dian huo	99
+🔥	dian ran	99
+🔥	huo	99
+🔥	huo miao	99
+🔥	huo re	99
+🔥	huo yan	99
+🔥	huo zhong	99
+🔥	lie huo	99
+🔥	ran shao	99
+🔥	shao	99
+🔥	shi huo	99
+🔥	ye huo	99
+🔥	zi ran	99
+🔦	gong ju	99
+🔦	shou dian tong	99
+🔦	zhao ming	99
+🔧	gong ju	99
+🔧	xiu li	99
+🔨	chui zi	99
+🔨	gong ju	99
+🔨	qiao da	99
+🔨	tie chui	99
+🔩	gong ju	99
+🔩	luo mu ji luo shuan	99
+🔩	luo shuan tao jian	99
+🔩	luo si	99
+🔪	cai dao	99
+🔪	dao	99
+🔪	gong ju	99
+🔪	kan	99
+🔪	qie	99
+🔪	qie rou dao	99
+🔪	shui guo dao	99
+🔪	xiao dao	99
+🔫	gong ju	99
+🔫	she ji	99
+🔫	shui qiang	99
+🔬	gong ju	99
+🔬	ke xue	99
+🔬	xian wei jing	99
+🔬	zuo shi yan	99
+🔭	gong ju	99
+🔭	tian wen	99
+🔭	tian wen guan cha	99
+🔭	wang yuan jing	99
+🔮	fu hao	99
+🔮	shui jing qiu	99
+🔮	zhan bu	99
+🔮	zi shui jing	99
+🔯	fu hao	99
+🔯	liu jiao xing	99
+🔯	liu mang xing	99
+🔰	chu xin zhe	99
+🔰	dun pai	99
+🔰	fu hao	99
+🔱	fu hao	99
+🔱	hai wang ji	99
+🔱	san cha ji	99
+🔲	hei xian fang kuang	99
+🔳	bai xian fang kuang	99
+🔴	hong se yuan quan	99
+🔵	lan se yuan quan	99
+🔷	lan se da ling xing	99
+🔹	lan se xiao ling xing	99
+🔼	fu hao	99
+🔼	xiang shang	99
+🔽	fu hao	99
+🔽	xiang xia	99
+🕉️	ao mu fu hao	99
+🕉️	fan wen fu hao	99
+🕊️	ge zi	99
+🕊️	he ping ge	99
+🕋️	ka ba sheng tang	99
+🕋️	ke er bai	99
+🕌️	hui jiao tang	99
+🕌️	qing zhen si	99
+🕍️	you tai jiao tang	99
+🕎️	duo lian deng zhu tai	99
+🕎️	you tai jiao deng tai	99
+🕎️	you tai jiao jiu deng zhu tai	99
+🕐	shi jian	99
+🕐	yi dian	99
+🕐	yi dian zhong	99
+🕑	liang dian	99
+🕑	liang dian zhong	99
+🕑	shi jian	99
+🕒	san dian	99
+🕒	san dian zhong	99
+🕒	shi jian	99
+🕓	shi jian	99
+🕓	si dian	99
+🕓	si dian zhong	99
+🕔	shi jian	99
+🕔	wu dian	99
+🕔	wu dian zhong	99
+🕕	liu dian	99
+🕕	liu dian zhong	99
+🕕	shi jian	99
+🕖	qi dian	99
+🕖	qi dian zhong	99
+🕖	shi jian	99
+🕗	ba dian	99
+🕗	ba dian zhong	99
+🕗	shi jian	99
+🕘	jiu dian	99
+🕘	jiu dian zhong	99
+🕘	shi jian	99
+🕙	shi dian	99
+🕙	shi dian zhong	99
+🕙	shi jian	99
+🕙	zhong biao	99
+🕚	shi jian	99
+🕚	shi yi dian	99
+🕚	shi yi dian zhong	99
+🕛	ling chen	99
+🕛	shi er dian	99
+🕛	shi er dian zhong	99
+🕛	shi jian	99
+🕜	yi dian ban	99
+🕝	er dian ban	99
+🕝	liang dian ban	99
+🕞	san dian ban	99
+🕟	si dian ban	99
+🕠	wu dian ban	99
+🕡	liu dian ban	99
+🕢	qi dian ban	99
+🕣	ba dian ban	99
+🕤	jiu dian ban	99
+🕤	shi zhong	99
+🕥	shi dian ban	99
+🕦	shi yi dian ban	99
+🕧	shi er dian ban	99
+🕯️	la zhu	99
+🕯️	zhu guang	99
+🕰️	bi lu zhong	99
+🕰️	tai zhong	99
+🕳️	di dong	99
+🕳️	dong	99
+🕴️	xi zhuang nan	99
+🕵️	zhen tan	99
+🕵️‍♀️	zhen tan	99
+🕶️	hei chao	99
+🕶️	hei se tai yang jing	99
+🕶️	mo jing	99
+🕶️	tai yang jing	99
+🕷️	zhi zhu	99
+🕸️	zhi zhu wang	99
+🕹️	cao zong gan	99
+🕹️	you xi cao zong gan	99
+🕹️	you xi gan	99
+🕺	tiao wu	99
+🕺	wu zhe	99
+🖇️	hui xing zhen	99
+🖇️	lian jie de hui xing zhen	99
+🖊️	yuan zhu bi	99
+🖋️	gang bi	99
+🖌️	hua bi	99
+🖍️	la bi	99
+🖐️	ju qi shou bing shen wu zhi	99
+🖐️	shou zhang	99
+🖕️	shu zhong zhi	99
+🖖	wa ken ju shou li	99
+🖖	wa ken shou shi	99
+🖤	hei xin	99
+🖥️	tai shi dian nao	99
+🖥️	tai shi ji	99
+🖥️	zhuo shang xing dian nao	99
+🖨️	da yin ji	99
+🖨️	yin biao ji	99
+🖱️	dian nao shu biao	99
+🖱️	san jian shu biao	99
+🖱️	shu biao	99
+🖲️	gui ji qiu	99
+🖼️	xiang kuang	99
+🗂️	ka pian suo yin qi	99
+🗃️	ka pian cun dang he	99
+🗃️	ka pian wen jian he	99
+🗄️	dang an gui	99
+🗄️	wen jian gui	99
+🗑️	fei zhi lou	99
+🗒️	ji shi ben	99
+🗒️	luo xuan xian quan bi ji ben	99
+🗒️	xian quan bi ji ben	99
+🗓️	luo xuan xian quan ri li	99
+🗓️	ri li	99
+🗓️	xian quan ri li	99
+🗜️	jia qian	99
+🗜️	ya suo	99
+🗝️	gu lao de yao shi	99
+🗝️	jiu yao shi	99
+🗞️	juan qi de bao zhi	99
+🗡️	bi shou	99
+🗡️	duan dao	99
+🗡️	duan jian	99
+🗣️	da sheng rang rang	99
+🗣️	da sheng shuo hua	99
+🗣️	shuo hua de lun kuo	99
+🗯️	you ce fen nu qi pao kuang	99
+🗳️	tou piao xiang	99
+🗺️	shi jie de tu	99
+🗻	fu shi shan	99
+🗼	dian shi ta	99
+🗼	fa she ta	99
+🗼	tie ta	99
+🗽	huo dong	99
+🗽	mei guo	99
+🗽	zi you nv shen	99
+🗾	ri ben	99
+🗿	diao xiang	99
+🗿	fu huo jie dao shi xiang	99
+🗿	shi xiang	99
+😀	biao zhun xiao	99
+😀	kai kou xiao	99
+😀	lu chi xiao	99
+😁	biao qing	99
+😁	hei hei	99
+😁	ku xiao	99
+😁	lie zui xiao	99
+😁	lu chi da xiao	99
+😁	lu chi er xiao	99
+😁	lu chi xiao	99
+😁	wei xiao	99
+😁	xi xi	99
+😁	xiao	99
+😂	biao qing	99
+😂	da xiao	99
+😂	ku xiao	99
+😂	po ti wei xiao	99
+😂	xi ji er qi	99
+😂	xiao bu ke yi	99
+😂	xiao chu yan lei	99
+😂	xiao ku	99
+😃	biao qing	99
+😃	da xiao	99
+😃	gao xing	99
+😃	kai huai da xiao	99
+😃	kai xin	99
+😃	wei xiao	99
+😃	wu fang	99
+😃	xiao	99
+😃	xiao lian	99
+😃	xiao rong	99
+😃	zhang zui xiao	99
+😄	biao qing	99
+😄	gao xing	99
+😄	ha ha	99
+😄	ha ha ha	99
+😄	ha ha ha ha	99
+😄	he he	99
+😄	kai xin	99
+😄	mi mi xiao	99
+😄	mi yan xiao	99
+😄	wei xiao	99
+😄	xi xi	99
+😄	xiao	99
+😄	xiao lian	99
+😄	xiao yan	99
+😄	zhen gao xiao	99
+😅	biao qing	99
+😅	gan ga	99
+😅	han	99
+😅	han yan	99
+😅	leng han	99
+😅	liu han	99
+😅	mao leng han	99
+😆	biao qing	99
+😆	da xiao	99
+😆	kai huai da xiao	99
+😆	kai xin	99
+😆	mi yan xiao	99
+😆	sha xiao	99
+😆	xiao	99
+😆	xiao bu jian yan	99
+😇	biao qing	99
+😇	chun jie	99
+😇	tian shi	99
+😇	tian shi de wei xiao	99
+😈	biao qing	99
+😈	e mo	99
+😈	xiao e mo	99
+😈	xie e	99
+😉	biao qing	99
+😉	qing song	99
+😉	shi yan se	99
+😉	zha yan	99
+😊	biao qing	99
+😊	gao xing	99
+😊	hai xiu	99
+😊	ke ai	99
+😊	mi yan wei xiao	99
+😊	wei xiao	99
+😊	xiao	99
+😊	xiao lian	99
+😊	xiao rong	99
+😋	biao qing	99
+😋	hao chi	99
+😋	tu she tou	99
+😋	yan chan	99
+😋	zui chan	99
+😌	biao qing	99
+😌	fang song	99
+😌	shi ran	99
+😌	shu fu	99
+😍	ai	99
+😍	ai ni	99
+😍	biao qing	99
+😍	xi huan	99
+😍	xin xin yan	99
+😍	zhao mi	99
+😎	ban ku	99
+😎	biao qing	99
+😎	de yi	99
+😎	ku	99
+😎	mo jing	99
+😏	biao qing	99
+😏	chi xiao	99
+😏	de yi de xiao	99
+😏	jia xiao	99
+😏	leng xiao	99
+😏	tou xiao	99
+😏	zui jiao shang yang	99
+😐	biao qing	99
+😐	dai ran	99
+😐	dan mo	99
+😐	mo ran	99
+😐	wu biao qing	99
+😑	mian wu biao qing	99
+😒	ba bu de	99
+😒	bi shi	99
+😒	biao qing	99
+😒	bu gao xing	99
+😒	bu kai xin	99
+😒	chou mei ku lian	99
+😒	leng mo	99
+😒	yu men	99
+😓	biao qing	99
+😓	chu leng han	99
+😓	dan xin	99
+😓	dao mei	99
+😓	du nang	99
+😓	han	99
+😓	han yan	99
+😓	jin zhang	99
+😓	leng han	99
+😓	wu yu	99
+😔	biao qing	99
+😔	bu kai xin	99
+😔	bu ru yi	99
+😔	chen si	99
+😔	dan you	99
+😔	fa	99
+😔	hao xin suan	99
+😔	hao xin teng	99
+😔	mei you dong li	99
+😔	nan guo	99
+😔	shen shang	99
+😔	shen si	99
+😔	si kao	99
+😔	xin suan	99
+😔	you lv	99
+😔	you shang	99
+😔	you yu	99
+😔	zhen de hao lei	99
+😕	biao qing	99
+😕	bu shuang	99
+😕	bu xie	99
+😕	kun huo	99
+😕	pie zui	99
+😖	biao qing	99
+😖	ku nao	99
+😖	kun huo	99
+😖	tong ku	99
+😖	yi wen	99
+😗	qin wen	99
+😘	ai	99
+😘	ai ni	99
+😘	biao qing	99
+😘	chuan qing	99
+😘	fei wen	99
+😘	qin qin	99
+😘	shi ai	99
+😙	qin qin	99
+😚	biao qing	99
+😚	du zui	99
+😚	qin qin	99
+😚	qin wen	99
+😚	qin yi kou	99
+😛	mai meng	99
+😛	tu she	99
+😜	ban gui lian	99
+😜	biao qing	99
+😜	gui lian	99
+😜	jian xiao	99
+😜	mai meng	99
+😜	shi yan se	99
+😜	xi xi	99
+😜	zha yan	99
+😜	zuo gui lian	99
+😝	bi yan	99
+😝	biao qing	99
+😝	chao nong	99
+😝	chao xiao	99
+😝	diao pi	99
+😝	kai wan xiao	99
+😝	tiao pi	99
+😝	tu she	99
+😞	biao qing	99
+😞	bu kai xin	99
+😞	di luo	99
+😞	di luo de xin qing	99
+😞	nan guo	99
+😞	shi wang	99
+😞	yi yu zheng	99
+😟	dan you	99
+😠	bi zui	99
+😠	biao qing	99
+😠	bu gao xing	99
+😠	bu kai xin	99
+😠	jue zui	99
+😠	nao xin	99
+😠	qi fen	99
+😠	re wo sheng qi	99
+😠	sheng qi	99
+😠	yan su	99
+😠	zhou mei	99
+😡	bai lei	99
+😡	biao qing	99
+😡	fan	99
+😡	fan si	99
+😡	fen nu	99
+😡	jue zui	99
+😡	nu qi	99
+😡	qi fen	99
+😡	qi ren	99
+😡	qi si le	99
+😡	qi si ren	99
+😡	ren rang	99
+😡	sheng qi	99
+😡	si fan	99
+😡	wo huo	99
+😡	zhen shi gou le	99
+😢	bei shang	99
+😢	bei tong	99
+😢	biao qing	99
+😢	chuai qi	99
+😢	ku	99
+😢	ku qi	99
+😢	liu lei	99
+😢	shang xin	99
+😣	biao qing	99
+😣	fu zui gan	99
+😣	jian ren	99
+😣	nan shou	99
+😣	ren nai	99
+😣	shang xin	99
+😣	zhe ji	99
+😤	biao qing	99
+😤	de yi	99
+😤	qi si wo le	99
+😤	sheng qi	99
+😥	biao qing	99
+😥	han	99
+😥	shi ran	99
+😥	shi wang	99
+😦	jing ya	99
+😦	ju sang	99
+😧	jing e	99
+😨	biao qing	99
+😨	hai pa	99
+😨	jing kong	99
+😨	ke pa	99
+😩	biao qing	99
+😩	pi juan	99
+😩	yan juan	99
+😩	zhua kuang	99
+😪	biao qing	99
+😪	da ke shui	99
+😪	fan kun	99
+😪	han shui	99
+😪	kun juan	99
+😪	kun kun	99
+😪	pi lao	99
+😪	shui jiao	99
+😪	wan an	99
+😫	biao qing	99
+😫	nan guo	99
+😫	nao huo	99
+😫	pi bei	99
+😫	zhua kuang	99
+😬	gui lian	99
+😭	bei shang	99
+😭	biao qing	99
+😭	da ku	99
+😭	ku	99
+😭	ku qi	99
+😭	lei liu man mian	99
+😭	lei ru yu xia	99
+😭	liu lei	99
+😮	jing ya	99
+😯	o	99
+😯	tiao mei jing ya	99
+😯	yi wai	99
+😰	biao qing	99
+😰	han	99
+😰	jiao ji	99
+😰	jing hun	99
+😰	leng han	99
+😰	mao leng han	99
+😱	biao qing	99
+😱	chi jing	99
+😱	hai pa	99
+😱	jing kong	99
+😱	ke pa	99
+😱	kong bu	99
+😱	kong ju	99
+😱	pa pa	99
+😱	xia niao	99
+😲	biao qing	99
+😲	chi jing	99
+😲	tong ku	99
+😳	biao qing	99
+😳	gan ga	99
+😳	hai sao	99
+😳	hai xiu	99
+😳	hong lian	99
+😳	hu che	99
+😳	jiong	99
+😳	lian hong	99
+😳	xiu kui	99
+😴	kun juan	99
+😴	wan an	99
+😵	biao qing	99
+😵	tou yun yan hua	99
+😵	yan mao jin xing	99
+😶	biao qing	99
+😶	bu ke shuo	99
+😶	wu hua ke shuo	99
+😶	wu kou	99
+😶	wu yu	99
+😷	ai bo la	99
+😷	bi sai	99
+😷	biao qing	99
+😷	bing dao	99
+😷	chuan ran gan mao	99
+😷	dai kou zhao	99
+😷	gan mao	99
+😷	gan mao liu bi ti	99
+😷	kou zhao	99
+😷	liu gan	99
+😷	meng mian	99
+😷	pen ti	99
+😷	sang zi teng	99
+😷	sheng bing	99
+😷	yan zhong gan mao	99
+😷	yun	99
+😷	zhong gan mao	99
+😸	biao qing	99
+😸	gao xing	99
+😸	kai xin mao	99
+😸	wei xiao	99
+😹	biao qing	99
+😹	gan dong	99
+😹	xi ji er qi	99
+😹	xiao bu ke yi	99
+😺	biao qing	99
+😺	jing ya	99
+😺	kai xin	99
+😺	kai xin mao	99
+😺	mao	99
+😻	biao qing	99
+😻	xi huan	99
+😻	zhao mi	99
+😼	biao qing	99
+😼	bu huai hao yi	99
+😼	ku mao	99
+😼	ku xiao	99
+😼	mao lian	99
+😼	xiao	99
+😼	xiong you cheng zhu	99
+😼	zi xin	99
+😽	biao qing	99
+😽	qin ni	99
+😽	qin qin	99
+😽	qin qin mao	99
+😽	qin yi kou	99
+😾	biao qing	99
+😾	jue zui	99
+😾	min zui	99
+😾	nu mu	99
+😾	sheng qi	99
+😾	wu shi	99
+😿	biao qing	99
+😿	ku	99
+😿	ku qi	99
+😿	shang xin	99
+🙀	biao qing	99
+🙀	jing xia	99
+🙀	jing ya	99
+🙀	kun juan	99
+🙀	mao lian	99
+🙀	pa pa	99
+🙀	pi juan	99
+🙀	shou dao jing xia	99
+🙁️	biao qing	99
+🙁️	nan guo	99
+🙂️	biao qing	99
+🙂️	wei xiao	99
+🙂️	xiao	99
+🙃️	biao qing	99
+🙃️	dian dao	99
+🙃️	wo dao	99
+🙄️	bai yan	99
+🙄️	biao qing	99
+🙄️	yan jing gun dong biao qing	99
+🙅	biao yi bu hao	99
+🙅	bu ke	99
+🙅	bu xing	99
+🙅	cuo wu	99
+🙅	fan dui	99
+🙅	fou jue	99
+🙅	mei ke neng	99
+🙅	mei men	99
+🙅	tou xiang	99
+🙅	wu de	99
+🙅‍♂️	biao yi bu hao	99
+🙅‍♂️	bu ke	99
+🙅‍♂️	bu xing	99
+🙅‍♂️	cuo wu	99
+🙅‍♂️	fan dui	99
+🙅‍♂️	fou jue	99
+🙅‍♂️	mei ke neng	99
+🙅‍♂️	mei men	99
+🙅‍♂️	tou xiang	99
+🙅‍♂️	wu de	99
+🙆	bao tou	99
+🙆	biao yi hao	99
+🙆	ken ding	99
+🙆	tong yi	99
+🙆	tou xiang	99
+🙆	zheng que	99
+🙆	zhun xu	99
+🙆‍♂️	bao tou	99
+🙆‍♂️	biao yi hao	99
+🙆‍♂️	ken ding	99
+🙆‍♂️	tong yi	99
+🙆‍♂️	tou xiang	99
+🙆‍♂️	zheng que	99
+🙆‍♂️	zhun xu	99
+🙇	dao qian	99
+🙇	ju gong	99
+🙇	ken qiu	99
+🙇	shen ju gong de nan ren	99
+🙇	shen ju gong de ren	99
+🙇	tou xiang	99
+🙇‍♀️	dao qian	99
+🙇‍♀️	ju gong	99
+🙇‍♀️	ken qiu	99
+🙇‍♀️	shen ju gong de nv ren	99
+🙇‍♀️	shen ju gong de ren	99
+🙇‍♀️	tou xiang	99
+🙈	bu kan	99
+🙈	fei li wu shi	99
+🙈	kan bu jian	99
+🙈	mao yan di	99
+🙈	tou xiang	99
+🙈	wu yan	99
+🙉	bu ting	99
+🙉	fei li wu ting	99
+🙉	shen ting	99
+🙉	ting bu dao	99
+🙉	tou xiang	99
+🙊	bi zui	99
+🙊	bu gan shuo	99
+🙊	bu neng shuo	99
+🙊	bu shuo	99
+🙊	bu shuo hua	99
+🙊	fei li wu yan	99
+🙊	jin yan	99
+🙊	tou xiang	99
+🙋	da zhao hu	99
+🙋	hui shou	99
+🙋	ju shou	99
+🙋	tou xiang	99
+🙋	zhao shou	99
+🙋‍♂️	da zhao hu	99
+🙋‍♂️	hui shou	99
+🙋‍♂️	ju shou	99
+🙋‍♂️	tou xiang	99
+🙋‍♂️	zhao shou	99
+🙌	shou shi	99
+🙌	ting zhi	99
+🙌	yang shou huan hu	99
+🙍	di luo	99
+🙍	ju sang	99
+🙍	qi nei	99
+🙍	shi wang	99
+🙍	tou xiang	99
+🙍‍♂️	di luo	99
+🙍‍♂️	ju sang	99
+🙍‍♂️	qi nei	99
+🙍‍♂️	shi wang	99
+🙍‍♂️	tou xiang	99
+🙎	dan mo	99
+🙎	du zui	99
+🙎	tou xiang	99
+🙎‍♂️	dan mo	99
+🙎‍♂️	du zui	99
+🙎‍♂️	tou xiang	99
+🙏	bai tuo	99
+🙏	bao en	99
+🙏	bao you	99
+🙏	chao bai	99
+🙏	chao du	99
+🙏	duo xie	99
+🙏	fo men	99
+🙏	gan xie	99
+🙏	ge lu shen xian bao you	99
+🙏	gong de wu liang	99
+🙏	he shi	99
+🙏	he zhang	99
+🙏	huan yuan	99
+🙏	ji bai	99
+🙏	ji fu	99
+🙏	ken qiu	99
+🙏	kou bai	99
+🙏	lao tian bao you	99
+🙏	nian fo	99
+🙏	nian zhou	99
+🙏	pu sa bao you	99
+🙏	qi zhu	99
+🙏	qiu gao zhi	99
+🙏	shang di bao you	99
+🙏	shi zhe an xi	99
+🙏	shou shi	99
+🙏	shuang shou he shi	99
+🙏	song jing	99
+🙏	wan fen gan ji	99
+🙏	xie xie	99
+🙏	xin feng	99
+🙏	yuan li	99
+🙏	yuan shi jie he ping	99
+🙏	zha xi de lei	99
+🙏	zhai jie	99
+🙏	zhi xie	99
+🚀	huo jian	99
+🚀	jiao tong	99
+🚁	jiao tong	99
+🚁	zhi sheng ji	99
+🚂	huo che	99
+🚂	jiao tong	99
+🚂	zheng qi huo che	99
+🚂	zheng qi ji che	99
+🚃	dian che	99
+🚃	jiao tong	99
+🚃	tie dao che	99
+🚃	you gui dian che	99
+🚄	dong che	99
+🚄	dong che zu	99
+🚄	gao su lie che	99
+🚄	gao tie	99
+🚄	he xie hao	99
+🚄	huo che	99
+🚄	jiao tong	99
+🚄	jiao tong gong ju	99
+🚄	lie che	99
+🚄	xiao huo che	99
+🚄	xin gan xian	99
+🚄	zi dan tou	99
+🚅	dong che	99
+🚅	dong che zu	99
+🚅	gao su lie che	99
+🚅	gao tie	99
+🚅	he xie hao	99
+🚅	huo che	99
+🚅	jiao tong	99
+🚅	xin gan xian	99
+🚅	zi dan lie che	99
+🚆	huo che lai le	99
+🚆	huo che tou	99
+🚇	che xiang	99
+🚇	di tie	99
+🚇	di tie biao ji	99
+🚇	jiao tong	99
+🚇	jie yun	99
+🚇	zuo di tie	99
+🚈	di tie	99
+🚈	jiao tong	99
+🚈	qing gui dian che	99
+🚉	che zhan	99
+🚉	di tie zhan	99
+🚉	huo che	99
+🚉	huo che zhan	99
+🚉	jiao tong	99
+🚉	zhan tai	99
+🚊	dian che	99
+🚊	huo che	99
+🚊	jiao tong	99
+🚋	you gui dian che	99
+🚌	ba shi	99
+🚌	ban che	99
+🚌	che shang	99
+🚌	da ba	99
+🚌	gong che	99
+🚌	gong gong qi che	99
+🚌	gong jiao	99
+🚌	gong jiao che	99
+🚌	jiao tong	99
+🚌	jiao tong gong ju	99
+🚍	ba shi	99
+🚍	da ba che	99
+🚍	gong che	99
+🚍	gong gong qi che	99
+🚍	jiao tong	99
+🚎	ba shi	99
+🚎	dian che	99
+🚎	ding ding	99
+🚎	gong che	99
+🚎	gong gong qi che	99
+🚎	jiao tong	99
+🚎	wu gui dian che	99
+🚎	you gui dian che	99
+🚏	gong che zhan	99
+🚏	gong gong qi che zhan	99
+🚏	gong jiao che zhan	99
+🚏	jiao tong	99
+🚐	ba shi	99
+🚐	gong che	99
+🚐	gong gong qi che	99
+🚐	gong gong xiao ba	99
+🚐	jiao tong	99
+🚐	mian bao che	99
+🚐	xiao ba	99
+🚐	xiao ba shi	99
+🚑	ji jiu che	99
+🚑	jiao tong	99
+🚑	jiu hu che	99
+🚑	yi liao che	99
+🚒	jiao tong	99
+🚒	xiao fang che	99
+🚓	jiao tong	99
+🚓	jing che	99
+🚔	bao jing	99
+🚔	jiao tong	99
+🚔	jing cha	99
+🚔	jing che	99
+🚕	chu zu che	99
+🚕	di shi	99
+🚕	ji cheng che	99
+🚕	jiao tong	99
+🚖	chu zu che	99
+🚖	da che	99
+🚖	da di	99
+🚖	di shi	99
+🚖	ji cheng che	99
+🚖	jiao tong	99
+🚗	ai che	99
+🚗	che	99
+🚗	che che	99
+🚗	che dui	99
+🚗	che liang	99
+🚗	che zi	99
+🚗	dao che	99
+🚗	jia che	99
+🚗	jiao che	99
+🚗	jiao tong	99
+🚗	qi che	99
+🚗	si jia che	99
+🚗	xiao che	99
+🚗	xiao jiao che	99
+🚗	xiao qi che	99
+🚗	xin che	99
+🚗	xing che	99
+🚘	che	99
+🚘	che zi	99
+🚘	jiao che	99
+🚘	jiao tong	99
+🚘	qi che	99
+🚘	si jia che	99
+🚘	xiao jiao che	99
+🚙	jiao tong	99
+🚙	xiu lv che	99
+🚙	xiu xian che	99
+🚙	yue ye che	99
+🚚	huo che	99
+🚚	jiao tong	99
+🚜	huo gui che	99
+🚜	jiao tong	99
+🚜	tuo la ji	99
+🚝	ci xuan fu lie che	99
+🚝	dan gui dian che	99
+🚝	dan gui lie che	99
+🚝	jiao tong	99
+🚞	deng shan lie che	99
+🚞	huo che	99
+🚞	jiao tong	99
+🚞	tie lu	99
+🚟	guan guang lie che	99
+🚟	jiao tong	99
+🚟	kong zhong tie lu	99
+🚟	xuan fu lie che	99
+🚠	gao shan suo dao	99
+🚠	jiao tong	99
+🚠	lan che	99
+🚠	shan ding lan che	99
+🚡	jiao tong	99
+🚡	kong zhong lan che	99
+🚡	lan che	99
+🚢	chu hai	99
+🚢	chuan	99
+🚢	hai yun	99
+🚢	jiao tong	99
+🚢	lun chuan	99
+🚢	you lun	99
+🚣	fan zhou	99
+🚣	hua chuan	99
+🚣	hua ting	99
+🚣	jiao tong	99
+🚣	xiao chuan	99
+🚣‍♀️	fan zhou	99
+🚣‍♀️	hua chuan	99
+🚣‍♀️	hua ting	99
+🚣‍♀️	jiao tong	99
+🚣‍♀️	xiao chuan	99
+🚤	jiao tong	99
+🚤	kuai ting	99
+🚤	qi ting	99
+🚤	sai ting	99
+🚥	hong lv deng	99
+🚥	jiao tong	99
+🚥	jiao tong biao zhi	99
+🚥	jiao tong deng	99
+🚥	jiao tong hao zhi	99
+🚥	jiao tong xin hao deng	99
+🚥	xin hao deng	99
+🚦	hong lv deng	99
+🚦	jiao tong	99
+🚦	jiao tong deng	99
+🚦	jiao tong hao zhi	99
+🚦	jiao tong xin hao deng	99
+🚦	xin hao deng	99
+🚧	dao lu shi gong	99
+🚧	jiao tong	99
+🚧	jiao tong biao zhi	99
+🚧	ju ma	99
+🚧	lu zhang	99
+🚧	shi gong	99
+🚨	jiao tong	99
+🚨	jing che deng	99
+🚨	jing deng	99
+🚨	jing shi deng	99
+🚩	hong qi	99
+🚩	qi gan	99
+🚩	qi zhi	99
+🚩	san jiao qi	99
+🚩	zhong dian	99
+🚪	men	99
+🚫	biao zhi	99
+🚫	bu de ru nei	99
+🚫	bu ke yong	99
+🚫	jin zhi	99
+🚫	xian zhi	99
+🚬	biao zhi	99
+🚬	chou yan	99
+🚬	xi yan	99
+🚬	xi yan qu	99
+🚬	xiang yan	99
+🚬	yan	99
+🚬	yan wei	99
+🚭	biao zhi	99
+🚭	jin yan	99
+🚭	jin zhi xi yan	99
+🚭	wu yan qu	99
+🚮	biao zhi	99
+🚮	la ji ru lou	99
+🚮	la ji tong	99
+🚮	reng la ji	99
+🚯	biao zhi	99
+🚯	jin diu la ji	99
+🚯	qing wu luan reng	99
+🚰	biao zhi	99
+🚰	shui long tou	99
+🚰	yin shui qu	99
+🚰	yin yong shui	99
+🚱	biao zhi	99
+🚱	fei yin yong shui	99
+🚱	jin zhi yin shui	99
+🚲	dan che	99
+🚲	jiao ta che	99
+🚲	jiao tong	99
+🚲	zi xing che	99
+🚳	biao zhi	99
+🚳	jin xing dan che	99
+🚳	jin zhi qi che	99
+🚴	dan che	99
+🚴	jiao ta che	99
+🚴	jiao tong	99
+🚴	shan di che	99
+🚴	zi xing che	99
+🚴	zi xing che shou	99
+🚴‍♀️	dan che	99
+🚴‍♀️	jiao ta che	99
+🚴‍♀️	jiao tong	99
+🚴‍♀️	shan di che	99
+🚴‍♀️	zi xing che	99
+🚴‍♀️	zi xing che shou	99
+🚵	dan che	99
+🚵	deng shan zi xing che shou	99
+🚵	jiao ta che	99
+🚵	qi che deng shan	99
+🚵	yun dong	99
+🚵	zi xing che	99
+🚵‍♀️	dan che	99
+🚵‍♀️	deng shan zi xing che shou	99
+🚵‍♀️	jiao ta che	99
+🚵‍♀️	qi che deng shan	99
+🚵‍♀️	yun dong	99
+🚵‍♀️	zi xing che	99
+🚶	jiao tong	99
+🚶	lu ren	99
+🚶	san bu	99
+🚶	xing ren	99
+🚶‍♀️	jiao tong	99
+🚶‍♀️	lu ren	99
+🚶‍♀️	san bu	99
+🚶‍♀️	xing ren	99
+🚷	biao zhi	99
+🚷	jin zhi xing ren	99
+🚸	biao zhi	99
+🚸	dang xin er tong	99
+🚸	xue tong guo jie	99
+🚸	zhu yi er tong	99
+🚹	biao zhi	99
+🚺	biao zhi	99
+🚻	biao zhi	99
+🚻	guan xi jian	99
+🚻	guan xi shi	99
+🚻	hua zhuang shi	99
+🚻	wei sheng jian	99
+🚻	xi shou jian	99
+🚼	bao bao	99
+🚼	biao zhi	99
+🚼	mu ying shi	99
+🚼	ying er	99
+🚽	biao zhi	99
+🚽	ce suo	99
+🚽	chou shui ma tong	99
+🚽	ma tong	99
+🚽	wei sheng jian	99
+🚾	biao zhi	99
+🚾	ce suo	99
+🚾	guan xi jian	99
+🚾	wei sheng jian	99
+🚾	xi shou jian	99
+🚿	chong liang	99
+🚿	chong zao	99
+🚿	hua sa	99
+🚿	lian peng tou	99
+🚿	lin yu	99
+🚿	lin yu tou	99
+🚿	xi zao	99
+🛀	huo dong	99
+🛀	pao ge zao	99
+🛀	pao zao	99
+🛀	xi zao	99
+🛀	yu gang	99
+🛀	yu shi	99
+🛁	xi zao	99
+🛁	yu chi	99
+🛁	yu gang	99
+🛁	zao	99
+🛂	an jian	99
+🛂	an jian chu	99
+🛂	biao zhi	99
+🛂	cha zheng	99
+🛂	tong guan jian cha	99
+🛂	zheng jian jian cha	99
+🛃	biao zhi	99
+🛃	cha bao	99
+🛃	cha xing li	99
+🛃	hai guan	99
+🛃	xing li jian cha	99
+🛄	biao zhi	99
+🛄	cha xing li	99
+🛄	ti qu xing li	99
+🛄	xing li guo ji	99
+🛄	xing li ling qu chu	99
+🛄	xing li tong cha	99
+🛅	biao zhi	99
+🛅	chu fang xing li	99
+🛅	cun bao	99
+🛅	ji cun	99
+🛅	xing li ji cun chu	99
+🛅	xing li tuo guan	99
+🛋️	sha fa he deng	99
+🛌️	wo pu	99
+🛍️	gou wu dai	99
+🛎️	fu wu ling	99
+🛎️	fu wu yuan ling dang	99
+🛏️	chuang	99
+🛐️	zong jiao chang suo	99
+🛑	ba bian xing	99
+🛒	gou wu che	99
+🛠️	chui zi he ban shou	99
+🛡️	dun pai	99
+🛢️	you tong	99
+🛣️	gao su gong lu	99
+🛣️	gao su lu	99
+🛤️	tie gui	99
+🛤️	tie lu gui dao	99
+🛥️	kuai ting	99
+🛥️	mo tuo ting	99
+🛥️	you ting	99
+🛩️	xiao xing fei ji	99
+🛫️	fei ji qi fei	99
+🛬️	fei ji dao da	99
+🛬️	fei ji di da	99
+🛬️	fei ji zhuo lu	99
+🛰️	ren zao wei xing	99
+🛰️	wei xing	99
+🛳️	ke chuan	99
+🛳️	ke lun	99
+🛴	hua ban che	99
+🛴	ta ban che	99
+🛵	dian dan che	99
+🛵	dian dong che	99
+🛶	du mu zhou	99
+🛶	hua ting	99
+🛶	sai ting	99
+🤐️	bi zui	99
+🤐️	biao qing	99
+🤐️	la lian kou biao qing	99
+🤑️	biao qing	99
+🤑️	jian qian yan kai	99
+🤒️	biao qing	99
+🤒️	fa shao	99
+🤒️	liang ti wen	99
+🤓️	biao qing	99
+🤓️	shu dai zi	99
+🤓️	yan jing nan	99
+🤔️	biao qing	99
+🤔️	si kao yi xia	99
+🤔️	wo xiang xiang	99
+🤔️	xiang yi xiang	99
+🤕️	biao qing	99
+🤕️	shou shang	99
+🤕️	tou bu shou shang	99
+🤕️	tou shou shang da bang dai	99
+🤖️	ji qi ren	99
+🤗️	ai de bao bao	99
+🤗️	biao qing	99
+🤗️	bu yue	99
+🤗️	gei ni yi ge yong bao	99
+🤗️	gei wo yi ge yong bao	99
+🤘️	e mo zhi jiao	99
+🤘️	shu qi shi zhi yu xiao zhi	99
+🤘️	shu shi zhi yu xiao zhi	99
+🤙	da dian hua	99
+🤙	dian hua lian xi	99
+🤚	ting	99
+🤚	ting zhi	99
+🤛	you gou quan	99
+🤜	zuo gou quan	99
+🤝	wo shou	99
+🤞	hao yun	99
+🤠	niu zai	99
+🤡	chou jue	99
+🤡	xiao chou	99
+🤢	e xin	99
+🤢	fan wei	99
+🤢	zuo ou	99
+🤣	xiao chou	99
+🤣	xiao de man di da gun	99
+🤤	chui xian	99
+🤤	chui xian san chi	99
+🤤	liu kou shui	99
+🤥	pi nuo cao	99
+🤥	chang bi zi	99
+🤦‍♀️	wu lian	99
+🤦‍♀️	wu lian de nv ren	99
+🤦‍♀️	yan mian	99
+🤦‍♀️	yan mian de nv ren	99
+🤦‍♂️	wu lian	99
+🤦‍♂️	wu lian de nan ren	99
+🤦‍♂️	yan mian	99
+🤦‍♂️	yan mian de nan ren	99
+🤧	da pen ti	99
+🤧	pen ti	99
+🤰	huai yun	99
+🤰	yun fu	99
+🤳	zi pai	99
+🤳	zi pai zhao	99
+🤴	wang zi	99
+🤵	li fu	99
+🤵	xi fu	99
+🤵	xi fu ge lv	99
+🤵	xi zhuang	99
+🤵	xi zhuang ge lv	99
+🤵	yan wei fu	99
+🤶	sheng dan lao po po	99
+🤷‍♀️	song jian	99
+🤷‍♀️	song jian de nv ren	99
+🤷‍♀️	tan shou	99
+🤷‍♀️	tan shou de nv ren	99
+🤷‍♂️	song jian	99
+🤷‍♂️	song jian de nan ren	99
+🤷‍♂️	tan shou	99
+🤷‍♂️	tan shou de nan ren	99
+🤸‍♀️	ce shou fan	99
+🤸‍♀️	ce shou fan de nv ren	99
+🤸‍♀️	fan gen dou	99
+🤸‍♀️	fan gen dou de nv ren	99
+🤸‍♀️	fan gen tou	99
+🤸‍♀️	fan gen tou de nv ren	99
+🤸‍♂️	ce shou fan	99
+🤸‍♂️	ce shou fan de nan ren	99
+🤸‍♂️	fan gen dou	99
+🤸‍♂️	fan gen dou de nan ren	99
+🤸‍♂️	fan gen tou	99
+🤸‍♂️	fan gen tou de nan ren	99
+🤹‍♀️	bian xi fa	99
+🤹‍♀️	wan za ji	99
+🤹‍♀️	wan za shua	99
+🤹‍♀️	za ji	99
+🤹‍♀️	za shua	99
+🤹‍♀️	za shua biao yan	99
+🤹‍♂️	bian xi fa	99
+🤹‍♂️	wan za ji	99
+🤹‍♂️	wan za shua	99
+🤹‍♂️	za ji	99
+🤹‍♂️	za shua	99
+🤹‍♂️	za shua biao yan	99
+🤺	ji jian	99
+🤺	ji jian yun dong	99
+🤺	ji jian yun dong yuan	99
+🤼‍♀️	shuai jiao	99
+🤼‍♀️	shuai jiao shou	99
+🤼‍♀️	shuai jiao xuan shou	99
+🤼‍♀️	shuai jiao yun dong yuan	99
+🤼‍♂️	shuai jiao	99
+🤼‍♂️	shuai jiao shou	99
+🤼‍♂️	shuai jiao xuan shou	99
+🤼‍♂️	shuai jiao yun dong yuan	99
+🤽‍♀️	shui qiu	99
+🤽‍♀️	shui qiu xuan shou	99
+🤽‍♀️	shui qiu yun dong	99
+🤽‍♀️	shui qiu yun dong yuan	99
+🤽‍♂️	shui qiu	99
+🤽‍♂️	shui qiu xuan shou	99
+🤽‍♂️	shui qiu yun dong	99
+🤽‍♂️	shui qiu yun dong yuan	99
+🤾‍♀️	shou qiu	99
+🤾‍♀️	shou qiu xuan shou	99
+🤾‍♀️	shou qiu yun dong	99
+🤾‍♀️	shou qiu yun dong yuan	99
+🤾‍♂️	shou qiu	99
+🤾‍♂️	shou qiu xuan shou	99
+🤾‍♂️	shou qiu yun dong	99
+🤾‍♂️	shou qiu yun dong yuan	99
+🥀	ku wei	99
+🥀	nian	99
+🥁	da gu	99
+🥁	gu	99
+🥁	gu chui	99
+🥁	ji gu	99
+🥂	gan bei	99
+🥂	peng bei	99
+🥄	shao zi	99
+🥄	chi	99
+🥄	tang chi	99
+🥄	tiao geng	99
+🥅	qiu men	99
+🥅	qiu men wang	99
+🥅	qiu wang	99
+🥇	di yi ming	99
+🥇	guan jun	99
+🥇	guan jun jiang pai	99
+🥇	jin pai	99
+🥇	yi deng jiang	99
+🥇	zhuang yuan	99
+🥈	bang yan	99
+🥈	di er ming	99
+🥈	er deng jiang	99
+🥈	ya jun	99
+🥈	ya jun jiang pai	99
+🥈	yin pai	99
+🥉	di san ming	99
+🥉	ji jun	99
+🥉	ji jun jiang pai	99
+🥉	san deng jiang	99
+🥉	tan hua	99
+🥉	tong pai	99
+🥊	da quan	99
+🥊	quan ji	99
+🥊	quan ji bi sai	99
+🥊	quan ji shou tao	99
+🥊	quan ji yun dong	99
+🥋	wu shu	99
+🥋	wu shu fu	99
+🥋	wu shu fu zhuang	99
+🥐	ke song	99
+🥐	ke song mian bao	99
+🥐	niu jiao bao	99
+🥐	niu jiao mian bao	99
+🥐	yang jiao mian bao	99
+🥑	e li	99
+🥑	lao li	99
+🥑	niu you guo	99
+🥒	huang gua	99
+🥓	pei gen	99
+🥓	pei gen rou	99
+🥓	xun rou	99
+🥔	ma ling shu	99
+🥔	tu dou	99
+🥕	hong luo bo	99
+🥕	hu luo bo	99
+🥖	fa gun	99
+🥖	fa shi gun zi mian bao	99
+🥖	fa shi chang gun mian bao	99
+🥖	gun zi mian bao	99
+🥗	se la	99
+🥗	sha la	99
+🥗	sha lv	99
+🥗	shu cai se la	99
+🥗	shu cai sha la	99
+🥗	shu cai sha lv	99
+🥘	pan zi	99
+🥘	peng ren	99
+🥙	jiu cai he zi	99
+🥙	rou jia mo	99
+🥙	xian bing	99
+🥚	dan	99
+🥚	ji dan	99
+🥛	niu nai	99
+🥛	niu nai bei	99
+🥛	yi bei niu nai	99
+🥜	hua sheng	99
+🥜	hua sheng guo	99
+🥜	luo hua sheng	99
+🥝	mi hou tao	99
+🥝	qi yi guo	99
+🥞	dan bing	99
+🥞	hong bing	99
+🥞	jian bing	99
+🥞	lao bing	99
+🦀️	pang xie	99
+🦁️	shi zi	99
+🦂️	xie zi	99
+🦃️	huo ji	99
+🦃️	tu shou ji	99
+🦄️	du jiao shou	99
+🦅	diao	99
+🦅	lao ying	99
+🦅	xiong ying	99
+🦅	ying	99
+🦆	ya zi	99
+🦇	bian fu	99
+🦇	bian fu xia	99
+🦈	da bai sha	99
+🦈	sha yu	99
+🦉	mao tou ying	99
+🦉	xiao	99
+🦊	hu	99
+🦊	hu li	99
+🦋	hu die	99
+🦌	lu	99
+🦍	da xing xing	99
+🦍	xing xing	99
+🦎	shi long zi	99
+🦎	si jiao she	99
+🦎	xi yi	99
+🦏	xi niu	99
+🦐	xia	99
+🦐	xia mi	99
+🦐	xiao xia	99
+🦑	wu zei	99
+🦑	you yu	99
+🧀️	nai lao	99
+🧀️	qi si	99
+	ping guo	99
