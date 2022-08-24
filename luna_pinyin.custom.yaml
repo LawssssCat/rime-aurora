@@ -1,0 +1,173 @@
+# luna_pinyin.custom.yaml
+#
+# 部署位置：
+# ~/.config/ibus/rime  (Linux)
+# ~/Library/Rime  (Mac OS)
+# %APPDATA%\Rime  (Windows)
+#
+# 於重新部署後生效
+#
+#
+# 注意：本補靪適用於所有朙月拼音系列方案（「朙月拼音」、「朙月拼音·简化字」、「朙月拼音·臺灣正體」、「朙月拼音·語句流」）。
+# 只須將本 custom.yaml 的前面名字改爲對應的輸入方案名字然後放入用戶文件夾重新部署即可。如 luna_pinyin_simp.custom.yaml。
+# 雙拼用戶請使用 double_pinyin.custom.yaml。
+#
+#
+# 附朙月拼音系列方案與其對應的 id 一覽表：
+# 輸入方案	id
+# 朙月拼音	luna_pinyin
+# 朙月拼音·简化字	luna_pinyin_simp
+# 朙月拼音·臺灣正體	luna_pinyin_tw
+# 朙月拼音·語句流	luna_pinyin_fluency
+#
+
+patch:
+
+##########################################################
+#
+# 補靪功能：將朙月拼音的詞庫修改爲朙月拼音擴充詞庫
+#
+# 作者：瑾昀 <cokunhui@gmail.com>
+#
+#
+  # 載入朙月拼音擴充詞庫
+  "translator/dictionary": luna_pinyin.extended
+  #  拼写纠错
+  "translator/enable_correction": false
+  # 改寫拼寫運算，使得含西文的詞彙（位於 luna_pinyin.cn_en.dict.yaml 中）不影響簡拼功能（注意，此功能只適用於朙月拼音系列方案，不適用於各類雙拼方案）
+  # 本條補靪只在「小狼毫 0.9.30」、「鼠鬚管 0.9.25 」、「Rime-1.2」及更高的版本中起作用。
+  "speller/algebra/@before 0": xform/^([b-df-hj-np-tv-z])$/$1_/
+
+##############################################################
+#
+# 【朙月拼音】模糊音定製模板
+#   佛振配製 :-)
+# 
+# 来源：https://gist.github.com/lotem/2320943
+#
+  'speller/algebra':
+    - erase/^xx$/                      # 第一行保留
+
+    # 模糊音定義
+    # 需要哪組就刪去行首的 # 號，單雙向任選
+    - derive/^([zcs])h/$1/             # zh, ch, sh => z, c, s
+    - derive/^([zcs])([^h])/$1h$2/     # z, c, s => zh, ch, sh
+
+    - derive/^n/l/                     # n => l
+    - derive/^l/n/                     # l => n
+
+    # 這兩組一般是單向的
+    # - derive/^r/l/                     # r => l
+
+    # - derive/^ren/yin/                 # ren => yin, reng => ying
+    # - derive/^r/y/                     # r => y
+
+    # 下面 hu <=> f 這組寫法複雜一些，分情況討論
+    # - derive/^hu$/fu/                  # hu => fu
+    # - derive/^hong$/feng/              # hong => feng
+    # - derive/^hu([in])$/fe$1/          # hui => fei, hun => fen
+    # - derive/^hu([ao])/f$1/            # hua => fa, ...
+
+    # - derive/^fu$/hu/                  # fu => hu
+    # - derive/^feng$/hong/              # feng => hong
+    # - derive/^fe([in])$/hu$1/          # fei => hui, fen => hun
+    # - derive/^f([ao])/hu$1/            # fa => hua, ...
+
+    # 韻母部份
+    - derive/^([bpmf])eng$/$1ong/      # meng = mong, ...
+    - derive/([ei])n$/$1ng/            # en => eng, in => ing
+    - derive/([ei])ng$/$1n/            # eng => en, ing => in
+
+    # 樣例足夠了，其他請自己總結……
+
+    # 反模糊音？
+    # 誰說方言沒有普通話精確、有模糊音，就能有反模糊音。
+    # 示例爲分尖團的中原官話：
+    - derive/^ji$/zii/   # 在設計者安排下鳩佔鵲巢，尖音i只好雙寫了
+    - derive/^qi$/cii/
+    - derive/^xi$/sii/
+    - derive/^ji/zi/
+    - derive/^qi/ci/
+    - derive/^xi/si/
+    - derive/^ju/zv/
+    - derive/^qu/cv/
+    - derive/^xu/sv/
+    # 韻母部份，只能從大面上覆蓋
+    - derive/^([bpm])o$/$1eh/          # bo => beh, ...
+    - derive/(^|[dtnlgkhzcs]h?)e$/$1eh/  # ge => geh, se => sheh, ...
+    - derive/^([gkh])uo$/$1ue/         # guo => gue, ...
+    - derive/^([gkh])e$/$1uo/          # he => huo, ...
+    - derive/([uv])e$/$1o/             # jue => juo, lve => lvo, ...
+    - derive/^fei$/fi/                 # fei => fi
+    - derive/^wei$/vi/                 # wei => vi
+    - derive/^([nl])ei$/$1ui/          # nei => nui, lei => lui
+    - derive/^([nlzcs])un$/$1vn/       # lun => lvn, zun => zvn, ... 
+    - derive/^([nlzcs])ong$/$1iong/    # long => liong, song => siong, ...
+    # 這個辦法雖從拼寫上做出了區分，然而受詞典制約，候選字仍是混的。
+    # 只有真正的方音輸入方案纔能做到！但「反模糊音」這個玩法快速而有效！
+
+    # 模糊音定義先於簡拼定義，方可令簡拼支持以上模糊音
+    - abbrev/^([a-z]).+$/$1/           # 簡拼（首字母）
+    - abbrev/^([zcs]h).+$/$1/          # 簡拼（zh, ch, sh）
+
+    # 以下是一組容錯拼寫，《漢語拼音》方案以前者爲正
+    # - derive/^([nl])ve$/$1ue/          # nve = nue, lve = lue
+    # - derive/^([jqxy])u/$1v/           # ju = jv,
+    - derive/un$/uen/                  # gun = guen,
+    - derive/ui$/uei/                  # gui = guei,
+    - derive/iu$/iou/                  # jiu = jiou,
+
+    # 自動糾正一些常見的按鍵錯誤
+    - derive/([aeiou])ng$/$1gn/        # dagn => dang 
+    - derive/([dtngkhrzcs])o(u|ng)$/$1o/  # zho => zhong|zhou
+    - derive/ong$/on/                  # zhonguo => zhong guo
+    - derive/ao$/oa/                   # hoa => hao
+    - derive/([iu])a(o|ng?)$/a$1$2/    # tain => tian
+
+  # 分尖團後 v => ü 的改寫條件也要相應地擴充：
+  'translator/preedit_format':
+    - "xform/([nljqxyzcs])v/$1ü/"
+
+##############################################################
+#
+#  优化字符输入
+#
+  punctuator:
+    import_preset: symbols
+    # 自定义快捷符号输入
+    # symbols:
+    #   "/fs": [½, ‰, ¼, ⅓, ⅔, ¾, ⅒ ]
+    half_shape:
+      "#": "#"
+      "*": "*"
+      "`": "`"
+      "~": "~"
+      "@": "@"
+      "=": "="
+      "/": ["/", "÷",]
+      '\': "、"
+      "_" : "──"
+      "'": {pair: ["「", "」"]}
+      "[": ["【", "["]
+      "]": ["】", "]"]
+      "$": ["¥", "$", "€", "£", "¢", "¤"]
+      "<": ["《", "〈", "«", "<"]
+      ">": ["》", "〉", "»", ">"]
+##############################################################
+#
+#  emoji
+#
+# see https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E4%BA%94simplifier
+#
+  switches/+: # 可用 F4 查看选项
+    - name: emoji_suggestion
+      reset: 1
+      states: [ "❌️", "😁️" ] # 0为关闭、1为开启
+  switcher/save_options/+: # 记忆选择
+    - emoji_suggestion
+  engine/filters/@before 0:
+    simplifier@emoji_suggestion
+  emoji_suggestion:
+    opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
+    option_name: emoji_suggestion # 对应 switches 中的 name
+    # tips: all # 字符转换范围
