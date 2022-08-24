@@ -165,12 +165,12 @@ patch:
 #
 # see https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E4%BA%94simplifier
 #
-  switches/+: # 可用 F4 查看选项
-    - name: emoji_suggestion
-      reset: 1
-      states: [ "❌️", "😁️" ] # 0为关闭、1为开启
-  switcher/save_options/+: # 记忆选择
-    - emoji_suggestion
+  switches/@next: # 可用 F4 查看选项
+    name: emoji_suggestion
+    reset: 1
+    states: [ "❌️", "😁️" ] # 0为关闭、1为开启
+  switcher/save_options/@next: # 记忆选择
+    emoji_suggestion
   engine/filters/@before 0:
     simplifier@emoji_suggestion
   emoji_suggestion:
@@ -189,5 +189,13 @@ patch:
 #
 #  优化输出结果？？？ 
 #
-  # Rx: lotem/rime-octagram-data:customize:schema=luna_pinyin,model=hans
+# Rx: lotem/rime-octagram-data:customize:schema=luna_pinyin,model=hans
+#
   __include: grammar:/hant
+##############################################################
+#
+#  优化选词？？？ 
+#
+# Rx: BlindingDark/rime-lua-select-character:customize:schema=luna_pinyin {
+  __include: lua_select_character:/patch
+# }
