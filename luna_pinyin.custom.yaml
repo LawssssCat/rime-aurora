@@ -199,3 +199,13 @@ patch:
 # Rx: BlindingDark/rime-lua-select-character:customize:schema=luna_pinyin {
   __include: lua_select_character:/patch
 # }
+##############################################################
+#
+#  rq输出日期、sj输出时间
+# 
+# 参考：
+# https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E7%A4%BA%E4%BE%8B-9
+# https://www.zhihu.com/question/268770492/answer/2190114796
+#
+  engine/translators/@next:                  
+    lua_translator@time_translator
