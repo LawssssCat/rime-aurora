@@ -45,7 +45,10 @@ import_tables:
   - luna_pinyin.hanyu
   - luna_pinyin.poetry
   - luna_pinyin.cn_en
+  # 表情
   - luna_pinyin.emoji
+  # 颜文字
+  - meow_emoji
 ...
 
 一一列舉		1
