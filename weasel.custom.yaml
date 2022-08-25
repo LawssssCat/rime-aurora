@@ -1,4 +1,9 @@
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.14.3
+  generator: "Weasel::UIStyleSettings"
+  modified_time: "Thu Aug 25 11:50:28 2022"
+  rime_version: 1.5.3
 patch:
-  # style/horizontal: true      # 候選橫排
-  # style/inline_preedit: true  # 內嵌編碼（僅支持TSF）
-  style/display_tray_icon: true  # 顯示托盤圖標
+  "style/color_scheme": ink
+  "style/display_tray_icon": true
