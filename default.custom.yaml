@@ -5,6 +5,11 @@ customization:
   modified_time: "Wed Aug 24 16:16:55 2022"
   rime_version: 1.5.3
 patch:
+  switcher/fold_options: false
+  switcher/save_options/+: # 记忆选择
+    - emoji_suggestion
+  menu/page_size: 10 # 候选词数量
   schema_list:
-    - schema: luna_pinyin # 全拼
+    - schema: my_luna_pinyin # 全拼
+    # - schema: luna_pinyin # 全拼
     - schema: easy_en # 英文

@@ -19,7 +19,9 @@ sort: by_weight
 use_preset_vocabulary: true
 ...
 
-官方 g fa
+官方	gfa	999
+官方	gf	999
+官方	g
 
 中州韻輸入法引擎	rime	2
 又双叒叕	yyy
@@ -39,13 +41,13 @@ Google Analytics	ga
 macOS	macos
 Linux	linux
 CSS	css
-HTML html
+HTML	html
 iOS	ios
 iPad	ipad
 iPhone	iphone
 iTunes	itunes
-JavaScript js
-TypeScript ts
+JavaScript	js
+TypeScript	ts
 jQuery	jquery
 MySQL	mysql
 SQL	sql
@@ -68,7 +70,7 @@ IPv4	ipv
 IPv6	ipv
 Mac App Store	mas
 OS X	osx
-GNU/Linux linux
+GNU/Linux	linux
 X-Ray	xray
 Xbox One	xbox
 Youku	youku
