@@ -17,6 +17,9 @@
         }, {
           "type": "text",
           "file": "emoji_category.txt"
+        }, {
+          "type": "text",
+          "file": "emoji_basic.txt"
         }
       ]
     }
