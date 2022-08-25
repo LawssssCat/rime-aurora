@@ -24,7 +24,8 @@
 # 1. 2022/08/25
 #    关键词：emoji_suggestion
 #    相关链接：
-#      1. https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E4%BA%94simplifier
+#      1. https://github.com/LoganJC/rime-setting
+#      2. https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E4%BA%94simplifier
 #
 # 2. 2022/08/25
 #    rq输出日期、sj输出时间
@@ -236,6 +237,6 @@ recognizer:
     reverse_lookup: "`[a-z]*'?$"
 
 emoji_suggestion:
-  opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
+  opencc_config: emoji_suggestion.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
   option_name: emoji_suggestion # 对应 switches 中的 name
   # tips: all # 字符转换范围
