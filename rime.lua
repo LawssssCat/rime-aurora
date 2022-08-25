@@ -14,12 +14,11 @@ easy_en_enhance_filter = easy_en.enhance_filter
 function time_translator(input, seg, env)
   if (input == "rq") then
     local cand = Candidate("date", seg.start, seg._end, os.date("%Y-%m-%d"), "")
-    cand.quality = 1
+    -- cand.quality = 1
     yield(cand)
-  end
-  if (input == "sj") then
+  elseif (input == "sj") then
     local cand = Candidate("time", seg.start, seg._end, os.date("%H:%M"), " ")
-    cand.quality = 1
+    -- cand.quality = 1
     yield(cand)
   end
 end
