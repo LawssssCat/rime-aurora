@@ -29,6 +29,10 @@
 #    相关链接：
 #      1. https://github.com/LoganJC/rime-setting
 #      2. https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E4%BA%94simplifier
+#    2022/08/26
+#    修復濾鏡失效問題
+#    问题描述：https://github.com/rime/home/issues/1127
+#    修复方法：使用 https://github.com/rime/rime-emoji 的 /opencc 目录覆盖相关文件
 #
 # 2. 2022/08/25
 #    rq输出日期、sj输出时间
@@ -66,7 +70,7 @@ switches:
     states: [ 。，, ．， ]
   - name: emoji_suggestion
     reset: 1
-    states: [ "❌️ emoji suggestion off", "😁️ emoji suggestion on" ] # 0为关闭、1为开启
+    states: [ "🈚️️\uFE0E", "🈶️️\uFE0F" ] # 0为关闭、1为开启
 engine:
   processors:
     - lua_processor@select_character_processor
@@ -264,7 +268,7 @@ recognizer:
 emoji_suggestion:
   opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
   option_name: emoji_suggestion # 对应 switches 中的 name
-  # tips: all # 字符转换范围
+  tips: all # 字符转换范围
 
 grammar:
   language: zh-hant-t-essay-bgw
