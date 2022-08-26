@@ -70,10 +70,10 @@ switches:
     states: [ 。，, ．， ]
   - name: emoji_suggestion
     reset: 1
-    states: [ "🈚️️\uFE0E", "🈶️️\uFE0F" ] # 0为关闭、1为开启
+    states: [ "❎ 关", "😄 开" ] # 0为关闭、1为开启
 engine:
   processors:
-    - lua_processor@select_character_processor
+    - lua_processor@select_character_processor # 以词定字
     - ascii_composer
     - recognizer
     - key_binder
@@ -203,15 +203,15 @@ translator:
     - xform/([nl])v/$1ü/
     # - xform/([nljqxyzcs])v/$1ü/ # 分尖團後 v => ü 的改寫條件也要相應地擴充：
 
-custom_phrase:
+custom_phrase: # 功能：自定义短语 custom_phrase.txt
   dictionary: ""
-  user_dict: custom_phrase # 載入朙月拼音擴充詞庫
+  user_dict: custom_phrase
   db_class: stabledb
-  enable_completion: false
-  enable_sentence: false
+  # enable_completion: false
+  # enable_sentence: false
   initial_quality: 1
 
-reverse_lookup:
+reverse_lookup: # 功能：五笔反查拼音，以 ` 符号开头
   tag: reverse_lookup
   dictionary: stroke
   prefix: "`"
@@ -228,7 +228,7 @@ punctuator:
     "/fx": [↑, ↓, ←, →]
     "/fs": [½, ‰, ¼, ⅓, ⅔, ¾, ⅒]
     "/xh": [＊, ×, ✱, ★, ☆, ✩, ✧, ❋, ❊, ❉, ❈, ❅, ✿, ✲]
-    "/dn": [⌘, ⌥, ⇧, ⌃, ⎋, ⇪, , ⌫, ⌦, ↩︎, ⏎, ↑, ↓, ←, →, ↖, ↘, ⇟, ⇞]
+    "/dn": [⌘, ⌥, ⇧, ⌃, ⎋, ⇪, , ⌫, ⌦, ↩︎, ⏎, ↑, ↓, ←, →, ↗, ↖, ↙, ↘, ⇟, ⇞]
     "/dq": [🌍, 🌎, 🌏, 🌐, 🌑, 🌒, 🌓, 🌔, 🌕, 🌖, 🌗, 🌘]
     "/sg": [🍇, 🍉, 🍌, 🍍, 🍎, 🍏, 🍑, 🍒, 🍓, 🍗, 🍦, 🎂, 🍺, 🍻]
     "/dw": [🙈️, 🐵, 🐈, 🐷, 🐨, 🐼, 🐾, 🐔, 🐬, 🐠, 🦋]
@@ -265,10 +265,10 @@ recognizer:
     punct: '^/([0-9]0?|[A-Za-z]+)$'
     reverse_lookup: "`[a-z]*'?$"
 
-emoji_suggestion:
+emoji_suggestion: # 功能：提示emoji，按 F4 选择是否打开
   opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
   option_name: emoji_suggestion # 对应 switches 中的 name
   tips: all # 字符转换范围
 
-grammar:
+grammar: # 语法模型
   language: zh-hant-t-essay-bgw

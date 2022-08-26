@@ -72,8 +72,6 @@ import_tables:
   - luna_pinyin.user                # 实用词汇
   - luna_pinyin.website             # 网站
   - luna_pinyin.xiandaihanyu        # 现代汉语（常用）
-  # 表情
-  - luna_pinyin.emoji
   # 颜文字
   - meow_emoji
 ...
