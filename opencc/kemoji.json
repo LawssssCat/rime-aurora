@@ -13,6 +13,9 @@
       "dicts": [{
         "type": "text",
         "file": "kemoji_base.txt"
+        },{
+        "type": "text",
+        "file": "kemoji_meow.txt"
       }]
     }
   }]
