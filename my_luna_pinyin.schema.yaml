@@ -70,7 +70,10 @@ switches:
     states: [ 。，, ．， ]
   - name: emoji_suggestion
     reset: 1
-    states: [ "❎ 关", "😄 开" ] # 0为关闭、1为开启
+    states: [ "关 ❌", "开 ✔️" ] # 0为关闭、1为开启
+  - name: kemoji_suggestion
+    reset: 1
+    states: [ "关 (＞﹏＜)", "开 ＼(￣︶￣)／" ] # 0为关闭、1为开启
 engine:
   processors:
     - lua_processor@select_character_processor # 以词定字
@@ -95,7 +98,8 @@ engine:
     - reverse_lookup_translator
     - script_translator
   filters:
-    - simplifier@emoji_suggestion # 表情
+    - simplifier@emoji_suggestion # emojiBIAOQ
+    - simplifier@kemoji_suggestion # 颜表情
     - simplifier
     - uniquifier
 
@@ -244,9 +248,9 @@ punctuator:
     "/": ["/", "÷",]
     '\': "、"
     "_" : "──"
-    "'": {pair: ["「", "」"]}
-    "[": ["【", "["]
-    "]": ["】", "]"]
+    # "'": {pair: ["「", "」"]}
+    "[": ["【", "[", "「"]
+    "]": ["】", "]", "」"]
     "$": ["¥", "$", "€", "£", "¢", "¤"]
     "<": ["《", "〈", "«", "<"]
     ">": ["》", "〉", "»", ">"]
@@ -268,6 +272,11 @@ recognizer:
 emoji_suggestion: # 功能：提示emoji，按 F4 选择是否打开
   opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
   option_name: emoji_suggestion # 对应 switches 中的 name
+  tips: all # 字符转换范围
+
+kemoji_suggestion: # 功能：提示颜表情
+  opencc_config: kemoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
+  option_name: kemoji_suggestion # 对应 switches 中的 name
   tips: all # 字符转换范围
 
 grammar: # 语法模型
