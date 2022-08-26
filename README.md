@@ -13,7 +13,7 @@
 具体使用方法，参考我的使用笔记：<http://t.csdn.cn/grD5H>
 <!-- https://blog.csdn.net/LawssssCat/article/details/103482619 -->
 
-> 配置入口 `luna_pinyin.custom.yaml`
+> 配置入口 `my_luna_pinyin.custom.yaml`
 
 <div style='clear: both;'></div>
 
