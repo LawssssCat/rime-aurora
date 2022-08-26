@@ -69,6 +69,7 @@ switches:
     states: [ "❌️ emoji suggestion off", "😁️ emoji suggestion on" ] # 0为关闭、1为开启
 engine:
   processors:
+    - lua_processor@select_character_processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -182,9 +183,21 @@ translator:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
     - xform/([jqxy])v/$1u/
+  ##################
   contextual_suggestions: true # 是否使用語言模型優化輸出結果〔需配合grammar使用〕
   # max_homophones: 7 # 最大同音簇長度〔需配合grammar使用〕
   # translator/max_homographs: 7 # 最大同形簇長度〔需配合grammar使用〕
+  ##################
+  enable_user_dict: true # 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕
+  enable_sentence: true # 是否開啓自動造句
+  enable_encoder: true # 是否開啓自動造詞〔僅table_translator有效〕
+  encode_commit_history: true # 是否對已上屛詞自動成詞〔僅table_translator有效〕
+  enable_completion: true # 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕
+  sentence_over_completion: true # 在無全碼對應字而僅有逐鍵提示時也開啓智能組句〔僅table_translator有效〕
+  spelling_hints: 7
+  comment_format: # 提示碼自定義
+    - xform/([nl])v/$1ü/
+    # - xform/([nljqxyzcs])v/$1ü/ # 分尖團後 v => ü 的改寫條件也要相應地擴充：
 
 custom_phrase:
   dictionary: ""
@@ -195,16 +208,13 @@ custom_phrase:
   initial_quality: 1
 
 reverse_lookup:
+  tag: reverse_lookup
   dictionary: stroke
-  enable_completion: true
   prefix: "`"
   suffix: "'"
   tips: 〔筆畫〕
-  preedit_format:
+  preedit_format: # 上屛碼自定義
     - xlit/hspnz/一丨丿丶乙/
-  comment_format:
-    - xform/([nl])v/$1ü/
-    - xform/([nljqxyzcs])v/$1ü/ # 分尖團後 v => ü 的改寫條件也要相應地擴充：
 
 punctuator:
   import_preset: symbols
