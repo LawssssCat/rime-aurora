@@ -20,6 +20,9 @@
 # 朙月拼音·臺灣正體	luna_pinyin_tw
 # 朙月拼音·語句流	luna_pinyin_fluency
 #
+# 配置含义：
+# https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md
+#
 # 【change log】
 # 1. 2022/08/25
 #    关键词：emoji_suggestion
@@ -179,6 +182,9 @@ translator:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
     - xform/([jqxy])v/$1u/
+  contextual_suggestions: true # 是否使用語言模型優化輸出結果〔需配合grammar使用〕
+  # max_homophones: 7 # 最大同音簇長度〔需配合grammar使用〕
+  # translator/max_homographs: 7 # 最大同形簇長度〔需配合grammar使用〕
 
 custom_phrase:
   dictionary: ""
@@ -249,3 +255,6 @@ emoji_suggestion:
   opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
   option_name: emoji_suggestion # 对应 switches 中的 name
   # tips: all # 字符转换范围
+
+grammar:
+  language: zh-hant-t-essay-bgw
