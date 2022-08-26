@@ -1,3 +1,10 @@
+---
+name: luna_pinyin.essay
+version: "2014.09.07"
+sort: by_weight
+use_preset_vocabulary: true
+...
+
 是的这个	shi de zhe ge	9680000
 这个	zhe ge	7570000
 这些	zhe xie	2650000

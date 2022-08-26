@@ -1,3 +1,10 @@
+---
+name: luna_pinyin.chat
+version: "2022.08.26"
+sort: by_weight
+use_preset_vocabulary: true
+...
+
 安靜點
 安靜一點
 拜拜
