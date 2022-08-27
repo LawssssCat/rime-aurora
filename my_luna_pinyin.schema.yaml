@@ -283,6 +283,7 @@ emoji_suggestion: # 功能：提示emoji，按 F4 选择是否打开
   option_name: emoji_suggestion # 对应 switches 中的 name
   tips: all # 字符转换范围
 
+# 问题：颜文字不建议用滤镜（不能用空格）
 kemoji_suggestion: # 功能：提示颜表情
   opencc_config: kemoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
   option_name: kemoji_suggestion # 对应 switches 中的 name
