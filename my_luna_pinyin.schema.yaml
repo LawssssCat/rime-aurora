@@ -41,6 +41,8 @@
 #      https://www.zhihu.com/question/268770492/answer/2190114796
 #    已知问题：
 #      /@next => /+ | https://github.com/rime/home/issues/1116
+# 3. 2022/08/27
+#    添加 “洋蔥” 方案 https://github.com/oniondelta/Onion_Rime_Files
 
 schema:
   schema_id: my_luna_pinyin
@@ -49,6 +51,7 @@ schema:
   author:
     - 佛振 <chen.sst@gmail.com>
     - 骆言 <lawsssscat@163.com>
+    - 『洋蔥』
   description: |
     Rime 預設的拼音輸入方案。
     參考以下作品而創作：
@@ -57,6 +60,7 @@ schema:
       * Chewing - 新酷音
       * opencc - 開放中文轉換
       * LoganJC 的方案 - https://github.com/LoganJC/rime-setting
+      * “洋蔥” 方案 - https://github.com/oniondelta/Onion_Rime_Files
   dependencies:
     - stroke
 
