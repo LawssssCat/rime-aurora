@@ -47,6 +47,7 @@ schema:
   name: （个人）朙月拼音
   version: "0.24"
   author:
+    - 佛振 <chen.sst@gmail.com>
     - 骆言 <lawsssscat@163.com>
   description: |
     Rime 預設的拼音輸入方案。
@@ -55,6 +56,7 @@ schema:
       * Android open source project
       * Chewing - 新酷音
       * opencc - 開放中文轉換
+      * LoganJC 的方案 - https://github.com/LoganJC/rime-setting
   dependencies:
     - stroke
 
