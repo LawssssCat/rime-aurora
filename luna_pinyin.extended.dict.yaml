@@ -54,6 +54,7 @@ import_tables:
   - luna_pinyin.comprehensive       # 综合
   - luna_pinyin.computer            # 计算机
   - luna_pinyin.game                # 游戏
+  - luna_pinyin.gd                  # 粤语
   - luna_pinyin.hanyu               # 汉语
   - luna_pinyin.history             # 历史
   - luna_pinyin.idiom               # 习语
@@ -72,8 +73,4 @@ import_tables:
   - luna_pinyin.user                # 实用词汇
   - luna_pinyin.website             # 网站
   - luna_pinyin.xiandaihanyu        # 现代汉语（常用）
-  # 表情
-  - luna_pinyin.emoji
-  # 颜文字
-  - meow_emoji
 ...

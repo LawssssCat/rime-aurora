@@ -1,3 +1,5 @@
+-- https://github.com/shewer/librime-lua-script
+
 local function capture(cmd)
    local f = assert(io.popen(cmd, 'r'))
    local s = assert(f:read('*a'))
