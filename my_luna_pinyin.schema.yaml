@@ -75,33 +75,35 @@ switches:
     reset: 1
     states: [ "关 (＞﹏＜)", "开 ＼(￣︶￣)／" ] # 0为关闭、1为开启
 engine:
-  processors:
+  processors: # 一、這批組件處理各類 ●按鍵 消息
     - lua_processor@select_character_processor # 以词定字
-    - ascii_composer
-    - recognizer
-    - key_binder
-    - speller
-    - punctuator
-    - selector
-    - navigator
-    - express_editor
-  segmentors:
-    - ascii_segmentor
-    - matcher
-    - abc_segmentor
-    - punct_segmentor
-    - fallback_segmentor
-  translators:
-    - lua_translator@time_translator # 时间
-    - punct_translator
-    - table_translator@custom_phrase
-    - reverse_lookup_translator
-    - script_translator
-  filters:
-    - simplifier@emoji_suggestion # emojiBIAOQ
-    - simplifier@kemoji_suggestion # 颜表情
-    - simplifier
-    - uniquifier
+    - ascii_composer #  處理西文模式及中西文切換
+    - recognizer     #  與 matcher 搭配，處理符合特定規則的輸入碼，如網址、反查●等
+    - key_binder     #  在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁鍵
+    - speller        #  拼寫，字符按鍵，編輯輸入碼,默認只接受小寫拉丁字母作爲輸入碼
+    - punctuator     #  句讀，將單個字符按鍵直接映射爲文字符號
+    - selector       #  選字，處理數字選字鍵、上、下候選定位、換頁鍵
+    - navigator      #  輸入欄內的 光標移動鍵
+    - express_editor # ←啟用 (空格鍵 輸入中文)、●(enter 鍵輸入英文)，不啟用 (空格鍵輸入中文)(enter 鍵輸入中文)、回退鍵 等
+    # - fluency_editor #  編輯器 流输入（需要两次确认才上屏）
+  segmentors: # 二、這批組件識別不同內容類型，將輸入碼分段
+    - ascii_segmentor      # ※ 標識_西文段落
+    - matcher              # ※ 標識_符合特定規則的段落，如網址、反查等
+    - abc_segmentor        # ※ 標識_常規的文字段落
+    - punct_segmentor      # ※ 標識_句讀段落
+    - fallback_segmentor   # ※ 標識_其他未標識段落
+  translators: # 三、這批組件翻譯特定類型的編碼段爲一組候選文字
+    # - echo_translator # ※ 沒有其他候選字時，回顯輸入碼〔輸入碼可以Shift+Enter上屛〕
+    - lua_translator@time_translator    # 时间
+    - punct_translator                  # ※ 轉換標點符號
+    - table_translator@custom_phrase    #翻譯_打過的字-優先出●碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案，此項可加載多個實例，後接@+翻譯器名〔如：cangjie、wubi等〕
+    - reverse_lookup_translator         # ※ 反查翻譯器，用另一種編碼方案查碼
+    - script_translator                 # ※ 腳本翻譯器，用於拼音、粵拼等等基於音節表的輸入方案●此項可加載多個實例，後接@+翻譯器名〔如：pinyin、jyutping等〕
+  filters: # 四、這批組件過濾翻譯的結果
+    - simplifier@emoji_suggestion     # emoji表情
+    - simplifier@kemoji_suggestion    # 颜表情
+    - simplifier                      # ※ 繁簡轉換
+    - uniquifier                      # ※ 過濾重複的候選字，有可能來自繁簡轉換
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba
@@ -197,7 +199,7 @@ translator:
   # translator/max_homographs: 7 # 最大同形簇長度〔需配合grammar使用〕
   ##################
   enable_user_dict: true # 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕
-  enable_sentence: true # 是否開啓自動造句
+  enable_sentence: true # 是否開啓自動造句（關閉碼表輸入法連打。用於屏蔽倉頡、五筆中帶有太極圖章「☯」的連打詞句選項，不可作用於拼音、注音、速成等輸入方案。）
   enable_encoder: true # 是否開啓自動造詞〔僅table_translator有效〕
   encode_commit_history: true # 是否對已上屛詞自動成詞〔僅table_translator有效〕
   enable_completion: true # 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕
@@ -268,6 +270,7 @@ recognizer:
     html: "^<[a-z]+>$"
     punct: '^/([0-9]0?|[A-Za-z]+)$'
     reverse_lookup: "`[a-z]*'?$"
+    upper_case: ^([A-DF-IK-OQ-Z][a-zA-Z0-9]*|[EJP][A-Z0-9]*)$
 
 emoji_suggestion: # 功能：提示emoji，按 F4 选择是否打开
   opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件

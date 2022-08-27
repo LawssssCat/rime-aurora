@@ -6,7 +6,8 @@ customization:
   rime_version: 1.5.3
 patch:
   style/color_scheme: purple_electricity
-  style/display_tray_icon: true
+  # style/display_tray_icon: true
+  # style/inline_preedit: true  # 內嵌編碼（僅支持TSF）
   preset_color_schemes/purple_electricity:
     name: 凝光紫x申布伦黄
     author: lawsssscat
