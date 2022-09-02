@@ -65,21 +65,32 @@ schema:
     - stroke
 
 switches:
-  - name: ascii_mode
+  - name: ascii_mode                # 1
     reset: 0
     states: [ 中文, 西文 ]
-  - name: full_shape
+  - name: full_shape                # 2
     states: [ 半角, 全角 ]
-  - name: simplification
+  - name: simplification            # 3
     states: [ 漢字, 汉字 ]
-  - name: ascii_punct
+  - name: ascii_punct               # 4
     states: [ 。，, ．， ]
-  - name: emoji_suggestion
+  - name: emoji_suggestion          # 5
     reset: 1
     states: [ "关 ❌", "开 ✔️" ] # 0为关闭、1为开启
-  - name: kemoji_suggestion
+  - name: kemoji_suggestion         # 6
     reset: 1
     states: [ "关 (＞﹏＜)", "开 ＼(￣︶￣)／" ] # 0为关闭、1为开启
+  - name: back_mark                 # 7
+    reset: 0
+    states: [ "关 （标记含义）", "开 （标记含义）" ]
+  # - options: [ utf8, big5, gbk, gb2312]
+  #   reset: 0
+  #   states:
+  #     - UTF-8
+  #     - BIG5
+  #     - GBK
+  #     - GB2312 #GB2312有Bug
+
 engine:
   processors: # 一、這批組件處理各類 ●按鍵 消息
     # - lua_processor@select_character_processor # 以词定字
@@ -106,10 +117,11 @@ engine:
     - reverse_lookup_translator         # ※ 反查翻譯器，用另一種編碼方案查碼
     - script_translator                 # ※ 腳本翻譯器，用於拼音、粵拼等等基於音節表的輸入方案●此項可加載多個實例，後接@+翻譯器名〔如：pinyin、jyutping等〕
   filters: # 四、這批組件過濾翻譯的結果
-    - simplifier@emoji_suggestion     # emoji表情
-    - simplifier@kemoji_suggestion    # 颜表情
     - simplifier                      # ※ 繁簡轉換
     - uniquifier                      # ※ 過濾重複的候選字，有可能來自繁簡轉換
+    - simplifier@emoji_suggestion     # emoji表情
+    - simplifier@kemoji_suggestion    # 颜表情
+    - simplifier@back_mark            # 後方標註
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba
@@ -275,6 +287,10 @@ punctuator:
 
 key_binder:
   import_preset: default
+  bindings:
+### 選字翻頁 ###
+    - {accept: Shift+Down, send: Page_Down, when: has_menu} #選字時「Shift」+「下」翻頁。
+    - {accept: Shift+Up, send: Page_Up, when: paging} #選字時「Shift」+「上」翻頁。
 
 recognizer:
   import_preset: default
@@ -286,16 +302,31 @@ recognizer:
     punct: '^/([0-9]0?|[A-Za-z]+)$'
     reverse_lookup: "`[a-z]*'?$"
 
-emoji_suggestion: # 功能：提示emoji，按 F4 选择是否打开
+# emoji，按 F4 选择是否打开
+emoji_suggestion:
   opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
   option_name: emoji_suggestion # 对应 switches 中的 name
   tips: all # 字符转换范围
 
-# 问题：颜文字不建议用滤镜（不能用空格）
-kemoji_suggestion: # 功能：提示颜表情
+# 颜表情
+kemoji_suggestion:
   opencc_config: kemoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
   option_name: kemoji_suggestion # 对应 switches 中的 name
   tips: all # 字符转换范围
+  # comment_format:
+  #   - xform/&@_/ /
+
+# 符号含义标注
+back_mark:
+  opencc_config: back_mark_ocm.json
+  option_name: back_mark
+  show_in_comment: true
+  tags: [ abc ]
+  tips: char
+  comment_format:
+    - xform/^/  /
+    - xform/@/ /
+
 
 grammar: # 语法模型
   language: zh-hant-t-essay-bgw
