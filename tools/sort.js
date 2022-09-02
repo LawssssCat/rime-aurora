@@ -4,13 +4,6 @@ const path = require('path');
 
 const baseDir = path.join(__dirname, '../'); // 根目录
 
-const files = [
-  'easy_en.dict.yaml',
-  'essay.dict.yaml',
-  'luna_pinyin.anime.dict.yaml',
-  'luna_pinyin.basis.dict.yaml'
-];
-
 const openccBase = path.join(baseDir, 'opencc');
 dealDuplication.handleOpenccFiles([
   path.join(openccBase, 'emoji_category.txt'),
