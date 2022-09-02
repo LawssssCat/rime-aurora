@@ -129,31 +129,34 @@ local function time_translator(input, seg, env)
   if (input == "rq" or input == "riqi" or input == "date") then
     -- 日期
     -- cand.quality = 1
-    yield(Candidate("date", seg.start, seg._end, os.date("%Y.%m.%d"), ""))
-    yield(Candidate("date", seg.start, seg._end, os.date("%Y/%m/%d"), ""))
+    local tip = "〔日期〕"
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y.%m.%d"), tip))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y/%m/%d"), tip))
     -- yield(Candidate("date", seg.start, seg._end, os.date("%Y/%m/%d %H:%M:%S"), ""))
-    yield(Candidate("date", seg.start, seg._end, os.date("%Y-%m-%d"), ""))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y-%m-%d"), tip))
     -- yield(Candidate("date", seg.start, seg._end, os.date("%Y-%m-%d %H:%M:%S"), ""))
-    yield(Candidate("date", seg.start, seg._end, os.date("%Y年%m月%d日"), ""))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y年%m月%d日"), tip))
     -- yield(Candidate("date", seg.start, seg._end, os.date("%Y年%m月%d日 %H:%M:%S"), ""))
     local date_en = getDate_en()
-    yield(Candidate("date", seg.start, seg._end, date_en.en, ""))
+    yield(Candidate("date", seg.start, seg._end, date_en.en, tip))
     -- yield(Candidate("date", seg.start, seg._end, date_en.en..os.date(" %H:%M:%S"), ""))
-    yield(Candidate("date", seg.start, seg._end, date_en.en_l, ""))
+    yield(Candidate("date", seg.start, seg._end, date_en.en_l, tip))
     -- yield(Candidate("date", seg.start, seg._end, date_en.en_l..os.date(" %H:%M:%S"), ""))
   elseif (input == "sj" or input == "shijian" or input == "time") then
     -- 时间
     -- cand.quality = 1
-    yield(Candidate("time", seg.start, seg._end, os.date("%H:%M"), " "))
-    yield(Candidate("time", seg.start, seg._end, os.date("%H:%M:%S"), " "))
-    yield(Candidate("time", seg.start, seg._end, os.date("%H点%M分"), " "))
-    yield(Candidate("time", seg.start, seg._end, os.date("%H点%M分%S秒"), " "))
+    local tip = "〔时间〕"
+    yield(Candidate("time", seg.start, seg._end, os.date("%H:%M"), tip))
+    yield(Candidate("time", seg.start, seg._end, os.date("%H:%M:%S"), tip))
+    yield(Candidate("time", seg.start, seg._end, os.date("%H点%M分"), tip))
+    yield(Candidate("time", seg.start, seg._end, os.date("%H点%M分%S秒"), tip))
   elseif (input == "xq" or input == "xingqi" or input == "week") then
     -- 星期
+    local tip = "〔星期〕"
     local week = getWeek();
-    yield(Candidate("week", seg.start, seg._end, week.cn, " "))
-    yield(Candidate("week", seg.start, seg._end, week.en, " "))
-    yield(Candidate("week", seg.start, seg._end, week.en_l, " "))
+    yield(Candidate("week", seg.start, seg._end, week.cn, tip))
+    yield(Candidate("week", seg.start, seg._end, week.en, tip))
+    yield(Candidate("week", seg.start, seg._end, week.en_l, tip))
   end
 end
 
