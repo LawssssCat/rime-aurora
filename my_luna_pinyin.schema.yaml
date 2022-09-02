@@ -81,7 +81,7 @@ switches:
     reset: 1
     states: [ "关 (＞﹏＜)", "开 ＼(￣︶￣)／" ] # 0为关闭、1为开启
   - name: back_mark                 # 7
-    reset: 0
+    reset: 1
     states: [ "关 （标记含义）", "开 （标记含义）" ]
   # - options: [ utf8, big5, gbk, gb2312]
   #   reset: 0
@@ -122,6 +122,7 @@ engine:
     - simplifier@emoji_suggestion     # emoji表情
     - simplifier@kemoji_suggestion    # 颜表情
     - simplifier@back_mark            # 後方標註
+    - reverse_lookup_filter@top_reverse_lookup
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba
@@ -327,6 +328,41 @@ back_mark:
     - xform/^/  /
     - xform/@/ /
 
+top_reverse_lookup:
+  tags: [ abc ]
+  overwrite_comment: false
+  comment_format:
+###################################
+    - xform/([aeiou])(ng?|r)([1234])/$1$3$2/
+    - xform/([aeo])([iuo])([1234])/$1$3$2/
+    - xform/a1/ā/
+    - xform/a2/á/
+    - xform/a3/ǎ/
+    - xform/a4/à/
+    - xform/e1/ē/
+    - xform/e2/é/
+    - xform/e3/ě/
+    - xform/e4/è/
+    - xform/o1/ō/
+    - xform/o2/ó/
+    - xform/o3/ǒ/
+    - xform/o4/ò/
+    - xform/i1/ī/
+    - xform/i2/í/
+    - xform/i3/ǐ/
+    - xform/i4/ì/
+    - xform/u1/ū/
+    - xform/u2/ú/
+    - xform/u3/ǔ/
+    - xform/u4/ù/
+    - xform/v1/ǖ/
+    - xform/v2/ǘ/
+    - xform/v3/ǚ/
+    - xform/v4/ǜ/
+    - xform/eh1/ê̄/
+    - xform/eh4/ề/
+    - xform/eh5/ê/
+#    - xform/eh[0-5]/ê/
 
 grammar: # 语法模型
   language: zh-hant-t-essay-bgw

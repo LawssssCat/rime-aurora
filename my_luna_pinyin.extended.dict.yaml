@@ -32,6 +32,12 @@
 #
 # 於重新部署後生效
 #
+# 【change log】
+# 1. 2022.09.02 『洋蔥』製作
+#     《地球拼音 洋蔥mixin版 字詞庫匯入頁》
+#     中文字詞標註使用拼音
+#     包含中文、韓語、日語、拉丁+音標
+#
 
 ---
 name: my_luna_pinyin.extended
@@ -73,4 +79,19 @@ import_tables:
   - luna_pinyin.user                # 实用词汇
   - luna_pinyin.website             # 网站
   - luna_pinyin.xiandaihanyu        # 现代汉语（常用）
+  # - ocm_mixin_jp                    # 日語（平假名+片假名）
+  # - phrases.jp_hk                   # 日語 「平假名」「片假名」 詞彙
+  # - phrases.jp_hkkreduce            # 日文含有「漢字」之詞彙
+  # - ocm_mixin_kr_hnc                # 韓語 HNC 鍵位碼表
+  # - ocm_mixin_kr                    # 韓文（洋蔥形碼鍵位）
+  # - phrases.kr                       # 3萬 韓語詞庫
+  - ocm_mixin_la                    # 拉丁+音標字母（洋蔥形碼鍵位）
+  # - phrases.cht                     # 超齊字典檔                               （要编译很长时间）
+  # - phrases.en_l_w                  # 拉丁英語補充詞庫 1                        （要编译很长时间）
+  - phrases.en_o_w                  # 拉丁英語補充詞庫 2
+  # - phrases.en_u_w                  # 拉丁英語補充詞庫 3                        （要编译很长时间）
+  - phrases.la_eu_w                 # 歐洲帶調
+  - phrases.la_py_w                 # 漢拼語音
+  - terra_pinyin_onion_add
+  # - terra_pinyin_onion              # 地球拼音 10萬                             （要编译很长时间，建议睡前开启编译）
 ...
