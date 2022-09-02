@@ -210,7 +210,7 @@ speller:
     - derive/([iu])a(o|ng?)$/a$1$2/    # tain => tian
 
 translator:
-  dictionary: luna_pinyin.extended
+  dictionary: my_luna_pinyin.extended
   preedit_format:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
