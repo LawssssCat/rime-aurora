@@ -1,3 +1,5 @@
 /build
+/temp
 # /sync
 /*.userdb
+/node_modules

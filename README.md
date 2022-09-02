@@ -44,3 +44,12 @@
 <div style='clear: both;'></div>
 
 ![同步词典快照](./.github/assets/dict-merge.png)
+
+## 其他
+
+### 词汇去重
+
+```bash
+npm install
+npm run sort
+```
