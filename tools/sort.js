@@ -7,8 +7,8 @@ const baseDir = path.join(__dirname, '../'); // 根目录
 const openccBase = path.join(baseDir, 'opencc');
 // emoji 表情
 dealDuplication.handleOpenccFiles([
-  path.join(openccBase, 'emoji_category.txt'),
-  path.join(openccBase, 'emoji_word.txt'),
+  path.join(openccBase, 'emoji_category.yml'),
+  path.join(openccBase, 'emoji_word.yml'),
 ], 
 path.join(openccBase, 'emoji_all.txt'), // output
 (record) => {
@@ -16,8 +16,8 @@ path.join(openccBase, 'emoji_all.txt'), // output
 });
 // kemoji 颜表情
 dealDuplication.handleOpenccFiles([
-  path.join(openccBase, 'kemoji_base.txt'),
-  path.join(openccBase, 'kemoji_meow.txt'),
+  path.join(openccBase, 'kemoji_base.yml'),
+  path.join(openccBase, 'kemoji_meow.yml'),
 ], 
 path.join(openccBase, 'kemoji_all.txt'), // output
 (record) => {

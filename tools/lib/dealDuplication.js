@@ -70,10 +70,13 @@ function handleOpenccFiles(paths, output, cb) {
     };
     record.files.push(info);
     rl.on('line', (line) => {
-      qLine.enQueue(line);
-      record.line++;
-      info.line++;
-      events.emit('readline');
+      line = line.trim();
+      if(line && /^[^#]/.test(line)) {
+        qLine.enQueue(line);
+        record.line++;
+        info.line++;
+        events.emit('readline');
+      }
     });
     rl.on('close', () => {
       info.load = true
