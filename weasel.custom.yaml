@@ -6,10 +6,28 @@ customization:
   rime_version: 1.5.3
 patch:
   style/color_scheme: purple_electricity
-  style/font_face: "Segoe UI" # 字體〔小狼毫得且僅得設一個字體；鼠鬚管得設多個字體，後面的字體自動補前面字體不含的字〕
+  # style/font_face: "Segoe UI" # 字體〔小狼毫得且僅得設一個字體；鼠鬚管得設多個字體，後面的字體自動補前面字體不含的字〕
   # style/line_spacing: 1 #行距
   # style/display_tray_icon: true
   # style/inline_preedit: true  # 內嵌編碼（僅支持TSF）
+  ##################################################
+  # 
+  # Win小狼毫外觀設定檔
+  # 
+  ##################################################
+  # "style/color_scheme": lost_temple
+  "style/font_point": 14 #16
+  "style/label_format": "%s "
+  "style/layout/border": 0
+  "style/layout/border_width": 0
+  "style/layout/candidate_spacing": 3
+  "style/layout/hilite_padding": 1
+  "style/layout/margin_x": 5 #3
+  "style/layout/margin_y": 5 #3
+  "style/layout/round_corner": 3 # 0
+  "style/layout/spacing": 5
+  # "style/font_face": Noto Sans Mono CJK TC #Noto Sans Mono CJK TC Regular #Noto Sans CJK TC Light #HanaMinA 
+  ##################################################
   preset_color_schemes/purple_electricity:
     name: 凝光紫x申布伦黄
     author: lawsssscat
