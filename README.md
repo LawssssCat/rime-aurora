@@ -1,6 +1,6 @@
 # （个人）rime方案备份
 
-本项目作用于[rime 输入法](https://rime.im/)，主要为个人自定义的rime方案配置（如：`*.yaml`， `/opencc`， `/lua`， `/font`），同时包含“用户目录”中自动生成部分文件的备份（如，`/sync`）。
+本项目作用于[rime 输入法](https://rime.im/)（Weasel），主要为个人自定义的rime方案配置（如：`*.yaml`， `/opencc`， `/lua`， `/font`），同时包含“用户目录”中自动生成部分文件的备份（如，`/sync`）。
 
 ## 使用方法
 
@@ -44,3 +44,12 @@
 <div style='clear: both;'></div>
 
 ![同步词典快照](./.github/assets/dict-merge.png)
+
+## 其他
+
+### 词汇去重
+
+```bash
+npm install
+npm run sort
+```

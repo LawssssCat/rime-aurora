@@ -1,3 +1,11 @@
+# 去重
+
+执行命令，合并其他 `.txt` 文件，并生成文件 `opencc/emoji_all` 
+
+```bash
+npm run sort
+```
+
 # OpenCC_ocd_64位元
 
 ### ocd 說明：
