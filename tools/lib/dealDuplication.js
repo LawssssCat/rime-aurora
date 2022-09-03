@@ -11,14 +11,16 @@ const {Set} = require('./set');
  * OK	OK 🆗 🙆‍♂ 🙆 🙆‍♀ 👌 👍
  */
 class OpenccWord {
-  static parse(line) {
+  static parse(line, options) {
     const blocks = line.split(/\t/);
-    return new OpenccWord(blocks[0], blocks[1]);
+    return new OpenccWord(blocks[0], blocks[1], options);
   }
-  constructor(word, suggestion) {
+  constructor(word, suggestion, options={}) {
     this.word = word;
     this.suggestion = new Set();
-    this.addSuggestion(word);
+    if(options.setWordIntoSuggestion!=false) {
+      this.addSuggestion(word);
+    }
     this.addSuggestion(suggestion);
   }
   addSuggestion(suggestion) {
@@ -36,7 +38,21 @@ class OpenccWord {
   }
 }
 
-function handleOpenccFiles(paths, output, cb) {
+function defaultOption(options={}) {
+  if(options.setWordIntoSuggestion == undefined) {
+    options.setWordIntoSuggestion = true;
+  }
+  return options;
+}
+
+function handleOpenccFiles(paths, output, options, cb) {
+  // 选项
+  if(typeof options == 'function') {
+    cb = options;
+    options = undefined
+  }
+  options = defaultOption(options);
+  // 处理
   const qLine = new Queue(), events = new EventEmitter(), wordMap = {};
   const record = new Proxy({
     files: [],
@@ -89,7 +105,9 @@ function handleOpenccFiles(paths, output, cb) {
   events.on('readline', () => {
     const line = qLine.deQueue();
     try {
-      const newWord = OpenccWord.parse(line);
+      const newWord = OpenccWord.parse(line, {
+        setWordIntoSuggestion: options.setWordIntoSuggestion
+      });
       const oldWord = wordMap[newWord.word];
       if(oldWord) {
         oldWord.addSuggestion(newWord.suggestion.values());

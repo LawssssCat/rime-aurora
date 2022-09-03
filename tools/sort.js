@@ -9,6 +9,7 @@ const openccBase = path.join(baseDir, 'opencc');
 dealDuplication.handleOpenccFiles([
   path.join(openccBase, 'emoji_category.yml'),
   path.join(openccBase, 'emoji_word.yml'),
+  path.join(openccBase, 'emoji_2021t.yml'),
 ], 
 path.join(openccBase, 'emoji_all.txt'), // output
 (record) => {
@@ -23,4 +24,17 @@ path.join(openccBase, 'kemoji_all.txt'), // output
 (record) => {
   console.log(record, 'opencc_kemoji 处理完成！');
 });
+// 标点/符号
+dealDuplication.handleOpenccFiles([
+  path.join(openccBase, 'back_mark_ocm.yml'),
+  path.join(openccBase, 'back_mark_punct.yml'),
+], 
+path.join(openccBase, 'back_mark_all.txt'), // output
+{
+  setWordIntoSuggestion: false // 关键字 添加入 提示队列
+},
+(record) => {
+  console.log(record, 'opencc_back_mark 处理完成！');
+});
+
 
