@@ -115,6 +115,7 @@ engine:
     - lua_translator@time_translator    # 时间
     - punct_translator                  # ※ 轉換標點符號
     - table_translator@custom_phrase    #翻譯_打過的字-優先出●碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案，此項可加載多個實例，後接@+翻譯器名〔如：cangjie、wubi等〕
+    - table_translator@easy_en
     - reverse_lookup_translator         # ※ 反查翻譯器，用另一種編碼方案查碼
     - script_translator                 # ※ 腳本翻譯器，用於拼音、粵拼等等基於音節表的輸入方案●此項可加載多個實例，後接@+翻譯器名〔如：pinyin、jyutping等〕
   filters: # 四、這批組件過濾翻譯的結果
@@ -128,7 +129,8 @@ engine:
     - reverse_lookup_filter@top_reverse_lookup   # 优化注释显示
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcba
+  # alphabet: zyxwvutsrqponmlkjihgfedcba
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA # 英文
   delimiter: " '"
   algebra: # 【朙月拼音】模糊音定製模板 来源：https://gist.github.com/lotem/2320943
     - erase/^xx$/                      # 第一行保留
@@ -212,6 +214,10 @@ speller:
     - derive/ong$/on/                  # zhonguo => zhong guo
     - derive/ao$/oa/                   # hoa => hao
     - derive/([iu])a(o|ng?)$/a$1$2/    # tain => tian
+
+    # 改寫拼寫運算，使得含西文的詞彙（位於 luna_pinyin.cn_en.dict.yaml 中）不影響簡拼功能（注意，此功能只適用於朙月拼音系列方案，不適用於各類雙拼方案）
+    # 本條補靪只在「小狼毫 0.9.30」、「鼠鬚管 0.9.25 」、「Rime-1.2」及更高的版本中起作用。
+    - xform/^([b-df-hj-np-tv-z])$/$1_/
 
 translator:
   dictionary: my_luna_pinyin.extended
@@ -307,6 +313,18 @@ recognizer:
     html: "^<[a-z]+>$"
     punct: '^/([0-9]0?|[A-Za-z]+)$'
     reverse_lookup: "`[a-z]*'?$"
+
+# 中英文混输的设置
+# Rx: BlindingDark/rime-easy-en:customize:schema=double_pinyin_flypy
+easy_en:
+  dictionary: easy_en
+  enable_completion: true # 是否启用英文输入联想补全
+  enable_sentence: true # 混输时不出现带有图案的英文
+  # initial_quality: -1 # 英文候选词的位置, 数值越大越靠前
+  initial_quality: -0.618 
+  spelling_hints: 9
+  comment_format:
+    # - xform/^.+$//
 
 # emoji，按 F4 选择是否打开
 emoji_suggestion:
