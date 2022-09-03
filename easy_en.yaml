@@ -11,6 +11,22 @@ easy_en:
   # comment_format:
     # - xform/^.+$//
 
+e_reverse_lookup:
+  tags: [ easy_en ]
+  overwrite_comment: true
+  dictionary: easy_en
+  comment_format:
+    - xform/^.+⌗// #easy_en_super用
+    - xform|^[ a-z;/.'-]+|| #easy_en_super用
+    # - xform/@@/\n          / # 【导致闪退】
+    - xform/@/ /
+    # - xform/^(﹝.+﹞)?\[[^@]+\]/$1/
+    - xform/^(﹙.+﹚)?\[[^@]+\]/$1/
+    - xform/([a-zA-Z0-9])@([a-zA-Z0-9])/$1 $2/
+    # - xform/^([^﹝])/ $1/
+    - xform/^([^﹙])/ $1/
+    - xform/^(.{50}).+$/$1 ……《略》/
+
 recognizer:
   patterns:
     easy_en: "\/[a-zA-Z'_]*$" # 英文输入前缀 "/", e.g. "/good" => "good"
