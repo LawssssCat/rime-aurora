@@ -66,6 +66,7 @@ engine:
   filters:
     - simplifier
     - uniquifier
+    - reverse_lookup_filter@e_reverse_lookup
 
 speller:
   alphabet: 'zyxwvutsrqponmlkjihgfedcba-;/<,>\'
@@ -316,6 +317,22 @@ recognizer:
 
 easy_en:
   __include: easy_en:/easy_en
+
+e_reverse_lookup:
+  tags: [ easy_en ]
+  overwrite_comment: true
+  dictionary: easy_en
+  comment_format:
+    - xform/^.+⌗// #easy_en_super用
+    - xform|^[ a-z;/.'-]+|| #easy_en_super用
+    # - xform/@@/\n          / # 【导致闪退】
+    - xform/@/ /
+    # - xform/^(﹝.+﹞)?\[[^@]+\]/$1/
+    - xform/^(﹙.+﹚)?\[[^@]+\]/$1/
+    - xform/([a-zA-Z0-9])@([a-zA-Z0-9])/$1 $2/
+    # - xform/^([^﹝])/ $1/
+    - xform/^([^﹙])/ $1/
+    - xform/^(.{50}).+$/$1 ……《略》/
 
 grammar: # 语法模型
   language: zh-hant-t-essay-bgw
