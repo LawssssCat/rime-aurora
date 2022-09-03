@@ -53,7 +53,7 @@ engine:
     - ascii_segmentor
     - matcher
     - abc_segmentor
-    - affix_segmentor@easy_en
+    - affix_segmentor@easy_en           # 英文（位置：abc后、punct前）
     - punct_segmentor
     - fallback_segmentor
   translators:
@@ -168,20 +168,24 @@ speller:
     # 以下是一組容錯拼寫，《漢語拼音》方案以前者爲正
     - derive/^([nl])ve$/$1ue/          # nve = nue, lve = lue
     - derive/^([jqxy])u/$1v/           # ju = jv,
-    - derive/un$/uen/                  # gun = guen,
-    - derive/ui$/uei/                  # gui = guei,
-    - derive/iu$/iou/                  # jiu = jiou,
+    - derive/un$/uen/                  # uen = un gun = guen,
+    - derive/ui$/uei/                  # uei = ui gui = guei,
+    - derive/iu$/iou/                  # iou = ui jiu = jiou,
 
     # 自動糾正一些常見的按鍵錯誤
-    - derive/([aeiou])ng$/$1gn/        # dagn => dang 
+    - derive/([aeiou])ng$/$1gn/        # gn = ng dagn => dang 
     - derive/([dtngkhrzcs])o(u|ng)$/$1o/  # zho => zhong|zhou
     - derive/ong$/on/                  # zhonguo => zhong guo
     - derive/ao$/oa/                   # hoa => hao
-    - derive/([iu])a(o|ng?)$/a$1$2/    # tain => tian
+    - derive/([iu])a(o|ng?)$/a$1$2/    # tain => tian aio = iao; aing = iang; aung = uang
+    - derive/i$/ii/      # ii = i  # i 不小心按两下
+    - derive/u$/uu/      # ui = u  # u 不小心按两下
+    - derive/tie$/tei/    # tei = tie
     ######################################################################################
 
 translator:
-  dictionary: terra_pinyin
+  # dictionary: terra_pinyin
+  dictionary: my_terra_pinyin.extended
   spelling_hints: 7  # ～字以內候選標註完整帶調拼音
   contextual_suggestions: true # 是否使用語言模型優化輸出結果〔需配合grammar使用〕
   preedit_format:
@@ -295,6 +299,8 @@ reverse_lookup:
 
 punctuator:
   import_preset: default
+  half_shape:
+    __include: ext_punctuator:/half_shape
 
 key_binder:
   import_preset: default
@@ -309,7 +315,7 @@ recognizer:
     easy_en: "\/[a-zA-Z'_]*$" # 英文输入前缀 "/", e.g. "/good" => "good"
 
 easy_en:
-  __include: easy_en:/patch
+  __include: easy_en:/easy_en
   tag: easy_en
   prefix: "/"
 

@@ -48,11 +48,11 @@ use_preset_vocabulary: true
 #雙拼不支持 luna_pinyin.cn_en 詞庫，請用戶手動禁用。
 
 import_tables:
-  - essay
+  - luna_pinyin.essay
   - luna_pinyin
   - luna_pinyin.anime               # 动漫
   - luna_pinyin.basis               # 基础扩充包
-  - luna_pinyin.biaoqing            # 颜文字
+  # - luna_pinyin.biaoqing            # 颜文字
   - luna_pinyin.chat                # 对话（常用）
   - luna_pinyin.chengyusuyu         # 成语/术语
   - luna_pinyin.classical           # 古文
@@ -84,14 +84,14 @@ import_tables:
   # - phrases.jp_hkkreduce            # 日文含有「漢字」之詞彙
   # - ocm_mixin_kr_hnc                # 韓語 HNC 鍵位碼表
   # - ocm_mixin_kr                    # 韓文（洋蔥形碼鍵位）
-  # - phrases.kr                       # 3萬 韓語詞庫
-  - ocm_mixin_la                    # 拉丁+音標字母（洋蔥形碼鍵位）
+  # - phrases.kr                      # 3萬 韓語詞庫
+  # - ocm_mixin_la                    # 拉丁+音標字母（洋蔥形碼鍵位）
   # - phrases.cht                     # 超齊字典檔                               （要编译很长时间）
   # - phrases.en_l_w                  # 拉丁英語補充詞庫 1                        （要编译很长时间）
-  - phrases.en_o_w                  # 拉丁英語補充詞庫 2
+  # - phrases.en_o_w                  # 拉丁英語補充詞庫 2
   # - phrases.en_u_w                  # 拉丁英語補充詞庫 3                        （要编译很长时间）
-  - phrases.la_eu_w                 # 歐洲帶調
-  - phrases.la_py_w                 # 漢拼語音
-  - terra_pinyin_onion_add
+  # - phrases.la_eu_w                 # 歐洲帶調
+  # - phrases.la_py_w                 # 漢拼語音
+  # - terra_pinyin_onion_add
   # - terra_pinyin_onion              # 地球拼音 10萬                             （要编译很长时间，建议睡前开启编译）
 ...
