@@ -5,7 +5,12 @@ easy_en:
   # initial_quality: -1 # 英文候选词的位置, 数值越大越靠前
   initial_quality: -0.618 
   spelling_hints: 9
-  prefix: ""
   tips: 〔英文〕
+  tag: easy_en
+  prefix: "/"
   # comment_format:
     # - xform/^.+$//
+
+recognizer:
+  patterns:
+    easy_en: "\/[a-zA-Z'_]*$" # 英文输入前缀 "/", e.g. "/good" => "good"

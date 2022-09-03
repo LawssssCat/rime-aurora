@@ -312,12 +312,10 @@ recognizer:
   import_preset: default
   patterns:
     reverse_lookup: "`[a-z]*'?$"
-    easy_en: "\/[a-zA-Z'_]*$" # 英文输入前缀 "/", e.g. "/good" => "good"
+    __include: easy_en:/recognizer/patterns
 
 easy_en:
   __include: easy_en:/easy_en
-  tag: easy_en
-  prefix: "/"
 
 grammar: # 语法模型
   language: zh-hant-t-essay-bgw

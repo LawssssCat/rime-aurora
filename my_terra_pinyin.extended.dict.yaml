@@ -4,7 +4,7 @@
 name: my_terra_pinyin.extended
 version: "2022.09.03"
 sort: by_weight
-# vocabulary: essay-zh-hant-mc
+vocabulary: essay-zh-hant-mc
 use_preset_vocabulary: true
 import_tables:
   - terra_pinyin
@@ -27,6 +27,6 @@ import_tables:
   - luna_pinyin.shopping            # 购物
   - luna_pinyin.user                # 实用词汇
   - luna_pinyin.website             # 网站
-  # - phrases.cht                     # 超齊字典檔                               （要编译很长时间）
+  - phrases.cht                     # 超齊字典檔
 ...
 ##### 以下可自行添加詞句 #####
