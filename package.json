@@ -1,0 +1,19 @@
+{
+  "name": "rime",
+  "version": "1.0.0",
+  "description": "本项目作用于[rime 输入法](https://rime.im/)，主要为个人自定义的rime方案配置（如：`*.yaml`， `/opencc`， `/lua`， `/font`），同时包含“用户目录”中自动生成部分文件的备份（如，`/sync`）。",
+  "scripts": {
+    "sort": "node tools/sort.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LawssssCat/rime-userdata-backup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LawssssCat/rime-userdata-backup/issues"
+  },
+  "homepage": "https://github.com/LawssssCat/rime-userdata-backup#readme"
+}
