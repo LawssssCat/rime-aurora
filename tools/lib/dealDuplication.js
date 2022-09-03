@@ -12,8 +12,15 @@ const {Set} = require('./set');
  */
 class OpenccWord {
   static parse(line, options) {
+    if(/^[#]/.test(line)) {
+      // 注释
+      return undefined;
+    }
     const blocks = line.split(/\t/);
-    return new OpenccWord(blocks[0], blocks[1], options);
+    let word = blocks[0];
+    let suggestion = blocks[1];
+    suggestion = suggestion.trim();
+    return new OpenccWord(word, suggestion, options);
   }
   constructor(word, suggestion, options={}) {
     this.word = word;
@@ -86,13 +93,10 @@ function handleOpenccFiles(paths, output, options, cb) {
     };
     record.files.push(info);
     rl.on('line', (line) => {
-      line = line.trim();
-      if(line && /^[^#]/.test(line)) {
-        qLine.enQueue(line);
-        record.line++;
-        info.line++;
-        events.emit('readline');
-      }
+      qLine.enQueue(line);
+      record.line++;
+      info.line++;
+      events.emit('readline');
     });
     rl.on('close', () => {
       info.load = true
@@ -108,12 +112,14 @@ function handleOpenccFiles(paths, output, options, cb) {
       const newWord = OpenccWord.parse(line, {
         setWordIntoSuggestion: options.setWordIntoSuggestion
       });
-      const oldWord = wordMap[newWord.word];
-      if(oldWord) {
-        oldWord.addSuggestion(newWord.suggestion.values());
-      } else {
-        wordMap[newWord.word] = newWord;
-        record.word++;
+      if(newWord) {
+        const oldWord = wordMap[newWord.word];
+        if(oldWord) {
+          oldWord.addSuggestion(newWord.suggestion.values());
+        } else {
+          wordMap[newWord.word] = newWord;
+          record.word++;
+        }
       }
       record.lineOK++;
     } catch (err) {

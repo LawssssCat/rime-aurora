@@ -27,7 +27,6 @@ path.join(openccBase, 'kemoji_all.txt'), // output
 // 标点/符号
 dealDuplication.handleOpenccFiles([
   path.join(openccBase, 'back_mark_ocm.yml'),
-  path.join(openccBase, 'back_mark_punct.yml'),
 ], 
 path.join(openccBase, 'back_mark_all.txt'), // output
 {
