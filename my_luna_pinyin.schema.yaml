@@ -317,14 +317,7 @@ recognizer:
 # 中英文混输的设置
 # Rx: BlindingDark/rime-easy-en:customize:schema=double_pinyin_flypy
 easy_en:
-  dictionary: easy_en
-  enable_completion: true # 是否启用英文输入联想补全
-  enable_sentence: true # 混输时不出现带有图案的英文
-  # initial_quality: -1 # 英文候选词的位置, 数值越大越靠前
-  initial_quality: -0.618 
-  spelling_hints: 9
-  comment_format:
-    # - xform/^.+$//
+  __include: easy_en:/patch
 
 # emoji，按 F4 选择是否打开
 emoji_suggestion:

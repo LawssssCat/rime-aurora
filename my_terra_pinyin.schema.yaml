@@ -1,5 +1,19 @@
 # Rime schema
 # encoding: utf-8
+#
+# 《个人 - 地球拼音》
+#
+# 部署位置：
+# ~/.config/ibus/rime  (Linux)
+# ~/Library/Rime  (Mac OS)
+# %APPDATA%\Rime  (Windows)
+#
+# 於重新部署後生效
+#
+#
+# 配置含义：
+# https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md
+#
 
 schema:
   schema_id: my_terra_pinyin
@@ -7,6 +21,7 @@ schema:
   version: "0.19"
   author:
     - 佛振 <chen.sst@gmail.com>
+    - 骆言 <lawsssscat@163.com>
   description: |
     「漢語拼音」，以符號按鍵 - / < \ 輸入四聲
     拼音碼表根據 CC-CEDICT 改編
@@ -38,9 +53,12 @@ engine:
     - ascii_segmentor
     - matcher
     - abc_segmentor
+    - affix_segmentor@easy_en
     - punct_segmentor
     - fallback_segmentor
   translators:
+    - lua_translator@time_translator    # 时间
+    - table_translator@easy_en          # 英文
     - punct_translator
     - table_translator@custom_phrase
     - reverse_lookup_translator
@@ -74,10 +92,98 @@ speller:
     - 'derive/^(.*)-$/$1;/'
     - 'derive/^(.*)<$/$1,/'
     - 'derive/^(.*)\\$/$1>/'
+    ######################################################################################
+    #
+    # 模糊音
+    #
+    # 【朙月拼音】模糊音定製模板 来源：https://gist.github.com/lotem/2320943
+    #
+    # 需要哪組就刪去行首的 # 號，單雙向任選
+    #
+    ######################################################################################
+    - derive/^([zcs])h/$1/             # zh, ch, sh => z, c, s
+    - derive/^([zcs])([^h])/$1h$2/     # z, c, s => zh, ch, sh
+
+    - derive/^n/l/                     # n => l
+    - derive/^l/n/                     # l => n
+    - derive/^m/n/                     # m => n
+    - derive/^m/l/                     # m => l
+    - derive/^l/m/                     # l => m
+    - derive/^n/m/                     # n => m
+
+    # 這兩組一般是單向的
+    # - derive/^r/l/                     # r => l
+
+    # - derive/^ren/yin/                 # ren => yin, reng => ying
+    # - derive/^r/y/                     # r => y
+
+    # 下面 hu <=> f 這組寫法複雜一些，分情況討論
+    # - derive/^hu$/fu/                  # hu => fu
+    # - derive/^hong$/feng/              # hong => feng
+    # - derive/^hu([in])$/fe$1/          # hui => fei, hun => fen
+    # - derive/^hu([ao])/f$1/            # hua => fa, ...
+
+    # - derive/^fu$/hu/                  # fu => hu
+    # - derive/^feng$/hong/              # feng => hong
+    # - derive/^fe([in])$/hu$1/          # fei => hui, fen => hun
+    # - derive/^f([ao])/hu$1/            # fa => hua, ...
+
+    # 韻母部份
+    # - derive/^([bpmf])eng$/$1ong/      # meng = mong, ...
+    - derive/([ei])n$/$1ng/            # en => eng, in => ing
+    - derive/([ei])ng$/$1n/            # eng => en, ing => in
+
+    # 樣例足夠了，其他請自己總結……
+
+    # 反模糊音？
+    # 誰說方言沒有普通話精確、有模糊音，就能有反模糊音。
+    # 示例爲分尖團的中原官話：
+    - derive/^ji$/zii/   # 在設計者安排下鳩佔鵲巢，尖音i只好雙寫了
+    - derive/^qi$/cii/
+    - derive/^xi$/sii/
+    - derive/^ji/zi/
+    - derive/^qi/ci/
+    - derive/^xi/si/
+    - derive/^ju/zv/
+    - derive/^qu/cv/
+    - derive/^xu/sv/
+    # 韻母部份，只能從大面上覆蓋
+    - derive/^([bpm])o$/$1eh/          # bo => beh, ...
+    - derive/(^|[dtnlgkhzcs]h?)e$/$1eh/  # ge => geh, se => sheh, ...
+    - derive/^([gkh])uo$/$1ue/         # guo => gue, ...
+    - derive/^([gkh])e$/$1uo/          # he => huo, ...
+    - derive/([uv])e$/$1o/             # jue => juo, lve => lvo, ...
+    - derive/^fei$/fi/                 # fei => fi
+    - derive/^wei$/vi/                 # wei => vi
+    - derive/^([nl])ei$/$1ui/          # nei => nui, lei => lui
+    - derive/^([nlzcs])un$/$1vn/       # lun => lvn, zun => zvn, ... 
+    - derive/^([nlzcs])ong$/$1iong/    # long => liong, song => siong, ...
+    # 這個辦法雖從拼寫上做出了區分，然而受詞典制約，候選字仍是混的。
+    # 只有真正的方音輸入方案纔能做到！但「反模糊音」這個玩法快速而有效！
+
+    # 模糊音定義先於簡拼定義，方可令簡拼支持以上模糊音
+    - abbrev/^([a-z]).+$/$1/           # 簡拼（首字母）
+    - abbrev/^([zcs]h).+$/$1/          # 簡拼（zh, ch, sh）
+
+    # 以下是一組容錯拼寫，《漢語拼音》方案以前者爲正
+    - derive/^([nl])ve$/$1ue/          # nve = nue, lve = lue
+    - derive/^([jqxy])u/$1v/           # ju = jv,
+    - derive/un$/uen/                  # gun = guen,
+    - derive/ui$/uei/                  # gui = guei,
+    - derive/iu$/iou/                  # jiu = jiou,
+
+    # 自動糾正一些常見的按鍵錯誤
+    - derive/([aeiou])ng$/$1gn/        # dagn => dang 
+    - derive/([dtngkhrzcs])o(u|ng)$/$1o/  # zho => zhong|zhou
+    - derive/ong$/on/                  # zhonguo => zhong guo
+    - derive/ao$/oa/                   # hoa => hao
+    - derive/([iu])a(o|ng?)$/a$1$2/    # tain => tian
+    ######################################################################################
 
 translator:
   dictionary: terra_pinyin
-  spelling_hints: 5  # ～字以內候選標註完整帶調拼音
+  spelling_hints: 7  # ～字以內候選標註完整帶調拼音
+  contextual_suggestions: true # 是否使用語言模型優化輸出結果〔需配合grammar使用〕
   preedit_format:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
@@ -151,9 +257,9 @@ custom_phrase:
 reverse_lookup:
   dictionary: stroke
   enable_completion: true
-  prefix: "`"
-  suffix: "'"
-  tips: 〔筆畫〕
+  prefix: "`" # 前缀标识
+  suffix: "'" # 后缀标识
+  tips: 〔筆畫〕 # 提示
   preedit_format:
     - xlit/hspnz/一丨丿丶乙/
   comment_format:
@@ -200,3 +306,12 @@ recognizer:
   import_preset: default
   patterns:
     reverse_lookup: "`[a-z]*'?$"
+    easy_en: "\/[a-zA-Z'_]*$" # 英文输入前缀 "/", e.g. "/good" => "good"
+
+easy_en:
+  __include: easy_en:/patch
+  tag: easy_en
+  prefix: "/"
+
+grammar: # 语法模型
+  language: zh-hant-t-essay-bgw
