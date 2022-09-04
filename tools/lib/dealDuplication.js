@@ -158,18 +158,20 @@ function handleOpenccFiles(paths, output, options, cb) {
     const keyArr = Object.keys(wordMap).sort((a,b) => {
       return a-b; // 1,2,3,....
     });
-    const pArr = new Array(keyArr.length); // 待处理promise
+    let lastPromise = Promise.resolve(); // 希望逐行写入（上一行写完才写下一行，避免顺序频繁变动）
     keyArr.forEach((key, index) => {
       const word = wordMap[key];
       const line = `${word.word}\t${word.getSortedSuggestion().join(' ')}${index!=(keyArr.length-1)?'\n':''}`;
-      pArr.push(new Promise((resolve) => {
+      const prevPromise = lastPromise;
+      const currPromise = new Promise((resolve) => {
         ws.write(line, resolve);
-      }));
-    })
-    // 回调
-    Promise.all(pArr).then(() => {
+      });
+      prevPromise.then(() => currPromise);
+      lastPromise = currPromise;
+    });
+    lastPromise.then(() => {
       cb(record);
-    })
+    });
   })
 }
 
