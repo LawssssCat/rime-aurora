@@ -136,6 +136,9 @@ speller:
   delimiter: " '"
   algebra: # 【朙月拼音】模糊音定製模板 来源：https://gist.github.com/lotem/2320943
     - erase/^xx$/                      # 第一行保留
+    # 改寫拼寫運算，使得含西文的詞彙（位於 luna_pinyin.cn_en.dict.yaml 中）不影響簡拼功能（注意，此功能只適用於朙月拼音系列方案，不適用於各類雙拼方案）
+    # 本條補靪只在「小狼毫 0.9.30」、「鼠鬚管 0.9.25 」、「Rime-1.2」及更高的版本中起作用。
+    - xform/^([b-df-hj-np-tv-z])$/$1_/
   __patch:
     algebra/+:
       __include: ext_speller:/speller/algebra
