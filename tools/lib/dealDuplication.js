@@ -25,8 +25,8 @@ class OpenccWord {
   constructor(word, suggestion, options={}) {
     this.word = word;
     this.suggestion = new Set();
-    if(options.setWordIntoSuggestion!=false) {
-      this.addSuggestion(word);
+    this.options = {
+      setWordIntoSuggestion: options.setWordIntoSuggestion
     }
     this.addSuggestion(suggestion);
   }
@@ -42,6 +42,20 @@ class OpenccWord {
     arr.forEach(item => {
       this.suggestion.add(item);
     })
+  }
+  getSortedSuggestion() {
+    const arr = this.suggestion.values();
+    arr.sort((a, b) => a-b); // 1,2,3,...
+    // 删除word
+    const index = arr.indexOf(this.word);
+    if(index>-1) {
+      arr.splice(index, 1);
+    }
+    // 头部添加word
+    if(this.options.setWordIntoSuggestion != false) {
+      arr.unshift(this.word);
+    }
+    return arr;
   }
 }
 
@@ -67,7 +81,7 @@ function handleOpenccFiles(paths, output, options, cb) {
     output: output,
     line: 0, lineOK: 0, lineError: 0,
     word: 0,
-    error: {}
+    error: []
   }, {
     set: function(target, prop, value) {
       const result = Reflect.set(target, prop, value);
@@ -91,9 +105,15 @@ function handleOpenccFiles(paths, output, options, cb) {
       load: false,
       line: 0
     };
+    let lineNum = 0;
     record.files.push(info);
     rl.on('line', (line) => {
-      qLine.enQueue(line);
+      lineNum++;
+      qLine.enQueue({
+        line,
+        lineNum,
+        path
+      });
       record.line++;
       info.line++;
       events.emit('readline');
@@ -107,10 +127,10 @@ function handleOpenccFiles(paths, output, options, cb) {
     })
   });
   events.on('readline', () => {
-    const line = qLine.deQueue();
+    const {line, path, lineNum} = qLine.deQueue();
     try {
       const newWord = OpenccWord.parse(line, {
-        setWordIntoSuggestion: options.setWordIntoSuggestion
+        setWordIntoSuggestion: options.setWordIntoSuggestion // 把word插入suggestion第一位
       });
       if(newWord) {
         const oldWord = wordMap[newWord.word];
@@ -124,17 +144,24 @@ function handleOpenccFiles(paths, output, options, cb) {
       record.lineOK++;
     } catch (err) {
       record.lineError++;
-      record.error[line] = err;
+      record.error.push({
+        err,
+        path,
+        line,
+        lineNum
+      });
     }
   })
   events.on('done', () => {
     // 输出为文件
     const ws = fs.createWriteStream(output);
-    const keyArr = Object.keys(wordMap);
-    const pArr = new Array(keyArr.length);
+    const keyArr = Object.keys(wordMap).sort((a,b) => {
+      return a-b; // 1,2,3,....
+    });
+    const pArr = new Array(keyArr.length); // 待处理promise
     keyArr.forEach((key, index) => {
       const word = wordMap[key];
-      const line = `${word.word}\t${word.suggestion.values().join(' ')}${index!=(keyArr.length-1)?'\n':''}`;
+      const line = `${word.word}\t${word.getSortedSuggestion().join(' ')}${index!=(keyArr.length-1)?'\n':''}`;
       pArr.push(new Promise((resolve) => {
         ws.write(line, resolve);
       }));
