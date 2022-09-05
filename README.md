@@ -8,13 +8,20 @@
 
 1. 配色 “凝光紫x申布伦黄”
     
+    ![输入法配色](./.github/assets/preview-%E5%87%9D%E5%85%89%E7%B4%ABx%E7%94%B3%E5%B8%83%E4%BC%A6%E9%BB%84-color.png)
+    <!--
     <div style="text-align:center;margin:3px 0px;background:#422256;width:100px;height:20px;">422256</div>
+    -->
     <!-- 0x562242 422256 -->
+    <!--
     <div style="text-align:center;margin:3px 0px;background:#FBD26A;width:100px;height:20px;color:#422256;">FBD26A</div>
+    -->
     <!-- 0x6AD2FB FBD26A -->
+    <!--
     <div style="text-align:center;margin:3px 0px;background:#7D41A3;width:100px;height:20px;">7D41A3</div>
+    -->
     <!-- 0xA3417D 7D41A3 -->
-    
+
     调色板：<https://bennyyip.github.io/Rime-See-Me/>
 
 2. 英文 
@@ -67,7 +74,7 @@
 
 ### 步骤一：拷贝文件📄到“用户文件夹📁”
 
-<img src='./.github/assets/userdata-opt.png' style='float:right'></img>
+<img src='./.github/assets/userdata-opt.png'  align='right'></img>
 
 把项目文件全部复制到“用户文件夹📁”（右图，右键点击小图标可见），然后点击“重新部署”即可。
 
@@ -91,7 +98,7 @@
 
 ### 步骤二：**同步“用户词典快照🎦”**：
 
-<img src='./.github/assets/dict-opt.png' style='float:right'></img>
+<img src='./.github/assets/dict-opt.png'  align='right'></img>
 
 > “用户词典快照🎦”包含了用户常用的词。重新安装时，可以通过导入快照，迅速的还原熟悉的打字环境
 
