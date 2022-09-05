@@ -61,8 +61,9 @@ schema:
       * opencc - 開放中文轉換
       * LoganJC 的方案 - https://github.com/LoganJC/rime-setting
       * “洋蔥” 方案 - https://github.com/oniondelta/Onion_Rime_Files
-  dependencies:
+  dependencies: # 觸發更新製作 bin。 See issue https://github.com/rime/home/issues/1134#issuecomment-1236345551
     - stroke
+    - easy_en
 
 switches:
   - name: ascii_mode                # 1
@@ -107,118 +108,46 @@ engine:
     - ascii_segmentor      # ※ 標識_西文段落
     - matcher              # ※ 標識_符合特定規則的段落，如網址、反查等
     - abc_segmentor        # ※ 標識_常規的文字段落
+    - affix_segmentor@easy_en           # 英文（位置：abc后、punct前）
+    - affix_segmentor@easy_en_prev
     - punct_segmentor      # ※ 標識_句讀段落
     - fallback_segmentor   # ※ 標識_其他未標識段落
   translators: # 三、這批組件翻譯特定類型的編碼段爲一組候選文字
     # - echo_translator # ※ 沒有其他候選字時，回顯輸入碼〔輸入碼可以Shift+Enter上屛〕
     - lua_translator@email_urlw_translator
     - lua_translator@time_translator    # 时间
+    - table_translator@easy_en          # 英文
+    - table_translator@easy_en_prev
     - punct_translator                  # ※ 轉換標點符號
     - table_translator@custom_phrase    #翻譯_打過的字-優先出●碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案，此項可加載多個實例，後接@+翻譯器名〔如：cangjie、wubi等〕
     - reverse_lookup_translator         # ※ 反查翻譯器，用另一種編碼方案查碼
     - script_translator                 # ※ 腳本翻譯器，用於拼音、粵拼等等基於音節表的輸入方案●此項可加載多個實例，後接@+翻譯器名〔如：pinyin、jyutping等〕
   filters: # 四、這批組件過濾翻譯的結果
-    - simplifier                      # ※ 繁簡轉換
-    - uniquifier                      # ※ 過濾重複的候選字，有可能來自繁簡轉換
     - simplifier@emoji_suggestion     # emoji表情
     - simplifier@kemoji_suggestion    # 颜表情
     - simplifier@symbol_suggestion    # 符号
     - simplifier@back_mark            # 後方標註【放在最后，做提示转换】
     # - lua_filter@single_char_filter              # 候選項重排序，使單字優先
-    - reverse_lookup_filter@top_reverse_lookup   # 优化注释显示
+    - reverse_lookup_filter@e_reverse_lookup
+    #############################################################
+    - simplifier                      # ※ 繁簡轉換
+    - uniquifier                      # ※ 過濾重複的候選字，有可能來自繁簡轉換
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba
+  # alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA # 英文
   delimiter: " '"
   algebra: # 【朙月拼音】模糊音定製模板 来源：https://gist.github.com/lotem/2320943
     - erase/^xx$/                      # 第一行保留
-
-    # 模糊音定義
-    # 需要哪組就刪去行首的 # 號，單雙向任選
-    - derive/^([zcs])h/$1/             # zh, ch, sh => z, c, s
-    - derive/^([zcs])([^h])/$1h$2/     # z, c, s => zh, ch, sh
-
-    - derive/^n/l/                     # n => l
-    - derive/^l/n/                     # l => n
-    - derive/^m/n/                     # m => n
-    - derive/^m/l/                     # m => l
-    - derive/^l/m/                     # l => m
-    - derive/^n/m/                     # n => m
-
-    # 這兩組一般是單向的
-    # - derive/^r/l/                     # r => l
-
-    # - derive/^ren/yin/                 # ren => yin, reng => ying
-    # - derive/^r/y/                     # r => y
-
-    # 下面 hu <=> f 這組寫法複雜一些，分情況討論
-    # - derive/^hu$/fu/                  # hu => fu
-    # - derive/^hong$/feng/              # hong => feng
-    # - derive/^hu([in])$/fe$1/          # hui => fei, hun => fen
-    # - derive/^hu([ao])/f$1/            # hua => fa, ...
-
-    # - derive/^fu$/hu/                  # fu => hu
-    # - derive/^feng$/hong/              # feng => hong
-    # - derive/^fe([in])$/hu$1/          # fei => hui, fen => hun
-    # - derive/^f([ao])/hu$1/            # fa => hua, ...
-
-    # 韻母部份
-    # - derive/^([bpmf])eng$/$1ong/      # meng = mong, ...
-    - derive/([ei])n$/$1ng/            # en => eng, in => ing
-    - derive/([ei])ng$/$1n/            # eng => en, ing => in
-
-    # 樣例足夠了，其他請自己總結……
-
-    # 反模糊音？
-    # 誰說方言沒有普通話精確、有模糊音，就能有反模糊音。
-    # 示例爲分尖團的中原官話：
-    - derive/^ji$/zii/   # 在設計者安排下鳩佔鵲巢，尖音i只好雙寫了
-    - derive/^qi$/cii/
-    - derive/^xi$/sii/
-    - derive/^ji/zi/
-    - derive/^qi/ci/
-    - derive/^xi/si/
-    - derive/^ju/zv/
-    - derive/^qu/cv/
-    - derive/^xu/sv/
-    # 韻母部份，只能從大面上覆蓋
-    - derive/^([bpm])o$/$1eh/          # bo => beh, ...
-    - derive/(^|[dtnlgkhzcs]h?)e$/$1eh/  # ge => geh, se => sheh, ...
-    - derive/^([gkh])uo$/$1ue/         # guo => gue, ...
-    - derive/^([gkh])e$/$1uo/          # he => huo, ...
-    - derive/([uv])e$/$1o/             # jue => juo, lve => lvo, ...
-    - derive/^fei$/fi/                 # fei => fi
-    - derive/^wei$/vi/                 # wei => vi
-    - derive/^([nl])ei$/$1ui/          # nei => nui, lei => lui
-    - derive/^([nlzcs])un$/$1vn/       # lun => lvn, zun => zvn, ... 
-    - derive/^([nlzcs])ong$/$1iong/    # long => liong, song => siong, ...
-    # 這個辦法雖從拼寫上做出了區分，然而受詞典制約，候選字仍是混的。
-    # 只有真正的方音輸入方案纔能做到！但「反模糊音」這個玩法快速而有效！
-
-    # 模糊音定義先於簡拼定義，方可令簡拼支持以上模糊音
-    - abbrev/^([a-z]).+$/$1/           # 簡拼（首字母）
-    - abbrev/^([zcs]h).+$/$1/          # 簡拼（zh, ch, sh）
-
-    # 以下是一組容錯拼寫，《漢語拼音》方案以前者爲正
-    - derive/^([nl])ve$/$1ue/          # nve = nue, lve = lue
-    - derive/^([jqxy])u/$1v/           # ju = jv,
-    - derive/un$/uen/                  # gun = guen,
-    - derive/ui$/uei/                  # gui = guei,
-    - derive/iu$/iou/                  # jiu = jiou,
-
-    # 自動糾正一些常見的按鍵錯誤
-    - derive/([aeiou])ng$/$1gn/        # dagn => dang 
-    - derive/([dtngkhrzcs])o(u|ng)$/$1o/  # zho => zhong|zhou
-    - derive/ong$/on/                  # zhonguo => zhong guo
-    - derive/ao$/oa/                   # hoa => hao
-    - derive/([iu])a(o|ng?)$/a$1$2/    # tain => tian
+    # 改寫拼寫運算，使得含西文的詞彙（位於 luna_pinyin.cn_en.dict.yaml 中）不影響簡拼功能（注意，此功能只適用於朙月拼音系列方案，不適用於各類雙拼方案）
+    # 本條補靪只在「小狼毫 0.9.30」、「鼠鬚管 0.9.25 」、「Rime-1.2」及更高的版本中起作用。
+    - xform/^([b-df-hj-np-tv-z])$/$1_/
+  __patch:
+    algebra/+:
+      __include: ext_speller:/speller/algebra
 
 translator:
   dictionary: my_luna_pinyin.extended
-  preedit_format:
-    - xform/([nl])v/$1ü/
-    - xform/([nl])ue/$1üe/
-    - xform/([jqxy])v/$1u/
   ##################
   contextual_suggestions: true # 是否使用語言模型優化輸出結果〔需配合grammar使用〕
   # max_homophones: 7 # 最大同音簇長度〔需配合grammar使用〕
@@ -232,9 +161,6 @@ translator:
   enable_completion: true # 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕
   sentence_over_completion: true # 在無全碼對應字而僅有逐鍵提示時也開啓智能組句〔僅table_translator有效〕
   spelling_hints: 7
-  comment_format: # 提示碼自定義
-    - xform/([nl])v/$1ü/
-    # - xform/([nljqxyzcs])v/$1ü/ # 分尖團後 v => ü 的改寫條件也要相應地擴充：
 
 custom_phrase: # 功能：自定义短语 custom_phrase.txt
   dictionary: ""
@@ -273,40 +199,28 @@ punctuator:
     "/py": [ ā, á, ǎ, à, ō, ó, ǒ, ò, ê, ê̄, ế, ê̌, ề, ē, é, ě, è, ī, í, ǐ, ì, ū, ú, ǔ, ù, ü, ǖ, ǘ, ǚ, ǜ, ḿ, m̀, ń, ň, ǹ, ẑ, ĉ, ŝ, ŋ ]
     "/pyd": [ Ā, Á, Ǎ, À, Ō, Ó, Ǒ, Ò, Ê, Ê̄, Ế, Ê̌, Ề, Ē, É, Ě, È, Ī, Í, Ǐ, Ì, Ū, Ú, Ǔ, Ù, Ü, Ǖ, Ǘ, Ǚ, Ǜ, Ḿ, M̀, Ń, Ň, Ǹ, Ẑ, Ĉ, Ŝ, Ŋ ]
   half_shape:
-    "#": "#"
-    "*": "*"
-    "`": "`"
-    "~": "~"
-    "@": "@"
-    "=": "="
-    "/": ["/", "÷",]
-    '\': "、"
-    "_" : "──"
-    # "'": {pair: ["「", "」"]}
-    "[": ["【", "〖", "[", "『", "「", "〔"]
-    "]": ["】", "〗", "]", "』", "」", "〕"]
-    "$": ["¥", "$", "€", "£", "¢", "¤"]
-    "<": ["《", "〈", "«", "<"]
-    ">": ["》", "〉", "»", ">"]
-    '|' : [ '|', ｜, '§', '¦', '‖', ·, ・]
+    __include: ext_punctuator:/half_shape
   ##########################################################
 
 key_binder:
   import_preset: default
-  bindings:
-### 選字翻頁 ###
-    - {accept: Shift+Down, send: Page_Down, when: has_menu} #選字時「Shift」+「下」翻頁。
-    - {accept: Shift+Up, send: Page_Up, when: paging} #選字時「Shift」+「上」翻頁。
 
 recognizer:
   import_preset: default
   patterns:
-    email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"
-    uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
-    url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
-    html: "^<[a-z]+>$"
-    punct: '^/([0-9]0?|[A-Za-z]+)$'
     reverse_lookup: "`[a-z]*'?$"
+    __include: easy_en:/recognizer/patterns
+
+####################################################
+# 中英文混输的设置
+# Rx: BlindingDark/rime-easy-en:customize:schema=double_pinyin_flypy
+easy_en:
+  __include: easy_en:/easy_en
+easy_en_prev:
+  __include: easy_en:/easy_en_prev
+e_reverse_lookup:
+  __include: easy_en:/e_reverse_lookup
+####################################################
 
 # emoji，按 F4 选择是否打开
 emoji_suggestion:
@@ -325,7 +239,6 @@ kemoji_suggestion:
 # 符号
 symbol_suggestion:
   opencc_config: symbol.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
-  # option_name: kemoji_suggestion # 对应 switches 中的 name
   tips: all # 字符转换范围
 
 # 符号含义标注
@@ -338,42 +251,6 @@ back_mark:
   comment_format:
     - xform/^/  /
     - xform/@/ /
-
-top_reverse_lookup:
-  tags: [ abc ]
-  overwrite_comment: false
-  comment_format:
-###################################
-    - xform/([aeiou])(ng?|r)([1234])/$1$3$2/
-    - xform/([aeo])([iuo])([1234])/$1$3$2/
-    - xform/a1/ā/
-    - xform/a2/á/
-    - xform/a3/ǎ/
-    - xform/a4/à/
-    - xform/e1/ē/
-    - xform/e2/é/
-    - xform/e3/ě/
-    - xform/e4/è/
-    - xform/o1/ō/
-    - xform/o2/ó/
-    - xform/o3/ǒ/
-    - xform/o4/ò/
-    - xform/i1/ī/
-    - xform/i2/í/
-    - xform/i3/ǐ/
-    - xform/i4/ì/
-    - xform/u1/ū/
-    - xform/u2/ú/
-    - xform/u3/ǔ/
-    - xform/u4/ù/
-    - xform/v1/ǖ/
-    - xform/v2/ǘ/
-    - xform/v3/ǚ/
-    - xform/v4/ǜ/
-    - xform/eh1/ê̄/
-    - xform/eh4/ề/
-    - xform/eh5/ê/
-#    - xform/eh[0-5]/ê/
 
 grammar: # 语法模型
   language: zh-hant-t-essay-bgw
