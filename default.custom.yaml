@@ -9,7 +9,7 @@ patch:
   schema_list:
     - {schema: my_terra_pinyin}
     - {schema: my_luna_pinyin}
-    - {schema: easy_en}
+    # - {schema: easy_en}
   "switcher/fold_options": false
   "switcher/save_options/+":
     - emoji_suggestion

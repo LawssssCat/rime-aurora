@@ -19,15 +19,21 @@
 
 2. 英文 
 
+    直接输入英文，会提示含义
+
     ![输入法英文预览gif](./.github/assets/preview-easy_en.gif)
 
-3. “`/`” 前缀：符号 & 表情 & 颜表情
+    “`/`”  前缀：开启纯英文模式
+
+    ![输入法英文预览（prefix）gif](./.github/assets/preview-easy_en_prefix-compress.gif)
+
+3. “`//`” 前缀：符号 & 表情 & 颜表情
 
     todo 
 
 4. 输入 “rq”、“sj”、“xq” 等可显示当前系统时间
 
-    ![输入法系统时间预览gif](./.github/assets/preview_luatime_compress.gif)
+    ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif)
 
 5. 网站提示
 
