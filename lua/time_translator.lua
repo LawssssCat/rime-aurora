@@ -25,8 +25,9 @@
 
 --]]
 
+local tool = require("tool")
+
 local conf = {
-  number_cn = {"〇", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"},
   number_en_st = {"0st", "1nd", "2rd", "3th", "4th", "5th", "6th", "7th", "8th", "9th"},
   week_cn = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"},
   week_en = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"},
@@ -41,6 +42,7 @@ conf.pattern_date = {
   "{year}/{month}/{day}", -- 2022/09/05
   "{year}.{month}.{day}", -- 2022.09.05
   "{year}-{month}-{day}", -- 2022-09-05
+  "{year.number_cn}年{month.arith.number_cn}月{day.arith.number_cn}日", -- 二〇二二年十一月二十五日
   "{month_en} {day_en_st},{year}", -- September 05th,2022
   "{month_en_st} {day_en_st},{year}" -- Sept.05th,2022
 }
@@ -83,16 +85,40 @@ local function getTimeStr(str)
       -- 秒
         replace_index = os.date("%S")
       end
-      local prop_name = string.match(pattern, "{(.+)}")
-      local prop = conf[prop_name]
       local replace_value = "undefined"
-      if(replace_index ~= nil and prop ~= nil) then 
+      local flag = false -- 处理链，以flag基准，判断是否处理下去
+      if(replace_index ~= nil) then
         local _ni = tonumber(replace_index)
-        local _np = #prop
-        if(_np > _ni) then
-            replace_value = prop[_ni]
+        if(flag == false and string.find(pattern, ".number_cn}$") ~= nil) -- 值：转换为中文，e.g. 0=>〇，1=>一，...
+        then
+          if(string.find(pattern, ".arith.number_cn}$") ~= nil) then 
+            -- 21 => 二十一
+            replace_value = tool.convert_arab_to_chinese(_ni)
+          else 
+            -- 21 => 二一
+            replace_value = ""
+            for i = 1, string.len(_ni) do
+              local _ni_digit = tonumber(string.sub(_ni, i, i))
+              replace_value = replace_value .. tool.convert_arab_to_chinese(_ni_digit)
+            end
+          end
+          replace_value = string.gsub(replace_value, "零", "〇")
+          flag = true
         end
-      else 
+        if(flag == false) -- 值：根据conf的prop转换
+        then
+          local prop_name = string.match(pattern, "{(.+)}")
+          local prop = conf[prop_name]
+          if(prop ~= nil) then
+            local _np = #prop
+            if(_np > _ni) then
+              replace_value = prop[_ni] 
+              flag = true
+            end
+          end
+        end
+      end
+      if(flag == false) then -- 默认值
         replace_value = replace_index
       end
       str = string.gsub(str, pattern, replace_value)
