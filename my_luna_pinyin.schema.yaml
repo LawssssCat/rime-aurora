@@ -61,8 +61,9 @@ schema:
       * opencc - 開放中文轉換
       * LoganJC 的方案 - https://github.com/LoganJC/rime-setting
       * “洋蔥” 方案 - https://github.com/oniondelta/Onion_Rime_Files
-  dependencies:
+  dependencies: # 觸發更新製作 bin。 See issue https://github.com/rime/home/issues/1134#issuecomment-1236345551
     - stroke
+    - easy_en
 
 switches:
   - name: ascii_mode                # 1

@@ -25,8 +25,9 @@ schema:
   description: |
     「漢語拼音」，以符號按鍵 - / < \ 輸入四聲
     拼音碼表根據 CC-CEDICT 改編
-  dependencies:
+  dependencies: # 觸發更新製作 bin。 See issue https://github.com/rime/home/issues/1134#issuecomment-1236345551
     - stroke
+    - easy_en
 
 switches:
   - name: ascii_mode

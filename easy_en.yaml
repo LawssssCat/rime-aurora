@@ -3,11 +3,12 @@ easy_en:
   enable_completion: true # 是否启用英文输入联想补全
   enable_sentence: false # 混输时不出现带有图案（太极/陰陽魚符号 “☯️” ）的英文
   # initial_quality: -1 # 英文候选词的位置, 数值越大越靠前
-  initial_quality: -0.618 
+  # initial_quality: -0.618 
+  # initial_quality: 1 
   spelling_hints: 9
   tips: 〔英文〕
   tag: easy_en
-  prefix: "/"
+  # prefix: "/"
   # comment_format:
     # - xform/^.+$//
 
@@ -20,13 +21,21 @@ e_reverse_lookup:
     - xform|^[ a-z;/.'-]+|| #easy_en_super用
     # - xform/@@/\n          / # 【导致闪退】
     - xform/@/ /
-    # - xform/^(﹝.+﹞)?\[[^@]+\]/$1/
+    # - xform/@//
+    #####################################################
+    #
+    #  ocm_防崩潰：Win必加，Mac勿加
+    #
+    #####################################################
+    - xform/^(﹝.+﹞)?\[[^@]+\]/$1/ # 取最后一个
     - xform/^(﹙.+﹚)?\[[^@]+\]/$1/
-    - xform/([a-zA-Z0-9])@([a-zA-Z0-9])/$1 $2/
-    # - xform/^([^﹝])/ $1/
+    # - xform/([a-zA-Z0-9])@([a-zA-Z0-9])/$1 $2/
+    - xform/^([^﹝])/ $1/
     - xform/^([^﹙])/ $1/
     - xform/^(.{50}).+$/$1 ……《略》/
+    #####################################################
 
 recognizer:
   patterns:
-    easy_en: "\/[a-zA-Z'_]*$" # 英文输入前缀 "/", e.g. "/good" => "good"
+    # easy_en: "\/[a-zA-Z'_]*$" # 英文输入前缀 "/", e.g. "/good" => "good"
+    easy_en: "[a-zA-Z]*$"
