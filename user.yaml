@@ -1,12 +1,12 @@
 var:
-  last_build_time: 1662336086
+  last_build_time: 1662346084
   option:
     ascii_punct: false
     emoji_suggestion: true
     simplification: true
-  previously_selected_schema: my_luna_pinyin
+  previously_selected_schema: my_terra_pinyin
   schema_access_time:
     easy_en: 1662335437
     luna_pinyin: 1661346260
     my_luna_pinyin: 1662335446
-    my_terra_pinyin: 1662273118
+    my_terra_pinyin: 1662336516
