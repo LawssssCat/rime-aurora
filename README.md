@@ -144,5 +144,19 @@ npm run sort
 
 ### 相关资料
 
-+ 星空键道6 - <https://github.com/xkinput/Rime_JD><br>
-中文输入法方案
+> 配置信息
+> 
+> + 《Schema.yaml 詳解》 -  <https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md>
+> + 《yaml 追加规则》 - <https://github.com/rime/home/wiki/Configuration>
+> + 我的笔记 - <https://lawsssscat.blog.csdn.net/article/details/103482619>
+
+> 参考方案
+>
+> + 洋葱方案 - <https://github.com/oniondelta/Onion_Rime_Files><br>
+>（注音、雙拼、拼音、形碼、行列30）
+> + 星空键道6 - <https://github.com/xkinput/Rime_JD><br>
+>（中文输入法方案）
+> + iDvel - <https://github.com/iDvel/rime-ice><br>
+>（全拼方案、简体）
+> + shewer - librime-lua-script - <https://github.com/shewer/librime-lua-script><br>
+>（利用 librime-lua 擴展 rime 輸入法的集成模組）
