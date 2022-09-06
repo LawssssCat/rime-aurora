@@ -253,6 +253,14 @@ key_binder:
   bindings:
     - { when: has_menu, accept: minus, send: minus }  # tone 1
     - { when: paging, accept: minus, send: Page_Up }
+  __patch:
+    bindings/+:
+      __include: ext_bindings:/key_binder/bindings
+
+editor:
+  __patch:
+    bindings/+:
+      __include: ext_bindings:/editor/bindings
 
 recognizer:
   import_preset: default
