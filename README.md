@@ -150,17 +150,27 @@ npm run sort
 
 > 配置信息
 > 
-> + 《Schema.yaml 詳解》 -  <https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md>
-> + 《yaml 追加规则》 - <https://github.com/rime/home/wiki/Configuration>
+> + 《Schema.yaml 詳解》:+1: -  <https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md>
+> + 《yaml 追加规则》:+1: - <https://github.com/rime/home/wiki/Configuration>
 > + 我的笔记 - <https://lawsssscat.blog.csdn.net/article/details/103482619>
 
 > 参考方案
 >
 > + 洋葱方案 - <https://github.com/oniondelta/Onion_Rime_Files><br>
 >（注音、雙拼、拼音、形碼、行列30）
+> + 流星追月 - <https://github.com/zhuangzhemin/rime><br>
+> （小鹤双拼为主）
 > + 星空键道6 - <https://github.com/xkinput/Rime_JD><br>
 >（中文输入法方案）
 > + iDvel - <https://github.com/iDvel/rime-ice><br>
 >（全拼方案、简体）
-> + shewer - librime-lua-script - <https://github.com/shewer/librime-lua-script><br>
+
+> 码表
+>
+> + 酥梨小鹤 - <https://github.com/zodensu/FlyPY-zodensu>
+
+> lua脚本
+>
+> + hchunhui/librime-lua - <https://github.com/hchunhui/librime-lua>
+> + shewer/librime-lua-script - <https://github.com/shewer/librime-lua-script><br>
 >（利用 librime-lua 擴展 rime 輸入法的集成模組）
