@@ -34,6 +34,7 @@ e_reverse_lookup:
     - xform/^(﹝.+﹞)?\[[^@]+\]/$1/
     - xform/^(﹙.+﹚)?\[[^@]+\]/$1/
     - xform/([a-zA-Z0-9])@([a-zA-Z0-9])/$1 $2/
+    - xform/@@/ /
     # - xform/@/ /
     - xform/@//
     - xform/^([^﹝])/ $1/

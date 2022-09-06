@@ -258,6 +258,7 @@ recognizer:
   import_preset: default
   patterns:
     reverse_lookup: "`[a-z]*'?$"
+    __include: ext_recognizer:/recognizer/patterns
     __include: easy_en:/recognizer/patterns
 
 ####################################################
@@ -272,3 +273,6 @@ e_reverse_lookup:
 
 grammar: # 语法模型
   language: zh-hant-t-essay-bgw
+
+__patch:
+  - symbols:/patch
