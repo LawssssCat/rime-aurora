@@ -24,7 +24,6 @@
     “`/`”  前缀：开启纯英文模式
 
     ![输入法英文预览（prefix）](./.github/assets/preview-easy_en-perfix-hit.png)
-    todo 更新图片，不要红字
 
 3. “`//`” 前缀：符号 & 表情 & 颜表情
 
@@ -48,7 +47,7 @@
     +  以 `terra_pinyin` 作为基础码表
     + 显示音调（e.g. 朙月 ming2 yue4 => míng yuè）
     
-    todo shift+1~4 转换音调
+    + `shift + <num 7~0>` 转换音调
 
 2. （个人）朙月拼音
 
@@ -86,7 +85,7 @@
 
     todo 图片
 
-2. （仅地球拼音支持）通过编码结尾输入 `shift + <num 1~4>` 设置四声（ā á ă à）
+2. （仅地球拼音支持）通过编码结尾输入 `shift + <num 7~0>` 设置四声（ā á ă à）
 
     todo 图片
 
