@@ -8,19 +8,10 @@
 
 1. 配色 “凝光紫x申布伦黄”
     
-    ![输入法配色](./.github/assets/preview-%E5%87%9D%E5%85%89%E7%B4%ABx%E7%94%B3%E5%B8%83%E4%BC%A6%E9%BB%84-color.png)
-    <!--
-    <div style="text-align:center;margin:3px 0px;background:#422256;width:100px;height:20px;">422256</div>
-    -->
-    <!-- 0x562242 422256 -->
-    <!--
-    <div style="text-align:center;margin:3px 0px;background:#FBD26A;width:100px;height:20px;color:#422256;">FBD26A</div>
-    -->
-    <!-- 0x6AD2FB FBD26A -->
-    <!--
-    <div style="text-align:center;margin:3px 0px;background:#7D41A3;width:100px;height:20px;">7D41A3</div>
-    -->
-    <!-- 0xA3417D 7D41A3 -->
+    <!-- ![输入法配色](./.github/assets/preview-%E5%87%9D%E5%85%89%E7%B4%ABx%E7%94%B3%E5%B8%83%E4%BC%A6%E9%BB%84-color.png) -->
+    ![preview-背景色](https://img.shields.io/static/v1?style=for-the-badge&label=&message=422256&color=422256)<!-- 0x562242 0x422256 --><br>
+    ![preview-高亮字](https://img.shields.io/static/v1?style=for-the-badge&label=&message=FBD26A&color=FBD26A)<!-- 0x6AD2FB FBD26A --><br>
+    ![preview-高亮行](https://img.shields.io/static/v1?style=for-the-badge&label=&message=7D41A3&color=7D41A3)<!-- 0xA3417D 7D41A3 --><br>
 
     调色板：<https://bennyyip.github.io/Rime-See-Me/>
 
@@ -28,11 +19,12 @@
 
     直接输入英文，会提示含义
 
-    ![输入法英文预览gif](./.github/assets/preview-easy_en.gif)
+    ![输入法英文预览](./.github/assets/preview-easy_en.png)
 
     “`/`”  前缀：开启纯英文模式
 
-    ![输入法英文预览（prefix）gif](./.github/assets/preview-easy_en_prefix-compress.gif)
+    ![输入法英文预览（prefix）](./.github/assets/preview-easy_en-perfix-hit.png)
+    todo 更新图片，不要红字
 
 3. “`//`” 前缀：符号 & 表情 & 颜表情
 
@@ -69,6 +61,38 @@
 默认使用系统字体，可能出现字大小不一的的情况。
 
 可以根据 `font` 目录的 [文档](./font/README.md) 设置字体。
+
+## 按键说明
+
+### 全局（always）
+
+1. `F4` 选择方案和其选项开关
+
+    todo 图片
+
+### 待输入（composing）
+
+1. `` ` `` 开启五笔反查模式
+
+    todo 图片
+
+1. `/` 开启纯英文模式 - [#内容说明](#内容说明)
+
+1. `//` 开启符号模式 - [#内容说明](#内容说明)
+
+### 结果页（has_menu/paging/editor）
+
+1. `<` 和 `>` 为左右翻页（同 `-` 和 `=`）
+
+    todo 图片
+
+2. （仅地球拼音支持）通过编码结尾输入 `shift + <num 1~4>` 设置四声（ā á ă à）
+
+    todo 图片
+
+1. `shift+⬆️（上）` 上一页、`shift+⬇️（下）` 下一页
+
+1. 选中结果，`shift+↩️（回车）` 输出comment结果
 
 ## 使用方法
 
@@ -121,3 +145,32 @@
 npm install
 npm run sort
 ```
+
+### 相关资料
+
+> 配置信息
+> 
+> + 《Schema.yaml 詳解》:+1: -  <https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md>
+> + 《yaml 追加规则》:+1: - <https://github.com/rime/home/wiki/Configuration>
+> + 我的笔记 - <https://lawsssscat.blog.csdn.net/article/details/103482619>
+
+> 参考方案
+>
+> + 洋葱方案 - <https://github.com/oniondelta/Onion_Rime_Files><br>
+>（注音、雙拼、拼音、形碼、行列30）
+> + 流星追月 - <https://github.com/zhuangzhemin/rime><br>
+> （小鹤双拼为主）
+> + 星空键道6 - <https://github.com/xkinput/Rime_JD><br>
+>（中文输入法方案）
+> + iDvel - <https://github.com/iDvel/rime-ice><br>
+>（全拼方案、简体）
+
+> 码表
+>
+> + 酥梨小鹤 - <https://github.com/zodensu/FlyPY-zodensu>
+
+> lua脚本
+>
+> + hchunhui/librime-lua - <https://github.com/hchunhui/librime-lua>
+> + shewer/librime-lua-script - <https://github.com/shewer/librime-lua-script><br>
+>（利用 librime-lua 擴展 rime 輸入法的集成模組）

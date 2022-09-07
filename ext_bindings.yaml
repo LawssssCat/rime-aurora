@@ -1,0 +1,146 @@
+# 
+# key_binder: 下設bindings: 設置功能性快捷鍵
+#
+# 配置说明：https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E5%85%AB%E5%85%B6%E5%AE%83
+#
+# 1. 每一條binding包含：when作用範圍、accept實際所按之鍵，以及期望的操作
+# 2. 操作可爲以下任意一個：send輸出按鍵、toggle切換開關、send_sequence輸出一串按鍵、set_option開某多選開關、unset_option關某多選開關、select選候選字
+# 
+# accept和send可用字段除A-Za-z0-9外，還包含以下鍵板上實際有的鍵：
+# - BackSpace	退格
+# - Tab	水平定位符
+# - Linefeed	换行
+# - Clear	清除
+# - Return	回車
+# - Pause	暫停
+# - Sys_Req	印屏
+# - Escape	退出
+# - Delete	刪除
+# - Home	原位
+# - Left	左箭頭
+# - Up	上箭頭
+# - Right	右箭頭
+# - Down	下箭頭
+# - Prior、Page_Up	上翻
+# - Next、Page_Down	下翻
+# - End	末位
+# - Begin	始位
+# - Shift_L	左Shift
+# - Shift_R	右Shift
+# - Control_L	左Ctrl
+# - Control_R	右Ctrl
+# - Meta_L	左Meta
+# - Meta_R	右Meta
+# - Alt_L	左Alt
+# - Alt_R	右Alt
+# - Super_L	左Super
+# - Super_R	右Super
+# - Hyper_L	左Hyper
+# - Hyper_R	右Hyper
+# - Caps_Lock	大寫鎖
+# - Shift_Lock	上檔鎖
+# - Scroll_Lock	滾動鎖
+# - Num_Lock	小鍵板鎖
+# - Select	選定
+# - Print	列印
+# - Execute	執行
+# - Insert	插入
+# - Undo	還原
+# - Redo	重做
+# - Menu	菜單
+# - Find	蒐尋
+# - Cancel	取消
+# - Help	幫助
+# - Break	中斷
+# - space
+# - exclam	!
+# - quotedbl	"
+# - numbersign	#
+# - dollar	$
+# - percent	%
+# - ampersand	&
+# - apostrophe	'
+# - parenleft	(
+# - parenright	)
+# - asterisk	*
+# - plus	+
+# - comma	,
+# - minus	-
+# - period	.
+# - slash	/
+# - colon	:
+# - semicolon	;
+# - less	<
+# - equal	=
+# - greater	>
+# - question	?
+# - at	@
+# - bracketleft	[
+# - backslash	
+# - bracketright	]
+# - asciicircum	^
+# - underscore	_
+# - grave	`
+# - braceleft	{
+# - bar	|
+# - braceright	}
+# - asciitilde	~
+# - KP_Space	小鍵板空格
+# - KP_Tab	小鍵板水平定位符
+# - KP_Enter	小鍵板回車
+# - KP_Delete	小鍵板刪除
+# - KP_Home	小鍵板原位
+# - KP_Left	小鍵板左箭頭
+# - KP_Up	小鍵板上箭頭
+# - KP_Right	小鍵板右箭頭
+# - KP_Down	小鍵板下箭頭
+# - KP_Prior、KP_Page_Up	小鍵板上翻
+# - KP_Next、KP_Page_Down	小鍵板下翻
+# - KP_End	小鍵板末位
+# - KP_Begin	小鍵板始位
+# - KP_Insert	小鍵板插入
+# - KP_Equal	小鍵板等於
+# - KP_Multiply	小鍵板乘號
+# - KP_Add	小鍵板加號
+# - KP_Subtract	小鍵板減號
+# - KP_Divide	小鍵板除號
+# - KP_Decimal	小鍵板小數點
+# - KP_0	小鍵板0
+# - KP_1	小鍵板1
+# - KP_2	小鍵板2
+# - KP_3	小鍵板3
+# - KP_4	小鍵板4
+# - KP_5	小鍵板5
+# - KP_6	小鍵板6
+# - KP_7	小鍵板7
+# - KP_8	小鍵板8
+# - KP_9	小鍵板9
+#
+# when含义：
+# - paging	翻䈎用
+# - has_menu	操作候選項用
+# - composing	操作輸入碼用
+# - always	全域
+#
+# editor用以訂製操作鍵〔不支持import_preset:〕，鍵板鍵名同key_binder/bindings中的accept和send，效果定義如下：
+# - confirm	上屏候選項
+# - commit_comment	上屏候選項備注
+# - commit_raw_input	上屏原始輸入
+# - commit_script_text	上屏變換後輸入
+# - commit_composition	語句流單字上屏
+# - revert	撤消上次輸入
+# - back	按字符回退
+# - back_syllable	按音節回退
+# - delete_candidate	刪除候選項
+# - delete	向後刪除
+# - cancel	取消輸入
+# - noop	空
+#
+key_binder:
+  bindings:
+    - {when: has_menu, accept: "Shift+Up", send: Page_Up} # 翻页时，shift+↑ 上一页
+    - {when: has_menu, accept: "Shift+Down", send: Page_Down} # 翻页时，shift+↓ 下一页
+
+editor:
+  bindings:
+    "Shift+Return": commit_comment # shift+回车 输出comment内容

@@ -43,7 +43,7 @@ engine:
     - punct_translator
   filters:
     - uniquifier
-    - lua_filter@easy_en_enhance_filter
+    # - lua_filter@easy_en_enhance_filter
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA

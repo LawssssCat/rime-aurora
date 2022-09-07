@@ -14,10 +14,10 @@ speller:
 
     - derive/^n/l/                     # n => l
     - derive/^l/n/                     # l => n
-    - derive/^m/n/                     # m => n
-    - derive/^m/l/                     # m => l
-    - derive/^l/m/                     # l => m
-    - derive/^n/m/                     # n => m
+    # - derive/^m/n/                     # m => n
+    # - derive/^m/l/                     # m => l
+    # - derive/^l/m/                     # l => m
+    # - derive/^n/m/                     # n => m
 
     # 這兩組一般是單向的
     # - derive/^r/l/                     # r => l

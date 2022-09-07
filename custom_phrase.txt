@@ -4,7 +4,9 @@
 词汇	ch	999
 
 不	bu	999
-朙月
+朙月	my
+abcdefghijklnmopqrstuvwxyz	abc
+ABCDEFGHIJKLNMOPQRSTUVWXYZ	ABC
 
 中州韻輸入法引擎	rime	2
 又双叒叕	yyy
