@@ -72,9 +72,9 @@ engine:
     - uniquifier
 
 speller:
-  # !@#$ 声调
-  # ,./ 符号
-  alphabet: zyxwvutsrqponmlkjihgfedcba,./&*() # 定义 speller 可以处理的字母
+  # &*() 声调
+  # _,./ 符号
+  alphabet: zyxwvutsrqponmlkjihgfedcba_,./&*() # 定义 speller 可以处理的字母
   initials: zyxwvutsrqponmlkjihgfedcba # 定义 speller 接收处理的编码的头字母
   delimiter: " '"
   algebra: # 拼写的运算规则，运算的拼写结果框入prism中

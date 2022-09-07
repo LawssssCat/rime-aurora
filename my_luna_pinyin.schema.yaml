@@ -133,8 +133,8 @@ engine:
 speller:
   # alphabet: zyxwvutsrqponmlkjihgfedcba
   # alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA # 英文
-  # ,./ 符号
-  alphabet: zyxwvutsrqponmlkjihgfedcba,./ # 定义 speller 可以处理的字母
+  # _,./ 符号
+  alphabet: zyxwvutsrqponmlkjihgfedcba_,./ # 定义 speller 可以处理的字母
   initials: zyxwvutsrqponmlkjihgfedcba # 定义 speller 接收处理的编码的头字母
   delimiter: " '"
   algebra: # 【朙月拼音】模糊音定製模板 来源：https://gist.github.com/lotem/2320943
