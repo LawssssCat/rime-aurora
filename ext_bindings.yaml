@@ -140,6 +140,10 @@ key_binder:
   bindings:
     - {when: has_menu, accept: "Shift+Up", send: Page_Up} # 翻页时，shift+↑ 上一页
     - {when: has_menu, accept: "Shift+Down", send: Page_Down} # 翻页时，shift+↓ 下一页
+    - {when: has_menu, accept: "Shift+comma", send: Page_Up } # “shift+,” 上页
+    - {when: has_menu, accept: "Shift+period", send: Page_Down } # "shift+." 下页
+    - {when: has_menu, accept: "comma", send: comma } # , 视为输入，而非快捷键
+    - {when: has_menu, accept: "period", send: period } # . 视为输入，而非快捷键
 
 editor:
   bindings:
