@@ -174,3 +174,12 @@ npm run sort
 > + hchunhui/librime-lua - <https://github.com/hchunhui/librime-lua>
 > + shewer/librime-lua-script - <https://github.com/shewer/librime-lua-script><br>
 >（利用 librime-lua 擴展 rime 輸入法的集成模組）
+
+> 已知问题：
+>
+> - [ ] 2022年09月07日<br>
+> 输入无限制/大量无规则输入导致卡顿<br>
+> <https://github.com/rime/weasel/issues/733>
+> - [ ] 2022年09月07日<br>
+> comment数量过多导致闪退<br>
+> <https://github.com/rime/home/issues/1129>
