@@ -94,7 +94,6 @@ switches:
 
 engine:
   processors: # 一、這批組件處理各類 ●按鍵 消息
-    # - lua_processor@select_character_processor # 以词定字
     - ascii_composer #  處理西文模式及中西文切換
     - recognizer     #  與 matcher 搭配，處理符合特定規則的輸入碼，如網址、反查●等
     - key_binder     #  在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁鍵
@@ -114,7 +113,6 @@ engine:
     - fallback_segmentor   # ※ 標識_其他未標識段落
   translators: # 三、這批組件翻譯特定類型的編碼段爲一組候選文字
     # - echo_translator # ※ 沒有其他候選字時，回顯輸入碼〔輸入碼可以Shift+Enter上屛〕
-    # - lua_translator@email_urlw_translator
     - lua_translator@time_translator    # 时间
     - table_translator@easy_en          # 英文
     - table_translator@easy_en_prev
@@ -127,7 +125,6 @@ engine:
     - simplifier@kemoji_suggestion    # 颜表情
     - simplifier@symbol_suggestion    # 符号
     - simplifier@back_mark            # 後方標註【放在最后，做提示转换】
-    # - lua_filter@single_char_filter              # 候選項重排序，使單字優先
     - reverse_lookup_filter@e_reverse_lookup
     #############################################################
     - simplifier                      # ※ 繁簡轉換
