@@ -72,7 +72,9 @@ engine:
     - uniquifier
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcba!@#$ # 定义 speller 可以处理的字母
+  # !@#$ 声调
+  # ,./ 符号
+  alphabet: zyxwvutsrqponmlkjihgfedcba!@#$,./ # 定义 speller 可以处理的字母
   initials: zyxwvutsrqponmlkjihgfedcba # 定义 speller 接收处理的编码的头字母
   delimiter: " '"
   algebra: # 拼写的运算规则，运算的拼写结果框入prism中
@@ -251,8 +253,8 @@ punctuator:
 key_binder:
   import_preset: default
   bindings:
-    - { when: has_menu, accept: minus, send: minus }  # tone 1
-    - { when: paging, accept: minus, send: Page_Up }
+    # - { when: has_menu, accept: minus, send: minus }  # tone 1
+    # - { when: paging, accept: minus, send: Page_Up }
   __patch:
     bindings/+:
       __include: ext_bindings:/key_binder/bindings
