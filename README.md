@@ -7,6 +7,36 @@
 1. rime方案配置文件（如：`*.yaml`， `/opencc`， `/lua`， `/font`）
 2. “用户资料同步”生成文件（如，`/sync`）
 
+```
+/
+├─ /sync                提供（个人）词典快照
+├─ /font                提供字体（weasel.custom.yaml的style/font_face指定字体）
+├─ /build               ⭐️最终配置：通过“重新部署”整合所有文件到此目录
+│                         （包括：用户目录、程序目录）
+│
+├─ /opencc              ⚙提供字符转换、comment功能
+│  ├─ *.txt                字典文件，由`npm run sort`生成，被*.json引用
+│  ├─ *.yml                字典源
+│  └─ *.json               字典配置
+├─ /lua                 ⚙提供功能脚本（运行中、lua）
+│  └─ *.lua                功能脚本，被rime.lua引用
+├─ /tools               ⚙提供功能脚本（运行前、js）
+│  └─ *.lua                功能脚本，靠nodejs运行。实现如opencc字典去重功能
+├─ /.github
+│
+├─ *.dict.yaml          📄码表
+├─ *.schema.yaml        💠方案配置文件（✨核心、入口） 
+├─ *.custom.yaml        🍮补丁：内容会覆盖对应的*.schema.yaml文件
+├─ ext_*.yaml           🍮补丁：方案会通过`__include`引用其中配置（方便配置管理）
+├─ *.gram               语法模型，在schema中用grammar引用
+├─ rime.lua             入口文件，定义schema引用的lua脚本对应关系
+├─ custom_phrase.txt    
+├─ .package.json
+├─ .gitignore
+├─ README.md
+└─ LICENSE              MIT
+```
+
 ## 内容说明
 
 基于“地球拼音”修改，添加配色、英文、符号&表情、一些lua脚本。
@@ -76,9 +106,7 @@
 
 ### 待输入（composing）
 
-1. `` ` `` 开启五笔反查模式
-
-    todo 图片
+1. `` ` ``（键盘左上角） 开启五笔反查模式（横竖撇捺折 => 一丨丿丶乙 => hspnz）
 
 1. `/` 开启纯英文模式 - [#内容说明](#内容说明)
 
