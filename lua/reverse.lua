@@ -4,6 +4,8 @@ reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
 本例说明了环境的用法。
 --]]
 
+require('tools/string')
+
 -- 帮助函数（可跳过）
 local function xform_py(inp)
    if inp == "" then return "" end
@@ -37,12 +39,32 @@ local function xform_py(inp)
    inp = string.gsub(inp, "([nljqxy])v", "%1ü")
    inp = string.gsub(inp, "eh[0-5]?", "ê")
    inp = string.gsub(inp, "([a-z]+)[0-5]", "%1")
-   return "(" .. inp .. ")"
+   return inp
+end
+
+-- 去除已存在于comment中的py
+local function remove_duplicate_py(comment, py) 
+   if py == "" then return "" end
+   local arr = string.split(py, " ")
+   local result = {}
+   for i, v in ipairs(arr) do
+      if(string.find(comment, v) == nil) then
+         result[#result+1] = v
+      end
+   end
+   if #result > 0 then 
+      return "(" .. string.join(result, " ") .. ")"
+   else
+      return ""
+   end
 end
 
 local function reverse_lookup_filter(input, pydb)
    for cand in input:iter() do
-      cand:get_genuine().comment = cand.comment .. " " .. xform_py(pydb:lookup(cand.text))
+      local py = pydb:lookup(cand.text)
+      local comment_raw = cand.comment
+      local comment_new = comment_raw .. " " .. remove_duplicate_py(comment_raw, xform_py(py))
+      cand:get_genuine().comment = comment_new
       yield(cand)
    end
 end
