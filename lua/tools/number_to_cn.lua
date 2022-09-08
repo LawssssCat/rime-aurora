@@ -108,5 +108,5 @@ print(convert_arab_to_chinese(999999999)) -- max
 -- print(convert_arab_to_chinese(9223372036854775807))
 
 return {
-  convert_arab_to_chinese = convert_arab_to_chinese
+    convert_arab_to_chinese = convert_arab_to_chinese
 }

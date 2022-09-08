@@ -13,7 +13,7 @@
 
 --]]
 
-local tool = require("tool")
+local tool = require("tools/number_to_cn")
 
 local conf = {
   number_en_st = {"0st", "1nd", "2rd", "3th", "4th", "5th", "6th", "7th", "8th", "9th"},
