@@ -35,7 +35,7 @@
   1. 《加入 Lua 脚本扩展支持 》 - https://github.com/rime/librime/issues/248
   2. 介绍 - https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E4%B8%83lua
   3. 《issue：Lua 接口文档请求》 - https://github.com/hchunhui/librime-lua/issues/186
-
+  4. 《TsinamLeung 整理的 api》 - https://github.com/TsinamLeung/librime-lua/wiki/API
 --]]
 
 -- ==============================================================================

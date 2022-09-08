@@ -289,4 +289,5 @@ grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
 __patch:
-  - symbols:/patch
+  - symbols:/patch        # 符号
+  - symbos_extends:/patch # 符号扩展

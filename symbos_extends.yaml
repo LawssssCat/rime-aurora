@@ -1,0 +1,19 @@
+patch:
+  ##########################################################
+  # 符号提示码表（需要在符号解释之前）
+  engine/filters/@after 0: simplifier@symbol_suggestion # 符号
+  symbol_suggestion:
+    opencc_config: symbol.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
+    tips: all # 字符转换范围
+  ##########################################################
+  # 符号含义标注
+  engine/filters/@after 1: simplifier@back_mark # 後方標註
+  back_mark:
+    opencc_config: back_mark_ocm.json
+    show_in_comment: true
+    tags: [ abc ]
+    tips: char
+    comment_format:
+      - xform/^/  /
+      - xform/@/ /
+  
