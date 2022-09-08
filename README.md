@@ -175,7 +175,8 @@ npm run sort
 
 > lua脚本
 >
-> + hchunhui/librime-lua - <https://github.com/hchunhui/librime-lua>
+> + hchunhui/librime-lua - <https://github.com/hchunhui/librime-lua><br>
+> （运行lua脚本插件）
 > + shewer/librime-lua-script - <https://github.com/shewer/librime-lua-script><br>
 >（利用 librime-lua 擴展 rime 輸入法的集成模組）
 

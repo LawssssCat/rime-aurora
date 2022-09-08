@@ -2,7 +2,7 @@
 
 调用方法：
   在配方文件中作如下修改：
-  ```lua
+  ```yaml
     engine:
       ...
       translators:
@@ -17,7 +17,19 @@
         ...
   -- ```
   其中各 `lua_function` 为在本文件所定义变量名。
+  ```lua
+    lua_function = 调用函数
+  ```
   另外：lua_translator@lua_function@config 的写法中，第三个参数为方案中的块名
+
+调用方法初始化：
+  修改本文件中 `lua_function` 所定义变量名的类型，从方法改为对象
+  ```lua
+    lua_function = {
+      init=初始化函数
+      func=调用函数
+    }
+  ```
 
 相关文档：
   1. 《加入 Lua 脚本扩展支持 》 - https://github.com/rime/librime/issues/248
@@ -91,12 +103,22 @@ charset_filter = charset.filter
 charset_comment_filter = charset.comment_filter
 
 -- single_char_filter: 候选项重排序，使单字优先
--- 详见 `lua/single_char.lua`
--- https://github.com/hchunhui/librime-lua/blob/master/sample/lua/single_char.lua
+-- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/single_char.lua
+
+-- reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
+-- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/reverse.lua
+
+-- use wildcard to search code
+-- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/expand_translator.lua
 
 -- ==============================================================================
 -- III. processors:
 -- ==============================================================================
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
+-- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/switch.lua
 
 -- 利用 librime-lua 擴展 rime 輸入法的集成模組
 -- https://github.com/shewer/librime-lua-script
