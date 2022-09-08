@@ -109,11 +109,6 @@
 > **注意⚠️**<br>
 > 如果有“用户词典快照🎦”需要同步，请先看“步骤二”
 
-> **关于配置**<br>
-> 配置入口为 `my_luna_pinyin.custom.yaml` 文件、`my_terra_pinyin.schema.yaml`文件<br>
-> 配置文件具体作用，请参考我的笔记：<http://t.csdn.cn/grD5H>
-<!-- https://blog.csdn.net/LawssssCat/article/details/103482619 -->
-
 ```yml
 # 不同系统中，“用户文件夹📁”的一般路径
 %APPDATA%\Rime  ( Windows 小狼毫 )
@@ -152,11 +147,16 @@ npm run sort
 
 ### 相关资料
 
+> 使用指引
+>
+> + 官方指引 - <https://github.com/rime/home/wiki/UserGuide>
+> + 我的笔记 - <http://t.csdn.cn/grD5H>
+> <!-- https://blog.csdn.net/LawssssCat/article/details/103482619 -->
+
 > 配置信息
 > 
 > + 《Schema.yaml 詳解》:+1: -  <https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md>
 > + 《yaml 追加规则》:+1: - <https://github.com/rime/home/wiki/Configuration>
-> + 我的笔记 - <https://lawsssscat.blog.csdn.net/article/details/103482619>
 
 > 参考方案
 >
@@ -183,6 +183,7 @@ npm run sort
 >
 > - [ ] 2022年09月07日<br>
 > 输入无限制/大量无规则输入导致卡顿<br>
+> <https://github.com/rime/librime/issues/510><br>
 > <https://github.com/rime/weasel/issues/733>
 > - [ ] 2022年09月07日<br>
 > comment数量过多导致闪退<br>

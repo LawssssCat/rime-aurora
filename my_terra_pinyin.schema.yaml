@@ -67,9 +67,10 @@ engine:
     - reverse_lookup_translator
     - script_translator
   filters:
-    - reverse_lookup_filter@e_reverse_lookup
     - simplifier
     - uniquifier
+    - reverse_lookup_filter@e_reverse_lookup # 显示英文解释
+    - lua_filter@charset_comment_filter      # 显示CJK字符集类型
 
 speller:
   # &*() 声调
