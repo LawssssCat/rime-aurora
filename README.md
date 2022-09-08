@@ -30,6 +30,10 @@
 ├─ ext_*.yaml           🍮补丁：方案会通过`__include`引用其中配置（方便配置管理）
 ├─ *.gram               语法模型，在schema中用grammar引用
 ├─ rime.lua             入口文件，定义schema引用的lua脚本对应关系
+├─ default.custom.yaml  设置输入法菜单（menu）
+├─ weasel.custom.yaml   设置输入法外观（style）
+├─ user.yaml            记录当前输入法运行信息（如：部署编号、用户选择）（在每次部署后自动生成）
+├─ installation.yaml    记录当前输入法安装信息（如：版本、安装时间）
 ├─ custom_phrase.txt    
 ├─ .package.json
 ├─ .gitignore
@@ -68,7 +72,9 @@
 
     ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif)
 
-5. 网站提示
+5. CJK字符集提示（F4选择开启关闭）
+
+1.  网站提示
 
     todo 
 

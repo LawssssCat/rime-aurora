@@ -39,6 +39,9 @@ switches:
     states: [ 漢字, 汉字 ]
   - name: ascii_punct
     states: [ 。，, ．， ]
+  - name: option_charset_comment_filter # 开启后：你好 |CJK| nǐ hǎo
+    reset: 1
+    states: ["关 |字符集| tí shì（提示）", "开 |字符集| tí shì（提示）"]
 
 engine:
   processors:
@@ -70,7 +73,7 @@ engine:
     - simplifier
     - uniquifier
     - reverse_lookup_filter@e_reverse_lookup # 显示英文解释
-    - lua_filter@charset_comment_filter      # 显示CJK字符集类型
+    - lua_filter@charset_comment_filter # 显示CJK字符集类型
 
 speller:
   # &*() 声调

@@ -84,13 +84,9 @@ switches:
   - name: back_mark                 # 7
     reset: 1
     states: [ "关 （标记含义）", "开 （标记含义）" ]
-  # - options: [ utf8, big5, gbk, gb2312]
-  #   reset: 0
-  #   states:
-  #     - UTF-8
-  #     - BIG5
-  #     - GBK
-  #     - GB2312 #GB2312有Bug
+  - name: option_charset_comment_filter # 开启后：你好 |CJK| nǐ hǎo
+    reset: 1
+    states: ["关 |字符集| ti shi（提示）", "开 |字符集| ti shi（提示）"]
 
 engine:
   processors: # 一、這批組件處理各類 ●按鍵 消息

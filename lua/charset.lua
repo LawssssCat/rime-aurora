@@ -62,22 +62,26 @@ end
 --[[
 为候选项加上其所属字符集的注释：
 --]]
-local function charset_comment_filter(input)
+local function charset_comment_filter(input, env)
+  local option = env.engine.context:get_option("option_charset_comment_filter") -- 开关
   -- 使用 `iter()` 遍历所有输入候选项
   for cand in input:iter() do
-    -- 判断当前候选内容 `cand.text` 中文字属哪个字符集
-    -- s key
-    -- r value
-    for s, r in pairs(charset) do
-      if (exists(is_charset(s), cand.text)) then
-      --[[ 修改候选的注释 `cand.comment`
-        因复杂类型候选项的注释不能被直接修改，
-        因此使用 `get_genuine()` 得到其对应真实的候选项
-      --]]
-        cand:get_genuine().comment = cand.comment .. " |" .. s .. "|"
-        break
+    if(option)
+    then
+      -- 判断当前候选内容 `cand.text` 中文字属哪个字符集
+      -- s key
+      -- r value
+      for s, r in pairs(charset) do
+        if (exists(is_charset(s), cand.text)) then
+        --[[ 修改候选的注释 `cand.comment`
+          因复杂类型候选项的注释不能被直接修改，
+          因此使用 `get_genuine()` 得到其对应真实的候选项
+        --]]
+          cand:get_genuine().comment = "|" .. s .. "| " .. cand.comment
+          break
+        end
       end
-    end
+    end -- option
     -- 在结果中对应产生一个带注释的候选
     yield(cand)
   end
