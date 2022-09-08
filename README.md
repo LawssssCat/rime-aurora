@@ -72,6 +72,10 @@
 
     todo 
 
+6. 词联想
+
+    todo https://github.com/shewer/librime-lua-script
+
 ## 方案说明
 
 编写了两个方案：（个人）地球拼音、（个人）朙月拼音

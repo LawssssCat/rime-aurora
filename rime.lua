@@ -122,4 +122,4 @@ charset_comment_filter = charset.comment_filter
 
 -- 利用 librime-lua 擴展 rime 輸入法的集成模組
 -- https://github.com/shewer/librime-lua-script
--- init_processor= require('init_processor')
+-- init_processor = require('init_processor')
