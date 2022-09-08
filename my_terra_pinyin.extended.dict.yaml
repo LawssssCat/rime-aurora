@@ -27,6 +27,7 @@ import_tables:
   - luna_pinyin.shopping            # 购物
   - luna_pinyin.user                # 实用词汇
   - luna_pinyin.website             # 网站
+  - luna_pinyin.stack               # 堆叠词（如：焱）
   - phrases.cht                     # 超齊字典檔
 ...
 ##### 以下可自行添加詞句 #####
