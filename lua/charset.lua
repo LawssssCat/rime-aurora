@@ -77,7 +77,10 @@ local function charset_comment_filter(input, env)
           因复杂类型候选项的注释不能被直接修改，
           因此使用 `get_genuine()` 得到其对应真实的候选项
         --]]
-          cand:get_genuine().comment = "|" .. s .. "| " .. cand.comment
+          local str_cjk = "|" .. s .. "|"
+          if(string.find(cand.comment, str_cjk) == nil) then
+            cand:get_genuine().comment = str_cjk .. " " .. cand.comment
+          end
           break
         end
       end
