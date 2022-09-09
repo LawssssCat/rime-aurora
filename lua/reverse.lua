@@ -4,7 +4,7 @@ reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
 本例说明了环境的用法。
 --]]
 
-require('tools/string')
+local split = require('tools/split')
 
 -- 帮助函数（可跳过）
 local function xform_py(inp)
@@ -45,15 +45,14 @@ end
 -- 去除已存在于comment中的py
 local function remove_duplicate_py(comment, py) 
    if py == "" then return "" end
-   local arr = string.split(py, " ")
    local result = {}
-   for i, v in ipairs(arr) do
+   for v in split.each(py, " ") do -- "ā á ǎ à a" => [ā, á, ǎ, à, a]
       if(string.find(comment, v) == nil) then
          result[#result+1] = v
       end
    end
    if #result > 0 then 
-      return "(" .. string.join(result, " ") .. ")"
+      return "(" .. table.concat(result, " ") .. ")"
    else
       return ""
    end
