@@ -71,11 +71,12 @@ engine:
     - reverse_lookup_translator
     - script_translator
   filters:
+    - lua_filter@charset_comment_filter # 显示CJK字符集类型
+    - lua_filter@py_comment_filter # 显示更多拼音
+    ######################################################### 需要在simplifiter（翻转简）前
     - simplifier
     - uniquifier
     - reverse_lookup_filter@e_reverse_lookup # 显示英文解释
-    - lua_filter@charset_comment_filter # 显示CJK字符集类型
-    - lua_filter@reverse_lookup_filter
 
 speller:
   # &*() 声调

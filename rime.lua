@@ -108,7 +108,7 @@ charset_comment_filter = charset.comment_filter
 -- reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/reverse.lua
 -- 详见 `lua/reverse.lua`
-reverse_lookup_filter = require("reverse")
+py_comment_filter = require("reverse")
 
 -- use wildcard to search code
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/expand_translator.lua
