@@ -105,7 +105,7 @@ charset_comment_filter = charset.comment_filter
 -- single_char_filter: 候选项重排序，使单字优先
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/single_char.lua
 
--- reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
+-- 依地球拼音为候选项加上带调拼音的注释
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/reverse.lua
 -- 详见 `lua/reverse.lua`
 py_comment_filter = require("reverse")
@@ -118,6 +118,9 @@ py_comment_filter = require("reverse")
 -- ==============================================================================
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-- 限制输入编码长度（过长会导致卡顿、闪退、死机）
+code_length_limit_processor = require("code")
 
 -- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/switch.lua

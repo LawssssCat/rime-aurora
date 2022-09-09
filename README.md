@@ -219,7 +219,9 @@ npm run sort
 > - [ ] 2022年09月07日<br>
 > 输入无限制/大量无规则输入导致卡顿<br>
 > <https://github.com/rime/librime/issues/510><br>
-> <https://github.com/rime/weasel/issues/733>
+> <https://github.com/rime/weasel/issues/733><br>
+>  2022年09月09日<br>
+>  添加加输入限制lua脚本
 > - [ ] 2022年09月07日<br>
 > comment数量过多导致闪退<br>
 > <https://github.com/rime/home/issues/1129>

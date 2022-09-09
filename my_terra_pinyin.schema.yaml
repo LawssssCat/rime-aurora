@@ -294,3 +294,4 @@ grammar: # 语法模型
 __patch:
   - symbols:/patch        # 符号
   - symbos_extends:/patch # 符号扩展
+  - code:/patch           # 输入编码处理
