@@ -167,7 +167,6 @@ local function time_translator(input, seg, env)
       local comment = getTimeStr(v)
       yield(Candidate("week", seg.start, seg._end, comment, tip))
     end
-    local week = getWeek();
   end
 end
 
