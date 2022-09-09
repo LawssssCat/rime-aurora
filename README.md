@@ -179,6 +179,16 @@ npm install
 npm run sort
 ```
 
+### 查看日志
+
+<https://github.com/hchunhui/librime-lua/issues/129>
+
+```bash
+npm run log
+# 或者
+bash tools/tailLog.sh
+```
+
 ### 相关资料
 
 > 使用指引
