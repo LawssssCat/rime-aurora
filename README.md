@@ -64,6 +64,8 @@
 
     ![输入法英文预览（prefix）](./.github/assets/preview-easy_en-perfix-hit.png)
 
+    todo 优化 https://github.com/shewer/librime-lua-script/issues/5
+
 3. “`//`” 前缀：符号 & 表情 & 颜表情
 
     todo 
@@ -81,6 +83,10 @@
 6. 词联想
 
     todo https://github.com/shewer/librime-lua-script
+
+    https://github.com/rime/librime/issues/65
+
+    https://github.com/rime/librime/issues/568
 
 ## 方案说明
 
@@ -221,8 +227,16 @@ bash tools/tailLog.sh
 >
 > + hchunhui/librime-lua - <https://github.com/hchunhui/librime-lua><br>
 > （运行lua脚本插件）
+> + ~~shewer/librime-lua-tools - <https://github.com/shewer/librime-lua-tools>~~<br>
+> （工具脚本，己轉移至 (https://github.com/shewer/librime-lua-script) tools/）
 > + shewer/librime-lua-script - <https://github.com/shewer/librime-lua-script><br>
 >（利用 librime-lua 擴展 rime 輸入法的集成模組）
+> + shewer/rime-english - <https://github.com/shewer/rime-english><br>
+> （Rime English輸入方案）
+
+> 词源
+> + <https://github.com/skywind3000/ECDICT><br>
+> 英文
 
 > 已知问题：
 >
