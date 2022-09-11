@@ -18,9 +18,9 @@ sort: by_weight
 import_tables:
   - easy_en_a # 基础词汇
   - easy_en_b # 基础词汇
-  - easy_en_comment
   # - easy_en_super_one
   # - easy_en_super_two
   - easy_en_super2_one
   - easy_en_super2_two
+  # - easy_en_comment
 ...
