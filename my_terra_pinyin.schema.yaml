@@ -40,9 +40,6 @@ switches:
     states: [ 漢字, 汉字 ]
   - name: ascii_punct
     states: [ 。，, ．， ]
-  - name: option_charset_comment_filter # 开启后：你好 |CJK| nǐ hǎo
-    reset: 1
-    states: ["关 |字符集| tí shì（提示）", "开 |字符集| tí shì（提示）"]
 
 engine:
   processors:
@@ -71,7 +68,6 @@ engine:
     - reverse_lookup_translator
     - script_translator
   filters:
-    - lua_filter@charset_comment_filter # 显示CJK字符集类型
     - lua_filter@py_comment_filter # 显示更多拼音
     ######################################################### 需要在simplifiter（翻转简）前
     - simplifier
@@ -292,6 +288,7 @@ grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
 __patch:
+  - charset:/patch        # 字符集
   - symbols:/patch        # 符号
   - symbos_extends:/patch # 符号扩展
   - code:/patch           # 输入编码处理

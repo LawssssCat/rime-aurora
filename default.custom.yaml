@@ -13,3 +13,4 @@ patch:
   "switcher/fold_options": false
   "switcher/save_options/+":
     - emoji_suggestion
+    - option_charset_comment_filter
