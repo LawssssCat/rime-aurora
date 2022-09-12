@@ -176,6 +176,19 @@
 
 ![同步词典快照](./.github/assets/dict-merge.png)
 
+### 步骤三：**更新 librime-lua**
+
+[librime-lua 插件](https://github.com/hchunhui/librime-lua)提供了输入法程序运行时执行 lua 脚本功能。
+
+其内容[已经被 librime 添加进项目编译](https://github.com/rime/librime/blob/master/.github/workflows/release-ci.yml#L21)，会随著输入法版本发布，[不需再额外安装](https://github.com/hchunhui/librime-lua/issues/41)。
+
+但由于代码需要测试，官网下载最新版的输入法版本所包含的 [librime-lua 插件版本会偏旧](https://github.com/hchunhui/librime-lua/issues/43)，本方案许多功能无法实现。因此体验本方案完整功能需要[更新 librime-lua 插件](https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242881504)。
+
+>**插件更新方法**
+>
+>要手动将 weasel 安装目录下的 rime.dll 手工替换为 github action 里面最新的 artifact。<br>
+>例如现在最新的build在 https://github.com/hchunhui/librime-lua/actions/runs/3026493926 ，点击这个页面的 artifact 按钮下载。下载以后打开 rime-xxxx-Windows.7z 解压其中的 `dist/lib/rime.dll` 即可。替换时如遇到文件被占用，需先点击 weasel “停止算法服务”，替换后再打开。
+
 ## 其他
 
 ### opencc 词汇去重
@@ -237,6 +250,10 @@ bash tools/tailLog.sh
 > 词源
 > + <https://github.com/skywind3000/ECDICT><br>
 > 英文
+
+> 插件
+> + <https://github.com/hchunhui/librime-lua>
+> + ~~<https://github.com/hchunhui/librime-cloud>~~
 
 > 已知问题：
 >
