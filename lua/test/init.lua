@@ -13,7 +13,9 @@
 --]]
 lu = require("tools/luaunit")
 
-testaa = require("test/test_string")
+test_string = require("test/test_string")
+test_debug = require("test/test_debug")
+test_logger = require("test/test_logger")
 
 -- os.exit( lu.LuaUnit.run() )
 runner = lu.LuaUnit.new()
