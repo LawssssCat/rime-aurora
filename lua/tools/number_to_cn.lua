@@ -29,7 +29,7 @@ https://blog.csdn.net/lp12345678910/article/details/121396243
 --]]
 local numerical_units = {"", "十", "百", "千", "万", "十", "百", "千", "亿","十", "百", "千", "兆", "十", "百", "千"}
 local numerical_names = {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"}
-function  convert_arab_to_chinese(number)
+local function  convert_arab_to_chinese(number)
     local n_number = tonumber(number)
     assert(n_number, "传入参数非正确number类型！")
 

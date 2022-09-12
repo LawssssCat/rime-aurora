@@ -6,17 +6,17 @@ assert(lu, "请通过 test/init.lua 运行本测试用例")
 local split = require("tools/split")
 local string_helper = require("tools/string_helper")
 
-local TestString = {}
+local M = {}
 
-function TestString:test_split()
+function M:test_split()
   lu.assertEquals(string_helper.split("1 2  3   4    ", "%s+"), {"1","2","3","4",""})
 end
 
-function TestString:test_join()
+function M:test_join()
   lu.assertEquals(string_helper.join({"hello", "world", "!"}, " "), "hello world !")
 end
 
-function TestString:test_utf8len()
+function M:test_utf8len()
   lu.assertEquals(string_helper.len("123"), 3)
   lu.assertEquals(string_helper.len("123你"), 4)
   lu.assertEquals(string_helper.len(" 你好！"), 4)
@@ -24,7 +24,7 @@ function TestString:test_utf8len()
 end
 
 -- 截取
-function TestString:test_slice()
+function M:test_slice()
   lu.assertEquals(string_helper.sub("你好", 1, 2), "你好")
   lu.assertEquals(string_helper.sub("你好", 1, 1), "你")
   lu.assertEquals(string_helper.sub("你好", 2, 2), "好")
@@ -32,7 +32,7 @@ function TestString:test_slice()
 end
 
 -- 匹配
-function TestString:test_match()
+function M:test_match()
   -- 纯数字
   local pattern_01 = "^[%d]+$"
   lu.assertTrue(string.match("123", pattern_01))
@@ -59,4 +59,4 @@ function TestString:test_match()
   lu.assertTrue(not string.match("你123好", pattern_03))
 end
 
-return TestString
+return M
