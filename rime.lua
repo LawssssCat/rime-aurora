@@ -99,7 +99,7 @@ time_translator = require("time_translator")
 -- charset_filter: 滤除含 CJK 扩展汉字的候选项
 -- charset_comment_filter: 为候选项加上其所属字符集的注释
 -- 详见 `lua/charset.lua`
-local charset = require("charset")
+local charset = require("my_charset")
 charset_comment_filter = charset.comment_filter
 
 -- single_char_filter: 候选项重排序，使单字优先
@@ -108,7 +108,7 @@ charset_comment_filter = charset.comment_filter
 -- 依地球拼音为候选项加上带调拼音的注释
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/reverse.lua
 -- 详见 `lua/reverse.lua`
-py_comment_filter = require("reverse")
+py_comment_filter = require("my_reverse")
 
 -- use wildcard to search code
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/expand_translator.lua
@@ -120,7 +120,7 @@ py_comment_filter = require("reverse")
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -- 限制输入编码长度（过长会导致卡顿、闪退、死机）
-code_length_limit_processor = require("code")
+code_length_limit_processor = require("my_code")
 
 -- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/switch.lua

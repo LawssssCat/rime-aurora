@@ -50,7 +50,7 @@ local function charset_comment_filter(input, env)
     local text = cand.text
     local len = utf8.len(cand.text)
     local flag01 = not string.match(text, "^[%w]*$") -- 非纯字母/数字
-    if(option and flag01 and len == 1) -- 只对单字显示编码
+    if(option and flag01 and (len > 0 and len <= 1)) -- 只对单字显示编码
     -- if(option and flag01)
     then
       local m_arr = {}
@@ -58,11 +58,11 @@ local function charset_comment_filter(input, env)
         local c = string_helper.sub(text, i, i)
         local m = get_utf8_code(c)
         if(m) then
-          table.insert(m_arr, c .. "=" .. string.format("0x%x", m.code) .. "(" .. m.name .. ")")
+          table.insert(m_arr, m.name .. "|" .. c .. "=" .. string.format("0x%x", m.code))
         end
       end
       if(#m_arr > 0) then
-        local comment = "|" .. table.concat(m_arr, ", ") .. "| "
+        local comment = "|" .. table.concat(m_arr, "|") .. "| "
         cand:get_genuine().comment = comment .. cand.comment
       end
     end -- option

@@ -220,6 +220,6 @@ grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
 __patch:
-  - charset:/patch        # 字符集
+  - my_charset:/patch        # 字符集
   - symbols:/patch   # 符号
   - symbos_extends:/patch # 符号扩展
