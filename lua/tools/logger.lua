@@ -15,8 +15,6 @@ local MODE_DEBUG_ON = 1
 local MODE_DEBUG_OFF = 0
 MODE_DEBUG = MODE_DEBUG or MODE_DEBUG_ON
 
-local default_func = print
-
 local logger = {} -- return 
 
 -- 调试模式 判断
@@ -46,25 +44,25 @@ local function format(level, info, ...)
 end
 
 function logger.info(...)
-  local func = log and log.info or default_func
+  local func = log and log.info or print
   local msg = format(INFO, debug.getinfo(2), ...)
   func(msg)
 end
 
 function logger.warn(...)
-  local func = log and log.warn or default_func
+  local func = log and log.warn or print
   local msg = format(WARN, debug.getinfo(2), ...)
   func(msg)
 end
 
 function logger.error(...)
-  local func = log and log.error or default_func
+  local func = log and log.error or print
   local msg = format(ERROR, debug.getinfo(2), ...)
   func(msg)
 end
 
 function logger.trace(...)
-  local func = log and log.info or default_func
+  local func = log and log.info or print
   local msg = format(TRACE, debug.getinfo(2), ...)
   msg = msg .. "\n" .. debug.traceback("------------- debug.traceback ---------------", 2)
   func(msg)
