@@ -1,5 +1,5 @@
 var:
-  last_build_time: 1662866101
+  last_build_time: 1662964228
   option:
     ascii_punct: false
     emoji_suggestion: true
@@ -9,5 +9,5 @@ var:
   schema_access_time:
     easy_en: 1662346448
     luna_pinyin: 1661346260
-    my_luna_pinyin: 1662866137
-    my_terra_pinyin: 1662866161
+    my_luna_pinyin: 1662899717
+    my_terra_pinyin: 1662912251

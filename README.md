@@ -194,8 +194,13 @@
 ### opencc 词汇去重
 
 ```bash
-npm install
 npm run sort
+```
+
+### 单元测试
+
+```bash
+npm run test
 ```
 
 ### 查看日志

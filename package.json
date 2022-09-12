@@ -4,7 +4,8 @@
   "description": "本项目作用于[rime 输入法](https://rime.im/)，主要为个人自定义的rime方案配置（如：`*.yaml`， `/opencc`， `/lua`， `/font`），同时包含“用户目录”中自动生成部分文件的备份（如，`/sync`）。",
   "scripts": {
     "sort": "node tools/sort.js",
-    "log": "bash tools/tailLog.sh"
+    "log": "bash tools/tailLog.sh",
+    "test": "cd lua && lua test/init.lua -v && cd .."
   },
   "repository": {
     "type": "git",
