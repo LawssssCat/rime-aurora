@@ -33,7 +33,8 @@ test_string = require("test/test_string")
 test_debug = require("test/test_debug")
 test_debug = mute(test_debug) -- 想看输出，注释之
 test_logger = require("test/test_logger")
-test_logger = mute(test_logger) -- 想看输出，注释之
+-- test_logger = mute(test_logger) -- 想看输出，注释之
+test_inspect = require("test/test_inspect")
 
 -- os.exit( lu.LuaUnit.run() )
 runner = lu.LuaUnit.new()

@@ -2,6 +2,7 @@
   打印日志（日志文件、控制台）
 ]]
 
+local inspect = require("tools/inspect")
 local string_helper = require("tools/string_helper")
 
 local INFO = "info"
@@ -31,7 +32,10 @@ function logger.setDebugOff()
 end
 
 local function format(level, info, ...)
-  local arr = {...}
+  local arr = {}
+  for k,v in pairs({...}) do
+    table.insert(arr, inspect(v))
+  end
   local msg = string_helper.join(arr, ", ")
   local result = pattern
   result = string.gsub(result, "{level}", string.upper(level))
