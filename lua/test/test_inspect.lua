@@ -11,8 +11,12 @@ local inspect = require("tools/inspect")
 local M = {}
 
 function M:test_inspect() 
+  lu.assertEquals(inspect(nil), "nil")
   lu.assertEquals(inspect(1), "1")
   lu.assertEquals(inspect("Hello"), '"Hello"')
+  lu.assertEquals("Hello\nworld", [[Hello
+world]])
+  lu.assertEquals(inspect("Hello\nworld"), '"Hello\\nworld"')
   -- "Array-like" tables are rendered horizontally
   lu.assertEquals(inspect({1,2,3,4}), "{ 1, 2, 3, 4 }")
   -- "Dictionary-like" tables are rendered with one element per line:

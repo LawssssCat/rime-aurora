@@ -4,6 +4,7 @@
 local helper = {}
 
 local split = require("tools/split")
+local inspect = require("tools/inspect")
 
 -- 字符串分割
 function helper.split(str, delimiter)
@@ -12,7 +13,15 @@ end
 
 -- 字符串连接
 function helper.join(arr, delimiter)
-  return table.concat(arr, delimiter)
+  local temp = {}
+  for index, value in pairs(arr) do
+    if(type(value)=="string") then
+      table.insert(temp, value)
+    else
+      table.insert(temp, inspect(value))
+    end
+  end
+  return table.concat(temp, delimiter)
 end
 
 -- utf8长度

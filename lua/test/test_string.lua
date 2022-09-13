@@ -14,6 +14,11 @@ end
 
 function M:test_join()
   lu.assertEquals(string_helper.join({"hello", "world", "!"}, " "), "hello world !")
+  lu.assertEquals(string_helper.join({"hello", "wor\nld", "!"}, " "), [[hello wor
+ld !]])
+  lu.assertEquals(string_helper.join({"hello", {a=1}, "!"}, " "), [[hello {
+  a = 1
+} !]])
 end
 
 function M:test_utf8len()
