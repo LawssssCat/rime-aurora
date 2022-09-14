@@ -4,4 +4,5 @@ patch:
     - name: option_debug_comment_filter # 候选词详细信息
       reset: 1
       states: ["关 |详情|", "开 |详情|"]
-  
+  key_binder/bindings/+:
+    - {when: always, accept: "Control+8", toggle: option_debug_comment_filter}

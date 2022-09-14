@@ -74,7 +74,13 @@
 
     ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif)
 
-5. CJK字符集提示（F4选择开启关闭）
+5. CJK字符集提示（开启关闭：F4选择/快捷键 `Ctrl+7`）
+
+1. 候选词详情提示（开启关闭：F4选择/快捷键 `Ctrl+8`）
+
+    ![输入法调试快捷键预览gif](./.github/assets/preview-debug-preview-compress.gif)
+
+    ![输入法调试快捷键预览](./.github/assets/preview-debug-preview.png)
 
 1.  网站提示
 
