@@ -74,7 +74,13 @@
 
     ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif)
 
-5. CJK字符集提示（F4选择开启关闭）
+5. CJK字符集提示（开启关闭：F4选择/快捷键 `Ctrl+7`）
+
+1. 候选词详情提示（开启关闭：F4选择/快捷键 `Ctrl+8`）
+
+    ![输入法调试快捷键预览gif](./.github/assets/preview-debug-preview-compress.gif)
+
+    ![输入法调试快捷键预览](./.github/assets/preview-debug-preview.png)
 
 1.  网站提示
 
@@ -159,7 +165,7 @@
 
 <div style='clear: both;'></div>
 
-### 步骤二：**同步“用户词典快照🎦”**：（如有要）
+### 步骤二：**同步“用户词典快照🎦”**：（如有需要）
 
 <img src='./.github/assets/dict-opt.png'  align='right'></img>
 
@@ -218,8 +224,7 @@ bash tools/tailLog.sh
 > 使用指引
 >
 > + 官方指引 - <https://github.com/rime/home/wiki/UserGuide>
-> + 我的笔记 - <http://t.csdn.cn/grD5H>
-> <!-- https://blog.csdn.net/LawssssCat/article/details/103482619 -->
+> + 我的笔记 - <https://blog.csdn.net/LawssssCat/article/details/103482619>
 
 > 配置信息
 > 

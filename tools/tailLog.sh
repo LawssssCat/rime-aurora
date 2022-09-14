@@ -1,4 +1,5 @@
-# https://github.com/hchunhui/librime-lua/issues/129
+# 脚本来源 issue https://github.com/hchunhui/librime-lua/issues/129
+# 先下载 cmder https://github.com/cmderdev/cmder 以运行 linux 命令
 # for windows
 tail -f ~/AppData/Local/Temp/rime*INFO*  | awk  '
 BEGIN { e="\033[31;1m" ; w="\033[33;1m" ; r="\033[0m" }

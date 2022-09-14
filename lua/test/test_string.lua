@@ -3,6 +3,7 @@
 ==]]
 assert(lu, "请通过 test/init.lua 运行本测试用例")
 
+local null = require("tools/null")
 local split = require("tools/split")
 local string_helper = require("tools/string_helper")
 
@@ -13,7 +14,11 @@ function M:test_split()
 end
 
 function M:test_join()
+  lu.assertEquals(string_helper.join(nil, " "), "")
+  lu.assertEquals(string_helper.join({}, " "), "")
   lu.assertEquals(string_helper.join({"hello", "world", "!"}, " "), "hello world !")
+  lu.assertEquals(string_helper.join({"hello", nil, "world", "!"}, " "), "hello world !")
+  lu.assertEquals(string_helper.join({null("hello", nil, "world", "!")}, " "), "hello nil world !")
   lu.assertEquals(string_helper.join({"hello", "wor\nld", "!"}, " "), [[hello wor
 ld !]])
   lu.assertEquals(string_helper.join({"hello", {a=1}, "!"}, " "), [[hello {

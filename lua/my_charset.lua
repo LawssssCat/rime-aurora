@@ -62,8 +62,8 @@ local function charset_comment_filter(input, env)
         end
       end
       if(#m_arr > 0) then
-        local comment = "|" .. table.concat(m_arr, "|") .. "| "
-        cand:get_genuine().comment = comment .. cand.comment
+        local comment = " 『" .. table.concat(m_arr, "|") .. "』"
+        cand:get_genuine().comment = cand.comment .. comment
       end
     end -- option
     -- 在结果中对应产生一个带注释的候选

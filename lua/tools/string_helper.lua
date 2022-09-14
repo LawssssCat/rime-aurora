@@ -3,6 +3,7 @@
 ]]
 local helper = {}
 
+local null = require("tools/null")
 local split = require("tools/split")
 local inspect = require("tools/inspect")
 
@@ -14,11 +15,14 @@ end
 -- 字符串连接
 function helper.join(arr, delimiter)
   local temp = {}
-  for index, value in pairs(arr) do
-    if(type(value)=="string") then
-      table.insert(temp, value)
-    else
-      table.insert(temp, inspect(value))
+  if(arr) then
+    for index, value in pairs(arr) do
+      value = null(value)
+      if(type(value)=="string") then
+        table.insert(temp, value)
+      else
+        table.insert(temp, inspect(value))
+      end
     end
   end
   return table.concat(temp, delimiter)
