@@ -111,6 +111,9 @@ charset_comment_filter = charset.comment_filter
 -- 详见 `lua/reverse.lua`
 py_comment_filter = require("my_reverse")
 
+-- 显示候选词详细信息
+debug_comment_filter = require("my_debug")
+
 -- use wildcard to search code
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/expand_translator.lua
 
