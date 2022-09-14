@@ -14,6 +14,8 @@ function M:test_split()
 end
 
 function M:test_join()
+  lu.assertEquals(string_helper.join(nil, " "), "")
+  lu.assertEquals(string_helper.join({}, " "), "")
   lu.assertEquals(string_helper.join({"hello", "world", "!"}, " "), "hello world !")
   lu.assertEquals(string_helper.join({"hello", nil, "world", "!"}, " "), "hello world !")
   lu.assertEquals(string_helper.join({null("hello", nil, "world", "!")}, " "), "hello nil world !")

@@ -71,6 +71,9 @@
 -- 详见 `lua/time_translator.lua`
 time_translator = require("time_translator")
 
+local my_debug = require("my_debug")
+debug_comment_translator = my_debug.translator
+
 -- ==============================================================================
 -- II. filters:
 -- ==============================================================================
@@ -112,7 +115,7 @@ charset_comment_filter = charset.comment_filter
 py_comment_filter = require("my_reverse")
 
 -- 显示候选词详细信息
-debug_comment_filter = require("my_debug")
+debug_comment_filter = my_debug.filter
 
 -- use wildcard to search code
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/expand_translator.lua
@@ -125,6 +128,8 @@ debug_comment_filter = require("my_debug")
 
 -- 限制输入编码长度（过长会导致卡顿、闪退、死机）
 code_length_limit_processor = require("my_code")
+
+debug_comment_processor = my_debug.processor
 
 -- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/switch.lua
