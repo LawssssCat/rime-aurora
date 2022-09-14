@@ -159,7 +159,7 @@
 
 <div style='clear: both;'></div>
 
-### 步骤二：**同步“用户词典快照🎦”**：（如有要）
+### 步骤二：**同步“用户词典快照🎦”**：（如有需要）
 
 <img src='./.github/assets/dict-opt.png'  align='right'></img>
 
