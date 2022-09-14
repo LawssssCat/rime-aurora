@@ -34,6 +34,11 @@ world]])
     b = 2
   }
 }]])
+  local _o1 = {1, nil, "haha"}
+  lu.assertEquals(#_o1, 3)
+  lu.assertEquals(inspect(_o1), [[{ 1,
+  [3] = "haha"
+}]])
   -- Functions, userdata and any other custom types from Luajit are simply as <function x>, <userdata x>, etc.:
 --   local some_user_data = ???
 --   local a_thread = ???

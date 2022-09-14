@@ -3,6 +3,7 @@
 ]]
 local helper = {}
 
+local null = require("tools/null")
 local split = require("tools/split")
 local inspect = require("tools/inspect")
 
@@ -15,6 +16,7 @@ end
 function helper.join(arr, delimiter)
   local temp = {}
   for index, value in pairs(arr) do
+    value = null(value)
     if(type(value)=="string") then
       table.insert(temp, value)
     else

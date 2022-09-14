@@ -2,6 +2,7 @@
   打印日志（日志文件、控制台）
 ]]
 
+local null = require("tools/null")
 local inspect = require("tools/inspect")
 local string_helper = require("tools/string_helper")
 
@@ -17,7 +18,7 @@ local logger = {} -- return
 
 local function format(level, ...)
   -- 处理 "..." => msg
-  local msg = string_helper.join({...}, ", ")
+  local msg = string_helper.join({null(...)}, ", ")
   -- 处理 栈 信息
   --[[
     文档 https://www.lua.org/manual/5.4/manual.html#pdf-debug.getinfo
