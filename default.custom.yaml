@@ -14,3 +14,4 @@ patch:
   "switcher/save_options/+":
     - emoji_suggestion
     - option_charset_comment_filter
+    - option_debug_comment_filter

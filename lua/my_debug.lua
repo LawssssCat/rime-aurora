@@ -27,9 +27,16 @@ function M.init(env)
 end
 
 function M.func(input, env)
-  for cand in input:iter() do
-    local comment = cand.comment .. format(env.debug_comment_pattern, cand) 
-    yield(ShadowCandidate(cand, cand.type, cand.text, comment))
+  local option = env.engine.context:get_option("option_debug_comment_filter") -- 开关
+  if option then
+    for cand in input:iter() do
+      local comment = cand.comment .. format(env.debug_comment_pattern, cand) 
+      yield(ShadowCandidate(cand, cand.type, cand.text, comment))
+    end
+  else
+    for cand in input:iter() do
+      yield(cand)
+    end
   end
 end
 

@@ -1,2 +1,7 @@
 patch:
   engine/filters/@next: lua_filter@debug_comment_filter
+  switches/+:
+    - name: option_debug_comment_filter # 候选词详细信息
+      reset: 1
+      states: ["关 |详情|", "开 |详情|"]
+  
