@@ -5,10 +5,11 @@ local logger = require("tools/logger")
 local M = {}
 
 function M:test_log() 
-  logger.info("hello", "world")
-  logger.warn("hello", "world")
+  logger.info("hello", {a="1", b=2})
+  logger.warn("hello", "wor\nld")
   logger.error("hello", "world")
   logger.trace("hello", "world")
+
 end
 
 return M
