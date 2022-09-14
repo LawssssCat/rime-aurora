@@ -218,8 +218,7 @@ bash tools/tailLog.sh
 > 使用指引
 >
 > + 官方指引 - <https://github.com/rime/home/wiki/UserGuide>
-> + 我的笔记 - <http://t.csdn.cn/grD5H>
-> <!-- https://blog.csdn.net/LawssssCat/article/details/103482619 -->
+> + 我的笔记 - <https://blog.csdn.net/LawssssCat/article/details/103482619>
 
 > 配置信息
 > 
