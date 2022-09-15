@@ -18,6 +18,21 @@ function M:test_tostring()
   lu.assertStrContains(tostring({a=1}), "^table: %d+", true) -- e.g. table: 0000000000870890
 end
 
+-- 字符串正则
+function M:test_gsub()
+  lu.assertEquals(string.gsub("abcdefg123321", "%w", "1"), "1111111111111")
+  lu.assertEquals(string.gsub("banana", "(a)(n)", "%2%1"), "bnanaa" )
+  lu.assertEquals(string.gsub("gu(n", "u[\\(]", "ǔ"), "gǔn" )
+  lu.assertEquals(string.gsub("gao&", "([aeo])([iuo])([&\\*\\(\\)])", "%1%3%2"), "ga&o" )
+end
+
+-- 字符串替换【非正则】
+function M:test_replace()
+  lu.assertEquals(string_helper.replace("banana", "(a)(n)", "%2%1"), "b%2%1%2%1a") -- 用正则匹配，不用正则替换
+  lu.assertEquals(string_helper.replace("banana", "(a)(n)", "%2%1", true), "banana") -- 不用正则匹配，不用正则替换
+  lu.assertEquals(string_helper.replace("banana", "an", "%2%1", true), "b%2%1%2%1a")
+end
+
 function M:test_split()
   lu.assertEquals(string_helper.split("1 2  3   4    ", "%s+"), {"1","2","3","4",""})
 end

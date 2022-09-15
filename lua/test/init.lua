@@ -28,13 +28,17 @@ local function mute(M) -- 静音：禁止print
   return M
 end
 
+-- ================================================================ 单元测试内容 start
+
 -- 单元测试链条
 test_string = require("test/test_string")
 test_debug = require("test/test_debug")
 test_debug = mute(test_debug) -- 想看输出，注释之
 test_logger = require("test/test_logger")
--- test_logger = mute(test_logger) -- 想看输出，注释之
+test_logger = mute(test_logger) -- 想看输出，注释之
 test_inspect = require("test/test_inspect")
+
+-- ================================================================ 单元测试内容 end
 
 -- os.exit( lu.LuaUnit.run() )
 runner = lu.LuaUnit.new()

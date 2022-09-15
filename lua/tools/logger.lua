@@ -36,12 +36,12 @@ local function format(log_level, debug_level, ...)
   local info = debug.getinfo(debug_level+1, "nSl")
   -- 处理 pattern 格式
   local result = pattern
-  result = string.gsub(result, "{level}", string.upper(log_level))
-  result = string.gsub(result, "{time}", os.date("%Y%m%d %H:%M:%S"))
-  result = string.gsub(result, "{path}", info.short_src:match(".?(lua[\\/].+)$") or info.short_src or "nil")
-  result = string.gsub(result, "{method}", info.name or "nil")
-  result = string.gsub(result, "{line}", info.currentline)
-  result = string.gsub(result, "{msg}", msg)
+  result = string_helper.replace(result, "{level}", string.upper(log_level))
+  result = string_helper.replace(result, "{time}", os.date("%Y%m%d %H:%M:%S"))
+  result = string_helper.replace(result, "{path}", info.short_src:match(".?(lua[\\/].+)$") or info.short_src or "nil")
+  result = string_helper.replace(result, "{method}", info.name or "nil")
+  result = string_helper.replace(result, "{line}", info.currentline)
+  result = string_helper.replace(result, "{msg}", msg)
   return result
 end
 
