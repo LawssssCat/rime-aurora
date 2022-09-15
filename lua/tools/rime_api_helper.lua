@@ -23,7 +23,7 @@ function helper:get_lua_version()
 end
 
 -- the version of librime-lua (https://github.com/hchunhui/librime-lua): librime插件，引导lua代码的执行
-function helper:get_rime_lua_version()
+function helper:get_rime_lua_version() -- 版本规则参考：https://github.com/shewer/librime-lua-script
   local ver
   if LevelDb then
     ver = 177
@@ -48,6 +48,22 @@ end
 function helper:get_version_info()
   return string.format("\nVer: librime %s \nlibrime-lua %s \nlua %s",
   helper.get_rime_version(), helper.get_rime_lua_version(), helper.get_lua_version())
+end
+
+-- 获取配置 => arr table
+function helper:get_config_list(config, path)
+  -- issue about is_list https://github.com/hchunhui/librime-lua/issues/193
+  local config_list = config:is_list(path) and config:get_list(path)
+  if(not config_list) then return nil end
+  local result_list = {}
+  local temp = nil
+  for i = 1, config_list.size do
+    temp = config_list:get_value_at(i-1) -- 下标 0 开始
+    if(temp) then
+      table.insert(result_list, temp.value)
+    end
+  end
+  return result_list
 end
 
 return helper

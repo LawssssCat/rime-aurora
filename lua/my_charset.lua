@@ -16,6 +16,7 @@
 local string_helper = require("tools/string_helper")
 
 local charset = {
+  -- East Asian Scripts
   { name = "CJK", first = 0x4E00, last = 0x9FFF },     -- CJK Unified Ideographs - https://unicode.org/charts/PDF/U4E00.pdf
   { name = "ExtA", first = 0x3400, last = 0x4DBF },    -- CJK Unified Ideographs Extension A - https://unicode.org/charts/PDF/U3400.pdf
   { name = "ExtB", first = 0x20000, last = 0x2A6DF },  -- CJK Unified Ideographs Extension B - https://unicode.org/charts/PDF/U20000.pdf
@@ -24,7 +25,16 @@ local charset = {
   { name = "ExtE", first = 0x2B820, last = 0x2CEAF },  -- CJK Unified Ideographs Extension E - https://unicode.org/charts/PDF/U2B820.pdf
   { name = "ExtF", first = 0x2CEB0, last = 0x2EBEF },  -- CJK Unified Ideographs Extension F - https://unicode.org/charts/PDF/U2CEB0.pdf
   { name = "ExtG", first = 0x30000, last = 0x3134A },  -- CJK Unified Ideographs Extension G - https://unicode.org/charts/PDF/U30000.pdf
-  { name = "Compat", first = 0x2F800, last = 0x2FA1F } -- CJK Compatibility Ideographs Supplement - https://unicode.org/charts/PDF/U2F800.pdf
+  { name = "Compat", first = 0x2F800, last = 0x2FA1F }, -- CJK Compatibility Ideographs Supplement - https://unicode.org/charts/PDF/U2F800.pdf
+  -- Emoji & Pictographs
+  -- { name = "Dingbats", first = 0x2700, last = 0x27BF },
+  -- { name = "Ornamental Dingbats", first = 0x1F650, last = 0x1F67F },
+  -- { name = "Emoticons", first = 0x1F600, last = 0x1F64F },
+  -- { name = "Miscellaneous Symbols", first = 0x2600, last = 0x26FF },
+  -- { name = "Miscellaneous Symbols and Pictographs", first = 0x1F300, last = 0x1F5FF },
+  -- { name = "Supplemental Symbols and Pictographs", first = 0x1F900, last = 0x1F9FF },
+  -- { name = "Symbols and Pictographs Extended-A", first = 0x1FA70, last = 0x1FAFF },
+  -- { name = "Transport and Map Symbols", first = 0x1F680, last = 0x1F6FF },
 }
 
 local function get_utf8_code(c)

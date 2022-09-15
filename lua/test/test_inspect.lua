@@ -12,6 +12,7 @@ local M = {}
 
 function M:test_inspect() 
   lu.assertEquals(inspect(nil), "nil")
+  lu.assertEquals(inspect({}), "{}")
   lu.assertEquals(inspect(1), "1")
   lu.assertEquals(inspect("Hello"), '"Hello"')
   lu.assertEquals("Hello\nworld", [[Hello

@@ -3,3 +3,4 @@
 # /sync
 /*.userdb
 /node_modules
+/user.yaml
