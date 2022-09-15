@@ -37,6 +37,7 @@ test_debug = mute(test_debug) -- 想看输出，注释之
 test_logger = require("test/test_logger")
 test_logger = mute(test_logger) -- 想看输出，注释之
 test_inspect = require("test/test_inspect")
+test_number_to_cn = require("test/test_number_to_cn")
 
 -- ================================================================ 单元测试内容 end
 

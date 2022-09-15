@@ -86,27 +86,6 @@ local function  convert_arab_to_chinese(number)
     return result
 end
 
---[[
--- 测试
-print(convert_arab_to_chinese(0))
-print(convert_arab_to_chinese(1))
-print(convert_arab_to_chinese(10))
-print(convert_arab_to_chinese(19))
-print(convert_arab_to_chinese(20))
-print(convert_arab_to_chinese(33))
-print(convert_arab_to_chinese(100))
-print(convert_arab_to_chinese(109))
-print(convert_arab_to_chinese(2009))
-print(convert_arab_to_chinese(2109))
-print(convert_arab_to_chinese(10109))
-print(convert_arab_to_chinese(10000))
-print(convert_arab_to_chinese(13009))
-print(convert_arab_to_chinese(993009))
-print(convert_arab_to_chinese(993000))
-print(convert_arab_to_chinese(999999999)) -- max
---]]
--- print(convert_arab_to_chinese(9223372036854775807))
-
 return {
     convert_arab_to_chinese = convert_arab_to_chinese
 }
