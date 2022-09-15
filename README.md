@@ -24,7 +24,8 @@
 │  └─ *.lua                功能脚本，靠nodejs运行。实现如opencc字典去重功能
 ├─ /.github
 │
-├─ *.dict.yaml          📄码表
+├─ /dict/*.dict.yaml    📄码表
+│
 ├─ *.schema.yaml        💠方案配置文件（✨核心、入口） 
 ├─ *.custom.yaml        🍮补丁：内容会覆盖对应的*.schema.yaml文件
 ├─ ext_*.yaml           🍮补丁：方案会通过`__include`引用其中配置（方便配置管理）

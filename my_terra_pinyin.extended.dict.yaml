@@ -8,26 +8,26 @@ vocabulary: essay-zh-hant-mc
 use_preset_vocabulary: true
 import_tables:
   - terra_pinyin
-  - terra_pinyin_onion_add
-  - terra_pinyin_onion              # 地球拼音
-  - luna_pinyin.anime               # 动漫
-  - luna_pinyin.chat                # 对话（常用）
-  - luna_pinyin.classical           # 古文
-  - luna_pinyin.game                # 游戏
-  - luna_pinyin.gd                  # 粤语
-  - luna_pinyin.hanyu               # 汉语
-  - luna_pinyin.history             # 历史
-  - luna_pinyin.idiom               # 习语
-  - luna_pinyin.moba                # moba游戏
-  - luna_pinyin.movie               # 电影
-  - luna_pinyin.music               # 音乐
-  - luna_pinyin.name                # 名字
-  - luna_pinyin.net                 # 网络热词
-  - luna_pinyin.poetry              # 诗歌
-  - luna_pinyin.shopping            # 购物
-  - luna_pinyin.user                # 实用词汇
-  - luna_pinyin.website             # 网站
-  - luna_pinyin.stack               # 堆叠词（如：焱）
-  - phrases.cht                     # 超齊字典檔
+  - dict/terra_pinyin_onion_add
+  - dict/terra_pinyin_onion              # 地球拼音
+  - dict/luna_pinyin.anime               # 动漫
+  - dict/luna_pinyin.chat                # 对话（常用）
+  - dict/luna_pinyin.classical           # 古文
+  - dict/luna_pinyin.game                # 游戏
+  - dict/luna_pinyin.gd                  # 粤语
+  - dict/luna_pinyin.hanyu               # 汉语
+  - dict/luna_pinyin.history             # 历史
+  - dict/luna_pinyin.idiom               # 习语
+  - dict/luna_pinyin.moba                # moba游戏
+  - dict/luna_pinyin.movie               # 电影
+  - dict/luna_pinyin.music               # 音乐
+  - dict/luna_pinyin.name                # 名字
+  - dict/luna_pinyin.net                 # 网络热词
+  - dict/luna_pinyin.poetry              # 诗歌
+  - dict/luna_pinyin.shopping            # 购物
+  - dict/luna_pinyin.user                # 实用词汇
+  - dict/luna_pinyin.website             # 网站
+  - dict/luna_pinyin.stack               # 堆叠词（如：焱）
+  - dict/phrases.cht                     # 超齊字典檔
 ...
 ##### 以下可自行添加詞句 #####
