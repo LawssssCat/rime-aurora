@@ -62,6 +62,7 @@ schema:
       * LoganJC 的方案 - https://github.com/LoganJC/rime-setting
       * “洋蔥” 方案 - https://github.com/oniondelta/Onion_Rime_Files
   dependencies: # 觸發更新製作 bin。 See issue https://github.com/rime/home/issues/1134#issuecomment-1236345551
+    - luna_pinyin
     - stroke
     - easy_en
 
@@ -81,16 +82,6 @@ switches:
   - name: kemoji_suggestion         # 6
     reset: 1
     states: [ "关 (＞﹏＜)", "开 ＼(￣︶￣)／" ] # 0为关闭、1为开启
-  - name: back_mark                 # 7
-    reset: 1
-    states: [ "关 （标记含义）", "开 （标记含义）" ]
-  # - options: [ utf8, big5, gbk, gb2312]
-  #   reset: 0
-  #   states:
-  #     - UTF-8
-  #     - BIG5
-  #     - GBK
-  #     - GB2312 #GB2312有Bug
 
 engine:
   processors: # 一、這批組件處理各類 ●按鍵 消息
@@ -123,12 +114,10 @@ engine:
   filters: # 四、這批組件過濾翻譯的結果
     - simplifier@emoji_suggestion     # emoji表情
     - simplifier@kemoji_suggestion    # 颜表情
-    - simplifier@symbol_suggestion    # 符号
-    - simplifier@back_mark            # 後方標註【放在最后，做提示转换】
-    - reverse_lookup_filter@e_reverse_lookup
     #############################################################
     - simplifier                      # ※ 繁簡轉換
     - uniquifier                      # ※ 過濾重複的候選字，有可能來自繁簡轉換
+    - reverse_lookup_filter@e_reverse_lookup # 显示英文解释
 
 speller:
   # alphabet: zyxwvutsrqponmlkjihgfedcba
@@ -183,7 +172,6 @@ punctuator:
   import_preset: default
   half_shape:
     __include: ext_punctuator:/half_shape
-  ##########################################################
 
 key_binder:
   import_preset: default
@@ -228,24 +216,11 @@ kemoji_suggestion:
   # comment_format:
   #   - xform/&@_/ /
 
-# 符号
-symbol_suggestion:
-  opencc_config: symbol.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
-  tips: all # 字符转换范围
-
-# 符号含义标注
-back_mark:
-  opencc_config: back_mark_ocm.json
-  option_name: back_mark
-  show_in_comment: true
-  tags: [ abc ]
-  tips: char
-  comment_format:
-    - xform/^/  /
-    - xform/@/ /
-
 grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
 __patch:
-  - symbols:/patch
+  - symbols:/patch   # 符号
+  - symbos_extends:/patch # 符号扩展
+  - my_charset:/patch        # 字符集
+  - my_debug:/patch          # 候选词详细信息

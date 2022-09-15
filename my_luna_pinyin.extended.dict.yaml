@@ -79,6 +79,7 @@ import_tables:
   - luna_pinyin.user                # 实用词汇
   - luna_pinyin.website             # 网站
   - luna_pinyin.xiandaihanyu        # 现代汉语（常用）
+  - luna_pinyin.stack               # 堆叠词（如：焱）
   # - ocm_mixin_jp                    # 日語（平假名+片假名）
   # - phrases.jp_hk                   # 日語 「平假名」「片假名」 詞彙
   # - phrases.jp_hkkreduce            # 日文含有「漢字」之詞彙

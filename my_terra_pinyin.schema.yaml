@@ -26,19 +26,20 @@ schema:
     「漢語拼音」，以符號按鍵 shift + <num 1~4> 輸入四聲
     拼音碼表根據 CC-CEDICT 改編
   dependencies: # 觸發更新製作 bin。 See issue https://github.com/rime/home/issues/1134#issuecomment-1236345551
+    - terra_pinyin
     - stroke
     - easy_en
 
 switches:
-  - name: ascii_mode
-    reset: 0
-    states: [ 中文, 西文 ]
+  # - name: ascii_mode
+  #   reset: 0
+  #   states: [ 中文, 西文 ]
   - name: full_shape
     states: [ 半角, 全角 ]
   - name: simplification
     states: [ 漢字, 汉字 ]
-  - name: ascii_punct
-    states: [ 。，, ．， ]
+  # - name: ascii_punct
+  #   states: [ 。，, ．， ]
 
 engine:
   processors:
@@ -67,9 +68,11 @@ engine:
     - reverse_lookup_translator
     - script_translator
   filters:
-    - reverse_lookup_filter@e_reverse_lookup
+    - lua_filter@py_comment_filter # 显示更多拼音
+    ######################################################### 需要在simplifiter（翻转简）前
     - simplifier
     - uniquifier
+    - reverse_lookup_filter@e_reverse_lookup # 显示英文解释
 
 speller:
   # &*() 声调
@@ -285,4 +288,8 @@ grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
 __patch:
-  - symbols:/patch
+  - symbols:/patch        # 符号
+  - symbos_extends:/patch # 符号扩展
+  - my_code:/patch           # 输入编码处理（多音字扩展）
+  - my_charset:/patch        # 字符集
+  - my_debug:/patch          # 候选词详细信息
