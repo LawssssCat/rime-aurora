@@ -32,6 +32,7 @@ end
 
 -- 单元测试链条
 test_string = require("test/test_string")
+test_error = require("test/test_error")
 test_debug = require("test/test_debug")
 test_debug = mute(test_debug) -- 想看输出，注释之
 test_logger = require("test/test_logger")
