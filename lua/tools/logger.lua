@@ -6,17 +6,19 @@ local null = require("tools/null")
 local inspect = require("tools/inspect")
 local string_helper = require("tools/string_helper")
 
-local INFO = "info"
-local WARN = "warn"
-local ERROR = "error"
-local TRACE = "trace"
-
+-- 日志格式模版
 local pattern = "{level} {path}:{line} {method}] {msg}"
 -- local pattern = "{level} {time} {path}:{line} {method}] {msg}"
 
 local logger = {} -- return 
 
-local function format(level, ...)
+-- 日志等级
+logger.INFO = "info"
+logger.WARN = "warn"
+logger.ERROR = "error"
+
+-- 日志输出格式化
+local function format(log_level, debug_level, ...)
   -- 处理 "..." => msg
   local msg = string_helper.join({null(...)}, ", ")
   -- 处理 栈 信息
@@ -31,10 +33,10 @@ local function format(level, ...)
     'u': fills in the fields nups, nparams, and isvararg;
     'L': pushes onto the stack a table whose indices are the lines on the function with some associated code, that is, the lines where you can put a break point. (Lines with no code include empty lines and comments.) If this option is given together with option 'f', its table is pushed after the function. This is the only option that can raise a memory error.
   ]]
-  local info = debug.getinfo(3, "nSl") -- 2 本函数调用者，3 更上一级
+  local info = debug.getinfo(debug_level+1, "nSl")
   -- 处理 pattern 格式
   local result = pattern
-  result = string.gsub(result, "{level}", string.upper(level))
+  result = string.gsub(result, "{level}", string.upper(log_level))
   result = string.gsub(result, "{time}", os.date("%Y%m%d %H:%M:%S"))
   result = string.gsub(result, "{path}", info.short_src:match(".?(lua[\\/].+)$") or info.short_src or "nil")
   result = string.gsub(result, "{method}", info.name or "nil")
@@ -43,29 +45,58 @@ local function format(level, ...)
   return result
 end
 
-function logger.info(...)
-  local func = log and log.info or print
-  local msg = format(INFO, ...)
+-- 日志输出方法选择
+local function _get_log_func(level)
+  return log and log[level] or print
+end
+local function get_log_func(level)
+  local func = nil
+  if(level == logger.INFO) then func = _get_log_func("info")
+  elseif(level == logger.WARN) then func = _get_log_func("warning")
+  elseif(level == logger.ERROR) then func = _get_log_func("error")
+  else -- level传递错误。
+    local temp = _get_log_func("warning")
+    if(temp) then
+      func = function(msg)
+        print('================================')
+        return temp(msg .. "\n" .."[warning: with strange log level: \"" .. tostring(level) .. "\"]")
+      end
+    end
+  end
+  return func
+end
+
+--[[
+  @param debug_level: 2 本函数调用者，3 更上一级
+]] 
+function logger.print(log_level, debug_level, ...)
+  local func = get_log_func(log_level)
+  local msg = format(log_level, debug_level+1, ...)
   func(msg)
+end
+
+function logger.info(...)
+  logger.print(logger.INFO, 2, ...)
 end
 
 function logger.warn(...)
-  local func = log and log.warning or print
-  local msg = format(WARN, ...)
-  func(msg)
+  logger.print(logger.WARN, 2, ...)
 end
 
 function logger.error(...)
-  local func = log and log.error or print
-  local msg = format(ERROR, ...)
-  func(msg)
+  logger.print(logger.ERROR, 2, ...)
 end
 
-function logger.trace(...)
-  local func = log and log.info or print
-  local msg = format(TRACE, ...)
-  msg = msg .. "\n" .. debug.traceback("------------- debug.traceback ---------------", 2)
-  func(msg)
+--[[
+  @param log_level:
+  - logger.INFO
+  - logger.WARN
+  - logger.ERROR
+]] 
+function logger.trace(log_level, ...)
+  local debug_level = 2 -- 2 => 函数调用者的栈
+  local trace_info = debug.traceback("------------- debug.traceback ---------------", debug_level)
+  logger.print(log_level, debug_level, ... , "\n" .. trace_info)
 end
 
 return logger

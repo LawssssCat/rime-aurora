@@ -8,7 +8,8 @@ function M:test_log()
   logger.info("hello", {a="1", b=2})
   logger.warn("hello", "wor\nld")
   logger.error("hello", "world")
-  logger.trace("hello", "world")
+  logger.trace("hello", "world") -- trace 的错误示范
+  -- logger.trace(logger.INFO, "hello", "world") -- trace 的正确示范
 
 end
 
