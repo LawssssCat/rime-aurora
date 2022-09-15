@@ -55,13 +55,7 @@ local function get_log_func(level)
   elseif(level == logger.WARN) then func = _get_log_func("warning")
   elseif(level == logger.ERROR) then func = _get_log_func("error")
   else -- level传递错误。
-    local temp = _get_log_func("warning")
-    if(temp) then
-      func = function(msg)
-        print('================================')
-        return temp(msg .. "\n" .."[warning: with strange log level: \"" .. tostring(level) .. "\"]")
-      end
-    end
+    error("strange log level: \"" .. tostring(level) .. "\"")
   end
   return func
 end
