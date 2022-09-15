@@ -9,6 +9,15 @@ local string_helper = require("tools/string_helper")
 
 local M = {}
 
+-- 字符串转换
+function M:test_tostring()
+  lu.assertEquals(tostring(nil), "nil")
+  lu.assertEquals(tostring(1), "1")
+  lu.assertEquals(tostring("abc"), "abc")
+  lu.assertStrContains(tostring(function() end), "^function: %d+", true) -- e.g. function: 0000000000746A20
+  lu.assertStrContains(tostring({a=1}), "^table: %d+", true) -- e.g. table: 0000000000870890
+end
+
 function M:test_split()
   lu.assertEquals(string_helper.split("1 2  3   4    ", "%s+"), {"1","2","3","4",""})
 end
