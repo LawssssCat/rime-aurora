@@ -82,9 +82,6 @@ switches:
   - name: kemoji_suggestion         # 6
     reset: 1
     states: [ "关 (＞﹏＜)", "开 ＼(￣︶￣)／" ] # 0为关闭、1为开启
-  - name: option_charset_comment_filter # 开启后：你好 |CJK| nǐ hǎo
-    reset: 1
-    states: ["关 |字符集| ti shi（提示）", "开 |字符集| ti shi（提示）"]
 
 engine:
   processors: # 一、這批組件處理各類 ●按鍵 消息
@@ -117,7 +114,6 @@ engine:
   filters: # 四、這批組件過濾翻譯的結果
     - simplifier@emoji_suggestion     # emoji表情
     - simplifier@kemoji_suggestion    # 颜表情
-    - lua_filter@charset_comment_filter      # 显示CJK字符集类型
     #############################################################
     - simplifier                      # ※ 繁簡轉換
     - uniquifier                      # ※ 過濾重複的候選字，有可能來自繁簡轉換
@@ -226,3 +222,5 @@ grammar: # 语法模型
 __patch:
   - symbols:/patch   # 符号
   - symbos_extends:/patch # 符号扩展
+  - my_charset:/patch        # 字符集
+  - my_debug:/patch          # 候选词详细信息

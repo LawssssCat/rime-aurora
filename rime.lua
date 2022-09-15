@@ -35,6 +35,7 @@
   1. 《加入 Lua 脚本扩展支持 》 - https://github.com/rime/librime/issues/248
   2. 介绍 - https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E4%B8%83lua
   3. 《issue：Lua 接口文档请求》 - https://github.com/hchunhui/librime-lua/issues/186
+      后续wiki文档：https://github.com/hchunhui/librime-lua/wiki/Scripting
   4. 《TsinamLeung 整理的 api》 - https://github.com/TsinamLeung/librime-lua/wiki/API
 --]]
 
@@ -70,6 +71,9 @@
 -- 详见 `lua/time_translator.lua`
 time_translator = require("time_translator")
 
+local my_debug = require("my_debug")
+debug_comment_translator = my_debug.translator
+
 -- ==============================================================================
 -- II. filters:
 -- ==============================================================================
@@ -95,20 +99,23 @@ time_translator = require("time_translator")
 --]]
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+-- 对候选词做处理，参考：https://github.com/hchunhui/librime-lua/blob/master/sample/lua/charset.lua
 -- charset_filter: 滤除含 CJK 扩展汉字的候选项
 -- charset_comment_filter: 为候选项加上其所属字符集的注释
 -- 详见 `lua/charset.lua`
-local charset = require("charset")
-charset_filter = charset.filter
+local charset = require("my_charset")
 charset_comment_filter = charset.comment_filter
 
 -- single_char_filter: 候选项重排序，使单字优先
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/single_char.lua
 
--- reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
+-- 依地球拼音为候选项加上带调拼音的注释
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/reverse.lua
 -- 详见 `lua/reverse.lua`
-py_comment_filter = require("reverse")
+py_comment_filter = require("my_reverse")
+
+-- 显示候选词详细信息
+debug_comment_filter = my_debug.filter
 
 -- use wildcard to search code
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/expand_translator.lua
@@ -118,6 +125,11 @@ py_comment_filter = require("reverse")
 -- ==============================================================================
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-- 限制输入编码长度（过长会导致卡顿、闪退、死机）
+code_length_limit_processor = require("my_code")
+
+debug_comment_processor = my_debug.processor
 
 -- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/switch.lua

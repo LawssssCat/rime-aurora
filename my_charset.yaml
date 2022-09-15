@@ -1,0 +1,10 @@
+# 编码设置
+patch:
+  switches/+:
+    - name: option_charset_comment_filter # 开启后：你好 |CJK| nǐ hǎo
+      reset: 1
+      states: ["关 |字符集|", "开 |字符集|"]
+  engine/filters/@after 0: lua_filter@charset_comment_filter # 显示CJK字符集类型
+  key_binder/bindings/+:
+    - {when: always, accept: "Control+7", toggle: option_charset_comment_filter}
+

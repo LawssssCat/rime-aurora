@@ -64,6 +64,8 @@
 
     ![输入法英文预览（prefix）](./.github/assets/preview-easy_en-perfix-hit.png)
 
+    todo 优化 https://github.com/shewer/librime-lua-script/issues/5
+
 3. “`//`” 前缀：符号 & 表情 & 颜表情
 
     todo 
@@ -72,7 +74,13 @@
 
     ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif)
 
-5. CJK字符集提示（F4选择开启关闭）
+5. CJK字符集提示（开启关闭：F4选择/快捷键 `Ctrl+7`）
+
+1. 候选词详情提示（开启关闭：F4选择/快捷键 `Ctrl+8`）
+
+    ![输入法调试快捷键预览gif](./.github/assets/preview-debug-preview-compress.gif)
+
+    ![输入法调试快捷键预览](./.github/assets/preview-debug-preview.png)
 
 1.  网站提示
 
@@ -81,6 +89,10 @@
 6. 词联想
 
     todo https://github.com/shewer/librime-lua-script
+
+    https://github.com/rime/librime/issues/65
+
+    https://github.com/rime/librime/issues/568
 
 ## 方案说明
 
@@ -153,7 +165,7 @@
 
 <div style='clear: both;'></div>
 
-### 步骤二：**同步“用户词典快照🎦”**：（如有要）
+### 步骤二：**同步“用户词典快照🎦”**：（如有需要）
 
 <img src='./.github/assets/dict-opt.png'  align='right'></img>
 
@@ -170,13 +182,41 @@
 
 ![同步词典快照](./.github/assets/dict-merge.png)
 
+### 步骤三：**更新 librime-lua**
+
+[librime-lua 插件](https://github.com/hchunhui/librime-lua)提供了输入法程序运行时执行 lua 脚本功能。
+
+其内容[已经被 librime 添加进项目编译](https://github.com/rime/librime/blob/master/.github/workflows/release-ci.yml#L21)，会随著输入法版本发布，[不需再额外安装](https://github.com/hchunhui/librime-lua/issues/41)。
+
+但由于代码需要测试，官网下载最新版的输入法版本所包含的 [librime-lua 插件版本会偏旧](https://github.com/hchunhui/librime-lua/issues/43)，本方案许多功能无法实现。因此体验本方案完整功能需要[更新 librime-lua 插件](https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242881504)。
+
+>**插件更新方法**
+>
+>要手动将 weasel 安装目录下的 rime.dll 手工替换为 github action 里面最新的 artifact。<br>
+>例如现在最新的build在 https://github.com/hchunhui/librime-lua/actions/runs/3026493926 ，点击这个页面的 artifact 按钮下载。下载以后打开 rime-xxxx-Windows.7z 解压其中的 `dist/lib/rime.dll` 即可。替换时如遇到文件被占用，需先点击 weasel “停止算法服务”，替换后再打开。
+
 ## 其他
 
 ### opencc 词汇去重
 
 ```bash
-npm install
 npm run sort
+```
+
+### 单元测试
+
+```bash
+npm run test
+```
+
+### 查看日志
+
+<https://github.com/hchunhui/librime-lua/issues/129>
+
+```bash
+npm run log
+# 或者
+bash tools/tailLog.sh
 ```
 
 ### 相关资料
@@ -184,8 +224,7 @@ npm run sort
 > 使用指引
 >
 > + 官方指引 - <https://github.com/rime/home/wiki/UserGuide>
-> + 我的笔记 - <http://t.csdn.cn/grD5H>
-> <!-- https://blog.csdn.net/LawssssCat/article/details/103482619 -->
+> + 我的笔记 - <https://blog.csdn.net/LawssssCat/article/details/103482619>
 
 > 配置信息
 > 
@@ -211,15 +250,29 @@ npm run sort
 >
 > + hchunhui/librime-lua - <https://github.com/hchunhui/librime-lua><br>
 > （运行lua脚本插件）
+> + ~~shewer/librime-lua-tools - <https://github.com/shewer/librime-lua-tools>~~<br>
+> （工具脚本，己轉移至 (https://github.com/shewer/librime-lua-script) tools/）
 > + shewer/librime-lua-script - <https://github.com/shewer/librime-lua-script><br>
 >（利用 librime-lua 擴展 rime 輸入法的集成模組）
+> + shewer/rime-english - <https://github.com/shewer/rime-english><br>
+> （Rime English輸入方案）
+
+> 词源
+> + <https://github.com/skywind3000/ECDICT><br>
+> 英文
+
+> 插件
+> + <https://github.com/hchunhui/librime-lua>
+> + ~~<https://github.com/hchunhui/librime-cloud>~~
 
 > 已知问题：
 >
 > - [ ] 2022年09月07日<br>
 > 输入无限制/大量无规则输入导致卡顿<br>
 > <https://github.com/rime/librime/issues/510><br>
-> <https://github.com/rime/weasel/issues/733>
+> <https://github.com/rime/weasel/issues/733><br>
+>  2022年09月09日<br>
+>  添加加输入限制lua脚本
 > - [ ] 2022年09月07日<br>
 > comment数量过多导致闪退<br>
 > <https://github.com/rime/home/issues/1129>
