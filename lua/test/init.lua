@@ -19,13 +19,14 @@ local function mute(M) -- 静音：禁止print
       M[key] = function(...)
         local _print = print
         print = function() end
-        local result = {pcall(value, ...)}
+        local temp_result = {pcall(value, ...)}
         print = _print
-        if(result[1]) then 
-          table.remove(result, 1)
+        local flag = table.remove(temp_result, 1)
+        local result = temp_result
+        if(flag) then 
           return table.unpack(result)
         else
-          error("\n"..result[2])
+          error("\n"..result[1])
         end
       end
     end

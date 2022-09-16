@@ -19,8 +19,12 @@ function M:test_tostring()
   lu.assertEquals(tostring(nil), "nil")
   lu.assertEquals(tostring(1), "1")
   lu.assertEquals(tostring("abc"), "abc")
-  lu.assertStrContains(tostring(function() end), "^function: %d+", true) -- e.g. function: 0000000000746A20
-  lu.assertStrContains(tostring({a=1}), "^table: %d+", true) -- e.g. table: 0000000000870890
+  lu.assertStrContains(tostring(function() end), "^function: %w+", true) -- e.g. function: 0000000000746A20
+  lu.assertStrContains(tostring({a=1}), "^table: %w+", true) -- e.g. table: 0000000000870890
+end
+
+function M:test_format()
+  lu.assertStrContains(string.format("%s %s %s %s", 1, nil, "3", {}), "^1 nil 3 table: %w+$", true) -- e.g. "1 nil 3 table: 0000000000837450"
 end
 
 -- 字符串正则

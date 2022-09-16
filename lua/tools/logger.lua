@@ -5,10 +5,10 @@
 local null = require("tools/null")
 local inspect = require("tools/inspect")
 local string_helper = require("tools/string_helper")
+local ptry = require("tools/ptry")
 
 -- 日志格式模版
-local pattern = "{level} {path}:{line} {method}] {msg}"
--- local pattern = "{level} {time} {path}:{line} {method}] {msg}"
+local pattern = "{level} [{depth}] {path}:{line} {method}] {msg}"
 
 local logger = {} -- return 
 
@@ -33,15 +33,29 @@ local function format(log_level, debug_level, ...)
     'u': fills in the fields nups, nparams, and isvararg;
     'L': pushes onto the stack a table whose indices are the lines on the function with some associated code, that is, the lines where you can put a break point. (Lines with no code include empty lines and comments.) If this option is given together with option 'f', its table is pushed after the function. This is the only option that can raise a memory error.
   ]]
-  local info = debug.getinfo(debug_level+1, "nSl")
+  debug_level = debug_level + 1
+  local info = debug.getinfo(debug_level, "nSl")
   -- 处理 pattern 格式
   local result = pattern
-  result = string_helper.replace(result, "{level}", string.upper(log_level))
-  result = string_helper.replace(result, "{time}", os.date("%Y%m%d %H:%M:%S"))
-  result = string_helper.replace(result, "{path}", info.short_src:match(".?(lua[\\/].+)$") or info.short_src or "nil")
-  result = string_helper.replace(result, "{method}", info.name or "nil")
-  result = string_helper.replace(result, "{line}", info.currentline)
-  result = string_helper.replace(result, "{msg}", msg)
+  ptry(function()
+    result = string_helper.replace(result, "{level}", string.upper(log_level))
+    result = string_helper.replace(result, "{depth}", debug_level)
+    result = string_helper.replace(result, "{time}", os.date("%Y%m%d %H:%M:%S"))
+    result = string_helper.replace(result, "{path}", info.short_src:match(".?(lua[\\/].+)$") or info.short_src or "nil")
+    result = string_helper.replace(result, "{method}", info.name or "nil")
+    result = string_helper.replace(result, "{line}", info.currentline)
+    result = string_helper.replace(result, "{msg}", msg)
+  end)
+  ._catch(function(err)
+    error(inspect({
+      err=err,
+      log_level=log_level,
+      debug_level=debug_level,
+      stack_info=info,
+      args=msg,
+      result=result
+    }))
+  end)
   return result
 end
 
@@ -63,23 +77,62 @@ end
 --[[
   @param debug_level: 2 本函数调用者，3 更上一级
 ]] 
-function logger.print(log_level, debug_level, ...)
+local function _print(log_level, debug_level, ...)
   local func = get_log_func(log_level)
   local msg = format(log_level, debug_level+1, ...)
   func(msg)
   return msg
 end
 
+--[[
+
+  注意⚠️：
+
+  下面 logger.info、logger.warn、...
+  应该
+  ```lua
+    local result = _print()
+    return result
+  ```
+  不应该改为 `return _print()`
+
+  ⚡因为会影响函数上下文！⚡
+  ⚡因为会影响函数上下文！⚡
+  ⚡因为会影响函数上下文！⚡
+
+  因为前者（正常）
+  ```txt
+  stack traceback:
+    [C]: in function 'debug.traceback'
+    .\tools/logger.lua:56: in upvalue 'format'
+    .\tools/logger.lua:79: in upvalue '_print'
+    .\tools/logger.lua:120: in function 'tools/logger.error'
+    .\test/test_logger.lua:8: in function <.\test/test_logger.lua:7>
+  ```
+  而后者调用栈出现 “(...tail calls...)” 导致调用 debug.getinfo 时候少了一层（原因？）
+  ```txt
+  stack traceback:
+    [C]: in function 'debug.traceback'
+    .\tools/logger.lua:56: in upvalue 'format'
+    .\tools/logger.lua:79: in function <.\tools/logger.lua:77>
+    (...tail calls...)
+    .\test/test_logger.lua:8: in function <.\test/test_logger.lua:7>
+  ```
+]]
+
 function logger.info(...)
-  return logger.print(logger.INFO, 2, ...)
+  local result = _print(logger.INFO, 2, ...)
+  return result
 end
 
 function logger.warn(...)
-  return logger.print(logger.WARN, 2, ...)
+  local result = _print(logger.WARN, 2, ...)
+  return result
 end
 
 function logger.error(...)
-  return logger.print(logger.ERROR, 2, ...)
+  local result = _print(logger.ERROR, 2, ...)
+  return result
 end
 
 --[[
@@ -93,7 +146,8 @@ function logger.trace(log_level, ...)
   local trace_info = debug.traceback("------------- debug.traceback ---------------", debug_level)
   local args = {...}
   table.insert(args, "\n" .. trace_info)
-  return logger.print(log_level, debug_level, table.unpack(args))
+  local result = _print(log_level, debug_level, table.unpack(args))
+  return result
 end
 
 return logger
