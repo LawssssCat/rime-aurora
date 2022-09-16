@@ -203,6 +203,7 @@ grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
 __patch:
+  - my_common:/patch
   - easy_en:/patch   # 英文
   - symbols:/patch   # 符号
   - symbos_extends:/patch # 符号扩展
