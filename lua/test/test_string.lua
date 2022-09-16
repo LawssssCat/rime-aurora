@@ -9,6 +9,11 @@ local string_helper = require("tools/string_helper")
 
 local M = {}
 
+function M:test_equal()
+  lu.assertTrue("abcdefghijklnmopqrstuvwxyz" == "abcdefghijklnmopqrstuvwxyz")
+  lu.assertFalse("abcdefghijklnmopqrstuvwxyz" == "ABCDEFGHIJKLNMOPQRSTUVWXYZ")
+end
+
 -- 字符串转换
 function M:test_tostring()
   lu.assertEquals(tostring(nil), "nil")

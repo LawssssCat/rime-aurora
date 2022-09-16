@@ -36,14 +36,24 @@ end
 -- ================================================================ 单元测试内容 start
 
 -- 单元测试链条
+-- string
 test_string = require("test/test_string")
+-- 异常
 test_error = require("test/test_error")
+-- ptry：异常链式处理
+test_ptry = require("test/test_ptry")
+-- 调试
 test_debug = require("test/test_debug")
 test_debug = mute(test_debug) -- 想看输出，注释之
+-- logger
 test_logger = require("test/test_logger")
 test_logger = mute(test_logger) -- 想看输出，注释之
+-- 转换：格式化 table => string 
 test_inspect = require("test/test_inspect")
+-- 转换：1 => 一
 test_number_to_cn = require("test/test_number_to_cn")
+-- table
+test_table = require("test/test_table")
 
 -- ================================================================ 单元测试内容 end
 
