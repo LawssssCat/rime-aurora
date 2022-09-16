@@ -28,7 +28,6 @@ schema:
   dependencies: # 觸發更新製作 bin。 See issue https://github.com/rime/home/issues/1134#issuecomment-1236345551
     - terra_pinyin
     - stroke
-    - easy_en
 
 switches:
   # - name: ascii_mode
@@ -55,14 +54,10 @@ engine:
     - ascii_segmentor
     - matcher
     - abc_segmentor
-    - affix_segmentor@easy_en           # 英文（位置：abc后、punct前）
-    - affix_segmentor@easy_en_prev
     - punct_segmentor
     - fallback_segmentor
   translators:
     - lua_translator@time_translator    # 时间
-    - table_translator@easy_en          # 英文
-    - table_translator@easy_en_prev
     - punct_translator
     - table_translator@custom_phrase
     - reverse_lookup_translator
@@ -272,22 +267,12 @@ recognizer:
   patterns:
     reverse_lookup: "`[a-z]*'?$"
     __include: ext_recognizer:/recognizer/patterns
-    __include: easy_en:/recognizer/patterns
-
-####################################################
-# 英文提示
-easy_en:
-  __include: easy_en:/easy_en
-easy_en_prev:
-  __include: easy_en:/easy_en_prev
-e_reverse_lookup:
-  __include: easy_en:/e_reverse_lookup
-####################################################
 
 grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
 __patch:
+  - easy_en:/patch        # 英文
   - symbols:/patch        # 符号
   - symbos_extends:/patch # 符号扩展
   - my_code:/patch           # 输入编码处理（多音字扩展）

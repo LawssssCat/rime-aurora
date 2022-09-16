@@ -64,7 +64,6 @@ schema:
   dependencies: # 觸發更新製作 bin。 See issue https://github.com/rime/home/issues/1134#issuecomment-1236345551
     - luna_pinyin
     - stroke
-    - easy_en
 
 switches:
   - name: ascii_mode                # 1
@@ -98,15 +97,11 @@ engine:
     - ascii_segmentor      # ※ 標識_西文段落
     - matcher              # ※ 標識_符合特定規則的段落，如網址、反查等
     - abc_segmentor        # ※ 標識_常規的文字段落
-    - affix_segmentor@easy_en           # 英文（位置：abc后、punct前）
-    - affix_segmentor@easy_en_prev
     - punct_segmentor      # ※ 標識_句讀段落
     - fallback_segmentor   # ※ 標識_其他未標識段落
   translators: # 三、這批組件翻譯特定類型的編碼段爲一組候選文字
     # - echo_translator # ※ 沒有其他候選字時，回顯輸入碼〔輸入碼可以Shift+Enter上屛〕
     - lua_translator@time_translator    # 时间
-    - table_translator@easy_en          # 英文
-    - table_translator@easy_en_prev
     - punct_translator                  # ※ 轉換標點符號
     - table_translator@custom_phrase    #翻譯_打過的字-優先出●碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案，此項可加載多個實例，後接@+翻譯器名〔如：cangjie、wubi等〕
     - reverse_lookup_translator         # ※ 反查翻譯器，用另一種編碼方案查碼
@@ -189,18 +184,6 @@ recognizer:
   patterns:
     reverse_lookup: "`[a-z]*'?$"
     __include: ext_recognizer:/recognizer/patterns
-    __include: easy_en:/recognizer/patterns
-
-####################################################
-# 中英文混输的设置
-# Rx: BlindingDark/rime-easy-en:customize:schema=double_pinyin_flypy
-easy_en:
-  __include: easy_en:/easy_en
-easy_en_prev:
-  __include: easy_en:/easy_en_prev
-e_reverse_lookup:
-  __include: easy_en:/e_reverse_lookup
-####################################################
 
 # emoji，按 F4 选择是否打开
 emoji_suggestion:
@@ -220,6 +203,7 @@ grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
 __patch:
+  - easy_en:/patch   # 英文
   - symbols:/patch   # 符号
   - symbos_extends:/patch # 符号扩展
   - my_charset:/patch        # 字符集
