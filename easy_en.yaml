@@ -21,7 +21,7 @@ patch:
     spelling_hints: 9
     tips: 〔英文〕
     tag: easy_en
-    prefix: "/"
+    # prefix: "/"
     # comment_format:
       # - xform/^.+$//
 
