@@ -47,7 +47,8 @@ function M:test_split()
 end
 
 function M:test_join()
-  lu.assertEquals(string_helper.join(nil, " "), "")
+  lu.assertError(string_helper.join, nil, " ")
+  lu.assertError(string_helper.join, "string", " ")
   lu.assertEquals(string_helper.join({}, " "), "")
   lu.assertEquals(string_helper.join({"hello", "world", "!"}, " "), "hello world !")
   lu.assertEquals(string_helper.join({"hello", nil, "world", "!"}, " "), "hello world !")
@@ -79,6 +80,7 @@ end
 function M:test_match()
   -- 纯数字
   local pattern_01 = "^[%d]+$"
+  lu.assertError(string.match, nil, pattern_01) -- error
   lu.assertTrue(string.match("123", pattern_01))
   lu.assertFalse(string.match("", pattern_01))
   lu.assertFalse(string.match("123 ", pattern_01))
@@ -101,6 +103,19 @@ function M:test_match()
   local pattern_03 = "^[%w]+$" 
   lu.assertTrue(not string.match("你好", pattern_03))
   lu.assertTrue(not string.match("你123好", pattern_03))
+end
+
+function M:test_format()
+  lu.assertEquals(string_helper.format("hello {value01}!", {
+    value01="world"
+  }), "hello world!")
+  lu.assertEquals(string_helper.format("hello {abc}!", {
+    value="world"
+  }), "hello {abc}!")
+  lu.assertEquals(string_helper.format("hello {abc}!", {}), "hello {abc}!")
+  -- error args
+  lu.assertErrorMsgMatches(".*nil.*", string_helper.format, "hello {abc}!", nil)
+  lu.assertErrorMsgMatches(".*table.*", string_helper.format, "hello {abc}!", "aaaa")
 end
 
 return M

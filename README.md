@@ -75,6 +75,10 @@
 
     ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif)
 
+    输入 "version" 可显示版本信息
+
+    todo
+
 5. CJK字符集提示（开启关闭：F4选择/快捷键 `Ctrl+7`）
 
 1. 候选词详情提示（开启关闭：F4选择/快捷键 `Ctrl+8`）

@@ -77,6 +77,9 @@ local my_debug = require("my_debug")
 
 --]]
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+debug_version_translator = my_debug.translator
+
 -- 【功能】：rq输出日期、sj输出时间
 -- 详见 `lua/time_translator.lua`
 time_translator = require("time_translator")
