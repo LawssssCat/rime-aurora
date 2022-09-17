@@ -39,6 +39,16 @@
   4. 《TsinamLeung 整理的 api》 - https://github.com/TsinamLeung/librime-lua/wiki/API
 --]]
 
+-- 【功能】：对候选词做处理
+-- 参考：https://github.com/hchunhui/librime-lua/blob/master/sample/lua/charset.lua
+-- charset_filter: 滤除含 CJK 扩展汉字的候选项
+-- charset_comment_filter: 为候选项加上其所属字符集的注释
+-- 详见 `lua/charset.lua`
+local my_charset = require("my_charset")
+
+-- 【功能】：候选词详情（测试用）
+local my_debug = require("my_debug")
+
 -- ==============================================================================
 -- I. translators:
 -- ==============================================================================
@@ -50,8 +60,8 @@
   translator 的功能是将分好段的输入串翻译为一系列候选项。
 
   欲定义的 translator 包含三个输入参数：
-  - input: 待翻译的字符串
-  - seg: 包含 `start` 和 `_end` 两个属性，分别表示当前串在输入框中的起始和结束位置
+  - input: 待翻译的字符串（string）
+  - seg: 包含 `start` 和 `_end` 两个属性，分别表示当前串在输入框中的起始和结束位置（Segment 对象）
   - env: 可选参数，表示 translator 所处的环境
 
   translator 的输出是若干候选项。
@@ -67,11 +77,10 @@
 
 --]]
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- rq输出日期、sj输出时间
+-- 【功能】：rq输出日期、sj输出时间
 -- 详见 `lua/time_translator.lua`
 time_translator = require("time_translator")
 
-local my_debug = require("my_debug")
 debug_comment_translator = my_debug.translator
 
 -- ==============================================================================
@@ -86,7 +95,7 @@ debug_comment_translator = my_debug.translator
   如：去除不想要的候选、为候选加注释、候选项重排序等。
 
   欲定义的 filter 包含两个输入参数：
-  - input: 候选项列表
+  - input: 候选项列表（Translation 对象）
   - env: 可选参数，表示 filter 所处的环境
 
   filter 的输出与 translator 相同，也是若干候选项，也要求您使用 `yield` 产生候选项。
@@ -99,41 +108,71 @@ debug_comment_translator = my_debug.translator
 --]]
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--- 对候选词做处理，参考：https://github.com/hchunhui/librime-lua/blob/master/sample/lua/charset.lua
--- charset_filter: 滤除含 CJK 扩展汉字的候选项
--- charset_comment_filter: 为候选项加上其所属字符集的注释
--- 详见 `lua/charset.lua`
-local charset = require("my_charset")
-charset_comment_filter = charset.comment_filter
+debug_comment_filter = my_debug.filter
 
--- single_char_filter: 候选项重排序，使单字优先
+charset_comment_filter = my_charset.comment_filter
+
+-- 【功能】：候选项重排序，使单字优先（single_char_filter）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/single_char.lua
 
--- 依地球拼音为候选项加上带调拼音的注释
+-- 【功能】：依地球拼音为候选项加上带调拼音的注释
+-- （不需要lua也能实现）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/reverse.lua
 -- 详见 `lua/reverse.lua`
 py_comment_filter = require("my_reverse")
 
--- 显示候选词详细信息
-debug_comment_filter = my_debug.filter
-
--- use wildcard to search code
+-- 【功能】：use wildcard to search code
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/expand_translator.lua
 
 -- ==============================================================================
 -- III. processors:
 -- ==============================================================================
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--[[
 
--- 限制输入编码长度（过长会导致卡顿、闪退、死机）
-code_length_limit_processor = require("my_code")
+关于processor
+
+  processor 的功能是对按键的监听
+
+  欲定义的 processor 包含两个输入参数：
+  - key: 按键事件（KeyEvent 对象）
+  - env: 可选参数，表示 filter 所处的环境
+
+  返回不同返回值以表示按键事件是否继续往下传递
+  - 0 （kRejected）输入法拒绝处理
+  - 1 （kAccepted）输入法接受处理，并由本processor处理
+  - 2 （kNoop）交由输入法下一个processor判断是否处理
+
+--]]
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 debug_comment_processor = my_debug.processor
 
--- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
+-- 【功能】：限制输入编码长度（过长会导致卡顿、闪退、死机）
+code_length_limit_processor = require("my_code")
+
+-- 【功能】：通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）（switch_processor）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/switch.lua
 
--- 利用 librime-lua 擴展 rime 輸入法的集成模組
+-- 【功能】：利用 librime-lua 擴展 rime 輸入法的集成模組
 -- https://github.com/shewer/librime-lua-script
 -- init_processor = require('init_processor')
+
+-- ==============================================================================
+-- IV. segmentors:
+-- ==============================================================================
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--[[
+
+关于segmentor
+
+  segmentor 的功能是识别不同内容的类型，将输入码分段并加上 tag
+
+  欲定义的 segmentor 包含两个输入参数：
+  - segmentation: （Segmentation 对象）
+  - env: 可选参数，表示 filter 所处的环境
+
+  返回值为bool
+
+--]]
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

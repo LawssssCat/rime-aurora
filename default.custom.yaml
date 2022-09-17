@@ -6,6 +6,7 @@ customization:
   rime_version: 1.5.3
 patch:
   "menu/page_size": 6
+  # "menu/page_down_cycle": true
   schema_list:
     - {schema: my_terra_pinyin}
     - {schema: my_luna_pinyin}
