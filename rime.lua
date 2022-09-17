@@ -81,7 +81,8 @@ local my_debug = require("my_debug")
 -- 详见 `lua/time_translator.lua`
 time_translator = require("time_translator")
 
-debug_comment_translator = my_debug.translator
+-- 【功能】：反查五笔笔画
+-- 详见 https://github.com/shewer/librime-lua-script/blob/e84e9ea008592484463b6ade405c83a5ff5ab9f0/lua/component/stroke_count.lua
 
 -- ==============================================================================
 -- II. filters:
@@ -105,6 +106,10 @@ debug_comment_translator = my_debug.translator
       ...
     end
     ```
+
+  另外，可定义 filer.tags_match(seg,env) 决定是否执行 filter
+  返回值 true 执行
+  返回值 false 不执行
 --]]
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -145,8 +150,6 @@ py_comment_filter = require("my_reverse")
 
 --]]
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-debug_comment_processor = my_debug.processor
 
 -- 【功能】：限制输入编码长度（过长会导致卡顿、闪退、死机）
 code_length_limit_processor = require("my_code")

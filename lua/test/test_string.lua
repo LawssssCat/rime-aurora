@@ -52,6 +52,7 @@ function M:test_join()
   lu.assertEquals(string_helper.join({"hello", "world", "!"}, " "), "hello world !")
   lu.assertEquals(string_helper.join({"hello", nil, "world", "!"}, " "), "hello world !")
   lu.assertEquals(string_helper.join({null("hello", nil, "world", "!")}, " "), "hello nil world !")
+  lu.assertEquals(string_helper.join({"hello", "world", a="bb", "!"}, " "), "hello world ! bb")
   lu.assertEquals(string_helper.join({"hello", "wor\nld", "!"}, " "), [[hello wor
 ld !]])
   lu.assertEquals(string_helper.join({"hello", {a=1}, "!"}, " "), [[hello {
