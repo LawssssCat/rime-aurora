@@ -50,6 +50,11 @@ function helper:get_version_info()
   helper.get_rime_version(), helper.get_rime_lua_version(), helper.get_lua_version())
 end
 
+-- 获取配置 ==> string
+function helper:get_config_string(config, path)
+  return config:get_string(path)
+end
+
 -- 获取配置 => arr table
 function helper:get_config_list(config, path)
   -- issue about is_list https://github.com/hchunhui/librime-lua/issues/193
@@ -64,6 +69,18 @@ function helper:get_config_list(config, path)
     end
   end
   return result_list
+end
+
+-- 获取配置 => map table
+function helper:get_config_map(config, path)
+  local result_map = {}
+  local config_map = config:get_map(path)
+  if(not config_map) then return nil end
+  for index, key in pairs(config_map:keys()) do 
+    local value = config_map:get_value(key).value
+    result_map[key] = value
+  end
+  return result_map
 end
 
 return helper

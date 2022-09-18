@@ -94,11 +94,7 @@ engine:
     - express_editor # ←啟用 (空格鍵 輸入中文)、●(enter 鍵輸入英文)，不啟用 (空格鍵輸入中文)(enter 鍵輸入中文)、回退鍵 等
     # - fluency_editor #  編輯器 流输入（需要两次确认才上屏）
   segmentors: # 二、這批組件識別不同內容類型，將輸入碼分段
-    - ascii_segmentor      # ※ 標識_西文段落
-    - matcher              # ※ 標識_符合特定規則的段落，如網址、反查等
-    - abc_segmentor        # ※ 標識_常規的文字段落
-    - punct_segmentor      # ※ 標識_句讀段落
-    - fallback_segmentor   # ※ 標識_其他未標識段落
+    __include: ext_segmentors:/patch/segmentors
   translators: # 三、這批組件翻譯特定類型的編碼段爲一組候選文字
     # - echo_translator # ※ 沒有其他候選字時，回顯輸入碼〔輸入碼可以Shift+Enter上屛〕
     - lua_translator@time_translator    # 时间

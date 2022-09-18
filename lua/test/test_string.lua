@@ -27,6 +27,19 @@ function M:test_format()
   lu.assertStrContains(string.format("%s %s %s %s", 1, nil, "3", {}), "^1 nil 3 table: %w+$", true) -- e.g. "1 nil 3 table: 0000000000837450"
 end
 
+function M:test_helper_format()
+  lu.assertEquals(string_helper.format("hello {value01}!", {
+    value01="world"
+  }), "hello world!")
+  lu.assertEquals(string_helper.format("hello {abc}!", {
+    value="world"
+  }), "hello {abc}!")
+  lu.assertEquals(string_helper.format("hello {abc}!", {}), "hello {abc}!")
+  -- error args
+  lu.assertErrorMsgMatches(".*nil.*", string_helper.format, "hello {abc}!", nil)
+  lu.assertErrorMsgMatches(".*table.*", string_helper.format, "hello {abc}!", "aaaa")
+end
+
 -- 字符串正则
 function M:test_gsub()
   lu.assertEquals(string.gsub("abcdefg123321", "%w", "1"), "1111111111111")
@@ -76,13 +89,17 @@ function M:test_slice()
   lu.assertError(string_helper.sub, "你好", 1, 3) -- 下标异常
 end
 
--- 匹配
+-- 匹配(第一个) => 返回匹配字符串
 function M:test_match()
   -- 纯数字
   local pattern_01 = "^[%d]+$"
   lu.assertError(string.match, nil, pattern_01) -- error
-  lu.assertTrue(string.match("123", pattern_01))
-  lu.assertFalse(string.match("", pattern_01))
+  local _ok1 = string.match("123", pattern_01)
+  lu.assertTrue(_ok1)
+  lu.assertEquals(_ok1, "123")
+  local _err1 = string.match("", pattern_01)
+  lu.assertFalse(_err1)
+  lu.assertEquals(_err1, nil)
   lu.assertFalse(string.match("123 ", pattern_01))
   lu.assertFalse(string.match("bcd", pattern_01)) 
   lu.assertFalse(string.match("你好", pattern_01)) 
@@ -103,19 +120,21 @@ function M:test_match()
   local pattern_03 = "^[%w]+$" 
   lu.assertTrue(not string.match("你好", pattern_03))
   lu.assertTrue(not string.match("你123好", pattern_03))
+  -- 返回值
+  lu.assertEquals({string.match("good", "^[a-zA-Z]*$")}, {"good"})
 end
 
-function M:test_format()
-  lu.assertEquals(string_helper.format("hello {value01}!", {
-    value01="world"
-  }), "hello world!")
-  lu.assertEquals(string_helper.format("hello {abc}!", {
-    value="world"
-  }), "hello {abc}!")
-  lu.assertEquals(string_helper.format("hello {abc}!", {}), "hello {abc}!")
-  -- error args
-  lu.assertErrorMsgMatches(".*nil.*", string_helper.format, "hello {abc}!", nil)
-  lu.assertErrorMsgMatches(".*table.*", string_helper.format, "hello {abc}!", "aaaa")
+-- 查找(第一个) => 返回找到的下标
+function M:test_find()
+  local pattern_01 = "^[a-zA-Z]*$"
+  -- 找不到
+  lu.assertFalse(string.find("1", pattern_01), nil)
+  lu.assertEquals(string.find("1", pattern_01))
+  lu.assertEquals({string.find("1", pattern_01)}, {})
+  --找到了
+  lu.assertTrue(string.find("good", pattern_01))
+  lu.assertEquals(string.find("good", pattern_01), 1) -- 下标1开始
+  lu.assertEquals({string.find("good", pattern_01)}, {1, 4}) -- 开始下标 结束下标
 end
 
 return M

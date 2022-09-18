@@ -49,6 +49,8 @@ local my_charset = require("my_charset")
 -- 【功能】：候选词详情（测试用）
 local my_debug = require("my_debug")
 
+local my_matcher = require("my_matcher")
+
 -- ==============================================================================
 -- I. translators:
 -- ==============================================================================
@@ -182,3 +184,6 @@ code_length_limit_processor = require("my_code")
 
 --]]
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+my_matcher_segmentor = my_matcher.segmentor
+

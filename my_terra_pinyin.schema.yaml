@@ -51,11 +51,7 @@ engine:
     - navigator
     - express_editor
   segmentors:
-    - ascii_segmentor
-    - matcher
-    - abc_segmentor
-    - punct_segmentor
-    - fallback_segmentor
+    __include: ext_segmentors:/patch/segmentors
   translators:
     - lua_translator@time_translator    # 时间
     - punct_translator
