@@ -103,7 +103,6 @@ engine:
     #############################################################
     - simplifier                      # ※ 繁簡轉換
     - uniquifier                      # ※ 過濾重複的候選字，有可能來自繁簡轉換
-    - reverse_lookup_filter@e_reverse_lookup # 显示英文解释
 
 speller:
   # alphabet: zyxwvutsrqponmlkjihgfedcba

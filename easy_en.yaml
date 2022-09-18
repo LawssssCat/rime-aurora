@@ -2,6 +2,8 @@
 patch:
   engine/translators/@after 0: table_translator@easy_en          # 英文
   engine/translators/@after 1: table_translator@easy_en_prev
+  engine/filters/+:
+    - reverse_lookup_filter@e_reverse_lookup # 显示英文解释
   schema/dependencies/+:
     - easy_en
 
