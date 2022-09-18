@@ -10,6 +10,8 @@
     1. https://github.com/shewer/librime-lua-script
 ]]
 
+local logger = require("tools/logger")
+
 local helper = {}
 
 -- the version of librime (https://github.com/rime/librime): 输入法核心引擎
@@ -50,37 +52,44 @@ function helper:get_version_info()
   helper.get_rime_version(), helper.get_rime_lua_version(), helper.get_lua_version())
 end
 
--- 获取配置 ==> string
-function helper:get_config_string(config, path)
-  return config:get_string(path)
-end
-
--- 获取配置 => arr table
-function helper:get_config_list(config, path)
-  -- issue about is_list https://github.com/hchunhui/librime-lua/issues/193
-  local config_list = config:is_list(path) and config:get_list(path)
-  if(not config_list) then return nil end
-  local result_list = {}
-  local temp = nil
-  for i = 1, config_list.size do
-    temp = config_list:get_value_at(i-1) -- 下标 0 开始
-    if(temp) then
-      table.insert(result_list, temp.value)
+--[[
+  将 config_item （递归）转换为 lua 数据类型
+]]
+local function _get_config_item_value(config_item)
+  if(not config_item or config_item.type == "kNull") then 
+    local result = nil
+    return result
+  end
+  if(config_item.type == "kScalar") then 
+    local result = config_item:get_value()
+    return result.value
+  end
+  if(config_item.type == "kList") then 
+    -- issue https://github.com/hchunhui/librime-lua/issues/193
+    local config_list = config_item:get_list()
+    local result_list = {}
+    for i = 1, config_list.size do
+      local result_config_item = config_list:get_at(i-1) -- 下标 0 开始
+      local result_item = _get_config_item_value(result_config_item)
+      table.insert(result_list, result_item)
     end
+    return result_list
   end
-  return result_list
+  if(config_item.type == "kMap") then 
+    local config_map = config_item:get_map()
+    local result_map = {}
+    for index, key in pairs(config_map:keys()) do 
+      local result_config_item = config_map:get(key)
+      local result_item = _get_config_item_value(result_config_item)
+      result_map[key] = result_item
+    end
+    return result_map
+  end
 end
 
--- 获取配置 => map table
-function helper:get_config_map(config, path)
-  local result_map = {}
-  local config_map = config:get_map(path)
-  if(not config_map) then return nil end
-  for index, key in pairs(config_map:keys()) do 
-    local value = config_map:get_value(key).value
-    result_map[key] = value
-  end
-  return result_map
+function helper:get_config_item_value(config, path)
+  local config_item = config:get_item(path)
+  return _get_config_item_value(config_item)
 end
 
 return helper

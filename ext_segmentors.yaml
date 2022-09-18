@@ -2,4 +2,4 @@ patch:
   segmentors:
     - lua_segmentor@my_matcher_segmentor # match all tags in "recognizer/patterns"
     - abc_segmentor # tags: abc
-    # - punct_segmentor # 交给 matcher 正则处理
+    - lua_segmentor@my_punct_segmentor # tags: punct . simplify and expand "punct_segmentor"

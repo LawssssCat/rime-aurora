@@ -9,6 +9,15 @@ local string_helper = require("tools/string_helper")
 
 local M = {}
 
+function M:test_byte()
+  lu.assertEquals(string.byte("a"), 97)
+  lu.assertEquals(string.byte("a"), 0x61)
+end
+
+function M:test_char()
+  lu.assertEquals(string.char(97), "a")
+end
+
 function M:test_equal()
   lu.assertTrue("abcdefghijklnmopqrstuvwxyz" == "abcdefghijklnmopqrstuvwxyz")
   lu.assertFalse("abcdefghijklnmopqrstuvwxyz" == "ABCDEFGHIJKLNMOPQRSTUVWXYZ")

@@ -51,6 +51,8 @@ local my_debug = require("my_debug")
 
 local my_matcher = require("my_matcher")
 
+local my_punct = require("my_punct")
+
 -- ==============================================================================
 -- I. translators:
 -- ==============================================================================
@@ -186,4 +188,6 @@ code_length_limit_processor = require("my_code")
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 my_matcher_segmentor = my_matcher.segmentor
+
+my_punct_segmentor = my_punct.segmentor
 

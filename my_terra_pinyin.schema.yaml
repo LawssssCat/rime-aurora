@@ -241,8 +241,6 @@ reverse_lookup:
 
 punctuator:
   import_preset: default
-  half_shape:
-    __include: ext_punctuator:/half_shape
 
 key_binder:
   import_preset: default
@@ -262,7 +260,6 @@ recognizer:
   import_preset: default
   patterns:
     reverse_lookup: "`[a-z]*'?$"
-    __include: ext_recognizer:/recognizer/patterns
 
 grammar: # 语法模型
   language: zh-hant-t-essay-bgw
@@ -272,6 +269,7 @@ __patch:
   - easy_en:/patch        # 英文
   - symbols:/patch        # 符号
   - symbos_extends:/patch # 符号扩展
+  - my_punctuator:/patch  # 标点
   - my_code:/patch           # 输入编码处理（多音字扩展）
   - my_charset:/patch        # 字符集
   - my_debug:/patch          # 候选词详细信息

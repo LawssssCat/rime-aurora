@@ -66,15 +66,10 @@ schema:
     - stroke
 
 switches:
-  - name: ascii_mode                # 1
-    reset: 0
-    states: [ 中文, 西文 ]
   - name: full_shape                # 2
     states: [ 半角, 全角 ]
   - name: simplification            # 3
     states: [ 漢字, 汉字 ]
-  - name: ascii_punct               # 4
-    states: [ 。，, ．， ]
   - name: emoji_suggestion          # 5
     reset: 1
     states: [ "关 ❌", "开 ✔️" ] # 0为关闭、1为开启
@@ -161,8 +156,6 @@ reverse_lookup: # 功能：五笔反查拼音，以 ` 符号开头
 
 punctuator:
   import_preset: default
-  half_shape:
-    __include: ext_punctuator:/half_shape
 
 key_binder:
   import_preset: default
@@ -179,7 +172,6 @@ recognizer:
   import_preset: default
   patterns:
     reverse_lookup: "`[a-z]*'?$"
-    __include: ext_recognizer:/recognizer/patterns
 
 # emoji，按 F4 选择是否打开
 emoji_suggestion:
@@ -203,5 +195,6 @@ __patch:
   - easy_en:/patch   # 英文
   - symbols:/patch   # 符号
   - symbos_extends:/patch # 符号扩展
+  - my_punctuator:/patch     # 标点
   - my_charset:/patch        # 字符集
   - my_debug:/patch          # 候选词详细信息
