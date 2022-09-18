@@ -8,7 +8,7 @@ local string_helper = require("tools/string_helper")
 local ptry = require("tools/ptry")
 
 -- 日志格式模版
-local pattern = "{level} [{depth}] {path}:{line} {method}] {msg}"
+local pattern = "{level} {logger_id}/{depth} {path}:{line} {method}] {msg}"
 
 local logger = {} -- return 
 
@@ -16,6 +16,8 @@ local logger = {} -- return
 logger.INFO = "info"
 logger.WARN = "warn"
 logger.ERROR = "error"
+
+logger.id = os.date("%Y%m%d%H%M%S")
 
 -- 日志输出格式化
 local function format(log_level, debug_level, ...)
@@ -36,26 +38,16 @@ local function format(log_level, debug_level, ...)
   debug_level = debug_level + 1
   local info = debug.getinfo(debug_level, "nSl")
   -- 处理 pattern 格式
-  local result = pattern
-  ptry(function()
-    result = string_helper.replace(result, "{level}", string.upper(log_level))
-    result = string_helper.replace(result, "{depth}", debug_level)
-    result = string_helper.replace(result, "{time}", os.date("%Y%m%d %H:%M:%S"))
-    result = string_helper.replace(result, "{path}", info.short_src:match(".?(lua[\\/].+)$") or info.short_src or "nil")
-    result = string_helper.replace(result, "{method}", info.name or "nil")
-    result = string_helper.replace(result, "{line}", info.currentline)
-    result = string_helper.replace(result, "{msg}", msg)
-  end)
-  ._catch(function(err)
-    error(inspect({
-      err=err,
-      log_level=log_level,
-      debug_level=debug_level,
-      stack_info=info,
-      args=msg,
-      result=result
-    }))
-  end)
+  local result = string_helper.format(pattern, {
+    level=string.upper(log_level),
+    depth=debug_level,
+    time=os.date("%Y%m%d %H:%M:%S"),
+    path=info.short_src:match(".?(lua[\\/].+)$") or info.short_src or "nil",
+    method=info.name or "nil",
+    line=info.currentline,
+    msg=msg,
+    logger_id=logger.id
+  })
   return result
 end
 
