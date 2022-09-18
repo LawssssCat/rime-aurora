@@ -92,4 +92,15 @@ function helper:get_config_item_value(config, path)
   return _get_config_item_value(config_item)
 end
 
+--[[
+
+  Segmentation、Segment
+
+  wiki https://github.com/hchunhui/librime-lua/wiki/Scripting#segment
+]]
+helper.segment_status_kVoid = "kVoid"
+helper.segment_status_kGuess = "kGuess"
+helper.segment_status_kSelected = "kSelected"
+helper.segment_status_kConfirmed = "kConfirmed"
+
 return helper

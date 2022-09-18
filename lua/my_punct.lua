@@ -30,25 +30,23 @@ end
 
 function segmentor.func(segmentation, env)
   local current_punctuator_map = env.current_punctuator_map
-  if(not current_punctuator_map) then
-    return true
-  end
+  if(not current_punctuator_map) then return true end
   local input_active = segmentation.input
-  local pos_comfirm = segmentation:get_confirmed_position() -- 下标0开始
-  local input_waiting = string.sub(input_active, pos_comfirm+1)
-  if(not input_waiting or #input_waiting ~= 1) then
+  if(not input_active or #input_active < 1) then
     return true
   end
-  local ch = string.byte(input_waiting)
+  local pos = #input_active
+  local c = string.sub(input_active, pos)
+  local ch = string.byte(c)
   if(ch < 0x20 or ch >= 0x7f) then
     return true
   end
   -- 转换
-  local key = current_punctuator_map[input_waiting]
+  local key = current_punctuator_map[c]
   if(not key) then
     return true
   end
-  local seg = Segment(pos_comfirm, pos_comfirm+#input_waiting)
+  local seg = Segment(pos-1, pos)
   seg.tags =  Set({tag_name})
   segmentation:add_segment(seg)
   return true

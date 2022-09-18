@@ -90,8 +90,13 @@ function M:test_utf8len()
   lu.assertEquals(string_helper.len(" 𩧱2"), 3) -- extcjk
 end
 
--- 截取
-function M:test_slice()
+-- 截取（字节）
+function M:test_sub()
+  lu.assertEquals(string_helper.sub("abc", 1, 1), "a")
+end
+
+-- 截取（utf8）
+function M:test_helper_sub()
   lu.assertEquals(string_helper.sub("你好", 1, 2), "你好")
   lu.assertEquals(string_helper.sub("你好", 1, 1), "你")
   lu.assertEquals(string_helper.sub("你好", 2, 2), "好")
@@ -129,8 +134,11 @@ function M:test_match()
   local pattern_03 = "^[%w]+$" 
   lu.assertTrue(not string.match("你好", pattern_03))
   lu.assertTrue(not string.match("你123好", pattern_03))
+  -- 特殊符号
+  lu.assertTrue(not string.match("abc/dev", "abc\\/dev")) -- “/” 符号
   -- 返回值
   lu.assertEquals({string.match("good", "^[a-zA-Z]*$")}, {"good"})
+  lu.assertEquals({string.match("/good", "^/")}, {"/"})
 end
 
 -- 查找(第一个) => 返回找到的下标

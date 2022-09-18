@@ -3,3 +3,4 @@ patch:
     - lua_segmentor@my_matcher_segmentor # match all tags in "recognizer/patterns"
     - abc_segmentor # tags: abc
     - lua_segmentor@my_punct_segmentor # tags: punct . simplify and expand "punct_segmentor"
+    - fallback_segmentor # 【必须添加】标识其他未标识的段落（不添加会有异常 prompt）
