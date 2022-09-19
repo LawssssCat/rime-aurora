@@ -58,6 +58,8 @@ local my_punct = require("my_punct")
 
 local my_easy_en = require("my_easy_en")
 
+local my_key_binder = require("my_key_binder")
+
 -- ==============================================================================
 -- I. translators:
 -- ==============================================================================
@@ -176,6 +178,8 @@ code_length_limit_processor = require("my_code")
 -- 【功能】：利用 librime-lua 擴展 rime 輸入法的集成模組
 -- https://github.com/shewer/librime-lua-script
 -- init_processor = require('init_processor')
+
+my_key_binder_processor = my_key_binder.processor
 
 -- ==============================================================================
 -- IV. segmentors:

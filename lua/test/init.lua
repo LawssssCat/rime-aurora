@@ -43,6 +43,7 @@ print(string.format("%s%s", os.date("%Y%m%d%H%M%S"), math.random(10, 99)))
 
 -- 单元测试链条
 -- string
+test_basic = require("test/test_basic")
 test_string = require("test/test_string")
 -- 异常
 test_error = require("test/test_error")
@@ -57,7 +58,7 @@ test_logger = mute(test_logger) -- 想看输出，注释之
 -- 转换：格式化 table => string 
 test_inspect = require("test/test_inspect")
 -- 转换：1 => 一
-test_number_to_cn = require("test/test_number_to_cn")
+test_number = require("test/test_number")
 -- table
 test_table = require("test/test_table")
 

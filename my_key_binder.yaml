@@ -4,7 +4,13 @@
 # 配置说明：https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E5%85%AB%E5%85%B6%E5%AE%83
 #
 # 1. 每一條binding包含：when作用範圍、accept實際所按之鍵，以及期望的操作
-# 2. 操作可爲以下任意一個：send輸出按鍵、toggle切換開關、send_sequence輸出一串按鍵、set_option開某多選開關、unset_option關某多選開關、select選候選字
+# 2. 操作可爲以下任意一個：
+#   1. send輸出按鍵
+#   2. toggle切換開關
+#   3. send_sequence輸出一串按鍵
+#   4. set_option開某多選開關
+#   5. unset_option關某多選開關
+#   6. select選候選字
 # 
 # accept和send可用字段除A-Za-z0-9外，還包含以下鍵板上實際有的鍵：
 # - BackSpace	退格
@@ -136,15 +142,17 @@
 # - cancel	取消輸入
 # - noop	空
 #
-key_binder:
-  bindings:
-    - {when: has_menu, accept: "Shift+Up", send: Page_Up} # 翻页时，shift+↑ 上一页
-    - {when: has_menu, accept: "Shift+Down", send: Page_Down} # 翻页时，shift+↓ 下一页
+patch: 
+  engine/processors/@after 0: lua_processor@my_key_binder_processor@my_bindings
+  my_bindings:
+    key_binder: # run 脚本，定义在 lua 代码 handle_run_map 中
+      - {when: has_menu, accept: "Shift+Up", run: Page_Up} # 翻页时，shift+↑ 上一页
+      - {when: has_menu, accept: "Shift+Down", run: Page_Down} # 翻页时，shift+↓ 下一页
+      - {when: has_menu, accept: "space", run: confirm} # 空格上屏选择
+  key_binder/bindings/+:
     - {when: has_menu, accept: "Shift+comma", send: Page_Up } # “shift+,” 上页
     - {when: has_menu, accept: "Shift+period", send: Page_Down } # "shift+." 下页
     - {when: has_menu, accept: "comma", send: comma } # , 视为输入，而非快捷键
     - {when: has_menu, accept: "period", send: period } # . 视为输入，而非快捷键
-
-editor:
-  bindings:
+  editor/bindings/+:
     "Shift+Return": commit_comment # shift+回车 输出comment内容

@@ -1,6 +1,8 @@
 local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 
+local option_name = "ascii_mode"
+
 -- =============================================================== filter
 
 local pure_filter = {}
@@ -28,7 +30,7 @@ end
 
 function pure_filter.tags_match(seg, env)
   local context = env.engine.context
-  env.option_ascii_mode = context:get_option("ascii_mode")
+  env.option_ascii_mode = context:get_option(option_name)
 
   if(env.option_ascii_mode) then
     seg.prompt = "⚙(纯英文~\"Shift\"开/关)" .. seg.prompt

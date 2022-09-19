@@ -158,14 +158,6 @@ punctuator:
 
 key_binder:
   import_preset: default
-  __patch:
-    bindings/+:
-      __include: ext_bindings:/key_binder/bindings
-
-editor:
-  __patch:
-    bindings/+:
-      __include: ext_bindings:/editor/bindings
 
 recognizer:
   import_preset: default
@@ -197,3 +189,4 @@ __patch:
   - my_punctuator:/patch     # 标点
   - my_charset:/patch        # 字符集
   - my_debug:/patch          # 候选词详细信息
+  - my_key_binder:/patch     # 快捷键
