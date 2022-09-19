@@ -99,4 +99,13 @@ function helper.format(pattern, info)
   return result
 end
 
+-- 【首字母】是否是（可见）ascii
+function helper.is_ascii_visible(c)
+  local ch = c
+  if(type(c) == "string") then -- string => code
+    ch = string.byte(c)
+  end
+  return ch >= 0x20 and ch < 0x7f
+end
+
 return helper

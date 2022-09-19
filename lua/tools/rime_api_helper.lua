@@ -103,4 +103,8 @@ helper.segment_status_kGuess = "kGuess"
 helper.segment_status_kSelected = "kSelected"
 helper.segment_status_kConfirmed = "kConfirmed"
 
+helper.processor_return_kRejected = 0 -- 字符上屏，结束 processors 流程
+helper.processor_return_kAccepted = 1 -- 字符不上屏，结束 processors 流程
+helper.processor_return_kNoop = 2 -- 字符不上屏，交给下一个 processor
+
 return helper

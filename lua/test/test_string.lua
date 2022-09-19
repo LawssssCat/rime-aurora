@@ -12,6 +12,8 @@ local M = {}
 function M:test_byte()
   lu.assertEquals(string.byte("a"), 97)
   lu.assertEquals(string.byte("a"), 0x61)
+  lu.assertEquals(string.byte("abc"), 97)
+  lu.assertEquals(string.byte("你"), 228)
 end
 
 function M:test_char()
@@ -153,6 +155,14 @@ function M:test_find()
   lu.assertTrue(string.find("good", pattern_01))
   lu.assertEquals(string.find("good", pattern_01), 1) -- 下标1开始
   lu.assertEquals({string.find("good", pattern_01)}, {1, 4}) -- 开始下标 结束下标
+end
+
+function M:test_is_ascii_visible()
+  lu.assertTrue(string_helper.is_ascii_visible("a"))
+  lu.assertTrue(string_helper.is_ascii_visible(97)) -- a
+  lu.assertFalse(string_helper.is_ascii_visible(16)) -- dle
+  lu.assertFalse(string_helper.is_ascii_visible(string.char(16))) -- dle
+  lu.assertFalse(string_helper.is_ascii_visible("你"))
 end
 
 return M

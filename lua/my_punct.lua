@@ -1,5 +1,6 @@
 local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
+local string_helper = require("tools/string_helper")
 
 local tag_name = "punct"
 
@@ -38,9 +39,8 @@ function segmentor.func(segmentation, env)
   end
   local pos = #input_active
   local c = string.sub(input_active, pos)
-  local ch = string.byte(c)
   -- 是否是（可见）ascii
-  if(ch < 0x20 or ch >= 0x7f) then
+  if(not string_helper.is_ascii_visible(c)) then
     return true
   end
   -- 转换
