@@ -1,14 +1,13 @@
 # 英文提示
 patch:
+  engine/filters/@next: lua_filter@easy_en_pure_filter          # 纯英文模式
   engine/translators/@after 0: table_translator@easy_en          # 英文
-  engine/translators/@after 1: table_translator@easy_en_prev
   engine/filters/+:
     - reverse_lookup_filter@e_reverse_lookup # 显示英文解释
   schema/dependencies/+:
     - easy_en
 
   recognizer/patterns/+:
-    easy_en_prev: "^\/[a-zA-Z]*$" # 英文输入前缀 "/", e.g. "/good" => "good"
     easy_en: "^[a-zA-Z]*$"
 
   easy_en:
@@ -24,13 +23,8 @@ patch:
     # comment_format:
       # - xform/^.+$//
 
-  easy_en_prev:
-    __include: /patch/easy_en
-    tag: easy_en_prev
-    prefix: "/"
-
   e_reverse_lookup:
-    tags: [ easy_en, easy_en_prev ]
+    tags: [ easy_en ]
     overwrite_comment: true
     dictionary: easy_en
     comment_format:

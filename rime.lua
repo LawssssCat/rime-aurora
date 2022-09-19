@@ -56,6 +56,8 @@ local my_matcher = require("my_matcher")
 
 local my_punct = require("my_punct")
 
+local my_easy_en = require("my_easy_en")
+
 -- ==============================================================================
 -- I. translators:
 -- ==============================================================================
@@ -140,6 +142,8 @@ py_comment_filter = require("my_reverse")
 
 -- 【功能】：use wildcard to search code
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/expand_translator.lua
+
+easy_en_pure_filter = my_easy_en.pure_filter
 
 -- ==============================================================================
 -- III. processors:
