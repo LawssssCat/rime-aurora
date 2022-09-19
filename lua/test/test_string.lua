@@ -148,6 +148,7 @@ function M:test_find()
   lu.assertFalse(string.find("1", pattern_01), nil)
   lu.assertEquals(string.find("1", pattern_01))
   lu.assertEquals({string.find("1", pattern_01)}, {})
+  lu.assertEquals({string.find("/abc", "^/[0-9a-zA-Z]*$")}, {1, 4})
   --找到了
   lu.assertTrue(string.find("good", pattern_01))
   lu.assertEquals(string.find("good", pattern_01), 1) -- 下标1开始

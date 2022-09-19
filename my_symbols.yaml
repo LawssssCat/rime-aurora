@@ -1,5 +1,9 @@
 patch:
   ##########################################################
+  # 得到 “punctuator/symbols” 中的符号候选词
+  engine/translators/@next: lua_translator@symbols_candidate_translator
+  engine/segmentors/@after 0: lua_segmentor@symbols_candidate_segmentor
+  ##########################################################
   # 符号提示码表（需要在符号解释之前）
   engine/filters/@after 0: simplifier@symbol_suggestion # 符号
   symbol_suggestion:

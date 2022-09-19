@@ -32,17 +32,20 @@ function segmentor.func(segmentation, env)
   local current_punctuator_map = env.current_punctuator_map
   if(not current_punctuator_map) then return true end
   local input_active = segmentation.input
+  -- 是否有输入
   if(not input_active or #input_active < 1) then
     return true
   end
   local pos = #input_active
   local c = string.sub(input_active, pos)
   local ch = string.byte(c)
+  -- 是否是（可见）ascii
   if(ch < 0x20 or ch >= 0x7f) then
     return true
   end
   -- 转换
   local key = current_punctuator_map[c]
+  -- 是否在 map 有值
   if(not key) then
     return true
   end

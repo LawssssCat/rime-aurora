@@ -67,15 +67,25 @@
 
     todo 优化 https://github.com/shewer/librime-lua-script/issues/5
 
-3. “`//`” 前缀：符号 & 表情 & 颜表情
+3. “`/`” 前缀：符号 & 表情 & 颜表情
 
     todo 
 
-4. 输入 “rq”、“sj”、“xq” 等可显示当前系统时间
+4. 特殊编码
+
+    输入 "rq"、"sj"、"xq" 等可显示当前系统时间
 
     ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif)
 
     输入 "version" 可显示版本信息
+
+    todo
+
+    输入 "ascii" 可打印 ascii 表
+
+    todo
+
+    输入 "table" 可打印不同格式的表格框架
 
     todo
 

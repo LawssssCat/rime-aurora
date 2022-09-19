@@ -266,7 +266,7 @@ __patch:
   - my_common:/patch
   - easy_en:/patch        # 英文
   - symbols:/patch        # 符号
-  - symbos_extends:/patch # 符号扩展
+  - my_symbols:/patch     # 符号扩展
   - my_punctuator:/patch  # 标点
   - my_code:/patch           # 输入编码处理（多音字扩展）
   - my_charset:/patch        # 字符集
