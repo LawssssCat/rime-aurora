@@ -15,6 +15,8 @@
   ```
 --]]
 
+local rime_api_helper = require("tools/rime_api_helper")
+
 local M = {}
 
 local kRejected = 0 -- 输入法拒绝处理
@@ -31,12 +33,12 @@ function M.func(key, env)
     if(string.len(ctx.input) > tonumber(length_limit)) then
       -- ctx:clear()
       ctx:pop_input(1) -- 删除输入框中最后个编码字符
-      return kAccepted
+      return rime_api_helper.processor_return_kAccepted
     end
   end
 
   -- 放行
-  return kNoop
+  return rime_api_helper.processor_return_kNoop
 end
 
 return M

@@ -3,7 +3,7 @@ patch:
   ###########################################################################
   # 屏蔽默认的 pattern
   recognizer/patterns/raw: "" 
-  recognizer/patterns/uppercase: "^$" 
+  # recognizer/patterns/uppercase: "^$" 
   # recognizer/patterns/email: ""
   # recognizer/patterns/url: ""
   ###########################################################################

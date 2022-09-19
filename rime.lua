@@ -94,7 +94,7 @@ time_translator = require("time_translator")
 -- 【功能】：反查五笔笔画
 -- 详见 https://github.com/shewer/librime-lua-script/blob/e84e9ea008592484463b6ade405c83a5ff5ab9f0/lua/component/stroke_count.lua
 
-symbols_candidate_translator = my_symbols.translator
+my_symbols_translator = my_symbols.translator
 
 -- ==============================================================================
 -- II. filters:
@@ -196,4 +196,4 @@ my_matcher_segmentor = my_matcher.segmentor
 
 my_punct_segmentor = my_punct.segmentor
 
-symbols_candidate_segmentor = my_symbols.segmentor
+my_symbols_segmentor = my_symbols.segmentor
