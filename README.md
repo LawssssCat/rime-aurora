@@ -61,9 +61,7 @@
 
     ![输入法英文预览](./.github/assets/preview-easy_en.png)
 
-    “`/`”  前缀：开启纯英文模式
-
-    ![输入法英文预览（prefix）](./.github/assets/preview-easy_en-perfix-hit.png)
+    todo 中途按 “`shift`” 切换 “纯英文模式”
 
     todo 优化 https://github.com/shewer/librime-lua-script/issues/5
 
@@ -256,6 +254,7 @@ bash tools/tailLog.sh
 >（中文输入法方案）
 > + iDvel - <https://github.com/iDvel/rime-ice><br>
 >（全拼方案、简体）
+> + 行列30 - <https://github.com/rime/rime-array>
 
 > 码表
 >
