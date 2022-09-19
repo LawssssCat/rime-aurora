@@ -2,7 +2,8 @@ patch:
   menu/page_size: 6
   ###########################################################################
   # 屏蔽默认的 pattern
-  recognizer/patterns/uppercase: "" 
+  recognizer/patterns/raw: "" 
+  recognizer/patterns/uppercase: "^$" 
   # recognizer/patterns/email: ""
   # recognizer/patterns/url: ""
   ###########################################################################

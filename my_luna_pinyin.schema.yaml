@@ -66,15 +66,10 @@ schema:
     - stroke
 
 switches:
-  - name: ascii_mode                # 1
-    reset: 0
-    states: [ 中文, 西文 ]
   - name: full_shape                # 2
     states: [ 半角, 全角 ]
   - name: simplification            # 3
     states: [ 漢字, 汉字 ]
-  - name: ascii_punct               # 4
-    states: [ 。，, ．， ]
   - name: emoji_suggestion          # 5
     reset: 1
     states: [ "关 ❌", "开 ✔️" ] # 0为关闭、1为开启
@@ -94,11 +89,7 @@ engine:
     - express_editor # ←啟用 (空格鍵 輸入中文)、●(enter 鍵輸入英文)，不啟用 (空格鍵輸入中文)(enter 鍵輸入中文)、回退鍵 等
     # - fluency_editor #  編輯器 流输入（需要两次确认才上屏）
   segmentors: # 二、這批組件識別不同內容類型，將輸入碼分段
-    - ascii_segmentor      # ※ 標識_西文段落
-    - matcher              # ※ 標識_符合特定規則的段落，如網址、反查等
-    - abc_segmentor        # ※ 標識_常規的文字段落
-    - punct_segmentor      # ※ 標識_句讀段落
-    - fallback_segmentor   # ※ 標識_其他未標識段落
+    __include: ext_segmentors:/patch/segmentors
   translators: # 三、這批組件翻譯特定類型的編碼段爲一組候選文字
     # - echo_translator # ※ 沒有其他候選字時，回顯輸入碼〔輸入碼可以Shift+Enter上屛〕
     - lua_translator@time_translator    # 时间
@@ -112,7 +103,6 @@ engine:
     #############################################################
     - simplifier                      # ※ 繁簡轉換
     - uniquifier                      # ※ 過濾重複的候選字，有可能來自繁簡轉換
-    - reverse_lookup_filter@e_reverse_lookup # 显示英文解释
 
 speller:
   # alphabet: zyxwvutsrqponmlkjihgfedcba
@@ -165,8 +155,6 @@ reverse_lookup: # 功能：五笔反查拼音，以 ` 符号开头
 
 punctuator:
   import_preset: default
-  half_shape:
-    __include: ext_punctuator:/half_shape
 
 key_binder:
   import_preset: default
@@ -183,7 +171,6 @@ recognizer:
   import_preset: default
   patterns:
     reverse_lookup: "`[a-z]*'?$"
-    __include: ext_recognizer:/recognizer/patterns
 
 # emoji，按 F4 选择是否打开
 emoji_suggestion:
@@ -206,6 +193,7 @@ __patch:
   - my_common:/patch
   - easy_en:/patch   # 英文
   - symbols:/patch   # 符号
-  - symbos_extends:/patch # 符号扩展
+  - my_symbols:/patch # 符号扩展
+  - my_punctuator:/patch     # 标点
   - my_charset:/patch        # 字符集
   - my_debug:/patch          # 候选词详细信息

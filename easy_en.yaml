@@ -1,9 +1,9 @@
 # 英文提示
 patch:
-  engine/segmentors/@after 2: affix_segmentor@easy_en           # 英文（位置：abc后、punct前）
-  engine/segmentors/@after 3: affix_segmentor@easy_en_prev
   engine/translators/@after 0: table_translator@easy_en          # 英文
   engine/translators/@after 1: table_translator@easy_en_prev
+  engine/filters/+:
+    - reverse_lookup_filter@e_reverse_lookup # 显示英文解释
   schema/dependencies/+:
     - easy_en
 
@@ -21,7 +21,6 @@ patch:
     spelling_hints: 9
     tips: 〔英文〕
     tag: easy_en
-    # prefix: "/"
     # comment_format:
       # - xform/^.+$//
 

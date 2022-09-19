@@ -61,21 +61,29 @@
 
     ![输入法英文预览](./.github/assets/preview-easy_en.png)
 
-    “`/`”  前缀：开启纯英文模式
-
-    ![输入法英文预览（prefix）](./.github/assets/preview-easy_en-perfix-hit.png)
+    todo 中途按 “`shift`” 切换 “纯英文模式”
 
     todo 优化 https://github.com/shewer/librime-lua-script/issues/5
 
-3. “`//`” 前缀：符号 & 表情 & 颜表情
+3. “`/`” 前缀：符号 & 表情 & 颜表情
 
     todo 
 
-4. 输入 “rq”、“sj”、“xq” 等可显示当前系统时间
+4. 特殊编码
+
+    输入 "rq"、"sj"、"xq" 等可显示当前系统时间
 
     ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif)
 
     输入 "version" 可显示版本信息
+
+    todo
+
+    输入 "ascii" 可打印 ascii 表
+
+    todo
+
+    输入 "table" 可打印不同格式的表格框架
 
     todo
 
@@ -246,6 +254,7 @@ bash tools/tailLog.sh
 >（中文输入法方案）
 > + iDvel - <https://github.com/iDvel/rime-ice><br>
 >（全拼方案、简体）
+> + 行列30 - <https://github.com/rime/rime-array>
 
 > 码表
 >

@@ -39,6 +39,9 @@
   4. 《TsinamLeung 整理的 api》 - https://github.com/TsinamLeung/librime-lua/wiki/API
 --]]
 
+-- 【功能】："//"+"特定编码" 得到符号候选词
+local my_symbols = require("my_symbols")
+
 -- 【功能】：对候选词做处理
 -- 参考：https://github.com/hchunhui/librime-lua/blob/master/sample/lua/charset.lua
 -- charset_filter: 滤除含 CJK 扩展汉字的候选项
@@ -48,6 +51,10 @@ local my_charset = require("my_charset")
 
 -- 【功能】：候选词详情（测试用）
 local my_debug = require("my_debug")
+
+local my_matcher = require("my_matcher")
+
+local my_punct = require("my_punct")
 
 -- ==============================================================================
 -- I. translators:
@@ -86,6 +93,8 @@ time_translator = require("time_translator")
 
 -- 【功能】：反查五笔笔画
 -- 详见 https://github.com/shewer/librime-lua-script/blob/e84e9ea008592484463b6ade405c83a5ff5ab9f0/lua/component/stroke_count.lua
+
+symbols_candidate_translator = my_symbols.translator
 
 -- ==============================================================================
 -- II. filters:
@@ -182,3 +191,9 @@ code_length_limit_processor = require("my_code")
 
 --]]
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+my_matcher_segmentor = my_matcher.segmentor
+
+my_punct_segmentor = my_punct.segmentor
+
+symbols_candidate_segmentor = my_symbols.segmentor

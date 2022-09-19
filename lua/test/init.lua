@@ -34,6 +34,11 @@ local function mute(M) -- 静音：禁止print
   return M
 end
 
+print(os.clock())
+print(os.time())
+print(os.date("%Y%m%d%H%M%S"))
+print(string.format("%s%s", os.date("%Y%m%d%H%M%S"), math.random(10, 99)))
+
 -- ================================================================ 单元测试内容 start
 
 -- 单元测试链条
