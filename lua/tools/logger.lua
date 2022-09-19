@@ -71,7 +71,7 @@ end
 ]] 
 local function _print(log_level, debug_level, ...)
   local func = get_log_func(log_level)
-  local msg = format(log_level, debug_level+1, ...)
+  local msg = format(log_level, debug_level+1, null(...))
   func(msg)
   return msg
 end
@@ -113,17 +113,17 @@ end
 ]]
 
 function logger.info(...)
-  local result = _print(logger.INFO, 2, ...)
+  local result = _print(logger.INFO, 2, null(...))
   return result
 end
 
 function logger.warn(...)
-  local result = _print(logger.WARN, 2, ...)
+  local result = _print(logger.WARN, 2, null(...))
   return result
 end
 
 function logger.error(...)
-  local result = _print(logger.ERROR, 2, ...)
+  local result = _print(logger.ERROR, 2, null(...))
   return result
 end
 
@@ -136,7 +136,7 @@ end
 function logger.trace(log_level, ...)
   local debug_level = 2 -- 2 => 函数调用者的栈
   local trace_info = debug.traceback("------------- debug.traceback ---------------", debug_level)
-  local args = {...}
+  local args = {null(...)}
   table.insert(args, "\n" .. trace_info)
   local result = _print(log_level, debug_level, table.unpack(args))
   return result
