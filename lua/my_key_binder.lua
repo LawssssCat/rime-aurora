@@ -21,9 +21,13 @@ local handle_run_map = {
       rime_api_helper:page_next(segment, page_size)
     end
   end,
-  confirm = function(env)
+  select = function(env)
     local context = env.engine.context
-    context:commit()
+    local composition = context.composition
+    if(not composition:empty()) then
+      local segment = composition:back()
+      context:select(segment.selected_index)
+    end
   end
 }
 
@@ -37,6 +41,7 @@ end
 function processor.func(key, env)
   local context = env.engine.context
   local composition = context.composition
+  local segment = not composition:empty() and composition:back() or nil
   -- logger.warn(key.keycode, key:repr())
 
   -- editor
