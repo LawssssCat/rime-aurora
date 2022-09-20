@@ -104,8 +104,8 @@ speller:
 translator:
   # dictionary: terra_pinyin
   dictionary: my_terra_pinyin.extended
-  spelling_hints: 7  # ～字以內候選標註完整帶調拼音
   contextual_suggestions: true # 是否使用語言模型優化輸出結果〔需配合grammar使用〕
+  __include: ext_translator:/translator
   preedit_format:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/

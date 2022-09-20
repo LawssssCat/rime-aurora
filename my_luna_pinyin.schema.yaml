@@ -127,14 +127,7 @@ translator:
   # max_homophones: 7 # 最大同音簇長度〔需配合grammar使用〕
   # translator/max_homographs: 7 # 最大同形簇長度〔需配合grammar使用〕
   ##################
-  enable_user_dict: true # 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕
-  enable_sentence: true # 是否開啓自動造句（關閉碼表輸入法連打。用於屏蔽倉頡、五筆中帶有太極圖章「☯」的連打詞句選項，不可作用於拼音、注音、速成等輸入方案。）
-  enable_encoder: true # 是否開啓自動造詞〔僅table_translator有效〕
-  # enable_charset_filter: true #是否開啓字符集過濾，是true否false
-  encode_commit_history: true # 是否對已上屛詞自動成詞〔僅table_translator有效〕
-  enable_completion: true # 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕
-  sentence_over_completion: true # 在無全碼對應字而僅有逐鍵提示時也開啓智能組句〔僅table_translator有效〕
-  spelling_hints: 7
+  __include: ext_translator:/translator
 
 custom_phrase: # 功能：自定义短语 custom_phrase.txt
   dictionary: ""
