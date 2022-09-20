@@ -40,7 +40,7 @@
 #
 
 ---
-name: my_luna_pinyin.extended
+name: my_luna_pinyin
 version: "2015.12.02"
 sort: by_weight
 use_preset_vocabulary: true

@@ -102,8 +102,7 @@ speller:
       __include: ext_speller:/speller/algebra
 
 translator:
-  # dictionary: terra_pinyin
-  dictionary: my_terra_pinyin.extended
+  dictionary: my_terra_pinyin
   contextual_suggestions: true # 是否使用語言模型優化輸出結果〔需配合grammar使用〕
   __include: ext_translator:/translator
   preedit_format:

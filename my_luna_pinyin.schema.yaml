@@ -121,7 +121,7 @@ speller:
       __include: ext_speller:/speller/algebra
 
 translator:
-  dictionary: my_luna_pinyin.extended
+  dictionary: my_luna_pinyin
   ##################
   contextual_suggestions: true # 是否使用語言模型優化輸出結果〔需配合grammar使用〕
   # max_homophones: 7 # 最大同音簇長度〔需配合grammar使用〕
