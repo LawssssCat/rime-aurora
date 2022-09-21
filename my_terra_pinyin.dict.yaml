@@ -1,13 +1,18 @@
 # Rime dictionary
 # encoding: utf-8
 ---
-name: my_terra_pinyin.extended
+name: my_terra_pinyin
 version: "2022.09.03"
 sort: by_weight
 vocabulary: essay-zh-hant-mc
 use_preset_vocabulary: true
 import_tables:
   - terra_pinyin
+  - dict/terra_pinyin.basis
+  - dict/terra_pinyin.computer           # 计算机
+  - dict/terra_pinyin.kaifa              # 开发
+  - dict/terra_pinyin.mingxing           # 明星
+  - dict/terra_pinyin.popular            # 网络热词
   - dict/terra_pinyin_onion_add
   - dict/terra_pinyin_onion              # 地球拼音
   - dict/luna_pinyin.anime               # 动漫

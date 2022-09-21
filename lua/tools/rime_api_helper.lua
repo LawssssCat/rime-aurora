@@ -14,6 +14,10 @@ local logger = require("tools/logger")
 
 local helper = {}
 
+-- ============================================================ 
+-- version
+-- ============================================================ 
+
 -- the version of librime (https://github.com/rime/librime): 输入法核心引擎
 function helper:get_rime_version()
   return rime_api and rime_api.get_rime_version and rime_api.get_rime_version()
@@ -52,6 +56,10 @@ function helper:get_version_info()
   helper.get_rime_version(), helper.get_rime_lua_version(), helper.get_lua_version())
 end
 
+-- ============================================================ 
+-- config
+-- ============================================================ 
+
 --[[
   将 config_item （递归）转换为 lua 数据类型
 ]]
@@ -88,9 +96,14 @@ local function _get_config_item_value(config_item)
 end
 
 function helper:get_config_item_value(config, path)
+  -- logger.trace(logger.ERROR, config, path)
   local config_item = config:get_item(path)
   return _get_config_item_value(config_item)
 end
+
+-- ============================================================ 
+-- segment
+-- ============================================================ 
 
 --[[
 
@@ -102,6 +115,60 @@ helper.segment_status_kVoid = "kVoid"
 helper.segment_status_kGuess = "kGuess"
 helper.segment_status_kSelected = "kSelected"
 helper.segment_status_kConfirmed = "kConfirmed"
+
+--[[
+  候选词 当前页
+  @return number 当前页, 当前候选词下标
+]]
+function helper:page_current(segment, page_size)
+  local selected_candidate_index = segment.selected_index + 1 -- 下标1开始
+  return math.ceil(selected_candidate_index / page_size), selected_candidate_index -- 下标1开始
+end
+--[[
+  候选词 下一页
+  @return number 当前页, 当前候选词下标
+]]
+function helper:page_next(segment, page_size)
+  local menu = segment.menu
+  -- page current
+  local page_current, num_current = helper:page_current(segment, page_size)
+  -- load candidate
+  local candidate_num_requested = page_size * (page_current+1)
+  local candidate_num_loaded = menu:prepare(candidate_num_requested)
+  local candidate_num = candidate_num_requested
+  if(candidate_num_loaded < candidate_num_requested) then
+    candidate_num = candidate_num_loaded
+  end
+  -- calc index
+  local page_new = math.ceil(candidate_num / page_size)
+  local num = candidate_num -- 如果页码没变，移动到最后一个选项
+  if(page_new > page_current) then -- 如果页码增加，移动到下一页第一个选项
+    num = (page_new-1) * page_size + 1 
+  end
+  -- 更新
+  local index = num - 1 -- 下标从0开始
+  segment.selected_index = index
+  return page_new, num -- 下标1开始
+end
+  --[[
+    候选词 上一页
+    @return number 当前页
+  ]]
+function helper:page_prev(segment, page_size)
+  -- page current
+  local page_current, num_current = helper:page_current(segment, page_size)
+  -- calc index
+  local page_new = (page_current>1) and (page_current-1) or page_current
+  local num = (page_new-1) * page_size + 1 -- 移动到第一个选项
+  -- 更新
+  local index = num - 1 
+  segment.selected_index = index
+  return page_new, num
+end
+
+-- ============================================================ 
+-- processor
+-- ============================================================ 
 
 helper.processor_return_kRejected = 0 -- 字符上屏，结束 processors 流程
 helper.processor_return_kAccepted = 1 -- 字符不上屏，结束 processors 流程

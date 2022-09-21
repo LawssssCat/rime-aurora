@@ -6,6 +6,7 @@ local helper = {}
 local null = require("tools/null")
 local split = require("tools/split")
 local inspect = require("tools/inspect")
+local ptry = require("tools/ptry")
 
 -- 字符串分割
 function helper.split(str, delimiter)
@@ -101,11 +102,22 @@ end
 
 -- 【首字母】是否是（可见）ascii
 function helper.is_ascii_visible(c)
-  local ch = c
-  if(type(c) == "string") then -- string => code
-    ch = string.byte(c)
+  local str = nil
+  if(type(c) == "string") then
+    str = c
+  else
+    ptry(function()
+      str = string.char(c)
+    end)
   end
-  return ch >= 0x20 and ch < 0x7f
+  if(str) then 
+    return helper.is_ascii_visible_string(str)
+  end
+  return false
+end
+-- 【字符串】是否是（可见）ascii
+function helper.is_ascii_visible_string(text)
+  return string.match(text, "^[\x20-\x7e]+$") ~= nil
 end
 
 return helper

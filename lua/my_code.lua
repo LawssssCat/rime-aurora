@@ -19,10 +19,6 @@ local rime_api_helper = require("tools/rime_api_helper")
 
 local M = {}
 
-local kRejected = 0 -- 输入法拒绝处理
-local kAccepted = 1 -- 输入法接受处理，并由本processor处理
-local kNoop = 2 -- 交由输入法下一个processor判断是否处理
-
 function M.func(key, env)
   local ctx = env.engine.context
   local config = env.engine.schema.config

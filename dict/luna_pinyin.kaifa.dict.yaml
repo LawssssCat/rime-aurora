@@ -9,7 +9,7 @@
 # version=$(date +%Y.%m.%d); gsed -i -E "s/^version: \".+\"$/version: \"$version\"/g" luna_pinyin.kaifadashenzhuanyongciku.dict.yaml
 
 ---
-name: luna_pinyin.kaifadashenzhuanyongciku
+name: luna_pinyin.kaifa
 version: "2020.02.25"
 sort: by_weight
 use_preset_vocabulary: false

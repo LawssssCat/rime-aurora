@@ -56,6 +56,10 @@ local my_matcher = require("my_matcher")
 
 local my_punct = require("my_punct")
 
+local my_easy_en = require("my_easy_en")
+
+local my_key_binder = require("my_key_binder")
+
 -- ==============================================================================
 -- I. translators:
 -- ==============================================================================
@@ -141,6 +145,8 @@ py_comment_filter = require("my_reverse")
 -- 【功能】：use wildcard to search code
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/expand_translator.lua
 
+easy_en_pure_filter = my_easy_en.pure_filter
+
 -- ==============================================================================
 -- III. processors:
 -- ==============================================================================
@@ -172,6 +178,8 @@ code_length_limit_processor = require("my_code")
 -- 【功能】：利用 librime-lua 擴展 rime 輸入法的集成模組
 -- https://github.com/shewer/librime-lua-script
 -- init_processor = require('init_processor')
+
+my_key_binder_processor = my_key_binder.processor
 
 -- ==============================================================================
 -- IV. segmentors:

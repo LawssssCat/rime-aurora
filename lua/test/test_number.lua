@@ -4,6 +4,14 @@ local convert_arab_to_chinese = require("tools/number_to_cn").convert_arab_to_ch
 
 local M = {}
 
+function M:test_divide()
+  lu.assertEquals(0.33333333333333, 0.33333333333333)
+  lu.assertNotEquals(1/3, 0.33333333333333)
+  lu.assertEquals(math.ceil(1/3), 1)
+  lu.assertEquals(math.floor(1/3), 0)
+end
+
+-- 数值转换：罗马 => 中文
 function M:test_convert_arab_to_chinese()
   lu.assertEquals(convert_arab_to_chinese(0), "零")
   lu.assertEquals(convert_arab_to_chinese(1), "一")

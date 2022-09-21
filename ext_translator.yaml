@@ -1,0 +1,9 @@
+translator:
+  spelling_hints: 7  # ～字以內候選標註完整帶調拼音
+  enable_encoder: true               # default: false 是否開啓自動造詞〔僅table_translator有效〕
+  encode_commit_history: true        # default: true 是否對已上屛詞自動成詞〔僅table_translator有效〕
+  enable_user_dict: true             # default: true 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕
+  enable_sentence: true              # default: true 是否開啓自動造句（關閉碼表輸入法連打。用於屏蔽倉頡、五筆中帶有太極圖章「☯」的連打詞句選項，不可作用於拼音、注音、速成等輸入方案。）
+  # enable_charset_filter: true       # default: false 是否開啓字符集過濾，是true否false
+  enable_completion: true            # default: true 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕
+  sentence_over_completion: true     # default: false 在無全碼對應字而僅有逐鍵提示時也開啓智能組句〔僅table_translator有效〕

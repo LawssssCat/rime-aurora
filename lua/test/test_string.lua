@@ -17,7 +17,9 @@ function M:test_byte()
 end
 
 function M:test_char()
+  lu.assertEquals(string.char(32), " ")
   lu.assertEquals(string.char(97), "a")
+  lu.assertError(string.char, 9999999999) -- to 'char' (value out of range)
 end
 
 function M:test_equal()
@@ -141,6 +143,13 @@ function M:test_match()
   -- 返回值
   lu.assertEquals({string.match("good", "^[a-zA-Z]*$")}, {"good"})
   lu.assertEquals({string.match("/good", "^/")}, {"/"})
+  -- 其他
+  local env = {
+    wildcard = "*"
+  }
+  lu.assertEquals(string.match("abcdefghijklnmopqrstuvwxyz",  '[^'.. env.wildcard .. ']+$'), "abcdefghijklnmopqrstuvwxyz")
+  lu.assertEquals(string.match("abcdefg*hijkln*mopqrstuvwxyz",  '[^'.. env.wildcard .. ']+$'), "mopqrstuvwxyz")
+  lu.assertEquals(string.match("abcdefg*hijkln*mopqrstuvwxyz",  '^[^' ..env.wildcard .. ']+'), "abcdefg")
 end
 
 -- 查找(第一个) => 返回找到的下标
@@ -161,8 +170,29 @@ function M:test_is_ascii_visible()
   lu.assertTrue(string_helper.is_ascii_visible("a"))
   lu.assertTrue(string_helper.is_ascii_visible(97)) -- a
   lu.assertFalse(string_helper.is_ascii_visible(16)) -- dle
+  lu.assertFalse(string_helper.is_ascii_visible(99999999))
   lu.assertFalse(string_helper.is_ascii_visible(string.char(16))) -- dle
+  lu.assertFalse(string_helper.is_ascii_visible(string.char(31))) -- us
+  lu.assertTrue(string_helper.is_ascii_visible(string.char(32))) -- space
+  lu.assertTrue(string_helper.is_ascii_visible(string.char(33))) -- !
+  for c = 32, 126 do
+    lu.assertTrue(string_helper.is_ascii_visible(string.char(c))) -- 全部可见字符
+  end
+  lu.assertFalse(string_helper.is_ascii_visible(string.char(127))) -- del
   lu.assertFalse(string_helper.is_ascii_visible("你"))
+end
+
+function M:test_is_ascii_visible_string()
+  lu.assertTrue(string_helper.is_ascii_visible_string("a"))
+  lu.assertTrue(string_helper.is_ascii_visible_string("abc"))
+  lu.assertTrue(string_helper.is_ascii_visible_string("a bcd!"))
+  lu.assertFalse(string_helper.is_ascii_visible_string("你好"))
+  lu.assertFalse(string_helper.is_ascii_visible_string("a你好"))
+  lu.assertFalse(string_helper.is_ascii_visible_string(string.char(127)))
+  for c = 32, 126 do
+    lu.assertTrue(string_helper.is_ascii_visible_string(string.char(c))) -- 全部可见字符
+  end
+  lu.assertFalse(string_helper.is_ascii_visible_string("abc" .. string.char(127) .. "你好"))
 end
 
 return M

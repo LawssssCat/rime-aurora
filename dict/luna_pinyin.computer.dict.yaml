@@ -3,7 +3,7 @@
 # source: https://pinyin.sogou.com/dict/detail/index/15117
 
 ---
-name: luna_pinyin.jisuanjicihuidaquan
+name: luna_pinyin.computer
 version: "2010.01.15"
 sort: by_weight
 use_preset_vocabulary: false
