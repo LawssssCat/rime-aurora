@@ -1,5 +1,6 @@
 local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
+local string_helper = require("tools/string_helper")
 
 local option_name = "ascii_mode"
 
@@ -16,7 +17,7 @@ end
 function pure_filter.func(input, env)
   if(env.option_ascii_mode) then
     for cand in input:iter() do
-      if(string.match(cand.text, "^[\x20-\x7f]+$")) then -- ascii visible
+      if(string_helper.is_ascii_visible_string(cand.text)) then -- ascii visible
         yield(cand)
       end
     end

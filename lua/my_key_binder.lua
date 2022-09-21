@@ -1,6 +1,7 @@
 local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local ptry = require("tools/ptry")
+local string_helper = require("tools/string_helper")
 
 local handle_run_map = {
   Page_Up = function(env)  -- 上一页
@@ -10,7 +11,9 @@ local handle_run_map = {
       local segment = composition:back()
       local page_size = schema.page_size
       rime_api_helper:page_prev(segment, page_size)
+      return true
     end
+    return false
   end,
   Page_Down = function(env) -- 下一页
     local schema = env.engine.schema
@@ -19,15 +22,20 @@ local handle_run_map = {
       local segment = composition:back()
       local page_size = schema.page_size
       rime_api_helper:page_next(segment, page_size)
+      return true
     end
+    return false
   end,
-  select = function(env)
+  select = function(env, action)
     local context = env.engine.context
     local composition = context.composition
     if(not composition:empty()) then
       local segment = composition:back()
-      context:select(segment.selected_index)
+      local index = segment.selected_index
+      context:select(index)
+      return true
     end
+    return false
   end
 }
 
@@ -56,13 +64,28 @@ function processor.func(key, env)
       ._then(function(result) -- when
         if(result) then
           local _when = action.when
+          local _match = false
           if(_when == "always") then
+            _match = true
             return true
           end
-          if(_when == "has_menu" and context:has_menu()) then
-            return true
+          if(_when == "has_menu") then
+            _match = true
+            if(context:has_menu()) then
+              return true
+            end
           end
-          -- error(string.format("unknow action when \"%s\"", _when))
+          if(not _match) then
+            error(string.format("unknow action when \"%s\"", _when))
+          end
+        end
+        return false
+      end)
+      ._then(function(result) -- option
+        if(result) then
+          local _option = action.option
+          return not _option -- 没有设置 option 则直接下一步
+            or context:get_option(_option)
         end
         return false
       end)
@@ -72,7 +95,7 @@ function processor.func(key, env)
           local _run = action.run
           local handler = handle_run_map[_run]
           if(handler) then
-            local result = handler(env)
+            local result = handler(env, action)
             if(not (result == false)) then
               match_key = true
             end

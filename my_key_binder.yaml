@@ -145,10 +145,17 @@
 patch: 
   engine/processors/@after 0: lua_processor@my_key_binder_processor@my_bindings
   my_bindings:
-    key_binder: # run 脚本，定义在 lua 代码 handle_run_map 中
+    # when: always => 任何时候
+    # run: 脚本名 => 定义在 lua 代码 handle_run_map 中
+    key_binder:
       - {when: has_menu, accept: "Shift+Up", run: Page_Up} # 翻页时，shift+↑ 上一页
       - {when: has_menu, accept: "Shift+Down", run: Page_Down} # 翻页时，shift+↓ 下一页
-      - {when: has_menu, accept: "space", run: select} # 空格上屏选择
+      - { # fix: “纯英文状态” 按空格不上屏问题
+        when: has_menu, 
+        option: "ascii_mode",
+        accept: "space", 
+        run: select
+      } # 空格上屏选择
   key_binder/bindings/+:
     - {when: has_menu, accept: "Shift+comma", send: Page_Up } # “shift+,” 上页
     - {when: has_menu, accept: "Shift+period", send: Page_Down } # "shift+." 下页
