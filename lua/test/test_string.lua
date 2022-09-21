@@ -141,6 +141,13 @@ function M:test_match()
   -- 返回值
   lu.assertEquals({string.match("good", "^[a-zA-Z]*$")}, {"good"})
   lu.assertEquals({string.match("/good", "^/")}, {"/"})
+  -- 其他
+  local env = {
+    wildcard = "*"
+  }
+  lu.assertEquals(string.match("abcdefghijklnmopqrstuvwxyz",  '[^'.. env.wildcard .. ']+$'), "abcdefghijklnmopqrstuvwxyz")
+  lu.assertEquals(string.match("abcdefg*hijkln*mopqrstuvwxyz",  '[^'.. env.wildcard .. ']+$'), "mopqrstuvwxyz")
+  lu.assertEquals(string.match("abcdefg*hijkln*mopqrstuvwxyz",  '^[^' ..env.wildcard .. ']+'), "abcdefg")
 end
 
 -- 查找(第一个) => 返回找到的下标
