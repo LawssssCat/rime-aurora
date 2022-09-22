@@ -66,6 +66,7 @@ test_metatable = require("test/test_metatable")
 -- list
 test_list = require("test/test_list")
 test_array_list = require("test/test_array_list")
+test_linked_list = require("test/test_linked_list")
 
 -- ================================================================ 单元测试内容 end
 

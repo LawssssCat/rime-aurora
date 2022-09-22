@@ -1,21 +1,21 @@
 assert(lu, "请通过 test/init.lua 运行本测试用例")
 
-local ArrayList = require("tools/collection/array_list")
+local LinkedList = require("tools/collection/linked_list")
 
 local M = {}
 
 function M:test_size() 
-  local list = ArrayList()
+  local list = LinkedList()
   lu.assertEquals(list.size, 0)
   lu.assertEquals(list:Size(), 0)
   lu.assertEquals(list:values(), {})
 
   -- 
-  local list_2 = ArrayList({1,2,3})
+  local list_2 = LinkedList({1,2,3})
   lu.assertEquals(list_2:Size(), 3)
   lu.assertEquals(list_2:values(), {1,2,3})
   -- 
-  local list_3 = ArrayList(list_2)
+  local list_3 = LinkedList(list_2)
   lu.assertEquals(list_3:Size(), 3)
   lu.assertEquals(list_3:values(), {1,2,3})
   list_3:add("world")
@@ -24,7 +24,7 @@ function M:test_size()
 end
 
 function M:test_index_of()
-  local list = ArrayList({1,2, "hello",3})
+  local list = LinkedList({1,2, "hello",3})
   list:add_at(1, "hello")
   lu.assertEquals(list:values(), {"hello", 1,2, "hello",3})
   list:add("world")
@@ -34,19 +34,17 @@ function M:test_index_of()
   list:add("hello")
   lu.assertEquals(list:values(), {"aa", "hello",1,2, "hello",3, "world", "hello"})
   lu.assertEquals(list:index_of("hello"), 2)
-  lu.assertEquals(list:index_of("hello world"), 0) -- 没有返回 0
 end
 
 function M:test_add()
-  local list = ArrayList({1,2,3})
+  local list = LinkedList({1,2,3})
   list:add_at(1, "hello")
+  lu.assertEquals(list:values(), {"hello", 1,2,3})
   list:add("world")
   lu.assertEquals(list:Size(), 5)
   lu.assertEquals(list:values(), {"hello", 1,2,3, "world"})
-  list:add_at(6, "hello")
-  lu.assertEquals(list:values(), {"hello", 1,2,3, "world", "hello"})
-  local has_szie = 6
-  local num = 1000
+  local has_szie = 5
+  local num = 1000 -- 对比 array list
   for i=1,num do
     list:add(i)
   end
@@ -58,14 +56,16 @@ function M:test_add()
 end
 
 function M:test_remove()
-  local list = ArrayList({1,2,3})
+  local list = LinkedList({1,2,3})
   list:add_at(1, "hello")
   list:add("world")
   lu.assertEquals(list:Size(), 5)
   lu.assertEquals(list:values(), {"hello", 1,2,3, "world"})
   list:remove()
+  lu.assertEquals(list:Size(), 4)
   lu.assertEquals(list:values(), {"hello", 1,2,3})
   list:remove_at(1)
+  lu.assertEquals(list:Size(), 3)
   lu.assertEquals(list:values(), {1,2,3})
   list:remove_at(2)
   lu.assertEquals(list:values(), {1,3})
@@ -78,7 +78,7 @@ function M:test_remove()
 end
 
 function M:test_get_at()
-  local list = ArrayList({1,2,3})
+  local list = LinkedList({1,2,3})
   list:add_at(1, "hello")
   list:add("world")
   lu.assertEquals(list:Size(), 5)
@@ -90,7 +90,7 @@ function M:test_get_at()
 end
 
 function M:test_iter()
-  local list = ArrayList({1,2,3})
+  local list = LinkedList({1,2,3})
   list:add_at(2, "hello")
   list:add("world")
   lu.assertEquals(list:Size(), 5)

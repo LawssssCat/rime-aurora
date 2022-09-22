@@ -29,10 +29,17 @@ function List:get_at(index)
   error_not_define()
 end
 
+--[[
+  下标1开始
+  找不到返回0
+]]
 function List:index_of(item)
   error_not_define()
 end
 
+--[[
+  @return 删除的值
+]]
 function List:remove_at(index)
   error_not_define()
 end
@@ -50,13 +57,36 @@ function List:remove()
 end
 
 function List:add_all(list)
-  error_not_define()
+  if(not list) then return end 
+  if(type(list) ~= "table") then error("type must be a table. but now \"" .. type(list) .. "\"") end
+  if(list.is and list:is(List)) then
+    for iter in list:iter() do
+      local item = iter.value
+      self:add(item)
+    end
+  else
+    local size = select('#', table.unpack(list))
+    for i = 1, size do 
+      local item = list[i]
+      self:add(item)
+    end
+  end
 end
 
 function List:values()
   error_not_define()
 end
 
+--[[
+  e.g. 
+
+  for iter in list:iter() do
+    local index = iter.index
+    local count = iter.count
+    local value = iter.value
+    iter:remove()
+  end
+]]
 function List:iter()
   local list = self
   local count = 0
@@ -64,9 +94,10 @@ function List:iter()
   local iter = {}
   function iter:remove()
     if(self.removed == false) then
-      list:remove_at(index)
+      local value = list:remove_at(index)
       index = index - 1
       self.removed = true
+      return value
     else
       error(string.format("method \"remove\" had been executed once. count=%s.", count))
     end

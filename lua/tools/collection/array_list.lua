@@ -1,6 +1,6 @@
 --[[
 
-  【下标0开始】
+  【下标1开始】
 
   创建对象
   List(...)
@@ -10,7 +10,7 @@
 local List = require("tools/collection/list")
 local null = require("tools/null")
 
-function assert_index(self, index)
+local function assert_index(self, index)
   if(0>=index or self.size<index) then
     error(string.format("\"%s\" out of range: (0, %s]", index, self.size))
   end
@@ -41,6 +41,7 @@ function ArrayList:index_of(item)
       return i
     end
   end
+  return 0
 end
 
 function ArrayList:remove_at(index)
@@ -77,23 +78,6 @@ end
 function ArrayList:remove()
   local index = self.size
   return self:remove_at(index)
-end
-
-function ArrayList:add_all(list)
-  if(not list) then return end 
-  if(type(list) ~= "table") then error("type must be a table. but now \"" .. type(list) .. "\"") end
-  if(list.is and list:is(List)) then
-    for i = 1, list:Size() do
-      local item = list:get_at(i)
-      self:add(item)
-    end
-  else
-    local size = select('#', table.unpack(list))
-    for i = 1, size do 
-      local item = list[i]
-      self:add(item)
-    end
-  end
 end
 
 function ArrayList:values()
