@@ -51,7 +51,7 @@ test_error = require("test/test_error")
 test_ptry = require("test/test_ptry")
 -- 调试
 test_debug = require("test/test_debug")
-test_debug = mute(test_debug) -- 想看输出，注释之
+-- test_debug = mute(test_debug) -- 想看输出，注释之
 -- logger
 test_logger = require("test/test_logger")
 test_logger = mute(test_logger) -- 想看输出，注释之
@@ -61,6 +61,12 @@ test_inspect = require("test/test_inspect")
 test_number = require("test/test_number")
 -- table
 test_table = require("test/test_table")
+-- metatable
+test_metatable = require("test/test_metatable")
+-- list
+test_list = require("test/test_list")
+test_array_list = require("test/test_array_list")
+test_linked_list = require("test/test_linked_list")
 
 -- ================================================================ 单元测试内容 end
 

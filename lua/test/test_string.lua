@@ -9,6 +9,11 @@ local string_helper = require("tools/string_helper")
 
 local M = {}
 
+function M:test_boolean()
+  lu.assertEquals(not "", false)
+  lu.assertEquals(not "nil", false)
+end
+
 function M:test_byte()
   lu.assertEquals(string.byte("a"), 97)
   lu.assertEquals(string.byte("a"), 0x61)
@@ -143,6 +148,11 @@ function M:test_match()
   -- 返回值
   lu.assertEquals({string.match("good", "^[a-zA-Z]*$")}, {"good"})
   lu.assertEquals({string.match("/good", "^/")}, {"/"})
+  lu.assertEquals(string.match("sfasfsdf", "qqqqq"), nil)
+  lu.assertNotEquals(string.match("sfasfsdf", "qqqqqqqq"), false)
+  lu.assertEquals(not string.match("sfasfsdf", "qqqqqqqq"), true)
+  lu.assertEquals(not string.match("aaaaaaaaa", "a"), false)
+  lu.assertEquals(string.match("sfasfsdf", "qqqqqqqqqq") ~= nil, false)
   -- 其他
   local env = {
     wildcard = "*"
@@ -150,6 +160,13 @@ function M:test_match()
   lu.assertEquals(string.match("abcdefghijklnmopqrstuvwxyz",  '[^'.. env.wildcard .. ']+$'), "abcdefghijklnmopqrstuvwxyz")
   lu.assertEquals(string.match("abcdefg*hijkln*mopqrstuvwxyz",  '[^'.. env.wildcard .. ']+$'), "mopqrstuvwxyz")
   lu.assertEquals(string.match("abcdefg*hijkln*mopqrstuvwxyz",  '^[^' ..env.wildcard .. ']+'), "abcdefg")
+  -- 标点
+  local pattern_04 = "^/version+$"
+  lu.assertTrue(string.match("/version", pattern_04))
+  -- lu.assertTrue(string.match("/versio", pattern_04))
+  -- lu.assertTrue(string.match("/versi", pattern_04))
+  -- lu.assertTrue(string.match("/vers", pattern_04))
+  -- lu.assertTrue(string.match("/ver", pattern_04))
 end
 
 -- 查找(第一个) => 返回找到的下标
