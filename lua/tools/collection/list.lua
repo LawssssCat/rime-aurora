@@ -58,7 +58,35 @@ function List:values()
 end
 
 function List:iter()
-  error_not_define()
+  local list = self
+  local count = 0
+  local index = 0
+  local iter = {}
+  function iter:remove()
+    if(self.removed == false) then
+      list:remove_at(index)
+      index = index - 1
+      self.removed = true
+    else
+      error(string.format("method \"remove\" had been executed once. count=%s.", count))
+    end
+  end
+  function iter:next()
+    if(self:has_next()) then
+      count = count + 1
+      index = index + 1
+      self.index = index
+      self.count = count
+      self.value = list:get_at(index)
+      self.removed = false
+      return self
+    end
+    return nil
+  end
+  function iter:has_next()
+    return index < list:Size()
+  end
+  return iter.next, iter
 end
 
 return List

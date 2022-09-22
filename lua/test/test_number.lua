@@ -8,6 +8,9 @@ function M:test_boolean()
   lu.assertEquals(not 0, false)
   lu.assertEquals(not 1, false)
   lu.assertEquals(not nil, true)
+  lu.assertEquals(1 & 1, 1)
+  lu.assertEquals(2 & 1, 0)
+  lu.assertEquals(3 & 1, 1)
   lu.assertNotEquals(nil, false)
 end
 

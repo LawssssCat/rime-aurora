@@ -71,4 +71,43 @@ function M:test_get_at()
   lu.assertEquals(list:get_at(list:Size()), "world")
 end
 
+function M:test_iter()
+  local list = ArrayList({1,2,3})
+  list:add_at(2, "hello")
+  list:add("world")
+  lu.assertEquals(list:Size(), 5)
+  lu.assertEquals(list:values(), { 1,"hello",2,3, "world"})
+  -- 遍历
+  local count = 1
+  local collection = {}
+  for iter in list:iter() do
+    local index = iter.index
+    local value = iter.value
+    lu.assertEquals(count, index)
+    lu.assertEquals(list:get_at(index), value)
+    table.insert(collection, value)
+    count = count + 1
+  end
+  lu.assertEquals(collection, { 1,"hello",2,3, "world"})
+  -- 删除
+  local count = 1
+  for iter in list:iter() do
+    local index = iter.index
+    local _count = iter.count
+    local value = iter.value
+    lu.assertEquals(count, _count)
+    lu.assertEquals(iter.removed, false)
+    lu.assertEquals(list:get_at(index), value) -- 删除前，下标在list中能找到的
+    if(0 == (count & 1)) then -- 删除下标为偶数的item
+      iter:remove()
+      lu.assertEquals(iter.removed, true)
+      lu.assertErrorMsgMatches(".*method \"remove\" had been executed once. count=%d.", iter.remove, iter)
+    else
+      lu.assertEquals(iter.removed, false)
+    end
+    count = count + 1 
+  end
+  lu.assertEquals(list:values(), { 1,2,"world"})
+end
+
 return M
