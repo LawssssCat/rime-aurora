@@ -15,4 +15,27 @@ function M:test_remove()
   lu.assertEquals(my_table, {"world"})
 end
 
+function M:test_len_select()
+  -- nil
+  lu.assertEquals(select('#', 1), 1)
+  lu.assertEquals(select('#', 1,2,3), 3)
+  lu.assertEquals(select('#', nil), 1) -- 111111111111111111111
+  lu.assertEquals(select('#', 1,2,3,nil,4,5,6), 7)
+  lu.assertEquals(select('#', table.unpack({1,2,3,nil,4,5,6,a="a",7})), 8)
+end
+
+function M:test_len()
+  lu.assertEquals(#{1}, 1)
+  lu.assertEquals(#{1,2,3}, 3)
+  lu.assertEquals(#{nil}, 0) -- 0000000000000000
+  lu.assertEquals(#{1,2,3,nil,4,5,6}, 7)
+  lu.assertEquals(#{1,2,3,nil,4,5,6,a="a",7}, 8)
+end
+
+function M:test_unpack()
+  lu.assertEquals({table.unpack({1,2,3})}, {1, 2, 3})
+  lu.assertEquals({table.unpack({1,2,nil,3})}, {1, 2, nil, 3})
+  lu.assertEquals({table.unpack({1,2,nil,3,b="q",4})}, {1, 2, nil, 3, 4})
+end
+
 return M
