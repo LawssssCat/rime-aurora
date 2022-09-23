@@ -11,7 +11,11 @@
   - 命令行参数 https://luaunit.readthedocs.io/en/latest/#command-line-options
   - api https://luaunit.readthedocs.io/en/latest/#equality-assertions
 --]]
-lu = require("tools/luaunit")
+require = require("tools/ext_require")() -- 全局定义
+
+lu = require("luaunit") -- require 扩展后，不假 test 也能找到了
+
+local string_helper = require("tools/string_helper")
 
 local function mute(M) -- 静音：禁止print
   for key, value in pairs(M) do 
@@ -34,13 +38,32 @@ local function mute(M) -- 静音：禁止print
   return M
 end
 
+print("===================[path: init.lua]======================") --init.lua所在位置
+print(debug.getinfo(1, "S").source)
+print(debug.getinfo(1, "S").short_src)
+print("===================[package.path]======================") --搜索lua模块
+for index, value in pairs(string_helper.split(package.path, ";")) do 
+  print(value)
+end
+print("==================[package.cpath]=====================") --搜索so模块
+for index, value in pairs(string_helper.split(package.cpath, ";")) do 
+  print(value)
+end
+print("==================[package.searchers]=====================") --搜索so模块
+for index, value in pairs(package.searchers) do 
+  if(index == 5) then
+    print("--------- expand ---------")
+  end
+  print(value)
+end
+print("==================[time]=====================")
 print(os.clock())
 print(os.time())
 print(os.date("%Y%m%d%H%M%S"))
 print(string.format("%s%s", os.date("%Y%m%d%H%M%S"), math.random(10, 99)))
 
 -- ================================================================ 单元测试内容 start
-
+print("==================[test config]=====================")
 -- 单元测试链条
 -- string
 test_basic = require("test/test_basic")
@@ -67,9 +90,11 @@ test_metatable = require("test/test_metatable")
 test_list = require("test/test_list")
 test_array_list = require("test/test_array_list")
 test_linked_list = require("test/test_linked_list")
+-- regex
+test_reLua = require("test/test_reLua")
 
 -- ================================================================ 单元测试内容 end
-
+print("==================[test run]=====================")
 -- os.exit( lu.LuaUnit.run() )
 runner = lu.LuaUnit.new()
 runner:setOutputType("tap") -- Test Anything Protocol https://testanything.org/
