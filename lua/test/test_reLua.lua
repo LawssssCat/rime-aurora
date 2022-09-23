@@ -11,6 +11,10 @@ local M = {}
 
 function M:test_ESC()
   lu.assertEquals(ESC,"/") -- define in re
+  lu.assertEquals(re.compile("a/]"):execute("a]"),{})
+  lu.assertEquals(re.compile("a]"):execute("a]"),{})
+  lu.assertEquals(re.compile("a//]"):execute("a/]"),{})
+  lu.assertEquals(re.compile("a\\]"):execute("a\\]"),{})
 end
 function M:test_ESC_modify()
   -- 测试内容
@@ -85,7 +89,7 @@ function M:test_official_sample()
   lu.assertEquals(re.compile("a[b" .. ESC .. "]]+c"):execute("a" .. ESC .. "c"),nil)
 end
 
-function M:test_regex()
+function M:test_brackets()
   lu.assertEquals(re.compile("abc"):execute("abc"),{})
   lu.assertEquals(re.compile("(ab)(c)"):execute("abc"),{"ab", "c"})
   lu.assertEquals(re.compile("(ab+)(c)"):execute("abc"),{"b", "ab", "c"})
@@ -106,6 +110,42 @@ function M:test_regex()
   lu.assertEquals(re.compile("(.*a.*)(bc.*)"):execute("AAa??bcde"),{"AA", "??", "AAa??", "de", "bcde"})
   lu.assertEquals(re.compile("abc"):execute("def"),nil)
   -- lu.assertEquals(re.compile("r(e*)gex?"):execute("reeeeegex"),{})
+  lu.assertEquals(re.compile("%w"):execute("%w"),{})
+  lu.assertEquals(re.compile("[a-z]"):execute("z"),{})
 end
 
-return M
+function M:test_square_brackets()
+  lu.assertEquals(re.compile("[^a]"):execute("b"),{})
+  lu.assertEquals(re.compile("[^a]"):execute("a"),nil)
+end
+
+function M:test_expansion_brackets()
+  lu.assertEquals(re.compile("a{1}"):execute("a{1}"),{})
+  lu.assertEquals(re.compile("(a){1}"):execute("a{1}"),{"a"})
+  lu.assertEquals(re.compile("[a]{1}"):execute("a{1}"),{})
+end
+
+function M:test_url()
+  lu.assertEquals(re.compile("^a$"):execute("^a$"),{})
+  local pattern = "(www[.]|https?:|ftp[.:]|mailto:|file:).*"
+  lu.assertEquals(re.compile(pattern):execute("www.b"),{"", "www.", "b"})
+  lu.assertEquals(re.compile(pattern):execute("https://www.baidu.com"),{"s", "https:", "//www.baidu.com"})
+  local pattern = "[a-zA-Z/_/-]+[:.](////)?.*" -- 简简单单才是真
+  lu.assertFalse(re.compile(pattern):execute("goo"))
+  lu.assertTrue(re.compile(pattern):execute("goo-_."))
+  lu.assertTrue(re.compile(pattern):execute("good-_.bbbgoo"))
+  lu.assertTrue(re.compile(pattern):execute("good-_.bbbgood-_."))
+  lu.assertTrue(re.compile(pattern):execute("good-_.bbbgood-_.bbbgood-_."))
+  lu.assertFalse(re.compile(pattern):execute("https"))
+  lu.assertTrue(re.compile(pattern):execute("https:"))
+  lu.assertTrue(re.compile(pattern):execute("https:aa")) -- true
+  lu.assertTrue(re.compile(pattern):execute("https:/"))
+  lu.assertTrue(re.compile(pattern):execute("https://"))
+  lu.assertTrue(re.compile(pattern):execute("https://aa"))
+  lu.assertTrue(re.compile(pattern):execute("https://aaa."))
+  lu.assertTrue(re.compile(pattern):execute("https://aaa.b"))
+  lu.assertTrue(re.compile(pattern):execute("https://aaa.bbb."))
+  lu.assertTrue(re.compile(pattern):execute("https://aaa.bbb.ccc"))
+end
+
+return M --|((https?|ftp|mailto|file):(//)?)?([a-z_A-Z]+[.]?)+

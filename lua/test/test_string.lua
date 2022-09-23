@@ -230,6 +230,7 @@ function M:test_match_patterns_bxy() -- %bxy 匹配xy中的字符
   lu.assertEquals({string.match("aa{abcbb", "%b{}")}, {})
   lu.assertEquals({string.match("aa{ab{c}bb", "%b{}")}, {"{c}"})
   lu.assertEquals({string.match("aa{ab{c}b}b", "%b{}")}, {"{ab{c}b}"})
+  lu.assertEquals({string.match("aa{ab c}b}b", "%b }")}, {" c}"})
 end
 
 -- 查找(第一个) => 返回找到的下标
