@@ -82,5 +82,5 @@ local function charset_comment_filter(input, env)
 end
 
 return { 
-  comment_filter = charset_comment_filter 
+  filter = charset_comment_filter 
 }

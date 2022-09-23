@@ -40,5 +40,5 @@ function pure_filter.tags_match(seg, env)
 end
 
 return {
-  pure_filter = pure_filter,
+  filter = pure_filter,
 }
