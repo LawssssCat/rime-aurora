@@ -17,9 +17,9 @@
 
 local rime_api_helper = require("tools/rime_api_helper")
 
-local M = {}
+local processor = {}
 
-function M.func(key, env)
+function processor.func(key, env)
   local ctx = env.engine.context
   local config = env.engine.schema.config
 
@@ -37,4 +37,6 @@ function M.func(key, env)
   return rime_api_helper.processor_return_kNoop
 end
 
-return M
+return {
+  processor = processor
+}
