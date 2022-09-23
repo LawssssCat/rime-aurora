@@ -39,24 +39,41 @@
   4. 《TsinamLeung 整理的 api》 - https://github.com/TsinamLeung/librime-lua/wiki/API
 --]]
 
+require = require("tools/ext_require")() -- 【全局定义】扩展require以获取请求文件所相对路径的文件
+
+--[[
+  提供模块名，自动注册全部 component
+]]
+local component_names = {
+  "processor", "segmentor", "translator", "filter"
+}
+local function register(module_name)
+  local module = require(module_name)
+  for _, name in pairs(component_names) do
+    _G[module_name .. "_" .. name] = module[name]
+  end
+end
+
 -- 【功能】："//"+"特定编码" 得到符号候选词
-local my_symbols = require("my_symbols")
+register("my_symbols")
 
 -- 【功能】：对候选词做处理
 -- 参考：https://github.com/hchunhui/librime-lua/blob/master/sample/lua/charset.lua
 -- charset_filter: 滤除含 CJK 扩展汉字的候选项
 -- charset_comment_filter: 为候选项加上其所属字符集的注释
 -- 详见 `lua/charset.lua`
-local my_charset = require("my_charset")
+register("my_charset")
 
 -- 【功能】：候选词详情（测试用）
-local my_debug = require("my_debug")
+register("my_debug")
 
-local my_matcher = require("my_matcher")
+register("my_matcher")
 
-local my_punct = require("my_punct")
+register("my_punct")
 
-local my_easy_en = require("my_easy_en")
+register("my_easy_en")
+
+register("my_key_binder")
 
 local my_key_binder = require("my_key_binder")
 
@@ -89,8 +106,6 @@ local my_key_binder = require("my_key_binder")
 --]]
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-debug_version_translator = my_debug.translator
-
 -- 【功能】：rq输出日期、sj输出时间
 -- 详见 `lua/time_translator.lua`
 time_translator = require("time_translator")
@@ -98,7 +113,8 @@ time_translator = require("time_translator")
 -- 【功能】：反查五笔笔画
 -- 详见 https://github.com/shewer/librime-lua-script/blob/e84e9ea008592484463b6ade405c83a5ff5ab9f0/lua/component/stroke_count.lua
 
-my_symbols_translator = my_symbols.translator
+
+
 
 -- ==============================================================================
 -- II. filters:
@@ -129,10 +145,6 @@ my_symbols_translator = my_symbols.translator
 --]]
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-debug_comment_filter = my_debug.filter
-
-charset_comment_filter = my_charset.comment_filter
-
 -- 【功能】：候选项重排序，使单字优先（single_char_filter）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/single_char.lua
 
@@ -144,8 +156,6 @@ py_comment_filter = require("my_reverse")
 
 -- 【功能】：use wildcard to search code
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/expand_translator.lua
-
-easy_en_pure_filter = my_easy_en.pure_filter
 
 -- ==============================================================================
 -- III. processors:
@@ -179,8 +189,6 @@ code_length_limit_processor = require("my_code")
 -- https://github.com/shewer/librime-lua-script
 -- init_processor = require('init_processor')
 
-my_key_binder_processor = my_key_binder.processor
-
 -- ==============================================================================
 -- IV. segmentors:
 -- ==============================================================================
@@ -200,8 +208,5 @@ my_key_binder_processor = my_key_binder.processor
 --]]
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-my_matcher_segmentor = my_matcher.segmentor
 
-my_punct_segmentor = my_punct.segmentor
 
-my_symbols_segmentor = my_symbols.segmentor
