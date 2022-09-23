@@ -300,4 +300,5 @@ bash tools/tailLog.sh
 > comment数量过多导致闪退<br>
 > <https://github.com/rime/home/issues/1129>
 > - [ ] 2022年09月20日<br>
-> weasel不显示彩色emoji
+> weasel不显示彩色emoji<br>
+> （需要微软独家的DirectWrite字体渲染引擎才能支持彩色emoji）

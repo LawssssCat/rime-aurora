@@ -1,6 +1,6 @@
 # 英文提示
 patch:
-  engine/filters/@next: lua_filter@easy_en_pure_filter          # 纯英文模式
+  engine/filters/@next: lua_filter@my_easy_en_filter          # 纯英文模式
   engine/translators/@after 0: table_translator@easy_en          # 英文
   engine/filters/+:
     - reverse_lookup_filter@e_reverse_lookup # 显示英文解释
