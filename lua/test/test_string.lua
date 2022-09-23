@@ -225,6 +225,12 @@ function M:test_match_patterns_x() -- %x 表示所有 16 进制数字符号。
   lu.assertEquals({string.match(str, "[%x]+")}, {str})
   lu.assertEquals({string.match(str.."ghijklnm...", "[%x]+")}, {str})
 end
+function M:test_match_patterns_bxy() -- %bxy 匹配xy中的字符
+  lu.assertEquals({string.match("aa{abc}bb", "%b{}")}, {"{abc}"})
+  lu.assertEquals({string.match("aa{abcbb", "%b{}")}, {})
+  lu.assertEquals({string.match("aa{ab{c}bb", "%b{}")}, {"{c}"})
+  lu.assertEquals({string.match("aa{ab{c}b}b", "%b{}")}, {"{ab{c}b}"})
+end
 
 -- 查找(第一个) => 返回找到的下标
 function M:test_find()
