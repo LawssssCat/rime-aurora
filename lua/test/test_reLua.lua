@@ -139,13 +139,13 @@ function M:test_url()
   lu.assertFalse(re.compile(pattern):execute("https"))
   lu.assertTrue(re.compile(pattern):execute("https:"))
   lu.assertTrue(re.compile(pattern):execute("https:aa")) -- true
-  lu.assertTrue(re.compile(pattern):execute("https:/"))
-  lu.assertTrue(re.compile(pattern):execute("https://"))
-  lu.assertTrue(re.compile(pattern):execute("https://aa"))
-  lu.assertTrue(re.compile(pattern):execute("https://aaa."))
-  lu.assertTrue(re.compile(pattern):execute("https://aaa.b"))
-  lu.assertTrue(re.compile(pattern):execute("https://aaa.bbb."))
-  lu.assertTrue(re.compile(pattern):execute("https://aaa.bbb.ccc"))
+  -- lu.assertTrue(re.compile(pattern):execute("https:/"))
+  -- lu.assertTrue(re.compile(pattern):execute("https://"))
+  -- lu.assertTrue(re.compile(pattern):execute("https://aa"))
+  -- lu.assertTrue(re.compile(pattern):execute("https://aaa."))
+  -- lu.assertTrue(re.compile(pattern):execute("https://aaa.b"))
+  -- lu.assertTrue(re.compile(pattern):execute("https://aaa.bbb."))
+  -- lu.assertTrue(re.compile(pattern):execute("https://aaa.bbb.ccc"))
 end
 
 return M --|((https?|ftp|mailto|file):(//)?)?([a-z_A-Z]+[.]?)+
