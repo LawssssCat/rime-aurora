@@ -1,11 +1,11 @@
 patch:
   menu/page_size: 6
   ###########################################################################
-  # 屏蔽默认的 pattern
-  recognizer/patterns/raw: "" 
+  # 修改默认的 pattern
+  # recognizer/patterns/email: "" 
   # recognizer/patterns/uppercase: "^$" 
   # recognizer/patterns/email: ""
-  # recognizer/patterns/url: ""
+  recognizer/patterns/url: "^(.+[.]|https?:|ftp[.:]|mailto:|file:).*$"
   ###########################################################################
   #
   simplifier/+:

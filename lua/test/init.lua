@@ -11,6 +11,9 @@
   - 命令行参数 https://luaunit.readthedocs.io/en/latest/#command-line-options
   - api https://luaunit.readthedocs.io/en/latest/#equality-assertions
 --]]
+-- ----------------------------------------------------------------
+--                  环境 - 配置
+-- ----------------------------------------------------------------
 require = require("tools/ext_require")() -- 全局定义
 
 lu = require("luaunit") -- require 扩展后，不假 test 也能找到了
@@ -38,6 +41,9 @@ local function mute(M) -- 静音：禁止print
   return M
 end
 
+-- ----------------------------------------------------------------
+--                  环境 - 打印
+-- ----------------------------------------------------------------
 print("===================[path: init.lua]======================") --init.lua所在位置
 print(debug.getinfo(1, "S").source)
 print(debug.getinfo(1, "S").short_src)
@@ -62,7 +68,9 @@ print(os.time())
 print(os.date("%Y%m%d%H%M%S"))
 print(string.format("%s%s", os.date("%Y%m%d%H%M%S"), math.random(10, 99)))
 
--- ================================================================ 单元测试内容 start
+-- ----------------------------------------------------------------
+--                  测试 - 单元
+-- ----------------------------------------------------------------
 print("==================[test config]=====================")
 -- 单元测试链条
 -- string
@@ -90,10 +98,11 @@ test_metatable = require("test/test_metatable")
 test_list = require("test/test_list")
 test_array_list = require("test/test_array_list")
 test_linked_list = require("test/test_linked_list")
--- regex
-test_reLua = require("test/test_reLua")
+-- regex -- 更新 librime-lua，引入 rime_api.regex_match(str, pattern)
 
--- ================================================================ 单元测试内容 end
+-- ----------------------------------------------------------------
+--                  测试 - 运行
+-- ----------------------------------------------------------------
 print("==================[test run]=====================")
 -- os.exit( lu.LuaUnit.run() )
 runner = lu.LuaUnit.new()
