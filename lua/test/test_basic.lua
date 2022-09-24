@@ -17,4 +17,18 @@ function M:test_type()
   lu.assertEquals(type(function() print("hello world") end), "function")
 end
 
+function M:test_for()
+  local temp = {}
+  for i = 0, 2 do
+    table.insert(temp, i)
+  end
+  lu.assertEquals(temp, {0, 1, 2})
+  --
+  local temp1 = {}
+  for i = 3, 2 do
+    table.insert(temp1, i)
+  end
+  lu.assertEquals(temp1, {})
+end
+
 return M

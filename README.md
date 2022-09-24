@@ -9,9 +9,11 @@
 
 ```
 /
-├─ /sync                提供（个人）词典快照
-├─ /*.userdb            用户字典（动态字典：随用户输入动态更新）
-├─ /font                提供字体（weasel.custom.yaml的style/font_face指定字体）
+├─ /sync                备份：（个人）词典快照
+├─ /*.userdb            备份：用户字典（动态字典：随用户输入动态更新）
+├─ /font                备份：字体（weasel.custom.yaml的style/font_face指定字体）
+├─ /librime-lua         备份：rime.dll（更新 librime-lua 时使用）
+│
 ├─ /build               ⭐️最终配置：通过“重新部署”整合所有文件到此目录
 │                         （包括：用户目录、程序目录）
 │
@@ -70,21 +72,21 @@
 
     todo 
 
-4. 特殊编码
+4. 动态候选词
 
-    输入 "rq"、"sj"、"xq" 等可显示当前系统时间
+    输入 "/rq"、"/sj"、"/xq" 等可显示当前系统时间
 
     ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif)
 
-    输入 "version" 可显示版本信息
+    输入 "/version" 可显示版本信息
 
     todo
 
-    输入 "ascii" 可打印 ascii 表
+    输入 "/ascii" 可打印 ascii 表
 
     todo
 
-    输入 "table" 可打印不同格式的表格框架
+    输入 "/table" 可打印不同格式的表格框架
 
     todo
 
@@ -134,29 +136,12 @@
 
 ## 按键说明
 
-### 全局（always）
-
-1. `F4` 选择方案和其选项开关
-
-    todo 图片
-
-### 待输入（composing）
-
-1. `` ` ``（键盘左上角） 开启五笔反查模式（横竖撇捺折 => 一丨丿丶乙 => hspnz）
-
-1. `/` 开启纯英文模式 - [#内容说明](#内容说明)
-
-1. `//` 开启符号模式 - [#内容说明](#内容说明)
-
-### 结果页（has_menu/paging/editor）
-
-1. （仅地球拼音支持）通过编码结尾输入 `shift + <num 7~0>` 设置四声（ā á ă à）
-
-    todo 图片
-
-1. `shift+⬆️（上）` 上一页、`shift+⬇️（下）` 下一页
-
-1. 选中结果，`shift+↩️（回车）` 输出comment结果
+1. 全局 - `F4` - 选择方案和其选项开关
+1. 全局 - `` ` `` -  开启五笔反查模式（横竖撇捺折 => 一丨丿丶乙 => hspnz）
+1. 选词 - `shift` - 开启纯英文模式
+1. 选词 - `shift+↩️（回车）` 上屏右侧提示信息
+1. 选词 - `shift+⬆️（上）` 或 `shift+⬇️（下）` - 翻页
+1. 选词 - `shift + <num 7~0>` - 设置四声（ā á ă à）（仅地球拼音支持）
 
 ## 安装方法
 
@@ -165,9 +150,6 @@
 <img src='./.github/assets/userdata-opt.png'  align='right'></img>
 
 把项目文件全部复制到“用户文件夹📁”（右图，右键点击小图标可见），然后点击“重新部署”即可。
-
-> **注意⚠️**<br>
-> 如果有“用户词典快照🎦”需要同步，请先看“步骤二”
 
 ```yml
 # 不同系统中，“用户文件夹📁”的一般路径
@@ -179,35 +161,22 @@
 
 <div style='clear: both;'></div>
 
-### 步骤二：**同步“用户词典快照🎦”**：（如有需要）
+### 步骤二：**更新 librime-lua**
 
-<img src='./.github/assets/dict-opt.png'  align='right'></img>
+准备 rime.dll （从`/librime-lua`中取备份文件，或者下载[最新版本](https://github.com/hchunhui/librime-lua/actions)），然后将 rime.dll 文件覆盖到 weasel 安装目录下，即可。
 
-> “用户词典快照🎦”包含了用户常用的词。重新安装时，可以通过导入快照，迅速的还原熟悉的打字环境
+> 相关资料
+> 
+> + wiki <https://github.com/hchunhui/librime-lua/wiki#installation>
+> + issue <https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242955543>
 
-1. 选择“用户词典管理”（右图，右键点击小图标可见）打开“快照管理界面”。
-2. 导出<br>
-    左边选择要导出“用户词典快照🎦”的快照名，点击右边的“输出词典快照”。
-    > “用户词典快照🎦”一般会被导出到`./sync`目录
-3. 导入<br>
-    点击右边的“合入词典快照”，选择需要的“用户词典快照🎦”进行导入。
-
-<div style='clear: both;'></div>
-
-![同步词典快照](./.github/assets/dict-merge.png)
-
-### 步骤三：**更新 librime-lua**
-
-[librime-lua 插件](https://github.com/hchunhui/librime-lua)提供了输入法程序运行时执行 lua 脚本功能。
-
-其内容[已经被 librime 添加进项目编译](https://github.com/rime/librime/blob/master/.github/workflows/release-ci.yml#L21)，会随著输入法版本发布，[不需再额外安装](https://github.com/hchunhui/librime-lua/issues/41)。
-
-但由于代码需要测试，官网下载最新版的输入法版本所包含的 [librime-lua 插件版本会偏旧](https://github.com/hchunhui/librime-lua/issues/43)，本方案许多功能无法实现。因此体验本方案完整功能需要[更新 librime-lua 插件](https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242881504)。
-
->**插件更新方法**
+> ⚠️ 说明
 >
->要手动将 weasel 安装目录下的 rime.dll 手工替换为 github action 里面最新的 artifact。<br>
->例如现在最新的build在 https://github.com/hchunhui/librime-lua/actions/runs/3026493926 ，点击这个页面的 artifact 按钮下载。下载以后打开 rime-xxxx-Windows.7z 解压其中的 `dist/lib/rime.dll` 即可。替换时如遇到文件被占用，需先点击 weasel “停止算法服务”，替换后再打开。
+>[librime-lua 插件](https://github.com/hchunhui/librime-lua)提供了输入法程序运行时执行 lua 脚本功能。
+>
+>其内容[已经被 librime 添加进项目编译](https://github.com/rime/librime/blob/master/.github/workflows/release-ci.yml#L21)，会随著输入法版本发布，[不需再额外安装](https://github.com/hchunhui/librime-lua/issues/41)。
+>
+>但由于代码需要测试，官网下载最新版的输入法版本所包含的 [librime-lua 插件版本会偏旧](https://github.com/hchunhui/librime-lua/issues/43)，本方案许多功能无法实现。因此体验本方案完整功能需要[更新 librime-lua 插件](https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242881504)。
 
 ## 其他
 
@@ -232,6 +201,23 @@ npm run log
 # 或者
 bash tools/tailLog.sh
 ```
+
+### 同步“用户词典快照🎦”
+
+<img src='./.github/assets/dict-opt.png'  align='right'></img>
+
+> “用户词典快照🎦”包含了用户常用的词。重新安装时，可以通过导入快照，迅速的还原熟悉的打字环境
+
+1. 选择“用户词典管理”（右图，右键点击小图标可见）打开“快照管理界面”。
+2. 导出<br>
+    左边选择要导出“用户词典快照🎦”的快照名，点击右边的“输出词典快照”。
+    > “用户词典快照🎦”一般会被导出到`./sync`目录
+3. 导入<br>
+    点击右边的“合入词典快照”，选择需要的“用户词典快照🎦”进行导入。
+
+<div style='clear: both;'></div>
+
+![同步词典快照](./.github/assets/dict-merge.png)
 
 ### 相关资料
 
@@ -300,4 +286,5 @@ bash tools/tailLog.sh
 > comment数量过多导致闪退<br>
 > <https://github.com/rime/home/issues/1129>
 > - [ ] 2022年09月20日<br>
-> weasel不显示彩色emoji
+> weasel不显示彩色emoji<br>
+> （需要微软独家的DirectWrite字体渲染引擎才能支持彩色emoji）

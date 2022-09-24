@@ -1117,7 +1117,14 @@ TapOutput.__class__ = 'TapOutput'
 
     function TapOutput:endTest( node )
         if node:isPassed() then
-            io.stdout:write("ok     ", self.result.currentTestNumber, "\t", node.testName, "\n")
+            -- io.stdout:write("ok     ", self.result.currentTestNumber, "\t", node.testName, "\n")
+            local time_pattern
+            if(node.duration>=0.5) then
+                time_pattern = "= %0.3f ="
+            else
+                time_pattern = "| %0.3f |"
+            end
+            io.stdout:write("ok     ", self.result.currentTestNumber, "\t", string.format(time_pattern, node.duration), "\t", node.testName, "\n")
         end
     end
 

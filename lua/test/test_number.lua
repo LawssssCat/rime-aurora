@@ -4,6 +4,16 @@ local convert_arab_to_chinese = require("tools/number_to_cn").convert_arab_to_ch
 
 local M = {}
 
+function M:test_boolean()
+  lu.assertEquals(not 0, false)
+  lu.assertEquals(not 1, false)
+  lu.assertEquals(not nil, true)
+  lu.assertEquals(1 & 1, 1)
+  lu.assertEquals(2 & 1, 0)
+  lu.assertEquals(3 & 1, 1)
+  lu.assertNotEquals(nil, false)
+end
+
 function M:test_divide()
   lu.assertEquals(0.33333333333333, 0.33333333333333)
   lu.assertNotEquals(1/3, 0.33333333333333)
