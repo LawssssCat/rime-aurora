@@ -174,4 +174,12 @@ helper.processor_return_kRejected = 0 -- 字符上屏，结束 processors 流程
 helper.processor_return_kAccepted = 1 -- 字符不上屏，结束 processors 流程
 helper.processor_return_kNoop = 2 -- 字符不上屏，交给下一个 processor
 
+-- ============================================================ 
+-- regex - boot.Regex from c++
+-- ============================================================ 
+function helper:regex_match(text, pattern)
+  local result = rime_api.regex_match(text , pattern)
+  return result
+end
+
 return helper

@@ -14,9 +14,11 @@ function segmentor.func(segmentation, env)
     local pos_comfirm = segmentation:get_confirmed_position() -- 下标0开始
     local input_waiting = string.sub(input_active, pos_comfirm+1)
     for key, pattern in pairs(env.pattern_map) do
-      local str = string.match(input_waiting, pattern)
-      if(str) then
-        local seg = Segment(pos_comfirm, pos_comfirm+#str)
+      local match = rime_api_helper:regex_match(input_waiting, pattern)
+      if(match) then
+        local match_str = match[1]
+        local _start, _end = string.find(input_waiting, match_str, 1, true)
+        local seg = Segment(_start-1, _end)
         seg.tags =  Set({key})
         segmentation:add_segment(seg)
       end

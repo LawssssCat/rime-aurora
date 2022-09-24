@@ -1,6 +1,7 @@
 patch:
   segmentors:
-    - lua_segmentor@my_matcher_segmentor # match all tags in "recognizer/patterns"
+    # - matcher
+    - lua_segmentor@my_matcher_segmentor # 模仿 matter
     - abc_segmentor # tags: abc
     # - punct_segmentor # 改用 lua_segmentor@my_punct_segmentor
     - lua_segmentor@my_punct_segmentor # tags: punct . simplify and expand "punct_segmentor"
