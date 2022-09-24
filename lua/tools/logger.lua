@@ -8,7 +8,7 @@ local string_helper = require("tools/string_helper")
 local ptry = require("tools/ptry")
 
 -- 日志格式模版
-local pattern = "{level} [{depth}] {path}:{line} {method}] {msg}"
+local pattern = "{level} {logger_id}/{depth} {path}:{line} {method}] {msg}"
 
 local logger = {} -- return 
 
@@ -16,6 +16,8 @@ local logger = {} -- return
 logger.INFO = "info"
 logger.WARN = "warn"
 logger.ERROR = "error"
+
+logger.id = os.date("%Y%m%d%H%M%S")
 
 -- 日志输出格式化
 local function format(log_level, debug_level, ...)
@@ -36,26 +38,16 @@ local function format(log_level, debug_level, ...)
   debug_level = debug_level + 1
   local info = debug.getinfo(debug_level, "nSl")
   -- 处理 pattern 格式
-  local result = pattern
-  ptry(function()
-    result = string_helper.replace(result, "{level}", string.upper(log_level))
-    result = string_helper.replace(result, "{depth}", debug_level)
-    result = string_helper.replace(result, "{time}", os.date("%Y%m%d %H:%M:%S"))
-    result = string_helper.replace(result, "{path}", info.short_src:match(".?(lua[\\/].+)$") or info.short_src or "nil")
-    result = string_helper.replace(result, "{method}", info.name or "nil")
-    result = string_helper.replace(result, "{line}", info.currentline)
-    result = string_helper.replace(result, "{msg}", msg)
-  end)
-  ._catch(function(err)
-    error(inspect({
-      err=err,
-      log_level=log_level,
-      debug_level=debug_level,
-      stack_info=info,
-      args=msg,
-      result=result
-    }))
-  end)
+  local result = string_helper.format(pattern, {
+    level=string.upper(log_level),
+    depth=debug_level,
+    time=os.date("%Y%m%d %H:%M:%S"),
+    path=info.short_src:match(".?(lua[\\/].+)$") or info.short_src or "nil",
+    method=info.name or "nil",
+    line=info.currentline,
+    msg=msg,
+    logger_id=logger.id
+  })
   return result
 end
 
@@ -79,7 +71,7 @@ end
 ]] 
 local function _print(log_level, debug_level, ...)
   local func = get_log_func(log_level)
-  local msg = format(log_level, debug_level+1, ...)
+  local msg = format(log_level, debug_level+1, null(...))
   func(msg)
   return msg
 end
@@ -121,17 +113,17 @@ end
 ]]
 
 function logger.info(...)
-  local result = _print(logger.INFO, 2, ...)
+  local result = _print(logger.INFO, 2, null(...))
   return result
 end
 
 function logger.warn(...)
-  local result = _print(logger.WARN, 2, ...)
+  local result = _print(logger.WARN, 2, null(...))
   return result
 end
 
 function logger.error(...)
-  local result = _print(logger.ERROR, 2, ...)
+  local result = _print(logger.ERROR, 2, null(...))
   return result
 end
 
@@ -144,7 +136,7 @@ end
 function logger.trace(log_level, ...)
   local debug_level = 2 -- 2 => 函数调用者的栈
   local trace_info = debug.traceback("------------- debug.traceback ---------------", debug_level)
-  local args = {...}
+  local args = {null(...)}
   table.insert(args, "\n" .. trace_info)
   local result = _print(log_level, debug_level, table.unpack(args))
   return result

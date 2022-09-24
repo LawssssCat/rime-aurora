@@ -1,7 +1,6 @@
 patch:
   engine/filters/@next: lua_filter@debug_comment_filter
-  engine/translators/@next: lua_translator@debug_comment_translator
-  engine/processors/@before 0: lua_processor@debug_comment_processor
+  engine/translators/@next: lua_translator@debug_version_translator
   switches/+:
     - name: option_debug_comment_filter # 候选词详细信息
       reset: 1

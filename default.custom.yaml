@@ -5,7 +5,6 @@ customization:
   modified_time: "Sat Sep  3 11:25:34 2022"
   rime_version: 1.5.3
 patch:
-  "menu/page_size": 6
   schema_list:
     - {schema: my_terra_pinyin}
     - {schema: my_luna_pinyin}

@@ -6,6 +6,7 @@ local helper = {}
 local null = require("tools/null")
 local split = require("tools/split")
 local inspect = require("tools/inspect")
+local ptry = require("tools/ptry")
 
 -- 字符串分割
 function helper.split(str, delimiter)
@@ -14,15 +15,15 @@ end
 
 -- 字符串连接
 function helper.join(arr, delimiter)
+  if(not arr) then error("can't join \"nil\"") end
+  if(type(arr) ~= "table") then error("need \"table\" type. not \"" .. type(arr) .. "\"") end
   local temp = {}
-  if(arr) then
-    for index, value in pairs(arr) do
-      value = null(value)
-      if(type(value)=="string") then
-        table.insert(temp, value)
-      else
-        table.insert(temp, inspect(value))
-      end
+  for index, value in pairs(arr) do
+    value = null(value)
+    if(type(value)=="string") then
+      table.insert(temp, value)
+    else
+      table.insert(temp, inspect(value))
     end
   end
   return table.concat(temp, delimiter)
@@ -74,6 +75,49 @@ function helper.replace(s, pattern, repl, pain)
       return table.concat(ret)
   end
   return s
+end
+
+--[[
+  根据 pattern 替换 info 信息
+
+  e.g. 
+  pattern = "hello wor{value1}."
+  info = {
+    value1="ld"
+  }
+  =>
+  "hello world."
+]]
+function helper.format(pattern, info)
+  if(not info) then error("\"info\" is nil") end
+  if(type(info) ~= "table") then error("type of \"info\" must be a \"table\"") end
+  local result = pattern
+  for key, value in pairs(info) do
+    local replace_key = "{" .. key .. "}"
+    local replace_value = type(value) == "string" and value or inspect(value)
+    result = helper.replace(result, replace_key, replace_value)
+  end
+  return result
+end
+
+-- 【首字母】是否是（可见）ascii
+function helper.is_ascii_visible(c)
+  local str = nil
+  if(type(c) == "string") then
+    str = c
+  else
+    ptry(function()
+      str = string.char(c)
+    end)
+  end
+  if(str) then 
+    return helper.is_ascii_visible_string(str)
+  end
+  return false
+end
+-- 【字符串】是否是（可见）ascii
+function helper.is_ascii_visible_string(text)
+  return string.match(text, "^[\x20-\x7e]+$") ~= nil
 end
 
 return helper

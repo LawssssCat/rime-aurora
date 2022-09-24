@@ -10,6 +10,7 @@
 ```
 /
 ├─ /sync                提供（个人）词典快照
+├─ /*.userdb            用户字典（动态字典：随用户输入动态更新）
 ├─ /font                提供字体（weasel.custom.yaml的style/font_face指定字体）
 ├─ /build               ⭐️最终配置：通过“重新部署”整合所有文件到此目录
 │                         （包括：用户目录、程序目录）
@@ -61,19 +62,31 @@
 
     ![输入法英文预览](./.github/assets/preview-easy_en.png)
 
-    “`/`”  前缀：开启纯英文模式
-
-    ![输入法英文预览（prefix）](./.github/assets/preview-easy_en-perfix-hit.png)
+    todo 中途按 “`shift`” 切换 “纯英文模式”
 
     todo 优化 https://github.com/shewer/librime-lua-script/issues/5
 
-3. “`//`” 前缀：符号 & 表情 & 颜表情
+3. “`/`” 前缀：符号 & 表情 & 颜表情
 
     todo 
 
-4. 输入 “rq”、“sj”、“xq” 等可显示当前系统时间
+4. 特殊编码
+
+    输入 "rq"、"sj"、"xq" 等可显示当前系统时间
 
     ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif)
+
+    输入 "version" 可显示版本信息
+
+    todo
+
+    输入 "ascii" 可打印 ascii 表
+
+    todo
+
+    输入 "table" 可打印不同格式的表格框架
+
+    todo
 
 5. CJK字符集提示（开启关闭：F4选择/快捷键 `Ctrl+7`）
 
@@ -225,23 +238,30 @@ bash tools/tailLog.sh
 > 使用指引
 >
 > + 官方指引 - <https://github.com/rime/home/wiki/UserGuide>
-> + 我的笔记 - <https://blog.csdn.net/LawssssCat/article/details/103482619>
+> + ~~我的笔记 - <https://blog.csdn.net/LawssssCat/article/details/103482619>~~
 
 > 配置信息
 > 
 > + 《Schema.yaml 詳解》:+1: -  <https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md>
 > + 《yaml 追加规则》:+1: - <https://github.com/rime/home/wiki/Configuration>
 
-> 参考方案
+> 参考方案（[x] 为已整合方案）
 >
-> + 洋葱方案 - <https://github.com/oniondelta/Onion_Rime_Files><br>
->（注音、雙拼、拼音、形碼、行列30）
-> + 流星追月 - <https://github.com/zhuangzhemin/rime><br>
+> + [x] 洋葱方案 - <https://github.com/oniondelta/Onion_Rime_Files><br>
+>（注音、雙拼、拼音、形碼、行列30）<br>
+> + [x] 行列30 - <https://github.com/rime/rime-array>
+> + [ ] 流星追月 - <https://github.com/zhuangzhemin/rime><br>
 > （小鹤双拼为主）
-> + 星空键道6 - <https://github.com/xkinput/Rime_JD><br>
+> + [ ] 星空键道6 - <https://github.com/xkinput/Rime_JD><br>
 >（中文输入法方案）
-> + iDvel - <https://github.com/iDvel/rime-ice><br>
+> + [ ] iDvel - <https://github.com/iDvel/rime-ice><br>
 >（全拼方案、简体）
+> + [ ] <https://github.com/DreamAfar/Rime-IME-for-iOS-iRime><br>
+> （ios）
+> + [ ] <https://github.com/xinlc/dotfiles/tree/master/mac/Rime><br>
+> （ios）
+> + [ ] <https://github.com/srackhall/My-rime-Personal-configuration/tree/main>
+> + [ ] <https://github.com/riverscn/rime-forge/>
 
 > 码表
 >
@@ -261,6 +281,8 @@ bash tools/tailLog.sh
 > 词源
 > + <https://github.com/skywind3000/ECDICT><br>
 > 英文
+> + <https://ssnhd.com/2022/01/06/sogou-dict/><br>
+> 搜狗词库转换方法（支持多家输入法）
 
 > 插件
 > + <https://github.com/hchunhui/librime-lua>
@@ -277,3 +299,5 @@ bash tools/tailLog.sh
 > - [ ] 2022年09月07日<br>
 > comment数量过多导致闪退<br>
 > <https://github.com/rime/home/issues/1129>
+> - [ ] 2022年09月20日<br>
+> weasel不显示彩色emoji

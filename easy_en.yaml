@@ -1,51 +1,52 @@
-easy_en:
-  dictionary: easy_en
-  enable_completion: true # 是否启用英文输入联想补全
-  enable_sentence: false # 混输时不出现带有图案（太极/陰陽魚符号 “☯️” ）的英文
-  initial_quality: -1 # 英文候选词的位置, 数值越大越靠前
-  # initial_quality: -0.618 
-  # initial_quality: 1 
-  spelling_hints: 9
-  tips: 〔英文〕
-  tag: easy_en
-  # prefix: "/"
-  # comment_format:
-    # - xform/^.+$//
+# 英文提示
+patch:
+  engine/filters/@next: lua_filter@easy_en_pure_filter          # 纯英文模式
+  engine/translators/@after 0: table_translator@easy_en          # 英文
+  engine/filters/+:
+    - reverse_lookup_filter@e_reverse_lookup # 显示英文解释
+  schema/dependencies/+:
+    - easy_en
 
-easy_en_prev:
-  __include: /easy_en
-  tag: easy_en_prev
-  prefix: "/"
-
-e_reverse_lookup:
-  tags: [ easy_en, easy_en_prev ]
-  overwrite_comment: true
-  dictionary: easy_en
-  comment_format:
-    #####################################################
-    #
-    #  1. 处理 comment 格式
-    #  2. ocm_防崩潰：Win必加，Mac勿加
-    #
-    #####################################################
-    - xform/^.+⌗// #easy_en_super用
-    - xform|^[ a-z;/.'-]+|| #easy_en_super用
-    # - xform/@@/\n          / # 【导致闪退】
-    # - xform/^(﹝.+﹞)?\[[^@]+\]/$1/
-    # - xform/^(﹙.+﹚)?\[[^@]+\]/$1/
-    - xform/^(﹝.+﹞)//
-    - xform/^(﹙.+﹚)//
-    - xform/([a-zA-Z0-9])@([a-zA-Z0-9])/$1 $2/
-    - xform/@@/ /
-    # - xform/@/ /
-    - xform/@//
-    - xform/^([^﹝])/ $1/
-    - xform/^([^﹙])/ $1/
-    # - xform/^((?:[\0-\x7F\xC2-\xFD][\x80-\xBF]*){17}).+$/$1 ……《略》/ # 增加字数可能导致闪退
-    - xform/^((?:[\x01-\x7f]|[\xc0-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}){30}).+$/$1... / # 增加字数可能导致闪退
-    #####################################################
-
-recognizer:
-  patterns:
-    easy_en_prev: "^\/[a-zA-Z]*$" # 英文输入前缀 "/", e.g. "/good" => "good"
+  recognizer/patterns/+:
     easy_en: "^[a-zA-Z]*$"
+
+  easy_en:
+    dictionary: easy_en
+    enable_completion: true # 是否启用英文输入联想补全
+    enable_sentence: false # 混输时不出现带有图案（太极/陰陽魚符号 “☯️” ）的英文
+    initial_quality: -1 # 英文候选词的位置, 数值越大越靠前
+    # initial_quality: -0.618 
+    # initial_quality: 1 
+    spelling_hints: 9
+    tips: 〔英文〕
+    tag: easy_en
+    # comment_format:
+      # - xform/^.+$//
+
+  e_reverse_lookup:
+    tags: [ easy_en ]
+    overwrite_comment: true
+    dictionary: easy_en
+    comment_format:
+      #####################################################
+      #
+      #  1. 处理 comment 格式
+      #  2. ocm_防崩潰：Win必加，Mac勿加
+      #
+      #####################################################
+      - xform/^.+⌗// #easy_en_super用
+      - xform|^[ a-z;/.'-]+|| #easy_en_super用
+      # - xform/@@/\n          / # 【导致闪退】
+      # - xform/^(﹝.+﹞)?\[[^@]+\]/$1/
+      # - xform/^(﹙.+﹚)?\[[^@]+\]/$1/
+      - xform/^(﹝.+﹞)//
+      - xform/^(﹙.+﹚)//
+      - xform/([a-zA-Z0-9])@([a-zA-Z0-9])/$1 $2/
+      - xform/@@/ /
+      # - xform/@/ /
+      - xform/@//
+      - xform/^([^﹝])/ $1/
+      - xform/^([^﹙])/ $1/
+      # - xform/^((?:[\0-\x7F\xC2-\xFD][\x80-\xBF]*){17}).+$/$1 ……《略》/ # 增加字数可能导致闪退
+      - xform/^((?:[\x01-\x7f]|[\xc0-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}){30}).+$/$1... / # 增加字数可能导致闪退
+      #####################################################

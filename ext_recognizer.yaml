@@ -1,6 +1,0 @@
-recognizer:
-  # 屏蔽默认的 pattern，避免未知匹配影响上屏
-  patterns:
-    # email: ""
-    uppercase: ""
-    # url: ""
