@@ -24,5 +24,7 @@ patch:
         func: sj_handle,
       }
       - {
-        key: "ver{sion}?" # version
+        key: "ver{sion}?", # version
+        module: my_version,
+        func: version_handle,
       }

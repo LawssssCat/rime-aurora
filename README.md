@@ -80,8 +80,6 @@
 
     输入 "/version" 可显示版本信息
 
-    todo
-
     输入 "/ascii" 可打印 ascii 表
 
     todo
