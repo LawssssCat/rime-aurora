@@ -75,6 +75,16 @@ end
 
 function M:test_split()
   lu.assertEquals(string_helper.split("1 2  3   4    ", "%s+"), {"1","2","3","4",""})
+  local str = "version"
+  lu.assertEquals(string_helper.split(str, ""), {"v", "e", "r", "s", "i", "o", "n"})
+  local t = ""
+  local t_list = {}
+  for i, v in pairs(string_helper.split(str, "")) do 
+    t = t..v
+    table.insert(t_list, t)
+  end
+  lu.assertEquals(t_list,{"v", "ve", "ver", "vers", "versi", "versio", "version"})
+  lu.assertEquals(string_helper.join(t_list, "|"),"v|ve|ver|vers|versi|versio|version")
 end
 
 function M:test_join()
@@ -110,6 +120,7 @@ function M:test_helper_sub()
   lu.assertEquals(string_helper.sub("你好", 1, 1), "你")
   lu.assertEquals(string_helper.sub("你好", 2, 2), "好")
   lu.assertError(string_helper.sub, "你好", 1, 3) -- 下标异常
+  lu.assertError(string_helper.sub, "你好", 3) -- 下标异常
 end
 
 -- 匹配(第一个) => 返回匹配字符串
@@ -167,6 +178,10 @@ function M:test_match()
   -- lu.assertTrue(string.match("/versi", pattern_04))
   -- lu.assertTrue(string.match("/vers", pattern_04))
   -- lu.assertTrue(string.match("/ver", pattern_04))
+  local tagname_prefix = "dy_cand_"
+  local pattern = "^" .. tagname_prefix .. "(%d+)$"
+  lu.assertEquals({string.match("dy_cand_1", pattern)}, {"1"})
+  
 end
 function M:test_match_patterns_catch() -- ()
   lu.assertEquals({string.match("aabbbccdc", "a+b+")}, {"aabbb"}) --> 等于 (a+b+)
@@ -220,6 +235,19 @@ function M:test_match_patterns_p() -- %p 表示所有标点符号。
   -- 不包含中文标点
   lu.assertEquals({string.match("。！¥……（）", "[%p]+")}, {})
 end
+function M:test_match_patterns_w() -- %w 匹配所有字符
+  for i=97,122 do
+    local c = utf8.char(i)
+    lu.assertEquals({i, string.match(c, "[%w]+")}, {i, c})
+  end
+  lu.assertFalse(string.match("你好", "[%w]+"))
+  lu.assertFalse(string.match("!", "[%w]+"))
+  lu.assertFalse(string.match(" ", "[%w]+"))
+  lu.assertTrue(string.match(" ", "[%w%s]+"))
+  lu.assertFalse(string.match("%", "[%w]+"))
+  lu.assertFalse(string.match("_", "[%w]+"))
+  lu.assertTrue(string.match("_", "[%w_]+"))
+end
 function M:test_match_patterns_x() -- %x 表示所有 16 进制数字符号。
   local str = "0123456789abcdefABCDEF"
   lu.assertEquals({string.match(str, "[%x]+")}, {str})
@@ -231,6 +259,33 @@ function M:test_match_patterns_bxy() -- %bxy 匹配xy中的字符
   lu.assertEquals({string.match("aa{ab{c}bb", "%b{}")}, {"{c}"})
   lu.assertEquals({string.match("aa{ab{c}b}b", "%b{}")}, {"{ab{c}b}"})
   lu.assertEquals({string.match("aa{ab c}b}b", "%b }")}, {" c}"})
+  lu.assertEquals({string.match("aa{ab}aaa{b}b", "%b{}")}, {"{ab}"})
+end
+
+function M:test_gmatch_patterns_bxy()
+  local t = {}
+  for v in string.gmatch("aa{ab}aaa{b}b", "%b{}") do
+    table.insert(t, v)
+  end
+  lu.assertEquals(t,  {"{ab}", "{b}"})
+  -- 
+  local t = {}
+  for v in string.gmatch("aa{ab}?aaa{b}?b", "{%w+}%?") do
+    table.insert(t, v)
+  end
+  lu.assertEquals(t,  {"{ab}?", "{b}?"})
+  --
+  local t = {}
+  for v in string.gmatch("aa{ab}?aaa{b}?b", "{%w+}[?]") do
+    table.insert(t, v)
+  end
+  lu.assertEquals(t,  {"{ab}?", "{b}?"})
+  -- 
+  local t = {}
+  for v in string.gmatch("aa{ab}?aaa{b}?b", "{(%w+)}%?") do
+    table.insert(t, v)
+  end
+  lu.assertEquals(t,  {"ab", "b"})
 end
 
 -- 查找(第一个) => 返回找到的下标

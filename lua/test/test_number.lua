@@ -4,6 +4,13 @@ local convert_arab_to_chinese = require("tools/number_to_cn").convert_arab_to_ch
 
 local M = {}
 
+function M:test_tonumber()
+  lu.assertNotEquals("1", 1)
+  lu.assertEquals(tonumber("1"), 1)
+  lu.assertEquals(tonumber(11), 11)
+  lu.assertEquals(tonumber("ab"), nil)
+end
+
 function M:test_boolean()
   lu.assertEquals(not 0, false)
   lu.assertEquals(not 1, false)

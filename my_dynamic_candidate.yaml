@@ -1,0 +1,28 @@
+# 动态候选词
+patch:
+  engine/processors/@after 0: lua_processor@my_dynamic_candidate_processor
+  engine/translators/@before 0: lua_translator@my_dynamic_candidate_translator
+  engine/segmentors/@after 0: lua_segmentor@my_dynamic_candidate_segmentor
+  my_dynamic_candidate:
+    prefix: "/"
+    patterns:
+      # 【功能】：rq输出日期、sj输出时间
+      # 详见 `lua/time_translator.lua`
+      - {
+        key: "(r{i}?q{i}?|da{ta}?)", # 日期
+        module: my_time,
+        func: rq_handle,
+      }
+      - {
+        key: "(x{ing}?q{i}?|we{ek}?)", # 星期
+        module: my_time,
+        func: xq_handle,
+      }
+      - {
+        key: "(s{hi}?j{ian}?|ti{me}?)", # 时间
+        module: my_time,
+        func: sj_handle,
+      }
+      - {
+        key: "ver{sion}?" # version
+      }
