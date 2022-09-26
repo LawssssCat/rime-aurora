@@ -42,14 +42,7 @@ switches:
 
 engine:
   processors:
-    - ascii_composer
-    - recognizer
-    - key_binder
-    - speller
-    - punctuator
-    - selector
-    - navigator
-    - express_editor
+    __include: ext_processors:/patch/processors
   segmentors:
     __include: ext_segmentors:/patch/segmentors
   translators:
@@ -223,6 +216,7 @@ grammar: # 语法模型
 
 __patch:
   - my_common:/patch
+  - my_matcher:/patch
   - easy_en:/patch        # 英文
   - symbols:/patch        # 符号
   - my_symbols:/patch     # 符号扩展
@@ -231,4 +225,3 @@ __patch:
   - my_charset:/patch        # 字符集
   - my_debug:/patch          # 候选词详细信息
   - my_key_binder:/patch     # 扩展快捷键
-  - my_dynamic_candidate:/patch     # 动态候选词

@@ -119,38 +119,42 @@ end
 
 local translator = {}
 
-function translator.rq_handle(input, seg, env)
-  -- 日期
-  local tip = "〔日期〕"
-  for i,v in ipairs(conf.pattern_date) do
-    local comment = getTimeStr(v)
-    local cand = Candidate("date", seg.start, seg._end, comment, tip)
-    cand.preedit = string.sub(input, seg._start+1, seg._end)
-    -- cand.quality = -199
-    yield(cand)
+function translator.func(input, seg, env)
+  if(seg:has_tag("date")) then
+    -- 日期
+    local tip = "〔日期〕"
+    for i,v in ipairs(conf.pattern_date) do
+      local comment = getTimeStr(v)
+      local cand = Candidate("date", seg.start, seg._end, comment, tip)
+      cand.preedit = string.sub(input, seg._start+1, seg._end)
+      cand.quality = 1
+      yield(cand)
+    end
+  end
+  if(seg:has_tag("week")) then
+    -- 星期
+    local tip = "〔星期〕"
+    for i,v in ipairs(conf.pattern_week) do
+      local comment = getTimeStr(v)
+      local cand = Candidate("week", seg.start, seg._end, comment, tip)
+      cand.preedit = string.sub(input, seg._start+1, seg._end)
+      cand.quality = 1
+      yield(cand)
+    end
+  end
+  if(seg:has_tag("time")) then
+    -- 时间
+    local tip = "〔时间〕"
+    for i,v in ipairs(conf.pattern_time) do
+      local comment = getTimeStr(v)
+      local cand = Candidate("time", seg.start, seg._end, comment, tip)
+      cand.preedit = string.sub(input, seg._start+1, seg._end)
+      cand.quality = 1
+      yield(cand)
+    end
   end
 end
 
-function translator.xq_handle(input, seg, env)
-  -- 星期
-  local tip = "〔星期〕"
-  for i,v in ipairs(conf.pattern_week) do
-    local comment = getTimeStr(v)
-    local cand = Candidate("week", seg.start, seg._end, comment, tip)
-    cand.preedit = string.sub(input, seg._start+1, seg._end)
-    yield(cand)
-  end
-end
-
-function translator.sj_handle(input, seg, env)
-  -- 时间
-  local tip = "〔时间〕"
-  for i,v in ipairs(conf.pattern_time) do
-    local comment = getTimeStr(v)
-    local cand = Candidate("time", seg.start, seg._end, comment, tip)
-    cand.preedit = string.sub(input, seg._start+1, seg._end)
-    yield(cand)
-  end
-end
-
-return translator
+return {
+  translator = translator
+}
