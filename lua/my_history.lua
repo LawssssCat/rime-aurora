@@ -1,6 +1,7 @@
 
 local logger = require("tools/logger")
 local string_helper = require("tools/string_helper")
+local rime_api_helper = require("tools/rime_api_helper")
 local CycleList = require("tools/collection/cycle_list")
 local LinkedList = require("tools/collection/linked_list")
 
@@ -10,9 +11,9 @@ local translator = {}
 
 local history_list = CycleList(20)
 
-function translator.history_init(env)
-  local item_config = env.item_config
-  local history_num_max = item_config and item_config.history_num_max or history_num_max
+function translator.init(env)
+  local config = env.engine.schema.config
+  local history_num_max = rime_api_helper:get_config_item_value(config, env.name_space .. "/history_num_max")
   history_list:set_max_size(history_num_max)
   env.notifier_commit_history = env.engine.context.commit_notifier:connect(function(ctx)
     local cand = ctx:get_selected_candidate()
@@ -30,11 +31,11 @@ function translator.history_init(env)
   end)
 end
 
-function translator.history_fini(env)
+function translator.fini(env)
   env.notifier_commit_history:disconnect()
 end
 
-function translator.history_handle(input, seg, env)
+function translator.func(input, seg, env)
   local temp = LinkedList()
   for iter in history_list:iter() do
     temp:add_at(1, iter.value)
@@ -49,4 +50,6 @@ function translator.history_handle(input, seg, env)
   end
 end
 
-return translator
+return {
+  translator = translator
+}
