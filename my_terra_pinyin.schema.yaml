@@ -215,13 +215,13 @@ grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
 __patch:
-  - my_common:/patch
-  - my_matcher:/patch
-  - easy_en:/patch        # 英文
-  - symbols:/patch        # 符号
-  - my_symbols:/patch     # 符号扩展
-  - my_punctuator:/patch  # 标点
-  - my_code:/patch           # 输入编码处理（多音字扩展）
-  - my_charset:/patch        # 字符集
-  - my_debug:/patch          # 候选词详细信息
-  - my_key_binder:/patch     # 扩展快捷键
+  - patch/my_common:/patch
+  - patch/my_matcher:/patch
+  - easy_en:/patch                 # 英文
+  - symbols:/patch                 # 符号
+  - patch/my_symbols:/patch        # 符号扩展
+  - patch/my_punctuator:/patch     # 标点
+  - patch/my_code:/patch           # 输入编码处理（多音字扩展）
+  - patch/my_charset:/patch        # 字符集
+  - patch/my_debug:/patch          # 候选词详细信息
+  - patch/my_key_binder:/patch     # 扩展快捷键
