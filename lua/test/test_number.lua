@@ -4,6 +4,14 @@ local convert_arab_to_chinese = require("tools/number_to_cn").convert_arab_to_ch
 
 local M = {}
 
+function M:test_tonumber()
+  lu.assertNotEquals("1", 1)
+  lu.assertEquals(tonumber("1"), 1)
+  lu.assertEquals(tonumber(11), 11)
+  lu.assertEquals(tonumber("ab"), nil)
+  lu.assertEquals(tonumber(nil), nil)
+end
+
 function M:test_boolean()
   lu.assertEquals(not 0, false)
   lu.assertEquals(not 1, false)
@@ -12,6 +20,7 @@ function M:test_boolean()
   lu.assertEquals(2 & 1, 0)
   lu.assertEquals(3 & 1, 1)
   lu.assertNotEquals(nil, false)
+  -- lu.assertEquals(tonumber(nil) > 1, true) -- error
 end
 
 function M:test_divide()

@@ -98,6 +98,7 @@ test_metatable = require("test/test_metatable")
 test_list = require("test/test_list")
 test_array_list = require("test/test_array_list")
 test_linked_list = require("test/test_linked_list")
+test_cycle_list = require("test/test_cycle_list")
 -- regex -- 更新 librime-lua，引入 rime_api.regex_match(str, pattern)
 
 -- ----------------------------------------------------------------

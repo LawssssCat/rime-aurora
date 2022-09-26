@@ -117,57 +117,40 @@ local function getTimeStr(str)
   return str
 end
 
--- 测试用
---[[
--- 日期
-for i,v in ipairs(conf.pattern_date) do
-  print(getTimeStr(v))
-end
+local translator = {}
 
--- 星期
-for i,v in ipairs(conf.pattern_week) do
-  print(getTimeStr(v))
-end
-
--- 时间
-for i,v in ipairs(conf.pattern_time) do
-  print(getTimeStr(v))
-end
---]]
-
-local function time_translator(input, seg, env)
---[[ 用 `yield` 产生一个候选项
-    候选项的构造函数是 `Candidate`，它有五个参数：
-    - type: 字符串，表示候选项的类型
-    - start: 候选项对应的输入串的起始位置
-    - _end:  候选项对应的输入串的结束位置
-    - text:  候选项的文本
-    - comment: 候选项的注释
---]]
-  if (input == "rq" or input == "riqi" or input == "date") then
-    -- 日期
-    -- cand.quality = 1
-    local tip = "〔日期〕"
-    for i,v in ipairs(conf.pattern_date) do
-      local comment = getTimeStr(v)
-      yield(Candidate("date", seg.start, seg._end, comment, tip))
-    end
-  elseif (input == "sj" or input == "shijian" or input == "time") then
-    -- 时间
-    -- cand.quality = 1
-    local tip = "〔时间〕"
-    for i,v in ipairs(conf.pattern_time) do
-      local comment = getTimeStr(v)
-      yield(Candidate("time", seg.start, seg._end, comment, tip))
-    end
-  elseif (input == "xq" or input == "xingqi" or input == "week") then
-    -- 星期
-    local tip = "〔星期〕"
-    for i,v in ipairs(conf.pattern_week) do
-      local comment = getTimeStr(v)
-      yield(Candidate("week", seg.start, seg._end, comment, tip))
-    end
+function translator.rq_handle(input, seg, env)
+  -- 日期
+  local tip = "〔日期〕"
+  for i,v in ipairs(conf.pattern_date) do
+    local comment = getTimeStr(v)
+    local cand = Candidate("date", seg.start, seg._end, comment, tip)
+    cand.preedit = string.sub(input, seg._start+1, seg._end)
+    -- cand.quality = -199
+    yield(cand)
   end
 end
 
-return time_translator
+function translator.xq_handle(input, seg, env)
+  -- 星期
+  local tip = "〔星期〕"
+  for i,v in ipairs(conf.pattern_week) do
+    local comment = getTimeStr(v)
+    local cand = Candidate("week", seg.start, seg._end, comment, tip)
+    cand.preedit = string.sub(input, seg._start+1, seg._end)
+    yield(cand)
+  end
+end
+
+function translator.sj_handle(input, seg, env)
+  -- 时间
+  local tip = "〔时间〕"
+  for i,v in ipairs(conf.pattern_time) do
+    local comment = getTimeStr(v)
+    local cand = Candidate("time", seg.start, seg._end, comment, tip)
+    cand.preedit = string.sub(input, seg._start+1, seg._end)
+    yield(cand)
+  end
+end
+
+return translator

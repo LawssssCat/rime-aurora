@@ -38,4 +38,19 @@ function M:test_unpack()
   lu.assertEquals({table.unpack({1,2,nil,3,b="q",4})}, {1, 2, nil, 3, 4})
 end
 
+function M:test_insert()
+  local t = {}
+  table.insert(t, nil)
+  lu.assertEquals(t, {})
+end
+
+function M:test_for()
+  local count = 0
+  for index, value in pairs({1,2,3, nil, 5}) do -- skip "nil"
+    count = count + 1
+    lu.assertEquals(index, value)
+  end
+  lu.assertEquals(count, 4)
+end
+
 return M

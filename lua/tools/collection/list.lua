@@ -21,6 +21,22 @@ function List:new()
   error_not_define()
 end
 
+function List:__tostring()
+  local temp = {}
+  for iter in self:iter() do
+    local value = iter.value
+    local str = nil
+    if(type(value) == "string") then
+      str = "\"" .. tostring(value) .. "\""
+    else
+      str = tostring(value)
+    end
+    table.insert(temp, str)
+  end
+  local str = "[" .. table.concat(temp, ",") .. "]"
+  return str
+end
+
 function List:Size()
   error_not_define()
 end

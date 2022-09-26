@@ -43,7 +43,7 @@ local processor = {}
 
 function processor.init(env)
   local config = env.engine.schema.config
-  env.key_binder_list = rime_api_helper:get_config_item_value(config, env.name_space .. "/key_binder")
+  env.key_binder_list = rime_api_helper:get_config_item_value(config, env.name_space .. "/bindings")
 end
 
 function processor.func(key, env)

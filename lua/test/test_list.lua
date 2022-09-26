@@ -12,4 +12,15 @@ function M:test_method_undefined()
   lu.assertErrorMsgMatches(".*method \".*\" is not defined.", list.Size, list)
 end
 
+function M:test_tostring()
+  local MyList = List:extend()
+  function MyList:new()
+  end
+  function MyList:Size()
+    return 0
+  end
+  local list = MyList()
+  lu.assertEquals(tostring(list), "[]")
+end
+
 return M

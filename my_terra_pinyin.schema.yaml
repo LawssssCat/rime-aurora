@@ -53,7 +53,6 @@ engine:
   segmentors:
     __include: ext_segmentors:/patch/segmentors
   translators:
-    - lua_translator@time_translator    # 时间
     - punct_translator
     - table_translator@custom_phrase
     - reverse_lookup_translator
@@ -232,3 +231,4 @@ __patch:
   - my_charset:/patch        # 字符集
   - my_debug:/patch          # 候选词详细信息
   - my_key_binder:/patch     # 扩展快捷键
+  - my_dynamic_candidate:/patch     # 动态候选词

@@ -3,19 +3,6 @@ local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
 
--- ============================================================= translator
-
-local translator = {}
-
-function translator.func(input, seg, env)
-  if(string.match(input, "^version$")) then
-    yield(Candidate("version", seg.start, seg._end, "librime: " .. rime_api_helper.get_rime_version(), ""))
-    yield(Candidate("version", seg.start, seg._end, "librime-lua: " .. rime_api_helper.get_rime_lua_version(), ""))
-    yield(Candidate("version", seg.start, seg._end, "lua: " .. rime_api_helper.get_lua_version(), ""))
-    logger.info("debug version info", rime_api_helper:get_version_info())
-  end
-end
-
 -- ============================================================= filter
 
 local filter = {}
@@ -72,5 +59,4 @@ end
 
 return {
   filter=filter,
-  translator=translator
 }

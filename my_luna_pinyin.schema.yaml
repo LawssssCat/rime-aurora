@@ -92,7 +92,6 @@ engine:
     __include: ext_segmentors:/patch/segmentors
   translators: # 三、這批組件翻譯特定類型的編碼段爲一組候選文字
     # - echo_translator # ※ 沒有其他候選字時，回顯輸入碼〔輸入碼可以Shift+Enter上屛〕
-    - lua_translator@time_translator    # 时间
     - punct_translator                  # ※ 轉換標點符號
     - table_translator@custom_phrase    #翻譯_打過的字-優先出●碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案，此項可加載多個實例，後接@+翻譯器名〔如：cangjie、wubi等〕
     - reverse_lookup_translator         # ※ 反查翻譯器，用另一種編碼方案查碼
@@ -183,3 +182,4 @@ __patch:
   - my_charset:/patch        # 字符集
   - my_debug:/patch          # 候选词详细信息
   - my_key_binder:/patch     # 快捷键
+  - my_dynamic_candidate:/patch     # 动态候选词
