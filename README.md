@@ -73,20 +73,15 @@
     todo 
 
 4. 动态候选词
+    
+    ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif) 
+    todo gif更新
 
-    输入 "/rq"、"/sj"、"/xq" 等可显示当前系统时间
-
-    ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif)
-
-    输入 "/version" 可显示版本信息
-
-    输入 "/ascii" 可打印 ascii 表
-
-    todo
-
-    输入 "/table" 可打印不同格式的表格框架
-
-    todo
+    - [x] 输入 "/rq"、"/sj"、"/xq" 可显示当前系统时间
+    - [x] 输入 "/history" 可显示输入历史
+    - [x] 输入 "/version" 可显示版本信息
+    - [ ] 输入 "/ascii" 可打印 ascii 表
+    - [ ] 输入 "/table" 可打印不同格式的表格框架
 
 5. CJK字符集提示（开启关闭：F4选择/快捷键 `Ctrl+7`）
 

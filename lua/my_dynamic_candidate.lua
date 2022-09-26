@@ -2,6 +2,7 @@ local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
 local ptry = require("tools/ptry")
+local LinkedList = require("tools/collection/linked_list")
 
 -- ----------------------------------------
 -- 本地方法
@@ -37,24 +38,6 @@ local function adapte_pattern_item(perfix, key) -- s{hi}?j{ian}? => s(h|hi)?j(i|
 end
 
 -- ----------------------------------------
--- 环境
--- ----------------------------------------
-
-local tagname_prefix = "dy_cand_"
-local pattern_list = nil
-local pattern_list_init = function(env)
-  local config = env.engine.schema.config
-  local config_perfix = rime_api_helper:get_config_item_value(config, "my_dynamic_candidate/prefix") or ""
-  local config_patterns = rime_api_helper:get_config_item_value(config, "my_dynamic_candidate/patterns") or {}
-  local result_list = {}
-  for i, p in pairs(config_patterns) do
-    p.key = adapte_pattern_item(config_perfix, p.key)
-    table.insert(result_list, p)
-  end
-  return result_list
-end
-
--- ----------------------------------------
 -- 组件
 -- ----------------------------------------
 
@@ -62,8 +45,27 @@ end
 
 local processor = {}
 
+local tagname_prefix = "dy_cand_"
+
+local pattern_list = nil
+local function pattern_list_init(env)
+  local config = env.engine.schema.config
+  local config_perfix = rime_api_helper:get_config_item_value(config, "my_dynamic_candidate/prefix") or ""
+  local config_patterns = rime_api_helper:get_config_item_value(config, "my_dynamic_candidate/patterns") or {}
+  -- 全局配置
+  local pattern_list = {}
+  for i, p in pairs(config_patterns) do
+    p.key = adapte_pattern_item(config_perfix, p.key)
+    table.insert(pattern_list, p)
+  end
+  return pattern_list
+end
+
 function processor.init(env)
   pattern_list = pattern_list or pattern_list_init(env)
+end
+
+function processor.fini()
 end
 
 function processor.func(key, env)
@@ -103,6 +105,7 @@ end
 
 function segmentor.func(segmentation, env)
   if(not pattern_list or #pattern_list == 0) then
+    logger.warn("empty pattern list?")
     return true
   end
   local context = env.engine.context
@@ -131,61 +134,94 @@ end
 
 local translator = {}
 
+local function get_item_env_map_key(item)
+  local module_name = item.module
+  local func_name = item.func
+  local key = module_name .. "." .. func_name
+  return key
+end
+
 function translator.init(env)
-  env.status_map = {}
+  pattern_list = pattern_list or pattern_list_init(env)
+  -- 初始化 item_env_map
+  local item_env_map = {} -- <module_name.func_name, {item_env}>
+  -- 执行 init
+  for index, item in pairs(pattern_list) do
+    local key = get_item_env_map_key(item)
+    local item_env = {
+      engine = env.engine,
+      item_config = item
+    }
+    local module_name = item.module
+    local init_name = item.init
+    if(init_name) then
+      ptry(function()
+        local module = require(module_name)
+        local init = module[init_name]
+        init(item_env)
+      end)
+      ._catch(function(err)
+        logger.error("fail item \"init\".", key, item, err)
+      end)
+    end
+    item_env_map[key] = item_env
+  end
+  env.item_env_map = item_env_map
 end
 
 function translator.fini(env)
-  for tag, status in pairs(env.status_map) do
-    local module_name = status.module_name
-    local fini_name = status.fini_name
+  if(not pattern_list or #pattern_list == 0) then
+    logger.warn("empty pattern list?")
+    return
+  end
+  local item_env_map = env.item_env_map
+
+  -- 执行 fini
+  for index, item in pairs(pattern_list) do
+    local key = get_item_env_map_key(item)
+    local item_env = item_env_map[key]
+    item_env.engine = env.engine
+    local module_name = item.module
+    local fini_name = item.fini
     if(fini_name) then
       ptry(function()
         local module = require(module_name)
         local fini = module[fini_name]
-        fini(env)
+        fini(item_env)
       end)
-      ._catch(function()
-        logger.error("fail to run translator \"fini\":", module_name)
+      ._catch(function(err)
+        logger.error("fail item \"fini\".", key, item, err)
       end)
     end
+    item_env_map[key] = item_env
   end
-  env.status_map = nil
 end
 
 function translator.func(input, seg, env)
   if(not pattern_list or #pattern_list == 0) then
     return
   end
+  local item_env_map = env.item_env_map
+
   for tag, _ in pairs(seg.tags) do
     local pattern = "^" .. tagname_prefix .. "(%d+)$"
     local match = tonumber(string.match(tag, pattern))
     if(match and #pattern_list >= match) then
-      local pattern_item = pattern_list[match]
+      local pattern_item = pattern_list[match] -- 配置：处理单元信息ℹ
+      local key = get_item_env_map_key(pattern_item)
+      local item_env = item_env_map[key]
+      item_env.engine = env.engine
       local module_name = pattern_item.module
-      local init_name = pattern_item.init
       local func_name = pattern_item.func
-      local fini_name = pattern_item.fini
       ptry(function()
         local module = require(module_name)
-        local init = module[init_name]
         local func = module[func_name]
-        local status = env.status_map[tag] or {
-          module_name = module_name
-        }
-        if(init_name and status.init_run ~= true) then
-          init(env)
-          status.init_run = true
-        end
-        func(input, seg, env)
-        if(fini_name) then
-          status.fini_name = fini_name
-        end
-        env.status_map[tag] = status
+        func(input, seg, item_env)
       end)
       ._catch(function(err)
-        logger.error("fail to run translator \"func\":", tag, _, pattern_item, err)
+        logger.error("fail item \"func\":", tag, _, pattern_item, err)
       end)
+      item_env_map[key] = item_env
     end
   end
 end

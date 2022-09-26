@@ -9,6 +9,7 @@ function M:test_tonumber()
   lu.assertEquals(tonumber("1"), 1)
   lu.assertEquals(tonumber(11), 11)
   lu.assertEquals(tonumber("ab"), nil)
+  lu.assertEquals(tonumber(nil), nil)
 end
 
 function M:test_boolean()
@@ -19,6 +20,7 @@ function M:test_boolean()
   lu.assertEquals(2 & 1, 0)
   lu.assertEquals(3 & 1, 1)
   lu.assertNotEquals(nil, false)
+  -- lu.assertEquals(tonumber(nil) > 1, true) -- error
 end
 
 function M:test_divide()
