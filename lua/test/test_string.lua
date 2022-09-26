@@ -112,6 +112,7 @@ end
 -- 截取（字节）
 function M:test_sub()
   lu.assertEquals(string_helper.sub("abc", 1, 1), "a")
+  lu.assertEquals(string_helper.sub("abc", 1, 2), "ab")
 end
 
 -- 截取（utf8）

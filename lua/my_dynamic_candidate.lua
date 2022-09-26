@@ -48,6 +48,7 @@ local processor = {}
 local tagname_prefix = "dy_cand_"
 
 local pattern_list = nil
+
 local function pattern_list_init(env)
   local config = env.engine.schema.config
   local config_perfix = rime_api_helper:get_config_item_value(config, "my_dynamic_candidate/prefix") or ""
@@ -59,6 +60,16 @@ local function pattern_list_init(env)
     table.insert(pattern_list, p)
   end
   return pattern_list
+end
+
+local function get_pattern_item_by_tag(tag)
+  local pattern = "^" .. tagname_prefix .. "(%d+)$"
+  local match = tonumber(string.match(tag, pattern))
+  if(match and #pattern_list >= match) then
+    local pattern_item = pattern_list[match] -- 配置：处理单元信息ℹ
+    return pattern_item
+  end
+  return nil
 end
 
 function processor.init(env)
@@ -204,10 +215,8 @@ function translator.func(input, seg, env)
   local item_env_map = env.item_env_map
 
   for tag, _ in pairs(seg.tags) do
-    local pattern = "^" .. tagname_prefix .. "(%d+)$"
-    local match = tonumber(string.match(tag, pattern))
-    if(match and #pattern_list >= match) then
-      local pattern_item = pattern_list[match] -- 配置：处理单元信息ℹ
+    local pattern_item = get_pattern_item_by_tag(tag)
+    if(pattern_item) then
       local key = get_item_env_map_key(pattern_item)
       local item_env = item_env_map[key]
       item_env.engine = env.engine

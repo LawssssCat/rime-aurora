@@ -125,6 +125,7 @@ function translator.rq_handle(input, seg, env)
   for i,v in ipairs(conf.pattern_date) do
     local comment = getTimeStr(v)
     local cand = Candidate("date", seg.start, seg._end, comment, tip)
+    cand.preedit = string.sub(input, seg._start+1, seg._end)
     -- cand.quality = -199
     yield(cand)
   end
@@ -135,7 +136,9 @@ function translator.xq_handle(input, seg, env)
   local tip = "〔星期〕"
   for i,v in ipairs(conf.pattern_week) do
     local comment = getTimeStr(v)
-    yield(Candidate("week", seg.start, seg._end, comment, tip))
+    local cand = Candidate("week", seg.start, seg._end, comment, tip)
+    cand.preedit = string.sub(input, seg._start+1, seg._end)
+    yield(cand)
   end
 end
 
@@ -144,7 +147,9 @@ function translator.sj_handle(input, seg, env)
   local tip = "〔时间〕"
   for i,v in ipairs(conf.pattern_time) do
     local comment = getTimeStr(v)
-    yield(Candidate("time", seg.start, seg._end, comment, tip))
+    local cand = Candidate("time", seg.start, seg._end, comment, tip)
+    cand.preedit = string.sub(input, seg._start+1, seg._end)
+    yield(cand)
   end
 end
 
