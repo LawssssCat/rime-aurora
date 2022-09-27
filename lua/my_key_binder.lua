@@ -36,6 +36,22 @@ local handle_run_map = {
       return true
     end
     return false
+  end,
+  delete = function(env)
+    local context = env.engine.context
+    local composition = context.composition
+    local input = context.input
+    local len = #input
+    if(len>0) then
+      if(composition:has_finished_composition()) then
+        context:reopen_previous_selection()
+        return true
+      else
+        context.input = string.sub(input, 1, len-1)
+        return true
+      end
+    end
+    return false
   end
 }
 
@@ -69,6 +85,12 @@ function processor.func(key, env)
           if(_when == "has_menu") then
             _match = true
             if(context:has_menu()) then
+              return true
+            end
+          end
+          if(_when == "composing") then
+            _match = true
+            if(context:is_composing()) then
               return true
             end
           end

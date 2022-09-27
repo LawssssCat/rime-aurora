@@ -149,6 +149,7 @@ patch:
     # when: always => 任何时候
     # run: 脚本名 => 定义在 lua 代码 handle_run_map 中
     bindings:
+      - {when: composing, accept: "BackSpace", run: delete} # 翻页时，shift+↑ 上一页
       - {when: has_menu, accept: "Shift+Up", run: Page_Up} # 翻页时，shift+↑ 上一页
       - {when: has_menu, accept: "Shift+Down", run: Page_Down} # 翻页时，shift+↓ 下一页
       - { # fix: “纯英文状态” 按空格不上屏问题
