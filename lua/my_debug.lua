@@ -2,6 +2,58 @@
 local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
+local ptry = require("tools/ptry")
+
+-- ============================================================= processor
+
+local processor = {}
+
+function processor.func(key, env)
+  local schema = env.engine.schema
+  local context = env.engine.context
+  local composition =  context.composition
+  if(not composition:empty()) then
+    -- 获得 Segment 对象
+    local segment = composition:back()
+    local prompts = {}
+    -- 标签
+    ptry(function()
+      local tags = segment.tags
+      if(tags) then
+        local tag_arr = {}
+        for tag, _ in pairs(tags) do
+          table.insert(tag_arr, tag)
+        end
+        local msg = string.format("🏷:(%s)", string_helper.join(tag_arr, ","))
+        table.insert(prompts, msg)
+      end
+    end)
+    ._catch(function(err)
+      logger.error(err)
+    end)
+    -- 页码
+    ptry(function()
+      local page_size = schema.page_size
+      -- 获取 Menu 对象
+      local menu = segment.menu
+      -- 获得选中的候选词下标
+      local count_select = segment.selected_index or 0
+      local page_select = count_select/page_size
+      -- 获得（已加载）候选词数量
+      local count_loaded = menu and menu:candidate_count() or 0
+      local page_loaded = count_loaded/page_size
+      local msg = string.format("📖:[%s/%s]📚:[%0.0f/%0.0f]", 
+        count_select, count_loaded,
+        page_select, page_loaded)
+      table.insert(prompts, msg)
+    end)
+    ._catch(function(err)
+      logger.error(err)
+    end)
+    segment.prompt = string_helper.join(prompts, " ")
+  end
+  return rime_api_helper.processor_return_kNoop
+end
 
 -- ============================================================= filter
 
@@ -38,25 +90,7 @@ function filter.func(input, env)
   end
 end
 
-function filter.tags_match(seg, env)
-  local tags = seg and seg.tags
-
-  if(tags) then
-    local tag_arr = {}
-    for tag, _ in pairs(tags) do
-      table.insert(tag_arr, tag)
-    end
-    local prompt_ext = string_helper.format("🏷({tags})", {
-      tags = string_helper.join(tag_arr, ",")
-    })
-    seg.prompt = seg.prompt .. " " .. prompt_ext
-  end
-  return true
-end
-
-function filter.fini(env)
-end
-
 return {
   filter=filter,
+  processor=processor
 }

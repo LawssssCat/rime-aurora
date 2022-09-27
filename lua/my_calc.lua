@@ -15,7 +15,7 @@ function translator.func(input, seg, env)
     local input_waiting = string.sub(input, seg._start+1, seg._end)
     local formula = string.match(input_waiting, "=(.*)$")
     if(not formula or #formula==0) then
-      local cand = Candidate("calc", seg.start, seg._end, "[0-9]+-*/^%", "〔等待输入...〕")
+      local cand = Candidate("calc", seg.start, seg._end, "/=", "〔等待输入...[0-9]+-*/^%〕")
         cand.preedit = input_waiting
         yield(cand)
     else

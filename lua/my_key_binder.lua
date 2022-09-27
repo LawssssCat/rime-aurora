@@ -48,9 +48,6 @@ end
 
 function processor.func(key, env)
   local context = env.engine.context
-  local composition = context.composition
-  local segment = not composition:empty() and composition:back() or nil
-  -- logger.warn(key.keycode, key:repr())
 
   -- editor
   local match_key = false
