@@ -225,3 +225,4 @@ __patch:
   - patch/my_charset:/patch        # 字符集
   - patch/my_debug:/patch          # 候选词详细信息
   - patch/my_key_binder:/patch     # 扩展快捷键
+  - patch/my_emoji:/patch          # emoji
