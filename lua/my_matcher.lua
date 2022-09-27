@@ -1,6 +1,7 @@
 local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
+local ptry = require("tools/ptry")
 
 local function string_stack(str) -- version => {"v", "ve", "ver", "vers", "versi", "versio", "version"}
   local t = ""
@@ -30,7 +31,7 @@ local function expand_pattern(pattern)
     pattern = string_helper.replace(pattern, p, pie, true)
     p = f(pattern)
   end
-  return "^" .. pattern .. "$"
+  return pattern
 end
 
 -- ----------------------------------
@@ -45,7 +46,12 @@ local pattern_map_init = function(env)
     local config = env.engine.schema.config
     pattern_map = rime_api_helper:get_config_item_value(config, "recognizer/patterns")
     for key, pattern in pairs(pattern_map) do
-      pattern_map[key] = expand_pattern(pattern)
+      ptry(function()
+        pattern_map[key] = expand_pattern(pattern)
+      end)
+      ._catch(function(err)
+        logger.error(key, pattern, err)
+      end)
     end
     return pattern_map
   end)()

@@ -36,17 +36,19 @@ function translator.fini(env)
 end
 
 function translator.func(input, seg, env)
-  local temp = LinkedList()
-  for iter in history_list:iter() do
-    temp:add_at(1, iter.value)
-  end
-  for iter in temp:iter() do
-    local item = iter.value
-    local text = item.text
-    local comment = string_helper.format("（💬:\"{preedit}\",✍🏻️:{dynamic_type}-{type},🏆:{quality}）", item)
-    local cand = Candidate("history", seg.start, seg._end, text, comment)
-    -- cand.quality = -199
-    yield(cand)
+  if(seg:has_tag("history")) then
+    local temp = LinkedList()
+    for iter in history_list:iter() do
+      temp:add_at(1, iter.value)
+    end
+    for iter in temp:iter() do
+      local item = iter.value
+      local text = item.text
+      local comment = string_helper.format("（💬:\"{preedit}\",✍🏻️:{dynamic_type}-{type},🏆:{quality}）", item)
+      local cand = Candidate("history", seg.start, seg._end, text, comment)
+      -- cand.quality = -199
+      yield(cand)
+    end
   end
 end
 

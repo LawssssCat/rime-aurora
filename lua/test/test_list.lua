@@ -23,4 +23,15 @@ function M:test_tostring()
   lu.assertEquals(tostring(list), "[]")
 end
 
+function M:test_empty()
+  local MyList = List:extend()
+  function MyList:new()
+  end
+  function MyList:Size()
+    return 0
+  end
+  local list = MyList()
+  lu.assertEquals(list:empty(), true)
+end
+
 return M

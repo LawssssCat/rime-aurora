@@ -87,6 +87,16 @@ function M:test_split()
   lu.assertEquals(string_helper.join(t_list, "|"),"v|ve|ver|vers|versi|versio|version")
 end
 
+function M:test_pick()
+  lu.assertEquals(string_helper.pick("1+222-(3*4/59999^6)%7", {"%d+", "[+%-*/^%%()]"}),
+  {"1", "+", "222", "-", "(", "3","*","4","/","59999","^","6",")","%","7"})
+end
+
+function M:test_rep()
+  lu.assertEquals(string.rep("aa", 2), "aaaa")
+  lu.assertEquals(string.rep("aa", 2, "-"), "aa-aa")
+end
+
 function M:test_join()
   lu.assertError(string_helper.join, nil, " ")
   lu.assertError(string_helper.join, "string", " ")
@@ -261,14 +271,27 @@ function M:test_match_patterns_bxy() -- %bxy 匹配xy中的字符
   lu.assertEquals({string.match("aa{ab{c}b}b", "%b{}")}, {"{ab{c}b}"})
   lu.assertEquals({string.match("aa{ab c}b}b", "%b }")}, {" c}"})
   lu.assertEquals({string.match("aa{ab}aaa{b}b", "%b{}")}, {"{ab}"})
+  lu.assertEquals({string.match("/=123*213", "=(.*)$")}, {"123*213"})
 end
 
 function M:test_gmatch_patterns_bxy()
   local t = {}
-  for v in string.gmatch("aa{ab}aaa{b}b", "%b{}") do
+  for v in string.gmatch("aa{ab}aa{}a{b}b", "%b{}") do
     table.insert(t, v)
   end
-  lu.assertEquals(t,  {"{ab}", "{b}"})
+  lu.assertEquals(t,  {"{ab}", "{}", "{b}"})
+  ---
+  local t = {}
+  for v in string.gmatch("aa{a{abc}b}aaa{b}b", "%b{}") do
+    table.insert(t, v)
+  end
+  lu.assertEquals(t,  {"{a{abc}b}", "{b}"})
+  ---
+  local t = {}
+  for v in string.gmatch("aa{a{abc}b}aaa{b}b", "{[^{}]+}") do
+    table.insert(t, v)
+  end
+  lu.assertEquals(t,  {"{abc}", "{b}"})
   -- 
   local t = {}
   for v in string.gmatch("aa{ab}?aaa{b}?b", "{%w+}%?") do
@@ -297,6 +320,8 @@ function M:test_find()
   lu.assertEquals(string.find("1", pattern_01))
   lu.assertEquals({string.find("1", pattern_01)}, {})
   lu.assertEquals({string.find("/abc", "^/[0-9a-zA-Z]*$")}, {1, 4})
+  lu.assertEquals({string.find("/abc", "^/[0-9a-zA-Z]*$", 1)}, {1, 4})
+  lu.assertEquals({string.find("bbcc/abc", "/[0-9a-zA-Z]*", 2)}, {5, 8})
   --找到了
   lu.assertTrue(string.find("good", pattern_01))
   lu.assertEquals(string.find("good", pattern_01), 1) -- 下标1开始

@@ -41,6 +41,11 @@ function List:Size()
   error_not_define()
 end
 
+function List:empty()
+  local flag = self:Size()==0
+  return flag
+end
+
 function List:get_at(index)
   error_not_define()
 end
