@@ -168,7 +168,7 @@ grammar: # 语法模型
 __patch:
   - patch/my_common:/patch
   - patch/my_matcher:/patch
-  - easy_en:/patch                 # 英文
+  - patch/my_easy_en:/patch        # 英文
   - symbols:/patch                 # 符号
   - patch/my_symbols:/patch        # 符号扩展
   - patch/my_punctuator:/patch     # 标点
