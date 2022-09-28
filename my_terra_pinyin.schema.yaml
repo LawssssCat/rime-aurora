@@ -217,12 +217,12 @@ grammar: # 语法模型
 __patch:
   - patch/my_common:/patch
   - patch/my_matcher:/patch
-  - patch/my_easy_en:/patch        # 英文
+  - patch/my_debug:/patch          # 候选词详细信息
+  - patch/my_easy_en:/patch        # 英文（需放在debug后）
   - symbols:/patch                 # 符号
   - patch/my_symbols:/patch        # 符号扩展
   - patch/my_punctuator:/patch     # 标点
   - patch/my_code:/patch           # 输入编码处理（多音字扩展）
   - patch/my_charset:/patch        # 字符集
-  - patch/my_debug:/patch          # 候选词详细信息
   - patch/my_key_binder:/patch     # 扩展快捷键
   - patch/my_emoji:/patch          # emoji

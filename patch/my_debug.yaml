@@ -1,6 +1,6 @@
 patch:
   engine/processors/@after 0: lua_processor@my_debug_processor
-  engine/filters/@next: lua_filter@my_debug_filter
+  engine/filters/@after 0: lua_filter@my_debug_filter
   switches/+:
     - name: option_debug_comment_filter # 候选词详细信息
       reset: 1
