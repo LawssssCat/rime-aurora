@@ -5,7 +5,7 @@ patch:
   # recognizer/patterns/email: "" 
   # recognizer/patterns/uppercase: "^$" 
   # recognizer/patterns/email: ""
-  recognizer/patterns/url: "^(.+[.]|https?:|ftp[.:]|mailto:|file:).*$"
+  recognizer/patterns/url: "^(.+[.]|https?:|ftp[.:]|mailto:|file:)[^ ]*$"
   ###########################################################################
   #
   simplifier/+:
