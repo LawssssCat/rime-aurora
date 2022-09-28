@@ -118,6 +118,7 @@ __patch:
   - symbols:/patch                 # 符号
   - patch/my_symbols:/patch        # 符号扩展
   - patch/my_punctuator:/patch     # 标点
+  - patch/my_code:/patch           # 输入编码处理（多音字扩展）
   - patch/my_charset:/patch        # 字符集
   - patch/my_key_binder:/patch     # 快捷键
   - patch/my_emoji:/patch          # emoji
