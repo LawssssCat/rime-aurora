@@ -106,9 +106,7 @@ end
 -- ============================================================ 
 
 --[[
-
   Segmentation、Segment
-
   wiki https://github.com/hchunhui/librime-lua/wiki/Scripting#segment
 ]]
 helper.segment_status_kVoid = "kVoid"
@@ -116,6 +114,31 @@ helper.segment_status_kGuess = "kGuess"
 helper.segment_status_kSelected = "kSelected"
 helper.segment_status_kConfirmed = "kConfirmed"
 
+-- -------------------------------
+-- prompt
+--
+-- 消息暂存区，在 my_debug.lua 中使用
+-- -------------------------------
+
+local prompt_map = {}
+function helper:clear_prompt_map() -- 每次 get 后 clear，否则出现多余记录
+  prompt_map = {}
+end
+function helper:add_prompt_map(key, msg)
+  if(prompt_map) then
+    prompt_map[key] = msg
+  else
+    logger.warn("prompt_map is \"nil\"")
+  end
+end
+function helper:get_prompt_map()
+  return prompt_map
+end
+
+
+-- -------------------------------
+-- page
+-- -------------------------------
 --[[
   候选词 当前页
   @return number 当前页, 当前候选词下标
@@ -150,10 +173,10 @@ function helper:page_next(segment, page_size)
   segment.selected_index = index
   return page_new, num -- 下标1开始
 end
-  --[[
-    候选词 上一页
-    @return number 当前页
-  ]]
+--[[
+  候选词 上一页
+  @return number 当前页
+]]
 function helper:page_prev(segment, page_size)
   -- page current
   local page_current, num_current = helper:page_current(segment, page_size)

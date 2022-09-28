@@ -50,7 +50,15 @@ function processor.func(key, env)
     ._catch(function(err)
       logger.error(err)
     end)
-    segment.prompt = string_helper.join(prompts, " ")
+    rime_api_helper:add_prompt_map("debug", string_helper.join(prompts, " "))
+    local prompt_map = rime_api_helper:get_prompt_map()
+    -- 修改 prompt
+    local prompt_arr = {}
+    for key, msg in pairs(prompt_map) do
+      table.insert(prompt_arr, msg)
+    end
+    segment.prompt = table.concat(prompt_arr, " ")
+    rime_api_helper:clear_prompt_map()
   end
   return rime_api_helper.processor_return_kNoop
 end
@@ -92,5 +100,6 @@ end
 
 return {
   filter=filter,
-  processor=processor
+  processor=processor,
+  add_prompt_msg = add_prompt_msg
 }
