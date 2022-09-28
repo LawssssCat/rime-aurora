@@ -51,9 +51,7 @@ engine:
     - reverse_lookup_translator
     - script_translator
   filters:
-    - simplifier
-    - uniquifier
-    - lua_filter@py_comment_filter # 显示更多拼音
+    __include: ext_filters:/patch/filters
 
 speller:
   # &*() 声调

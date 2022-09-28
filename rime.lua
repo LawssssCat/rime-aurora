@@ -79,6 +79,8 @@ register("my_key_binder")
 
 register("my_calc")
 
+register("my_uniquifier")
+
 -- 【功能】：rq输出日期、sj输出时间
 -- 详见 `lua/time_translator.lua`
 register("my_time")

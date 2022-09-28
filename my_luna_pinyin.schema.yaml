@@ -51,8 +51,7 @@ engine:
     - reverse_lookup_translator         # ※ 反查翻譯器，用另一種編碼方案查碼
     - script_translator                 # ※ 腳本翻譯器，用於拼音、粵拼等等基於音節表的輸入方案●此項可加載多個實例，後接@+翻譯器名〔如：pinyin、jyutping等〕
   filters: # 四、這批組件過濾翻譯的結果
-    - simplifier                      # ※ 繁簡轉換
-    - uniquifier                      # ※ 過濾重複的候選字，有可能來自繁簡轉換
+    __include: ext_filters:/patch/filters
 
 speller:
   # alphabet: zyxwvutsrqponmlkjihgfedcba
