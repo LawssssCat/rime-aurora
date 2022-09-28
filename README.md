@@ -17,6 +17,8 @@
 ├─ /build               ⭐️最终配置：通过“重新部署”整合所有文件到此目录
 │                         （包括：用户目录、程序目录）
 │
+├─ /patch               ⚙补丁文件夹（存放主要的扩展功能配置）
+│  └─ *.yaml
 ├─ /opencc              ⚙提供字符转换、comment功能
 │  ├─ *.txt                字典文件，由`npm run sort`生成，被*.json引用
 │  ├─ *.yml                字典源
@@ -73,22 +75,16 @@
     todo 
 
 4. 动态候选词
+    
+    ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif) 
+    todo gif更新
 
-    输入 "/rq"、"/sj"、"/xq" 等可显示当前系统时间
-
-    ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif)
-
-    输入 "/version" 可显示版本信息
-
-    todo
-
-    输入 "/ascii" 可打印 ascii 表
-
-    todo
-
-    输入 "/table" 可打印不同格式的表格框架
-
-    todo
+    - [x] 输入 "/rq"、"/sj"、"/xq" 可显示当前系统时间
+    - [x] 输入 "/history" 可显示输入历史
+    - [x] 输入 "/version" 可显示版本信息
+    - [x] 输入 "/=[0-9+-*/^%()]" 可计算数学表达式，如：“`/=1+1`” => 2
+    - [ ] 输入 "/ascii" 可打印 ascii 表
+    - [ ] 输入 "/table" 可打印不同格式的表格框架
 
 5. CJK字符集提示（开启关闭：F4选择/快捷键 `Ctrl+7`）
 
@@ -104,11 +100,7 @@
 
 6. 词联想
 
-    todo https://github.com/shewer/librime-lua-script
-
-    https://github.com/rime/librime/issues/65
-
-    https://github.com/rime/librime/issues/568
+    todo
 
 ## 方案说明
 
@@ -288,3 +280,17 @@ bash tools/tailLog.sh
 > - [ ] 2022年09月20日<br>
 > weasel不显示彩色emoji<br>
 > （需要微软独家的DirectWrite字体渲染引擎才能支持彩色emoji）
+
+> 待优化问题：
+>
+> - [ ] 英文大写不提示小写信息
+> - [ ] 网址提示
+> - [ ] 提示未完整 symbols 候选词、并显示各分类含义
+> - [ ] 去重不完整（可能是提示词不一样导致的）
+> - [ ] 表情 emoji 不直接提示，而是添加前缀后提示
+> - [ ] 记词
+> - [ ] 删词
+> - [ ] 联想词
+>   - https://github.com/shewer/librime-lua-script
+>   - https://github.com/rime/librime/issues/65
+>   - https://github.com/rime/librime/issues/568

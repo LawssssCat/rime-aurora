@@ -128,4 +128,9 @@ function M:test_iter()
   lu.assertEquals(list:values(), { 1,2,"world"})
 end
 
+function M:test_tostring()
+  local list = ArrayList({1,2,3})
+  lu.assertEquals(tostring(list), "[1,2,3]")
+end
+
 return M

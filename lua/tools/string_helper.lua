@@ -13,6 +13,44 @@ function helper.split(str, delimiter)
   return split.split(str, delimiter)
 end
 
+--[[
+  str: 1+2-(3*4/5^6)%7
+  patterns: {"%d+", "[+\\-*/^%()]"}
+  =>
+  [1,+,2,-,(,3,*,4,/,5,^,6,),%,7]
+]]
+function helper.pick(str, patterns)
+  patterns = type(patterns)=="table" and patterns or {patterns}
+  local r = {} -- result
+  local index=1
+  local len=#str
+  while(index<=len) do
+    local _start, _end = 0, 0
+    for i, p in pairs(patterns) do
+      local _s, _e = string.find(str, p, index)
+      if(_s and _e) then
+        if(_start==0) then
+          _start = _s
+          _end = _e
+        elseif(_start==_s and _end<_e) then
+          _end = _e
+        elseif(_start>_s) then
+          _start = _s
+          _end = _e
+        end
+      end
+    end
+    if(_end>=index) then
+      local r_item = string.sub(str, _start, _end)
+      table.insert(r, r_item)
+      index = _end+1
+    else
+      break
+    end
+  end
+  return r
+end
+
 -- 字符串连接
 function helper.join(arr, delimiter)
   if(not arr) then error("can't join \"nil\"") end

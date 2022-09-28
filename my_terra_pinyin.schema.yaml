@@ -42,18 +42,10 @@ switches:
 
 engine:
   processors:
-    - ascii_composer
-    - recognizer
-    - key_binder
-    - speller
-    - punctuator
-    - selector
-    - navigator
-    - express_editor
+    __include: ext_processors:/patch/processors
   segmentors:
     __include: ext_segmentors:/patch/segmentors
   translators:
-    - lua_translator@time_translator    # 时间
     - punct_translator
     - table_translator@custom_phrase
     - reverse_lookup_translator
@@ -223,12 +215,14 @@ grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
 __patch:
-  - my_common:/patch
-  - easy_en:/patch        # 英文
-  - symbols:/patch        # 符号
-  - my_symbols:/patch     # 符号扩展
-  - my_punctuator:/patch  # 标点
-  - my_code:/patch           # 输入编码处理（多音字扩展）
-  - my_charset:/patch        # 字符集
-  - my_debug:/patch          # 候选词详细信息
-  - my_key_binder:/patch     # 扩展快捷键
+  - patch/my_common:/patch
+  - patch/my_matcher:/patch
+  - patch/my_easy_en:/patch        # 英文
+  - symbols:/patch                 # 符号
+  - patch/my_symbols:/patch        # 符号扩展
+  - patch/my_punctuator:/patch     # 标点
+  - patch/my_code:/patch           # 输入编码处理（多音字扩展）
+  - patch/my_charset:/patch        # 字符集
+  - patch/my_debug:/patch          # 候选词详细信息
+  - patch/my_key_binder:/patch     # 扩展快捷键
+  - patch/my_emoji:/patch          # emoji

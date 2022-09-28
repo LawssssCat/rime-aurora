@@ -34,7 +34,7 @@ function pure_filter.tags_match(seg, env)
   env.option_ascii_mode = context:get_option(option_name)
 
   if(env.option_ascii_mode) then
-    seg.prompt = "⚙(纯英文~\"Shift\"开/关)" .. seg.prompt
+    rime_api_helper:add_prompt_map("easy_en", "⚙(纯英文~\"Shift\"开/关)")
   end
   return true
 end

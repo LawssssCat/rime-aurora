@@ -74,17 +74,18 @@ register("my_easy_en")
 
 register("my_key_binder")
 
-
-
-
-
--- 【功能】：rq输出日期、sj输出时间
--- 详见 `lua/time_translator.lua`
-time_translator = require("time_translator")
-
 -- 【功能】：反查五笔笔画
 -- 详见 https://github.com/shewer/librime-lua-script/blob/e84e9ea008592484463b6ade405c83a5ff5ab9f0/lua/component/stroke_count.lua
 
+register("my_calc")
+
+-- 【功能】：rq输出日期、sj输出时间
+-- 详见 `lua/time_translator.lua`
+register("my_time")
+
+register("my_version")
+
+register("my_history")
 
 -- 【功能】：候选项重排序，使单字优先（single_char_filter）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/single_char.lua

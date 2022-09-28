@@ -1,0 +1,14 @@
+patch:
+  processors: # 处理按键事件
+    - ascii_composer #  處理西文模式及中西文切換
+    #########################
+    # recognizer 由 my_matcher_processor 代替
+    # - recognizer     #  與 matcher 搭配，處理符合特定規則的輸入碼，如網址、反查●等
+    #########################
+    - key_binder     #  在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁鍵
+    - speller        #  拼寫，字符按鍵，編輯輸入碼,默認只接受小寫拉丁字母作爲輸入碼
+    - punctuator     #  句讀，將單個字符按鍵直接映射爲文字符號
+    - selector       #  選字，處理數字選字鍵、上、下候選定位、換頁鍵
+    - navigator      #  輸入欄內的 光標移動鍵
+    - express_editor # ←啟用 (空格鍵 輸入中文)、●(enter 鍵輸入英文)，不啟用 (空格鍵輸入中文)(enter 鍵輸入中文)、回退鍵 等
+    # - fluency_editor #  編輯器 流输入（需要两次确认才上屏）

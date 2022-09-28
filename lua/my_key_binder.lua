@@ -36,6 +36,22 @@ local handle_run_map = {
       return true
     end
     return false
+  end,
+  delete = function(env)
+    local context = env.engine.context
+    local composition = context.composition
+    local input = context.input
+    local len = #input
+    if(len>0) then
+      if(composition:has_finished_composition()) then
+        context:reopen_previous_selection()
+        return true
+      else
+        context.input = string.sub(input, 1, len-1)
+        return true
+      end
+    end
+    return false
   end
 }
 
@@ -43,14 +59,11 @@ local processor = {}
 
 function processor.init(env)
   local config = env.engine.schema.config
-  env.key_binder_list = rime_api_helper:get_config_item_value(config, env.name_space .. "/key_binder")
+  env.key_binder_list = rime_api_helper:get_config_item_value(config, env.name_space .. "/bindings")
 end
 
 function processor.func(key, env)
   local context = env.engine.context
-  local composition = context.composition
-  local segment = not composition:empty() and composition:back() or nil
-  -- logger.warn(key.keycode, key:repr())
 
   -- editor
   local match_key = false
@@ -72,6 +85,12 @@ function processor.func(key, env)
           if(_when == "has_menu") then
             _match = true
             if(context:has_menu()) then
+              return true
+            end
+          end
+          if(_when == "composing") then
+            _match = true
+            if(context:is_composing()) then
               return true
             end
           end

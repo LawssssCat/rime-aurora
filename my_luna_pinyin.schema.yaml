@@ -8,41 +8,9 @@
 # 於重新部署後生效
 #
 #
-# 注意：本補靪適用於所有朙月拼音系列方案（「朙月拼音」、「朙月拼音·简化字」、「朙月拼音·臺灣正體」、「朙月拼音·語句流」）。
-# 只須將本 custom.yaml 的前面名字改爲對應的輸入方案名字然後放入用戶文件夾重新部署即可。如 luna_pinyin_simp.custom.yaml。
-# 雙拼用戶請使用 double_pinyin.custom.yaml。
-#
-#
-# 附朙月拼音系列方案與其對應的 id 一覽表：
-# 輸入方案	id
-# 朙月拼音	luna_pinyin
-# 朙月拼音·简化字	luna_pinyin_simp
-# 朙月拼音·臺灣正體	luna_pinyin_tw
-# 朙月拼音·語句流	luna_pinyin_fluency
-#
 # 配置含义：
 # https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md
 #
-# 【change log】
-# 1. 2022/08/25
-#    关键词：emoji_suggestion
-#    相关链接：
-#      1. https://github.com/LoganJC/rime-setting
-#      2. https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E4%BA%94simplifier
-#    2022/08/26
-#    修復濾鏡失效問題
-#    问题描述：https://github.com/rime/home/issues/1127
-#    修复方法：使用 https://github.com/rime/rime-emoji 的 /opencc 目录覆盖相关文件
-#
-# 2. 2022/08/25
-#    rq输出日期、sj输出时间
-#    参考：
-#      https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E7%A4%BA%E4%BE%8B-9
-#      https://www.zhihu.com/question/268770492/answer/2190114796
-#    已知问题：
-#      /@next => /+ | https://github.com/rime/home/issues/1116
-# 3. 2022/08/27
-#    添加 “洋蔥” 方案 https://github.com/oniondelta/Onion_Rime_Files
 
 schema:
   schema_id: my_luna_pinyin
@@ -70,37 +38,19 @@ switches:
     states: [ 半角, 全角 ]
   - name: simplification            # 3
     states: [ 漢字, 汉字 ]
-  - name: emoji_suggestion          # 5
-    reset: 1
-    states: [ "关 ❌", "开 ✔️" ] # 0为关闭、1为开启
-  - name: kemoji_suggestion         # 6
-    reset: 1
-    states: [ "关 (＞﹏＜)", "开 ＼(￣︶￣)／" ] # 0为关闭、1为开启
 
 engine:
   processors: # 一、這批組件處理各類 ●按鍵 消息
-    - ascii_composer #  處理西文模式及中西文切換
-    - recognizer     #  與 matcher 搭配，處理符合特定規則的輸入碼，如網址、反查●等
-    - key_binder     #  在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁鍵
-    - speller        #  拼寫，字符按鍵，編輯輸入碼,默認只接受小寫拉丁字母作爲輸入碼
-    - punctuator     #  句讀，將單個字符按鍵直接映射爲文字符號
-    - selector       #  選字，處理數字選字鍵、上、下候選定位、換頁鍵
-    - navigator      #  輸入欄內的 光標移動鍵
-    - express_editor # ←啟用 (空格鍵 輸入中文)、●(enter 鍵輸入英文)，不啟用 (空格鍵輸入中文)(enter 鍵輸入中文)、回退鍵 等
-    # - fluency_editor #  編輯器 流输入（需要两次确认才上屏）
+    __include: ext_processors:/patch/processors
   segmentors: # 二、這批組件識別不同內容類型，將輸入碼分段
     __include: ext_segmentors:/patch/segmentors
   translators: # 三、這批組件翻譯特定類型的編碼段爲一組候選文字
     # - echo_translator # ※ 沒有其他候選字時，回顯輸入碼〔輸入碼可以Shift+Enter上屛〕
-    - lua_translator@time_translator    # 时间
     - punct_translator                  # ※ 轉換標點符號
     - table_translator@custom_phrase    #翻譯_打過的字-優先出●碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案，此項可加載多個實例，後接@+翻譯器名〔如：cangjie、wubi等〕
     - reverse_lookup_translator         # ※ 反查翻譯器，用另一種編碼方案查碼
     - script_translator                 # ※ 腳本翻譯器，用於拼音、粵拼等等基於音節表的輸入方案●此項可加載多個實例，後接@+翻譯器名〔如：pinyin、jyutping等〕
   filters: # 四、這批組件過濾翻譯的結果
-    - simplifier@emoji_suggestion     # emoji表情
-    - simplifier@kemoji_suggestion    # 颜表情
-    #############################################################
     - simplifier                      # ※ 繁簡轉換
     - uniquifier                      # ※ 過濾重複的候選字，有可能來自繁簡轉換
 
@@ -157,29 +107,17 @@ recognizer:
   patterns:
     reverse_lookup: "`[a-z]*'?$"
 
-# emoji，按 F4 选择是否打开
-emoji_suggestion:
-  opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
-  option_name: emoji_suggestion # 对应 switches 中的 name
-  tips: all # 字符转换范围
-
-# 颜表情
-kemoji_suggestion:
-  opencc_config: kemoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
-  option_name: kemoji_suggestion # 对应 switches 中的 name
-  tips: all # 字符转换范围
-  # comment_format:
-  #   - xform/&@_/ /
-
 grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
 __patch:
-  - my_common:/patch
-  - easy_en:/patch   # 英文
-  - symbols:/patch   # 符号
-  - my_symbols:/patch # 符号扩展
-  - my_punctuator:/patch     # 标点
-  - my_charset:/patch        # 字符集
-  - my_debug:/patch          # 候选词详细信息
-  - my_key_binder:/patch     # 快捷键
+  - patch/my_common:/patch
+  - patch/my_matcher:/patch
+  - patch/my_easy_en:/patch        # 英文
+  - symbols:/patch                 # 符号
+  - patch/my_symbols:/patch        # 符号扩展
+  - patch/my_punctuator:/patch     # 标点
+  - patch/my_charset:/patch        # 字符集
+  - patch/my_debug:/patch          # 候选词详细信息
+  - patch/my_key_binder:/patch     # 快捷键
+  - patch/my_emoji:/patch          # emoji
