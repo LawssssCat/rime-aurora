@@ -12,37 +12,8 @@ local string_helper = require("tools/string_helper")
 -- 基本数据
 -- -------------------------------------
 
-local function sort(itb) 
-  local ntb = {}
-  local max = 1
-  local tb = {}
-  for i, v in pairs(itb) do
-    local len = #v
-    if(len > max) then
-      max = len
-    end
-    table.insert(tb, v)
-  end
-  while(max>=1 and #tb>0) do
-    local i = 1
-    while(i<=#tb) do
-      local s = tb[i]
-      if(#s == max) then
-        table.remove(tb, i)
-        table.insert(ntb, s)
-      else
-        i = i + 1
-      end
-    end
-    max = max - 1
-  end
-  return ntb
-end
-
 -- 声母表
--- fix: 长编码放前面（『不完整』分词需要）
 local smb = {"b", "p", "m", "f", "d", "t", "l", "n", "g", "h", "k", "j", "q", "x", "z", "c", "s", "r", "y", "w", "zh", "ch", "sh"}
-smb = sort(smb)
 
 -- 韵母表
 local ymb = {
@@ -52,11 +23,9 @@ local ymb = {
   "ia", "iu", "ie", "in", "un", "ua", "uo", "ue", "ui",
   "a", "o", "e", "i", "u", "v"
 }
-ymb = sort(ymb)
 
 -- 独立韵母表
 local dlymb = {"ang", "ong", "eng", "ai", "an", "ao", "ou", "en", "er", "o", "a", "e"}
-dlymb = sort(dlymb)
 
 -- -------------------------------------
 -- 拆分规则
