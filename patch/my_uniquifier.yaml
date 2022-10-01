@@ -5,4 +5,4 @@ patch:
   my_uniquifier_filter:
     excluded_types: ["history"]
     # 在前多少个候选词中去重
-    uniquifier_max: 300 # 1000 不卡 2000 有点卡
+    uniquifier_max: 60 # 100 不卡 1000 有点卡

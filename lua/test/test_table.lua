@@ -64,6 +64,13 @@ function M:test_for()
     lu.assertEquals(index, value)
   end
   lu.assertEquals(count, 4)
+  local t = {a=1,b=2,c=3,d="d"}
+  lu.assertEquals(t, {a=1,b=2,c=3,d="d"})
+  lu.assertEquals(#t, 0)
+  for k,v in pairs(t) do
+    t[k] = nil
+  end
+  lu.assertEquals(t, {})
 end
 
 return M

@@ -1,6 +1,7 @@
 local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
+local LinkedList = require("tools/collection/linked_list")
 
 local type_level = (function()
   local M = {}
@@ -48,7 +49,7 @@ end
 
 function filter.func(input, env)
   -- 队列 生成
-  local queue = {}
+  local queue = LinkedList()
   local map = {}
   local count = 1
   for cand in input:iter() do
@@ -59,49 +60,27 @@ function filter.func(input, env)
     end
     local text = cand.text
     local prev = map[text]
-    local handles = {
-      ------------------------
+    if(env.excluded_types:include(cand.type)) then
       -- 排除
-      function()
-        if(env.excluded_types:include(cand.type)) then
-          table.insert(queue, cand)
-          return true
-        end
-        return false
-      end,
-      ------------------------
+      queue:add(cand)
+    elseif(not prev) then
       -- 不重复
-      function()
-        if(not prev) then
-          table.insert(queue, text)
-          map[text] = cand
-          return true
-        end
-        return false
-      end,
-      ------------------------
+      queue:add(text)
+      map[text] = cand
+    else
       -- 重复，覆盖or抛弃
-      function()
-        local prev_level = type_level[prev:get_dynamic_type()]
-        local this_level = type_level[cand:get_dynamic_type()]
-        if(this_level>prev_level) then -- 用新的
-          map[text] = cand
-          return true
-        end
-        return false
-      end
-    }
-    for i,h in pairs(handles) do
-      if(h() == true) then
-        break
+      local prev_level = type_level[prev:get_dynamic_type()]
+      local this_level = type_level[cand:get_dynamic_type()]
+      if(this_level>prev_level) then -- 用新的
+        map[text] = cand
       end
     end
   end
   -- 队列 执行
-  for i, item in pairs(queue) do
-    local cand = item
-    if(type(item) == "string") then
-      cand = map[item]
+  for iter in queue:iter() do
+    local cand = iter.value
+    if(type(cand) == "string") then
+      cand = map[cand]
     end
     yield(cand)
   end

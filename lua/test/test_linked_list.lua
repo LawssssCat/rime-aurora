@@ -44,7 +44,7 @@ function M:test_add()
   lu.assertEquals(list:Size(), 5)
   lu.assertEquals(list:values(), {"hello", 1,2,3, "world"})
   local has_szie = 5
-  local num = 1000 -- 对比 array list
+  local num = 6000 -- 对比 array list
   for i=1,num do
     list:add(i)
   end
