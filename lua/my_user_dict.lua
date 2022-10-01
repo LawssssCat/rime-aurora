@@ -87,8 +87,8 @@ function translator.func(input, seg, env)
       local cand = phrase:toCandidate()
       cand.quality = math.exp(entry.weight) + -- 计算权重
         env.initial_quality + 
-        (remaining_code_length * -0.2) + 
-        (0.2 * entry.commit_count)
+        (remaining_code_length * -0.3) + 
+        (0.1 * entry.commit_count)
       yield(cand)
     end
   end
