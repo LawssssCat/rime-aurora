@@ -63,8 +63,9 @@ function translator.func(input, seg, env)
       local text = item.text
       local comment = string_helper.format("（💬:\"{preedit}\",✍🏻️:{dynamic_type}-{type},🏆:{quality}）", item)
       local cand = Candidate("history", seg.start, seg._end, text, comment)
+      local cand_uniq = UniquifiedCandidate(cand, cand.type, cand.text, cand.comment)
       -- cand.quality = -199
-      yield(cand)
+      yield(cand_uniq)
     end
   end
 end

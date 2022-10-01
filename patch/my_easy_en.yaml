@@ -2,8 +2,7 @@
 patch:
   engine/translators/@after 0: table_translator@easy_en          # 英文
   engine/filters/@after 0: reverse_lookup_filter@e_reverse_lookup # 显示英文解释
-  engine/filters/+:
-    - lua_filter@my_easy_en_filter           # 纯英文模式
+  engine/filters/@after 1: lua_filter@my_easy_en_filter           # 纯英文模式
   schema/dependencies/+:
     - easy_en
 
