@@ -5,6 +5,7 @@ patch:
   engine/segmentors/@after 0: lua_segmentor@my_symbols_segmentor
   recognizer/patterns/+:
     symbals: "^/[0-9a-zA-Z]+$" # fix: 选择数字，如： "/1" # fix: 无候选词自动select，如："/emj" => "/e‸mj"
+    punct: "^$" # fix: symbols 的候选词中 type 为 punct 问题。（导致无法区分 punct 和 symbals，从而无法进一步处理）
   ##########################################################
   # 符号提示码表（需要在符号解释之前）
   engine/filters/@after 0: simplifier@symbol_suggestion # 符号
