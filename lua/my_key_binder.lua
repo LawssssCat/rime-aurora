@@ -28,12 +28,18 @@ local handle_run_map = {
   end,
   select = function(env, action)
     local context = env.engine.context
+    if(not context:has_menu()) then
+      context:commit()
+      return true
+    end
     local composition = context.composition
     if(not composition:empty()) then
       local segment = composition:back()
       local index = segment.selected_index
       context:select(index)
       return true
+    else
+      logger.warn("fail to handle. \""..context.input.."\"")
     end
     return false
   end,
