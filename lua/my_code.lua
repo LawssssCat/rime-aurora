@@ -20,30 +20,6 @@ local rime_api_helper = require("tools/rime_api_helper")
 
 local processor = {}
 
--- 输入进入用户字典
-function processor.init(env)
-  local context = env.engine.context
-  local mem = Memory(env.engine, env.engine.schema) 
-  env.notifiers = {
-    context.commit_notifier:connect(function(ctx)
-      local commit_text = ctx:get_commit_text()
-      if(commit_text) then
-        local e = DictEntry()
-        e.text = commit_text
-        e.weight = 1
-        e.custom_code = ctx:get_script_text()
-        mem:update_userdict(e,1,"") -- do nothing to userdict
-      end
-    end),
-  }
-end
-
-function processor.fini(env)
-  for i, n in pairs(env.notifiers) do
-    n:disconnect()
-  end
-end
-
 function processor.func(key, env)
   local ctx = env.engine.context
   local config = env.engine.schema.config

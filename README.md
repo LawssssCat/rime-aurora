@@ -265,6 +265,7 @@ bash tools/tailLog.sh
 
 > 插件
 > + <https://github.com/hchunhui/librime-lua>
+> + <https://github.com/TsinamLeung/librime-sentencer>
 > + ~~<https://github.com/hchunhui/librime-cloud>~~
 
 > 已知问题：
