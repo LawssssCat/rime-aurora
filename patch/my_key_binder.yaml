@@ -160,8 +160,8 @@ patch:
       } # 空格上屏选择
       ##########################
       # fix: “纯英文状态” 翻页: =/-
-      - {when: has_menu, option: "ascii_mode", accept: "equal", run: Page_Up}
-      - {when: has_menu, option: "ascii_mode", accept: "minus", run: Page_Down}
+      - {when: has_menu, option: "ascii_mode", accept: "equal", run: Page_Down}
+      - {when: has_menu, option: "ascii_mode", accept: "minus", run: Page_Up}
       ##########################
   key_binder/bindings/+:
     - {when: has_menu, accept: "Shift+comma", send: Page_Up } # “shift+,” 上页
