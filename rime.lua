@@ -89,6 +89,8 @@ register("my_version")
 
 register("my_history")
 
+register("my_url")
+
 register("my_user_dict")
 
 -- 【功能】：候选项重排序，使单字优先（single_char_filter）

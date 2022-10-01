@@ -10,11 +10,12 @@ patch:
     calc: "^/=[0-9+\\-*/^%()]*$"         # 计算
     version: "^/ver{sion}?$"            # 版本
     history: "^/his{tory}?$"            # 历史
-  engine/translators/+: 
-    - lua_translator@my_calc_translator
-    - lua_translator@my_time_translator
-    - lua_translator@my_version_translator
-    - lua_translator@my_history_translator
+    url: "^(.+[.]|https?:|ftp[.:]|mailto:|file:)[^ ]*$"
+  engine/translators/@after 0: lua_translator@my_calc_translator
+  engine/translators/@after 1: lua_translator@my_time_translator
+  engine/translators/@after 2: lua_translator@my_version_translator
+  engine/translators/@after 3: lua_translator@my_history_translator
+  engine/translators/@after 4: lua_translator@my_url_translator
   my_history_translator: 
     history_num_max: 50
     excluded_types: ["punct"]

@@ -130,6 +130,20 @@ function M:test_syllabify_part()
     "ch q y h s l w s z d s",
     "c h q y h s l w s z d s"
   })
+  -- 不支持拿来处理 url（结果奇怪）
+  lu.assertEquals(string_syllabify.syllabify("www", part), {"w w w"})
+  lu.assertEquals(string_syllabify.syllabify("www.", part), {})
+  lu.assertEquals(string_syllabify.syllabify("www.g", part), {"w w w. g"})
+  lu.assertEquals(string_syllabify.syllabify("www.go", part), {"w w w. go"})
+  lu.assertEquals(string_syllabify.syllabify("www.goo", part), {"w w w. go o"})
+  lu.assertEquals(string_syllabify.syllabify("www.goog", part), {"w w w. go o g"})
+  lu.assertEquals(string_syllabify.syllabify("www.googl", part), {"w w w. go o g l"})
+  lu.assertEquals(string_syllabify.syllabify("www.google", part), {"w w w. go o g le"})
+  lu.assertEquals(string_syllabify.syllabify("www.google.", part), {})
+  lu.assertEquals(string_syllabify.syllabify("www.google.c", part), {})
+  lu.assertEquals(string_syllabify.syllabify("www.google.co", part), {})
+  lu.assertEquals(string_syllabify.syllabify("www.google.com", part), {})
+  lu.assertEquals(string_syllabify.syllabify("www.github.com", part), {"w w w. gi t hu b. co m"})
 end
 
 return M

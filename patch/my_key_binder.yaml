@@ -153,15 +153,15 @@ patch:
       - {when: has_menu, accept: "Shift+Up", run: Page_Up} # 翻页时，shift+↑ 上一页
       - {when: has_menu, accept: "Shift+Down", run: Page_Down} # 翻页时，shift+↓ 下一页
       - { # fix: “纯英文状态” 按空格不上屏问题
-        when: has_menu, 
+        when: composing, 
         option: "ascii_mode",
         accept: "space", 
         run: select
       } # 空格上屏选择
       ##########################
       # fix: “纯英文状态” 翻页: =/-
-      - {when: has_menu, option: "ascii_mode", accept: "equal", run: Page_Up}
-      - {when: has_menu, option: "ascii_mode", accept: "minus", run: Page_Down}
+      - {when: has_menu, option: "ascii_mode", accept: "equal", run: Page_Down}
+      - {when: has_menu, option: "ascii_mode", accept: "minus", run: Page_Up}
       ##########################
   key_binder/bindings/+:
     - {when: has_menu, accept: "Shift+comma", send: Page_Up } # “shift+,” 上页
