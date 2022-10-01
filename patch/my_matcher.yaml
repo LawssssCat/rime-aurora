@@ -17,3 +17,4 @@ patch:
     - lua_translator@my_history_translator
   my_history_translator: 
     history_num_max: 50
+    excluded_types: ["punct"]
