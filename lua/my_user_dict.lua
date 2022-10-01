@@ -34,12 +34,9 @@ local function get_tags(env)
 end
 
 local function get_syllabify_text_list(text, env)
-  local tags = get_tags(env)
-  if(tags:include_one(env.excluded_syllabify_tags)) then
-    return {text}
-  else
-    return string_syllabify.syllabify(text, true)
-  end
+  local arr = string_syllabify.syllabify(text, true)
+  table.insert(arr, text)
+  return arr
 end
 
 -- 输入进入用户字典
@@ -47,10 +44,13 @@ function translator.init(env)
   local context = env.engine.context
   local config = env.engine.schema.config
   env.initial_quality = config:get_string(env.name_space .."/initial_quality") or 0
-  env.excluded_syllabify_tags = rime_api_helper:get_config_item_value(config, env.name_space .."/excluded_syllabify_tags") or {}
+  env.excluded_tags = rime_api_helper:get_config_item_value(config, env.name_space .."/excluded_tags") or {}
   env.mem = Memory(env.engine,env.engine.schema)  --  ns= "translator"
   env.notifiers = {
     context.commit_notifier:connect(function(ctx)
+      if(get_tags(env):include_one(env.excluded_tags)) then -- 不记录
+        return
+      end
       local commit_text = ctx:get_commit_text()
       if(commit_text) then
         local e = DictEntry()

@@ -2,5 +2,15 @@ patch:
   # 保持为第一个 translator，这样用户词典的词就会显示在前面
   engine/translators/@before 0: lua_translator@my_user_dict_translator 
   my_user_dict_translator:
-    # 指定的 tag 不进行音节分词
-    excluded_syllabify_tags: ["url", "symbals"]
+    # 指定的 tag 不记录用户词典
+    excluded_tags: 
+      - "punct"
+      ###############################
+      # 动态候选词基本需要排除，参考 my_matcher.yaml
+      - "history"
+      - "calc"
+      - "date"
+      - "week"
+      - "time"
+      - "version"
+      ######################################
