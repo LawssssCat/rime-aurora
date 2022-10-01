@@ -82,13 +82,13 @@ function translator.func(input, seg, env)
   for i, text in pairs(syllabify_text_list) do
     mem:user_lookup(text, true)
     for entry in mem:iter_user() do
-      local incomplete = entry.remaining_code_length~=0
+      local remaining_code_length = entry.remaining_code_length or 0
       local phrase = Phrase(mem, "my_user_dict", seg._start, seg._end, entry)
       local cand = phrase:toCandidate()
       cand.quality = math.exp(entry.weight) + -- 计算权重
         env.initial_quality + 
-        (incomplete and -1 or 0) + 
-        (0.1 * entry.commit_count)
+        (remaining_code_length * -0.2) + 
+        (0.2 * entry.commit_count)
       yield(cand)
     end
   end
