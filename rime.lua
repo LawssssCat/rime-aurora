@@ -79,6 +79,8 @@ register("my_key_binder")
 
 register("my_calc")
 
+register("my_uniquifier")
+
 -- 【功能】：rq输出日期、sj输出时间
 -- 详见 `lua/time_translator.lua`
 register("my_time")
@@ -86,6 +88,8 @@ register("my_time")
 register("my_version")
 
 register("my_history")
+
+register("my_user_dict")
 
 -- 【功能】：候选项重排序，使单字优先（single_char_filter）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/single_char.lua

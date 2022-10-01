@@ -1,0 +1,3 @@
+patch:
+  # 保持为第一个 translator，这样用户词典的词就会显示在前面
+  engine/translators/@before 0: lua_translator@my_user_dict_translator 

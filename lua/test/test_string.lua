@@ -10,6 +10,7 @@ local string_helper = require("tools/string_helper")
 local M = {}
 
 function M:test_boolean()
+  lu.assertEquals(""==nil, false)
   lu.assertEquals(not "", false)
   lu.assertEquals(not "nil", false)
 end
@@ -123,6 +124,7 @@ end
 function M:test_sub()
   lu.assertEquals(string_helper.sub("abc", 1, 1), "a")
   lu.assertEquals(string_helper.sub("abc", 1, 2), "ab")
+  lu.assertEquals(string_helper.sub("abc", 2, 1), "")
 end
 
 -- 截取（utf8）
@@ -326,6 +328,10 @@ function M:test_find()
   lu.assertTrue(string.find("good", pattern_01))
   lu.assertEquals(string.find("good", pattern_01), 1) -- 下标1开始
   lu.assertEquals({string.find("good", pattern_01)}, {1, 4}) -- 开始下标 结束下标
+  lu.assertEquals({string.find("nihao", "^n")}, {1,1})
+  lu.assertEquals({string.find("nihao", "h", 3)}, {3,3})
+  lu.assertEquals(string.find("nihao", "h", 3), 3)
+  lu.assertError(string.find, nil, "h", 3)
 end
 
 function M:test_is_ascii_visible()

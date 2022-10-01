@@ -101,8 +101,10 @@ test_linked_list = require("test/test_linked_list")
 test_cycle_list = require("test/test_cycle_list")
 test_stack = require("test/test_stack")
 -- regex -- 更新 librime-lua，引入 rime_api.regex_match(str, pattern)
--- calc
+-- 计算
 test_string_calc = require("test/test_string_calc")
+-- 音节分词
+test_string_syllabify = require("test_string_syllabify")
 
 -- ----------------------------------------------------------------
 --                  测试 - 运行

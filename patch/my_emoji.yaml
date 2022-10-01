@@ -7,10 +7,12 @@ patch:
     opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
     # option_name: emoji_suggestion # 对应 switches 中的 name
     tips: all # 字符转换范围
+    excluded_types: ["history"]
   # 颜表情
   kemoji_suggestion:
     opencc_config: kemoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
     # option_name: kemoji_suggestion # 对应 switches 中的 name
     tips: all # 字符转换范围
+    excluded_types: ["history"]
     # comment_format:
     #   - xform/&@_/ /

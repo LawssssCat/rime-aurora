@@ -51,9 +51,7 @@ engine:
     - reverse_lookup_translator
     - script_translator
   filters:
-    - simplifier
-    - uniquifier
-    - lua_filter@py_comment_filter # 显示更多拼音
+    __include: ext_filters:/patch/filters
 
 speller:
   # &*() 声调
@@ -217,12 +215,15 @@ grammar: # 语法模型
 __patch:
   - patch/my_common:/patch
   - patch/my_matcher:/patch
-  - patch/my_debug:/patch          # 候选词详细信息
   - patch/my_easy_en:/patch        # 英文（需放在debug后）
   - symbols:/patch                 # 符号
   - patch/my_symbols:/patch        # 符号扩展
+  - patch/my_user_dict:/patch      # 查询用户字典
   - patch/my_punctuator:/patch     # 标点
   - patch/my_code:/patch           # 输入编码处理（多音字扩展）
   - patch/my_charset:/patch        # 字符集
   - patch/my_key_binder:/patch     # 扩展快捷键
   - patch/my_emoji:/patch          # emoji
+  - patch/my_uniquifier:/patch     # 去重。【放最后】
+  - patch/my_debug:/patch          # 候选词详细信息
+
