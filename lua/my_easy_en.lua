@@ -14,8 +14,18 @@ end
 function pure_filter.fini(env)
 end
 
+local function yield_raw_input(env)
+  local context = env.engine.context
+  local input = context.input
+  if(input and #input>0) then
+    local cand = Candidate("raw", 1, #input, input, "〔英文〕")
+    yield(cand)
+  end
+end
+
 function pure_filter.func(input, env)
   if(env.option_ascii_mode) then
+    yield_raw_input(env)
     for cand in input:iter() do
       if(string_helper.is_ascii_visible_string(cand.text)) then -- ascii visible
         yield(cand)
