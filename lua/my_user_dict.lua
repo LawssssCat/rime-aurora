@@ -34,8 +34,17 @@ local function get_tags(env)
 end
 
 local function get_syllabify_text_list(text, env)
+  text = string_helper.replace(text, "'", " ", true) -- ji‘suan => ji suan
   local arr = string_syllabify.syllabify(text, true)
-  table.insert(arr, text)
+  local falg = true
+  for i,t in pairs(arr) do
+    if(t == text) then
+      flag = false
+    end
+  end
+  if(flag) then
+    table.insert(arr, text)
+  end
   return arr
 end
 
