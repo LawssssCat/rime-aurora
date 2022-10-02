@@ -7,7 +7,7 @@ patch:
     date: "^/(r{i}?q{i}?|da{ta}?)$"     # 日期
     week: "^/(x{ing}?q{i}?|we{ek}?)$"   # 星期
     time: "^/(s{hi}?j{ian}?|ti{me}?)$"  # 时间
-    calc: "^/=[0-9+\\-*/^%()]*$"         # 计算
+    calc: "^/=[0-9+\\-*/@^%()]*$"         # 计算
     version: "^/ver{sion}?$"            # 版本
     history: "^/his{tory}?$"            # 历史
     url: "^(.+[.]|https?:|ftp[.:]|mailto:|file:)[^ ]*$"
