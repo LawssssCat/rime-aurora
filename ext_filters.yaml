@@ -2,4 +2,4 @@ patch:
   filters:
     - simplifier                   # ※ 繁簡轉換
     - lua_filter@py_comment_filter # 显示更多拼音
-    - uniquifier                   # ※ 過濾重複的候選字，有可能來自繁簡轉換
+    # - uniquifier                   # ※ 過濾重複的候選字，有可能來自繁簡轉換

@@ -1,6 +1,6 @@
 patch:
   engine/filters/+: 
-    # - uniquifier
+    - uniquifier
     - lua_filter@my_uniquifier_filter # 去重。替代uniquifier
   my_uniquifier_filter:
     excluded_types: ["history"]
