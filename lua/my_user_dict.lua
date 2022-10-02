@@ -36,7 +36,7 @@ end
 local function get_syllabify_text_list(text, env)
   text = string_helper.replace(text, "'", " ", true) -- ji‘suan => ji suan
   local arr = string_syllabify.syllabify(text, true)
-  local falg = true
+  local flag = true
   for i,t in pairs(arr) do
     if(t == text) then
       flag = false
