@@ -1,5 +1,7 @@
 assert(lu, "请通过 test/init.lua 运行本测试用例")
 
+local table_helper = require("tools/table_helper")
+
 local M = {}
 
 function M:test_equal()
@@ -71,6 +73,15 @@ function M:test_for()
     t[k] = nil
   end
   lu.assertEquals(t, {})
+end
+
+function M:test_()
+  lu.assertEquals(table_helper.arr_remove_duplication({1,2,3,4}), {1, 2, 3, 4})
+  lu.assertEquals(table_helper.arr_remove_duplication({2,2,3,4}), {2, 3, 4})
+  lu.assertEquals(table_helper.arr_remove_duplication({2,2,abc="22",3,4}), {2, 3, 4, "22"})
+  local a = {2,2,3,4}
+  a["qq"] = "33"
+  lu.assertEquals(table_helper.arr_remove_duplication(a), {2, 3, 4, "33"})
 end
 
 return M

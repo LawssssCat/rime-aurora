@@ -7,4 +7,5 @@ patch:
     opencc_config:
       - emoji.json
       - kemoji.json
+      - symbol.json
     excluded_types: ["history"]

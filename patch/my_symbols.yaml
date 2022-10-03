@@ -7,18 +7,16 @@ patch:
     symbals: "^/[0-9a-zA-Z]+$" # fix: 选择数字，如： "/1" # fix: 无候选词自动select，如："/emj" => "/e‸mj"
     punct: "^$" # fix: symbols 的候选词中 type 为 punct 问题。（导致无法区分 punct 和 symbals，从而无法进一步处理）
   ##########################################################
-  # 符号提示码表（需要在符号解释之前）
-  engine/filters/@after 0: simplifier@symbol_suggestion # 符号
-  symbol_suggestion:
-    opencc_config: symbol.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
-    tips: all # 字符转换范围
-  ##########################################################
   # 符号含义标注
   engine/filters/@after 1: simplifier@back_mark # 後方標註
   back_mark:
     opencc_config: back_mark_ocm.json
     show_in_comment: true
-    tags: [ abc ]
+    tags: [ abc, symbals ] # fix: 不包含 punct
+    excluded_types:
+      - "history"
+      - "user_phrase"
+      - "my_user_dict" # 否则 dynamic type 转换为 shadow candidate，无法记录用户字典
     tips: char
     comment_format:
       - xform/^/  /

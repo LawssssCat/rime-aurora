@@ -6,21 +6,6 @@ local string_helper = require("tools/string_helper")
 local prompt_map_notifier_id = 0
 
 -- ----------------
--- methods
--- ----------------
-
-local function get_segment(env)
-  local context = env.engine.context
-  local composition =  context.composition
-  if(not composition:empty()) then
-    -- 获得 Segment 对象
-    local segment = composition:back()
-    return segment
-  end
-  return nil
-end
-
--- ----------------
 -- processor
 -- ----------------
 
@@ -38,11 +23,11 @@ function processor.init(env)
     for key, msg in pairs(prompt_map) do
       table.insert(prompt_arr, msg)
     end
-    local segment = get_segment(env)
-    if(segment) then
+    local composition = ctx.composition
+    if(not composition:empty()) then
+      -- 获得 Segment 对象
+      local segment = composition:back()
       segment.prompt = table.concat(prompt_arr, " ")
-    else
-      logger.warn("can't find segment.")
     end
   end)
 end
