@@ -109,7 +109,7 @@ recognizer:
 grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
-__patch:
+__patch: # 顺序有讲究
   - patch/my_common:/patch
   - patch/my_matcher:/patch
   - patch/my_easy_en:/patch        # 英文（需放在debug后）
@@ -122,4 +122,5 @@ __patch:
   - patch/my_key_binder:/patch     # 快捷键
   - patch/my_emoji:/patch          # emoji
   - patch/my_uniquifier:/patch     # 去重。【放最后】
+  - patch/my_prompt:/patch
   - patch/my_debug:/patch          # 候选词详细信息

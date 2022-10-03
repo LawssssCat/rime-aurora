@@ -3,13 +3,17 @@ local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
 
-local debug_option = false
-
 -- ============================================================= processor
 
 -- ----------------
 -- methods
 -- ----------------
+
+local function is_option_open(env)
+  local context = env.engine.context
+  local option = context:get_option("option_debug_comment_filter") or false -- 开关
+  return option
+end
 
 local function get_segment(env)
   local context = env.engine.context
@@ -67,42 +71,6 @@ end
 
 local processor = {}
 
-local prompt_map_notifier_id = 0
-
-function processor.init(env)
-  local context = env.engine.context
-  env.notifiers = {
-    context.option_update_notifier:connect(function(ctx)
-      debug_option = ctx:get_option("option_debug_comment_filter") or false -- 开关
-    end),
-  }
-  prompt_map_notifier_id = prompt_map_notifier_id + 1
-  env.prompt_map_notifier_id = prompt_map_notifier_id
-  rime_api_helper:add_prompt_map_notifier(context, env.prompt_map_notifier_id, function(ctx)
-    -- 展示
-    local prompt_map = rime_api_helper:get_prompt_map()
-    -- 修改 prompt
-    local prompt_arr = {}
-    for key, msg in pairs(prompt_map) do
-      table.insert(prompt_arr, msg)
-    end
-    local segment = get_segment(env)
-    if(segment) then
-      segment.prompt = table.concat(prompt_arr, " ")
-    else
-      logger.warn("can't find segment.")
-    end
-  end)
-end
-
-function processor.fini(env)
-  for i, n in pairs(env.notifiers) do
-    n:disconnect()
-  end
-  local context = env.engine.context
-  rime_api_helper:remove_prompt_map_notifier(context, env.prompt_map_notifier_id)
-end
-
 local function add_prompts(prompts, msg_error, flag, msg)
   if(flag) then
     table.insert(prompts, msg)
@@ -113,8 +81,10 @@ end
 
 function processor.func(key, env)
   local context = env.engine.context
-  if(not debug_option) then
-    rime_api_helper:clear_prompt_map(context, "debug")
+  if(not is_option_open(env)) then
+    if(key:release()) then
+      rime_api_helper:clear_prompt_map(context, "debug")
+    end
     return rime_api_helper.processor_return_kNoop
   end
   if(context:is_composing()) then
@@ -154,13 +124,13 @@ local function show_candidate_info(input, env)
 end
 
 function filter.func(input, env)
-  if debug_option then
-    show_candidate_info(input, env)
-  else
+  if not is_option_open(env) then
     for cand in input:iter() do
       yield(cand)
     end
+    return
   end
+  show_candidate_info(input, env)
 end
 
 return {
