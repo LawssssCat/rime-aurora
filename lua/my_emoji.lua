@@ -72,8 +72,6 @@ local mode_opencc_allow_keys = {
   "Down",
   "Shift+Up",
   "Shift+Down",
-  "Escape",
-  "Select",
   "space"
 }
 function mode_opencc_allow_keys:include(repr)
@@ -128,7 +126,8 @@ function processor.func(key, env)
     else
       -- 操作
       local repr = key:repr()
-      if("Escape" == repr) then
+      if("Escape"==repr or "BackSpace"==repr) then
+        -- 删除
         local index = mode_opencc_previous_cand.index
         reset_mode_opencc(env)
         context:refresh_non_confirmed_composition()
@@ -137,9 +136,25 @@ function processor.func(key, env)
         end
         return rime_api_helper.processor_return_kAccepted
       end
+      if("space"==repr) then
+        -- 选择
+        local composition = context.composition
+        if(not composition:empty()) then
+          local segment = composition:back()
+          local index = segment.selected_index
+          context:select(index)
+          reset_mode_opencc(env)
+          context:refresh_non_confirmed_composition()
+        else
+          logger.warn("composition empty. \""..context.input.."\"")
+        end
+        return rime_api_helper.processor_return_kAccepted
+      end
       if(not mode_opencc_allow_keys:include(repr)) then
+        -- 禁止
         return rime_api_helper.processor_return_kAccepted
       else
+        -- 允许
         return rime_api_helper.processor_return_kNoop
       end
     end
@@ -230,9 +245,9 @@ local segmentor = {}
 function segmentor.func(segmentation, env)
   local context = env.engine.context
   if(mode_opencc) then
-    local input_active = segmentation.input
-    local pos_comfirm = segmentation:get_confirmed_position()
-    local seg = Segment(pos_comfirm, #input_active)
+    local _start = mode_opencc_previous_cand._start
+    local _end = mode_opencc_previous_cand._end
+    local seg = Segment(_start, _end)
     seg.tags =  Set({tag_emoji})
     segmentation:add_segment(seg)
   end
