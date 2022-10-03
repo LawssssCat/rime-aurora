@@ -95,6 +95,8 @@ register("my_emoji")
 
 register("my_user_dict")
 
+register("my_prompt")
+
 -- 【功能】：候选项重排序，使单字优先（single_char_filter）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/single_char.lua
 
