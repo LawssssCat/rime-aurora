@@ -76,6 +76,7 @@ print("==================[test config]=====================")
 -- string
 test_basic = require("test/test_basic")
 test_string = require("test/test_string")
+test_utf8 = require("test/test_utf8")
 -- 异常
 test_error = require("test/test_error")
 -- ptry：异常链式处理
