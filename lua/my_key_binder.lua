@@ -73,6 +73,18 @@ local handle_run_map = {
       end
     end
     return false
+  end,
+  delete_candidate = function(env)
+    local context = env.engine.context
+    local composition = context.composition
+    if(not composition:empty()) then
+      local segment = composition:back()
+      local selected_index = segment.selected_index
+      context:delete_current_selection()
+      segment.selected_index = selected_index
+      return true
+    end
+    return false
   end
 }
 
@@ -81,6 +93,7 @@ local processor = {}
 function processor.init(env)
   local config = env.engine.schema.config
   env.key_binder_list = rime_api_helper:get_config_item_value(config, env.name_space .. "/bindings")
+  env.mem = Memory(env.engine,env.engine.schema)
 end
 
 function processor.func(key, env)

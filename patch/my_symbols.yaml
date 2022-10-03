@@ -18,7 +18,7 @@ patch:
   back_mark:
     opencc_config: back_mark_ocm.json
     show_in_comment: true
-    tags: [ abc ]
+    tags: [ abc ] # fix: 符号自动上屏？
     tips: char
     comment_format:
       - xform/^/  /
