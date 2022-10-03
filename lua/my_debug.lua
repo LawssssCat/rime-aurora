@@ -2,7 +2,6 @@
 local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
-local ptry = require("tools/ptry")
 
 -- ============================================================= processor
 
@@ -16,40 +15,32 @@ function processor.func(key, env)
     -- 获得 Segment 对象
     local segment = composition:back()
     local prompts = {}
-    -- 标签
-    ptry(function()
-      local tags = segment.tags
-      if(tags) then
-        local tag_arr = {}
-        for tag, _ in pairs(tags) do
-          table.insert(tag_arr, tag)
-        end
-        local msg = string.format("🏷:(%s)", string_helper.join(tag_arr, ","))
-        table.insert(prompts, msg)
+    -- ======================= 标签
+    local tags = segment.tags
+    if(tags) then
+      local tag_arr = {}
+      for tag, _ in pairs(tags) do
+        table.insert(tag_arr, tag)
       end
-    end)
-    ._catch(function(err)
-      logger.error(err)
-    end)
-    -- 页码
-    ptry(function()
-      local page_size = schema.page_size
-      -- 获取 Menu 对象
-      local menu = segment.menu
-      -- 获得选中的候选词下标
-      local count_select = segment.selected_index or 0
-      local page_select = count_select/page_size
-      -- 获得（已加载）候选词数量
-      local count_loaded = menu and menu:candidate_count() or 0
-      local page_loaded = count_loaded/page_size
-      local msg = string.format("📖:[%s/%s]📚:[%0.0f/%0.0f]", 
-        count_select, count_loaded,
-        page_select, page_loaded)
+      local msg = string.format("🏷:(%s)", string_helper.join(tag_arr, ","))
       table.insert(prompts, msg)
-    end)
-    ._catch(function(err)
-      logger.error(err)
-    end)
+    end
+    -- ======================= 
+    -- ======================= 页码
+    local page_size = schema.page_size
+    -- 获取 Menu 对象
+    local menu = segment.menu
+    -- 获得选中的候选词下标
+    local count_select = segment.selected_index or 0
+    local page_select = count_select/page_size
+    -- 获得（已加载）候选词数量
+    local count_loaded = menu and menu:candidate_count() or 0
+    local page_loaded = count_loaded/page_size
+    local msg = string.format("📖:[%s/%s]📚:[%0.0f/%0.0f]", 
+      count_select, count_loaded,
+      page_select, page_loaded)
+    table.insert(prompts, msg)
+    -- ===========================
     rime_api_helper:add_prompt_map("debug", string_helper.join(prompts, " "))
     local prompt_map = rime_api_helper:get_prompt_map()
     -- 修改 prompt

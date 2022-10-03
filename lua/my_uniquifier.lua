@@ -8,7 +8,7 @@ local type_level = (function()
   M["Phrase"] = 90
   M["Simple"] = 9
   M["Shadow"] = 9
-  M["Uniquified"] = 9
+  M["Uniquified"] = 80
   setmetatable(M, {
     __index = function() -- 默认值
       return 10

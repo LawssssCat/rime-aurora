@@ -1,8 +1,10 @@
 patch:
   # engine/translators/@next: lua_translator@my_emoji_translator
-  engine/filters/@after 0: simplifier@emoji_suggestion     # emoji表情
-  engine/filters/@after 1: simplifier@kemoji_suggestion    # 颜表情
-  # emoji，按 F4 选择是否打开
+  # engine/filters/@after 0: simplifier@emoji_suggestion     # emoji表情
+  # engine/filters/@after 1: simplifier@kemoji_suggestion    # 颜表情
+  engine/segmentors/@after 0: lua_segmentor@my_emoji_segmentor
+  engine/filters/@next: lua_filter@my_emoji_filter
+  engine/processors/@before 0: lua_processor@my_emoji_processor
   emoji_suggestion:
     opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
     # option_name: emoji_suggestion # 对应 switches 中的 name

@@ -83,7 +83,10 @@ function translator.fini(env)
 end
 
 function translator.func(input, seg, env)
-  local input_activing = string.sub(input, seg._start+1, seg._end)
+  local context = env.engine.context
+  local segmentation = context.composition:toSegmentation()
+  local confirmed_pos = segmentation and segmentation:get_confirmed_position()
+  local input_activing = string.sub(context.input, confirmed_pos+1)
   -- 分词
   local syllabify_text_list = get_syllabify_text_list(input_activing, env)
   -- 查库
