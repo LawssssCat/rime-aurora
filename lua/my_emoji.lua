@@ -221,6 +221,23 @@ local filter = {}
 
 function filter.init(env)
   local config = env.engine.schema.config
+  env.excluded_types = (function()
+    local excluded_types = rime_api_helper:get_config_item_value(config, env.name_space .. "/excluded_types")
+    if(not excluded_types) then
+      excluded_types = {}
+    elseif(type(excluded_types) == "string") then
+      excluded_types = {excluded_types}
+    end
+    function excluded_types:include(cand_type)
+      for i,t in pairs(self) do
+        if(t == cand_type) then
+          return true
+        end
+      end
+      return false
+    end
+    return excluded_types
+  end)()
   local opencc_config = (function()
     local opencc_config = rime_api_helper:get_config_item_value(config, env.name_space .. "/opencc_config")
     if(not opencc_config) then
@@ -231,6 +248,7 @@ function filter.init(env)
     return opencc_config
   end)()
   env.opencc_list = init_opencc_list(opencc_config)
+  
 end
 
 function filter.func(input, env)
@@ -245,14 +263,17 @@ function filter.func(input, env)
     end
     return
   end
+  local excluded_types = env.excluded_types
   for cand in input:iter() do
     yield(cand)
-    -- 表情提示
-    local text = cand.text
-    local arr = uniquifyuniquify(run_opencc_list_convert_word(env, text), text)
-    if(#arr>0) then
-      local cand_tip = UniquifiedCandidate(cand, type_emoji_tip, get_text(text), "["..join(arr, 5).."]")
-      yield(cand_tip)
+    if(not excluded_types:include(cand.type)) then
+      -- 表情提示
+      local text = cand.text
+      local arr = uniquifyuniquify(run_opencc_list_convert_word(env, text), text)
+      if(#arr>0) then
+        local cand_tip = UniquifiedCandidate(cand, type_emoji_tip, get_text(text), "["..join(arr, 5).."]")
+        yield(cand_tip)
+      end
     end
   end
 end
