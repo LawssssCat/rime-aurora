@@ -46,14 +46,14 @@ local function get_msg_page(env)
   if(segment) then
     local page_size = schema.page_size
     -- 获得选中的候选词下标
-    local count_select = segment.selected_index or 0
-    local page_select = count_select/page_size
+    local count_select = (segment.selected_index or 0) + 1
+    local page_select = math.ceil(count_select/page_size)
     -- 获取 Menu 对象
     local menu = segment.menu
     -- 获得（已加载）候选词数量
     local count_loaded = menu and menu:candidate_count() or 0
-    local page_loaded = count_loaded/page_size
-    local msg = string.format("📖:[%s/%s]📚:[%0.0f/%0.0f]", 
+    local page_loaded = math.ceil(count_loaded/page_size)
+    local msg = string.format("📖:[%s/%s]📚:[%s/%s]", 
       count_select, count_loaded,
       page_select, page_loaded)
     return true, msg
