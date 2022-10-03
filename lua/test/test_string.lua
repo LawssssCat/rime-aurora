@@ -72,6 +72,7 @@ function M:test_replace()
   lu.assertEquals(string_helper.replace("banana", "(a)(n)", "%2%1"), "b%2%1%2%1a") -- 用正则匹配，不用正则替换
   lu.assertEquals(string_helper.replace("banana", "(a)(n)", "%2%1", true), "banana") -- 不用正则匹配，不用正则替换
   lu.assertEquals(string_helper.replace("banana", "an", "%2%1", true), "b%2%1%2%1a")
+  lu.assertEquals(string_helper.replace("aa bb", " ", "", true), "aabb")
 end
 
 function M:test_split()

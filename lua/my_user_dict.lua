@@ -1,6 +1,7 @@
 local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
+local table_helper = require("tools/table_helper")
 local string_syllabify = require("tools/string_syllabify")
 
 local translator = {}
@@ -40,12 +41,23 @@ local function get_syllabify_text_list(text, env)
   for i,t in pairs(arr) do
     if(t == text) then
       flag = false
+      break
     end
   end
   if(flag) then
     table.insert(arr, text)
   end
   return arr
+end
+
+local function is_english(text)
+  return string_helper.is_ascii_visible_string(text)
+end
+
+local function to_english(text)
+  text = string_helper.replace(text, " ", "", true)
+  text = string_helper.replace(text, "-", "", true)
+  return text
 end
 
 -- 输入进入用户字典
@@ -66,7 +78,18 @@ function translator.init(env)
         e.text = commit_text
         -- e.weight = 10
         local script_text = ctx:get_script_text()
-        local syllabify_text_list = get_syllabify_text_list(script_text, env)
+        local syllabify_text_list = nil
+        if(is_english(commit_text)) then
+          syllabify_text_list = {
+            script_text,
+            commit_text,
+            to_english(commit_text),
+            to_english(script_text),
+          }
+          syllabify_text_list = table_helper.arr_remove_duplication(syllabify_text_list)
+        else
+          syllabify_text_list = get_syllabify_text_list(script_text, env)
+        end
         for i, text in pairs(syllabify_text_list) do
           e.custom_code = text
           env.mem:update_userdict(e,1,"") -- do nothing to userdict
