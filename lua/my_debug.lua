@@ -82,7 +82,9 @@ end
 function processor.func(key, env)
   local context = env.engine.context
   if(not is_option_open(env)) then
-    rime_api_helper:clear_prompt_map(context, "debug")
+    if(key:release()) then
+      rime_api_helper:clear_prompt_map(context, "debug")
+    end
     return rime_api_helper.processor_return_kNoop
   end
   if(context:is_composing()) then

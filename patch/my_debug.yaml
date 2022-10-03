@@ -1,5 +1,5 @@
 patch:
-  engine/processors/@after 0: lua_processor@my_debug_processor
+  engine/processors/@before 0: lua_processor@my_debug_processor # 最前，以更新 prompt 信息
   engine/filters/@next: lua_filter@my_debug_filter
   switches/+:
     - name: option_debug_comment_filter # 候选词详细信息
