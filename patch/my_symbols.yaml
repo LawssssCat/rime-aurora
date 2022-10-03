@@ -12,7 +12,11 @@ patch:
   back_mark:
     opencc_config: back_mark_ocm.json
     show_in_comment: true
-    tags: [ abc ] # fix: 符号自动上屏？
+    tags: [ abc, symbals ] # fix: 不包含 punct
+    excluded_types:
+      - "history"
+      - "user_phrase"
+      - "my_user_dict" # 否则 dynamic type 转换为 shadow candidate，无法记录用户字典
     tips: char
     comment_format:
       - xform/^/  /
