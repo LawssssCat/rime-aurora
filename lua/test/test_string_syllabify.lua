@@ -112,7 +112,11 @@ function M:test_syllabify_part()
   lu.assertEquals(string_syllabify.syllabify("xian", part), {"xian", "xia n", "xi an", "xi a n"})
   lu.assertEquals(string_syllabify.syllabify("xinan", part), {"xin an", "xi nan", "xin a n", "xi na n"})
   lu.assertEquals(string_syllabify.syllabify("xin an", part), {"xin an", "xi n an", "xin a n", "xi n a n"})
-  lu.assertEquals(string_syllabify.syllabify("xinaning", part), {
+  lu.assertEquals( string_syllabify.syllabify("xinaning"), {
+    "xin a ning", 
+    "xi na ning"
+  })
+  lu.assertEquals( string_syllabify.syllabify("xinaning", part), {
     "xin a ning",
     "xi na ning",
     "xin a nin g",

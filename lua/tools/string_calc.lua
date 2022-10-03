@@ -11,7 +11,8 @@ local level_map = (function()
   map["*"]=2
   map["/"]=2
   map["^"]=3 -- n次方
-  map["%"]=3 -- 开根号
+  map["@"]=3 -- 开方
+  map["%"]=3 -- 取余
   return map
 end)()
 
@@ -114,6 +115,10 @@ local function calc(postfix)
       local a = stack:pop()
       local b = stack:pop()
       stack:push(b%a)
+    elseif(item == "@") then
+      local a = stack:pop()
+      local b = stack:pop()
+      stack:push(math.log(b, a))
     else
       error("unknow operation \""..item.."\"")
     end
@@ -128,7 +133,7 @@ return {
   infix_to_postfix=infix_to_postfix,
   calc=function(str)
     -- “整体”拆分成“单独”item（中缀）
-    local infix = string_helper.pick(str, {"%d+", "[+%-*/^%%()]"})
+    local infix = string_helper.pick(str, {"%d+", "[+%-*/^@%%()]"})
     -- 中缀转后缀
     local postfix = infix_to_postfix(infix)
     local result = calc(postfix)

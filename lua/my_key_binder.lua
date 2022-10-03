@@ -53,8 +53,23 @@ local handle_run_map = {
         context:reopen_previous_selection()
         return true
       else
-        context.input = string.sub(input, 1, len-1)
-        return true
+        local input = context.input
+        local len = #input
+        local caret_pos = context.caret_pos
+        if(caret_pos == 0) then
+          logger.warn("delete inputing text. but caret_pos is 0.")
+          return false
+        end
+        if(len == caret_pos) then
+          context.input = string.sub(input, 1, len-1)
+          return true
+        else
+          local sub_a = string.sub(input, 1, caret_pos-1)
+          local sub_b = string.sub(input, caret_pos+1, len)
+          context.input = sub_a .. sub_b
+          context.caret_pos = caret_pos - 1
+          return true
+        end
       end
     end
     return false
