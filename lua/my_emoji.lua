@@ -2,6 +2,8 @@ local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
 
+local tag_emoji = "emoji"
+
 local type_emoji_tip = "emoji_tip"
 local type_emoji_opt = "emoji_opt"
 
@@ -221,7 +223,23 @@ function filter.func(input, env)
   end
 end
 
+-- ========================================= segmentor
+
+local segmentor = {}
+
+function segmentor.func(segmentation, env)
+  if(mode_opencc) then
+    local input_active = segmentation.input
+    local pos_comfirm = segmentation:get_confirmed_position()
+    local seg = Segment(pos_comfirm, #input_active)
+    seg.tags =  Set({tag_emoji})
+    segmentation:add_segment(seg)
+  end
+  return true
+end
+
 return {
   filter = filter,
   processor = processor,
+  segmentor = segmentor
 }
