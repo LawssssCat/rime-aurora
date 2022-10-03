@@ -3,13 +3,17 @@ local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
 
-local debug_option = false
-
 -- ============================================================= processor
 
 -- ----------------
 -- methods
 -- ----------------
+
+local function is_option_open(env)
+  local context = env.engine.context
+  local option = context:get_option("option_debug_comment_filter") or false -- 开关
+  return option
+end
 
 local function get_segment(env)
   local context = env.engine.context
@@ -67,21 +71,6 @@ end
 
 local processor = {}
 
-function processor.init(env)
-  local context = env.engine.context
-  env.notifiers = {
-    context.option_update_notifier:connect(function(ctx)
-      debug_option = ctx:get_option("option_debug_comment_filter") or false -- 开关
-    end),
-  }
-end
-
-function processor.fini(env)
-  for i, n in pairs(env.notifiers) do
-    n:disconnect()
-  end
-end
-
 local function add_prompts(prompts, msg_error, flag, msg)
   if(flag) then
     table.insert(prompts, msg)
@@ -92,7 +81,7 @@ end
 
 function processor.func(key, env)
   local context = env.engine.context
-  if(not debug_option) then
+  if(not is_option_open(env)) then
     rime_api_helper:clear_prompt_map(context, "debug")
     return rime_api_helper.processor_return_kNoop
   end
@@ -133,13 +122,13 @@ local function show_candidate_info(input, env)
 end
 
 function filter.func(input, env)
-  if debug_option then
-    show_candidate_info(input, env)
-  else
+  if not is_option_open(env) then
     for cand in input:iter() do
       yield(cand)
     end
+    return
   end
+  show_candidate_info(input, env)
 end
 
 return {
