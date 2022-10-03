@@ -121,8 +121,17 @@ helper.segment_status_kConfirmed = "kConfirmed"
 -- -------------------------------
 
 local prompt_map = {}
-function helper:clear_prompt_map() -- 每次 get 后 clear，否则出现多余记录
-  prompt_map = {}
+function helper:clear_prompt_map(keys) -- 每次 get 后 clear，否则出现多余记录
+  if(not keys) then
+    prompt_map = {}
+  else
+    if(type(keys) == "string") then
+      keys = {keys}
+    end
+    for i,k in pairs(keys) do
+      prompt_map[k] = nil
+    end
+  end
 end
 function helper:add_prompt_map(key, msg)
   if(prompt_map) then

@@ -49,7 +49,7 @@ function processor.func(key, env)
       table.insert(prompt_arr, msg)
     end
     segment.prompt = table.concat(prompt_arr, " ")
-    rime_api_helper:clear_prompt_map()
+    rime_api_helper:clear_prompt_map("debug")
   end
   return rime_api_helper.processor_return_kNoop
 end
