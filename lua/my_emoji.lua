@@ -39,7 +39,8 @@ local function open_mode_opencc(env)
       index = segment.selected_index,
       text = reset_text(cand.text),
       _start = cand._start,
-      _end = cand._end
+      _end = cand._end,
+      preedit = cand.preedit
     }
     mode_opencc = true
     return
@@ -259,6 +260,7 @@ function filter.func(input, env)
     local arr = uniquifyuniquify(run_opencc_list_convert_word(env, text), text)
     for i, t in pairs(arr) do 
       local cand = Candidate(type_emoji_opt, _start, _end, t, "〔"..text.."〕")
+      cand.preedit = mode_opencc_previous_cand.preedit
       yield(cand)
     end
     return
