@@ -44,9 +44,9 @@ function pure_filter.tags_match(seg, env)
   env.option_ascii_mode = context:get_option(option_name)
 
   if(env.option_ascii_mode) then
-    rime_api_helper:add_prompt_map("easy_en", "⚙(纯英文~\"Shift\"开/关)")
+    rime_api_helper:add_prompt_map(context, "easy_en", "⚙(纯英文~\"Shift\"开/关)")
   else
-    rime_api_helper:clear_prompt_map("easy_en")
+    rime_api_helper:clear_prompt_map(context, "easy_en")
   end
   return true
 end

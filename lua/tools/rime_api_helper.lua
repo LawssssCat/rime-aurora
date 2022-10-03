@@ -11,6 +11,8 @@
 ]]
 
 local logger = require("tools/logger")
+local inspect = require("tools/inspect")
+local ptry = require("tools/ptry")
 
 local helper = {}
 
@@ -120,8 +122,18 @@ helper.segment_status_kConfirmed = "kConfirmed"
 -- 消息暂存区，在 my_debug.lua 中使用
 -- -------------------------------
 
+local prompt_map_key = "prompt_map_key"
 local prompt_map = {}
-function helper:clear_prompt_map(keys) -- 每次 get 后 clear，否则出现多余记录
+local function update_property_prompt_map(context, value)
+  ptry(function()
+    context:set_property(prompt_map_key, value)
+  end)
+  ._catch(function(err)
+    error(err)
+    logger.trace(logger.ERROR, prompt_map_key, prompt_map, context, value)
+  end)
+end
+function helper:clear_prompt_map(context, keys) -- 每次 get 后 clear，否则出现多余记录
   if(not keys) then
     prompt_map = {}
   else
@@ -132,18 +144,38 @@ function helper:clear_prompt_map(keys) -- 每次 get 后 clear，否则出现多
       prompt_map[k] = nil
     end
   end
+  update_property_prompt_map(context, "clear")
 end
-function helper:add_prompt_map(key, msg)
-  if(prompt_map) then
-    prompt_map[key] = msg
-  else
-    logger.warn("prompt_map is \"nil\"")
-  end
+function helper:add_prompt_map(context, key, msg)
+  prompt_map[key] = msg
+  update_property_prompt_map(context, "add")
 end
 function helper:get_prompt_map()
   return prompt_map
 end
-
+local prompt_map_notifiers = {}
+-- setmetatable(prompt_map_notifiers, {__mode = 'v'}) -- 弱表
+function helper:add_prompt_map_notifier(context, id, func)
+  local connect = prompt_map_notifiers[id]
+  if(connect) then
+    connect:disconnect()
+  end
+  prompt_map_notifiers[id] = context.property_update_notifier:connect(function(ctx, name)
+    if(name == prompt_map_key) then
+      -- logger.warn("========", prompt_map_notifiers, name, ctx:get_property(name), ctx, ctx.input)
+      func(ctx)
+    end
+  end)
+end
+function helper:remove_prompt_map_notifier(context, id)
+  local connect = prompt_map_notifiers[id]
+  if(connect) then
+    connect:disconnect()
+    prompt_map_notifiers[id] = nil
+  else
+    logger.trace(logger.WARN, "cann't find notifier connect", id)
+  end
+end
 
 -- -------------------------------
 -- page

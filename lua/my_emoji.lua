@@ -228,12 +228,18 @@ end
 local segmentor = {}
 
 function segmentor.func(segmentation, env)
+  local context = env.engine.context
   if(mode_opencc) then
     local input_active = segmentation.input
     local pos_comfirm = segmentation:get_confirmed_position()
     local seg = Segment(pos_comfirm, #input_active)
     seg.tags =  Set({tag_emoji})
     segmentation:add_segment(seg)
+  end
+  if(mode_opencc) then
+    rime_api_helper:add_prompt_map(context, "emoji", "⚙(表情~\"Esc\"退出)")
+  else
+    rime_api_helper:clear_prompt_map(context, "emoji")
   end
   return true
 end
