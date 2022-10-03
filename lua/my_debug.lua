@@ -67,8 +67,6 @@ end
 
 local processor = {}
 
-local prompt_map_notifier_id = 0
-
 function processor.init(env)
   local context = env.engine.context
   env.notifiers = {
@@ -76,31 +74,12 @@ function processor.init(env)
       debug_option = ctx:get_option("option_debug_comment_filter") or false -- 开关
     end),
   }
-  prompt_map_notifier_id = prompt_map_notifier_id + 1
-  env.prompt_map_notifier_id = prompt_map_notifier_id
-  rime_api_helper:add_prompt_map_notifier(context, env.prompt_map_notifier_id, function(ctx)
-    -- 展示
-    local prompt_map = rime_api_helper:get_prompt_map()
-    -- 修改 prompt
-    local prompt_arr = {}
-    for key, msg in pairs(prompt_map) do
-      table.insert(prompt_arr, msg)
-    end
-    local segment = get_segment(env)
-    if(segment) then
-      segment.prompt = table.concat(prompt_arr, " ")
-    else
-      logger.warn("can't find segment.")
-    end
-  end)
 end
 
 function processor.fini(env)
   for i, n in pairs(env.notifiers) do
     n:disconnect()
   end
-  local context = env.engine.context
-  rime_api_helper:remove_prompt_map_notifier(context, env.prompt_map_notifier_id)
 end
 
 local function add_prompts(prompts, msg_error, flag, msg)

@@ -226,4 +226,5 @@ __patch:
   - patch/my_emoji:/patch          # emoji
   - patch/my_uniquifier:/patch     # 去重。【放最后】
   - patch/my_debug:/patch          # 候选词详细信息
+  - patch/my_prompt:/patch
 
