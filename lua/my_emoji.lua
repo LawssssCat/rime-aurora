@@ -145,8 +145,34 @@ function processor.func(key, env)
       end
     end
   end
-  if("space" == key:repr()) then
-    if(context:has_menu()) then
+  local repr = key:repr()
+  -- 通过数字上屏
+  if(context:has_menu() and string_helper.is_number(repr)) then
+    local flag, segment = get_segment(env)
+    if(flag) then
+      local schema = env.engine.schema
+      local page_size = schema.page_size
+      local num = tonumber(repr)
+      if(num>0 and num<=page_size) then
+        local selected_index = segment.selected_index -- 下标0开始
+        local page = math.ceil((selected_index+1)/page_size)
+        -- 上屏候选词
+        local commit_index = (page-1)*page_size + num - 1 -- 下标0开始
+        local cand = segment:get_candidate_at(commit_index)
+        if(cand) then
+          if(cand.type == type_emoji_tip) then -- -------------------------- 选择emoji事件
+            segment.selected_index = commit_index
+            open_mode_opencc(env)
+            context:refresh_non_confirmed_composition()
+            return rime_api_helper.processor_return_kAccepted
+          end
+        end
+      end
+    end
+  end
+  -- 通过 space 上屏
+  if("space" == repr) then
+    if(context:has_menu()) then -- ----------------------------------------- 选择emoji事件
       local cand = context:get_selected_candidate()
       if(cand.type == type_emoji_tip) then
         open_mode_opencc(env)
