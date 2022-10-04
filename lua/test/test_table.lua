@@ -61,10 +61,12 @@ end
 
 function M:test_for()
   local count = 0
+  local index = nil
   for index, value in pairs({1,2,3, nil, 5}) do -- skip "nil"
     count = count + 1
     lu.assertEquals(index, value)
   end
+  lu.assertEquals(index, nil)
   lu.assertEquals(count, 4)
   local t = {a=1,b=2,c=3,d="d"}
   lu.assertEquals(t, {a=1,b=2,c=3,d="d"})
@@ -75,7 +77,7 @@ function M:test_for()
   lu.assertEquals(t, {})
 end
 
-function M:test_()
+function M:test_arr_remove_duplication()
   lu.assertEquals(table_helper.arr_remove_duplication({1,2,3,4}), {1, 2, 3, 4})
   lu.assertEquals(table_helper.arr_remove_duplication({2,2,3,4}), {2, 3, 4})
   lu.assertEquals(table_helper.arr_remove_duplication({2,2,abc="22",3,4}), {2, 3, 4, "22"})

@@ -138,18 +138,26 @@ function helper.format(pattern, info)
   return result
 end
 
+-- 【首字母】是否是数字
+function helper.is_number(c)
+  local t = type(c)
+  if(t == "string") then
+    return string.match(c, "^[\x30-\x39]+$") ~= nil
+  end
+  return false
+end
+function helper.is_ascii_visible_code(c)
+  local t = type(c)
+  if(t == "number") then
+    return c>=0x20 and c<=0x7e
+  end
+  return false
+end
 -- 【首字母】是否是（可见）ascii
 function helper.is_ascii_visible(c)
-  local str = nil
-  if(type(c) == "string") then
-    str = c
-  else
-    ptry(function()
-      str = string.char(c)
-    end)
-  end
-  if(str) then 
-    return helper.is_ascii_visible_string(str)
+  local t = type(c)
+  if(t == "string") then
+    return string.match(c, "^[\x20-\x7e]$") ~= nil
   end
   return false
 end

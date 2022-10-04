@@ -16,6 +16,12 @@ function M:test_boolean()
 end
 
 function M:test_byte()
+  lu.assertEquals(string.byte("0"), 48)
+  lu.assertEquals(string.byte("0"), 0x30)
+  lu.assertEquals(string.byte("1"), 49)
+  lu.assertEquals(string.byte("1"), 0x31)
+  lu.assertEquals(string.byte("9"), 57)
+  lu.assertEquals(string.byte("9"), 0x39)
   lu.assertEquals(string.byte("a"), 97)
   lu.assertEquals(string.byte("a"), 0x61)
   lu.assertEquals(string.byte("abc"), 97)
@@ -335,9 +341,16 @@ function M:test_find()
   lu.assertError(string.find, nil, "h", 3)
 end
 
+function M:test_is_number()
+  lu.assertTrue(string_helper.is_number("0"))
+  lu.assertTrue(string_helper.is_number("1"))
+  lu.assertTrue(string_helper.is_number("9"))
+  lu.assertTrue(string_helper.is_number("10"))
+end
+
 function M:test_is_ascii_visible()
   lu.assertTrue(string_helper.is_ascii_visible("a"))
-  lu.assertTrue(string_helper.is_ascii_visible(97)) -- a
+  lu.assertFalse(string_helper.is_ascii_visible(97)) -- a
   lu.assertFalse(string_helper.is_ascii_visible(16)) -- dle
   lu.assertFalse(string_helper.is_ascii_visible(99999999))
   lu.assertFalse(string_helper.is_ascii_visible(string.char(16))) -- dle
@@ -349,6 +362,11 @@ function M:test_is_ascii_visible()
   end
   lu.assertFalse(string_helper.is_ascii_visible(string.char(127))) -- del
   lu.assertFalse(string_helper.is_ascii_visible("你"))
+end
+function M:test_is_ascii_visible_code()
+  lu.assertTrue(string_helper.is_ascii_visible_code(97)) -- a
+  lu.assertFalse(string_helper.is_ascii_visible_code(16)) -- dle
+  lu.assertFalse(string_helper.is_ascii_visible_code(99999999))
 end
 
 function M:test_is_ascii_visible_string()

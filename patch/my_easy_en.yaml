@@ -7,7 +7,7 @@ patch:
     - easy_en
 
   recognizer/patterns/+:
-    easy_en: "^[a-zA-Z][a-zA-Z\\-]*$"
+    easy_en: "^[a-zA-Z]*$"
 
   easy_en:
     dictionary: easy_en

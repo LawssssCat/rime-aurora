@@ -68,7 +68,7 @@ function processor.func(key, env)
     return rime_api_helper.processor_return_kNoop
   end
   local code = key.keycode
-  if(string_helper.is_ascii_visible(code)) then
+  if(string_helper.is_ascii_visible_code(code)) then
     local ch = utf8.char(code)
     local context = env.engine.context
     local segmentation = context.composition:toSegmentation()
