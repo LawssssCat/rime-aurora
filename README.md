@@ -18,7 +18,8 @@
 │                         （包括：用户目录、程序目录）
 │
 ├─ /patch               ⚙补丁文件夹（存放主要的扩展功能配置）
-│  └─ *.yaml
+│  ├─ ext_*.yaml           🍮补丁：方案会通过`__include`引用其中配置
+│  └─ my_*.yaml            🍮补丁：方案会通过`__patch`引用其中配置
 ├─ /opencc              ⚙提供字符转换、comment功能
 │  ├─ *.txt                字典文件，由`npm run sort`生成，被*.json引用
 │  ├─ *.yml                字典源
@@ -33,7 +34,6 @@
 │
 ├─ *.schema.yaml        💠方案配置文件（✨核心、入口） 
 ├─ *.custom.yaml        🍮补丁：内容会覆盖对应的*.schema.yaml文件
-├─ ext_*.yaml           🍮补丁：方案会通过`__include`引用其中配置（方便配置管理）
 ├─ *.gram               语法模型，在schema中用grammar引用
 ├─ rime.lua             入口文件，定义schema引用的lua脚本对应关系
 ├─ default.custom.yaml  设置输入法菜单（menu）
