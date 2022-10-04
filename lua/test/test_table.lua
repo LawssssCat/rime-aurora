@@ -1,5 +1,7 @@
 assert(lu, "请通过 test/init.lua 运行本测试用例")
 
+local table_helper = require("tools/table_helper")
+
 local M = {}
 
 function M:test_equal()
@@ -12,6 +14,19 @@ end
 function M:test_remove()
   local my_table = {"hello", "world"}
   lu.assertEquals(table.remove(my_table, 1), "hello")
+  lu.assertEquals(my_table, {"world"})
+  -------------------------
+  -- remove 会影响遍历
+  local my_table = {"hello", "world"}
+  local count = 1
+  for i, v in pairs(my_table) do
+    lu.assertEquals(i, count)
+    lu.assertEquals(v, my_table[i])
+    local rv = table.remove(my_table, i)
+    lu.assertEquals(v, rv)
+    count = count + 1
+  end
+  lu.assertEquals(count, 2)
   lu.assertEquals(my_table, {"world"})
 end
 
@@ -27,8 +42,8 @@ end
 function M:test_len()
   lu.assertEquals(#{1}, 1)
   lu.assertEquals(#{1,2,3}, 3)
-  lu.assertEquals(#{nil}, 0) -- 0000000000000000
-  lu.assertEquals(#{1,2,3,nil,4,5,6}, 7)
+  lu.assertEquals(#{nil}, 0) -- 0000000000000000 -- 当没有其他 item 时，不包括 nil
+  lu.assertEquals(#{1,2,3,nil,4,5,6}, 7)         -- 当有其他 item 时，包括 nil
   lu.assertEquals(#{1,2,3,nil,4,5,6,a="a",7}, 8)
 end
 
@@ -51,6 +66,22 @@ function M:test_for()
     lu.assertEquals(index, value)
   end
   lu.assertEquals(count, 4)
+  local t = {a=1,b=2,c=3,d="d"}
+  lu.assertEquals(t, {a=1,b=2,c=3,d="d"})
+  lu.assertEquals(#t, 0)
+  for k,v in pairs(t) do
+    t[k] = nil
+  end
+  lu.assertEquals(t, {})
+end
+
+function M:test_()
+  lu.assertEquals(table_helper.arr_remove_duplication({1,2,3,4}), {1, 2, 3, 4})
+  lu.assertEquals(table_helper.arr_remove_duplication({2,2,3,4}), {2, 3, 4})
+  lu.assertEquals(table_helper.arr_remove_duplication({2,2,abc="22",3,4}), {2, 3, 4, "22"})
+  local a = {2,2,3,4}
+  a["qq"] = "33"
+  lu.assertEquals(table_helper.arr_remove_duplication(a), {2, 3, 4, "33"})
 end
 
 return M

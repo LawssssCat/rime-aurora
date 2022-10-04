@@ -15,6 +15,7 @@
   ```
 --]]
 
+local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 
 local processor = {}

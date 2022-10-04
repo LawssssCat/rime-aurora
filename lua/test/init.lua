@@ -76,6 +76,7 @@ print("==================[test config]=====================")
 -- string
 test_basic = require("test/test_basic")
 test_string = require("test/test_string")
+test_utf8 = require("test/test_utf8")
 -- 异常
 test_error = require("test/test_error")
 -- ptry：异常链式处理
@@ -101,8 +102,10 @@ test_linked_list = require("test/test_linked_list")
 test_cycle_list = require("test/test_cycle_list")
 test_stack = require("test/test_stack")
 -- regex -- 更新 librime-lua，引入 rime_api.regex_match(str, pattern)
--- calc
+-- 计算
 test_string_calc = require("test/test_string_calc")
+-- 音节分词
+test_string_syllabify = require("test_string_syllabify")
 
 -- ----------------------------------------------------------------
 --                  测试 - 运行

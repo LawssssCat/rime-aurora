@@ -66,18 +66,21 @@
 
     ![输入法英文预览](./.github/assets/preview-easy_en.png)
 
-    todo 中途按 “`shift`” 切换 “纯英文模式”
+    按 “`shift`” 切换 “纯英文模式”
+
+    ![输入法英文（纯英文模式）预览](./.github/assets/preview-easy_en-pure.png)
 
     todo 优化 https://github.com/shewer/librime-lua-script/issues/5
 
-3. “`/`” 前缀：符号 & 表情 & 颜表情
+3. 子列表展示：emoji 表情 & 颜表情
 
-    todo 
+    ![emoji预览](./.github/assets/preview-emoji.gif)
+
+1. 上屏记忆
+
+    提交上屏的词汇，再次输入会显示在较前的位置
 
 4. 动态候选词
-    
-    ![输入法系统时间预览gif](./.github/assets/preview-luatime-compress.gif) 
-    todo gif更新
 
     - [x] 输入 "/rq"、"/sj"、"/xq" 可显示当前系统时间
     - [x] 输入 "/history" 可显示输入历史
@@ -86,21 +89,96 @@
     - [ ] 输入 "/ascii" 可打印 ascii 表
     - [ ] 输入 "/table" 可打印不同格式的表格框架
 
+1. LaTeX
+
+    todo https://github.com/shenlebantongying/rime_latex
+
 5. CJK字符集提示（开启关闭：F4选择/快捷键 `Ctrl+7`）
 
 1. 候选词详情提示（开启关闭：F4选择/快捷键 `Ctrl+8`）
 
     ![输入法调试快捷键预览gif](./.github/assets/preview-debug-preview-compress.gif)
 
-    ![输入法调试快捷键预览](./.github/assets/preview-debug-preview.png)
-
 1.  网站提示
 
-    todo 
+    ![网站提示预览](./.github/assets/preview-url.png)
 
 6. 词联想
 
     todo
+
+    https://github.com/shewer/librime-lua-script
+
+    https://github.com/rime/librime/issues/65
+
+    https://github.com/rime/librime/issues/568
+
+## 按键说明
+
+1. 全局 - `F4` - 选择方案和其选项开关
+1. 全局 - `` ` `` -  开启五笔反查模式（横竖撇捺折 => 一丨丿丶乙 => hspnz）
+1. 选词 - `shift` - 开启纯英文模式 💡
+1. 选词 - `shift+↩️（回车）` 上屏右侧提示信息 💡
+1. 选词 - `shift+⬆️（上）` 或 `shift+⬇️（下）` - 翻页 💡
+1. 选词 - `shift + <num 7~0>` - 设置四声（ā á ă à）（仅地球拼音支持）
+1. 选词 - `shift + 🆑（Delete：小键盘删除键）` - 删除选词的用户字典记录 💡
+
+## 安装方法
+
+### 步骤一：拷贝文件到“用户文件夹📁”
+
+<img src='./.github/assets/userdata-opt.png'  align='right'></img>
+
+把项目文件全部复制到“用户文件夹📁”（右图，左键点击小图标可见）
+
+```yml
+# 不同系统中，“用户文件夹📁”的一般路径
+%APPDATA%\Rime  ( Windows 小狼毫 )
+~/Library/Rime  ( Mac OS 鼠鬚管 )
+~/.config/ibus/rime  ( Linux 中州韻 )
+~/.config/fcitx/rime  ( Linux )
+```
+
+<div style='clear: both;'></div>
+
+### 步骤二：**更新 librime-lua** 📄
+
+准备 rime.dll （从`/librime-lua`中取备份文件，或者下载[最新版本](https://github.com/hchunhui/librime-lua/actions)），然后将 rime.dll 文件覆盖到 weasel 安装目录下，即可。
+
+> 相关资料
+> 
+> + wiki <https://github.com/hchunhui/librime-lua/wiki#installation>
+> + issue <https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242955543>
+
+> ⚠️ 说明
+>
+>[librime-lua 插件](https://github.com/hchunhui/librime-lua)提供了输入法程序运行时执行 lua 脚本功能。
+>
+>其内容[已经被 librime 添加进项目编译](https://github.com/rime/librime/blob/master/.github/workflows/release-ci.yml#L21)，会随著输入法版本发布，[不需再额外安装](https://github.com/hchunhui/librime-lua/issues/41)。
+>
+>但由于代码需要测试，官网下载最新版的输入法版本所包含的 [librime-lua 插件版本会偏旧](https://github.com/hchunhui/librime-lua/issues/43)，本方案许多功能无法实现。因此体验本方案完整功能需要[更新 librime-lua 插件](https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242881504)。
+
+### 步骤三：**重新部署** ⚙
+
+<img src='./.github/assets/redeploy-opt.png'  align='right'></img>
+
+点击 “重新部署” ⚙ 即可。（右图，左键点击小图标可见）
+
+> ⚠️ 注意
+>
+> 『第一次』部署需要不少时间（大概10min），因为引用了大量的 dict 码表<br>
+>（需要编译成 `build/*.table.bin` 文件）
+>
+> 可以选择减少编译的 dict 码表，以缩短编译时间：
+>
+> 打开下述文件，将 `import_tables` 中不需要的码表注释掉即可<br>
+> （注释：行首添加 "`#`" 符号）
+>
+> + `my_luna_pinyin.dict.yaml`
+> + `my_terra_pinyin.dict.yaml`
+添加了不少的词汇
+
+<div style='clear: both;'></div>
 
 ## 方案说明
 
@@ -125,50 +203,6 @@
 默认使用系统字体，可能出现字大小不一的的情况。
 
 可以根据 `font` 目录的 [文档](./font/README.md) 设置字体。
-
-## 按键说明
-
-1. 全局 - `F4` - 选择方案和其选项开关
-1. 全局 - `` ` `` -  开启五笔反查模式（横竖撇捺折 => 一丨丿丶乙 => hspnz）
-1. 选词 - `shift` - 开启纯英文模式
-1. 选词 - `shift+↩️（回车）` 上屏右侧提示信息
-1. 选词 - `shift+⬆️（上）` 或 `shift+⬇️（下）` - 翻页
-1. 选词 - `shift + <num 7~0>` - 设置四声（ā á ă à）（仅地球拼音支持）
-
-## 安装方法
-
-### 步骤一：拷贝文件📄到“用户文件夹📁”
-
-<img src='./.github/assets/userdata-opt.png'  align='right'></img>
-
-把项目文件全部复制到“用户文件夹📁”（右图，右键点击小图标可见），然后点击“重新部署”即可。
-
-```yml
-# 不同系统中，“用户文件夹📁”的一般路径
-%APPDATA%\Rime  ( Windows 小狼毫 )
-~/Library/Rime  ( Mac OS 鼠鬚管 )
-~/.config/ibus/rime  ( Linux 中州韻 )
-~/.config/fcitx/rime  ( Linux )
-```
-
-<div style='clear: both;'></div>
-
-### 步骤二：**更新 librime-lua**
-
-准备 rime.dll （从`/librime-lua`中取备份文件，或者下载[最新版本](https://github.com/hchunhui/librime-lua/actions)），然后将 rime.dll 文件覆盖到 weasel 安装目录下，即可。
-
-> 相关资料
-> 
-> + wiki <https://github.com/hchunhui/librime-lua/wiki#installation>
-> + issue <https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242955543>
-
-> ⚠️ 说明
->
->[librime-lua 插件](https://github.com/hchunhui/librime-lua)提供了输入法程序运行时执行 lua 脚本功能。
->
->其内容[已经被 librime 添加进项目编译](https://github.com/rime/librime/blob/master/.github/workflows/release-ci.yml#L21)，会随著输入法版本发布，[不需再额外安装](https://github.com/hchunhui/librime-lua/issues/41)。
->
->但由于代码需要测试，官网下载最新版的输入法版本所包含的 [librime-lua 插件版本会偏旧](https://github.com/hchunhui/librime-lua/issues/43)，本方案许多功能无法实现。因此体验本方案完整功能需要[更新 librime-lua 插件](https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242881504)。
 
 ## 其他
 
@@ -228,6 +262,8 @@ bash tools/tailLog.sh
 > + [x] 洋葱方案 - <https://github.com/oniondelta/Onion_Rime_Files><br>
 >（注音、雙拼、拼音、形碼、行列30）<br>
 > + [x] 行列30 - <https://github.com/rime/rime-array>
+> + [ ] 融合拼音(rime_melt) - <https://github.com/tumuyan/rime-melt>
+> + [x] 可混输的英文输入法 - <https://github.com/BlindingDark/rime-easy-en>
 > + [ ] 流星追月 - <https://github.com/zhuangzhemin/rime><br>
 > （小鹤双拼为主）
 > + [ ] 星空键道6 - <https://github.com/xkinput/Rime_JD><br>
@@ -245,6 +281,10 @@ bash tools/tailLog.sh
 >
 > + 酥梨小鹤 - <https://github.com/zodensu/FlyPY-zodensu>
 
+> 语言模型
+>
+> + 八股文（語法） - <https://github.com/lotem/rime-octagram-data/tree/hans>
+
 > lua脚本
 >
 > + hchunhui/librime-lua - <https://github.com/hchunhui/librime-lua><br>
@@ -261,9 +301,13 @@ bash tools/tailLog.sh
 > 英文
 > + <https://ssnhd.com/2022/01/06/sogou-dict/><br>
 > 搜狗词库转换方法（支持多家输入法）
+> + <https://github.com/studyzy/imewlconverter><br>
+> 深蓝词库转换
 
 > 插件
-> + <https://github.com/hchunhui/librime-lua>
+> + 〖lua脚本〗执行插件 - <https://github.com/hchunhui/librime-lua>
+> + 优化分句体验 - <https://github.com/TsinamLeung/librime-sentencer>
+> + 〖八股文〗語法插件 - <https://github.com/lotem/librime-octagram>
 > + ~~<https://github.com/hchunhui/librime-cloud>~~
 
 > 已知问题：
@@ -280,17 +324,20 @@ bash tools/tailLog.sh
 > - [ ] 2022年09月20日<br>
 > weasel不显示彩色emoji<br>
 > （需要微软独家的DirectWrite字体渲染引擎才能支持彩色emoji）
+> - [ ] 2022年09月30日<br>
+> prompt 随 caret 移动问题<br>
+> <https://github.com/rime/weasel/issues/775>
+> - [x] 2022年09月30日<br>
+> emoji 太多类似的，影响正常候选词。<br>（喧宾夺主）<br>
+>  2022年10月04日<br>
+>  增加子菜单功能。（emoji显示再子菜单）
 
 > 待优化问题：
 >
 > - [ ] 英文大写不提示小写信息
-> - [ ] 网址提示
+> - [x] 网址提示 <br>
+> => 用户字典记录输入的网址，再次输入提示
 > - [ ] 提示未完整 symbols 候选词、并显示各分类含义
-> - [ ] 去重不完整（可能是提示词不一样导致的）
-> - [ ] 表情 emoji 不直接提示，而是添加前缀后提示
-> - [ ] 记词
-> - [ ] 删词
-> - [ ] 联想词
->   - https://github.com/shewer/librime-lua-script
->   - https://github.com/rime/librime/issues/65
->   - https://github.com/rime/librime/issues/568
+> - [x] 去重不完整：uniquifier应尽量放后
+> - [x] 记词
+> - [x] 删词

@@ -28,12 +28,18 @@ local handle_run_map = {
   end,
   select = function(env, action)
     local context = env.engine.context
+    if(not context:has_menu()) then
+      context:commit()
+      return true
+    end
     local composition = context.composition
     if(not composition:empty()) then
       local segment = composition:back()
       local index = segment.selected_index
       context:select(index)
       return true
+    else
+      logger.warn("fail to handle. \""..context.input.."\"")
     end
     return false
   end,
@@ -47,9 +53,36 @@ local handle_run_map = {
         context:reopen_previous_selection()
         return true
       else
-        context.input = string.sub(input, 1, len-1)
-        return true
+        local input = context.input
+        local len = #input
+        local caret_pos = context.caret_pos
+        if(caret_pos == 0) then
+          logger.warn("delete inputing text. but caret_pos is 0.")
+          return false
+        end
+        if(len == caret_pos) then
+          context.input = string.sub(input, 1, len-1)
+          return true
+        else
+          local sub_a = string.sub(input, 1, caret_pos-1)
+          local sub_b = string.sub(input, caret_pos+1, len)
+          context.input = sub_a .. sub_b
+          context.caret_pos = caret_pos - 1
+          return true
+        end
       end
+    end
+    return false
+  end,
+  delete_candidate = function(env)
+    local context = env.engine.context
+    local composition = context.composition
+    if(not composition:empty()) then
+      local segment = composition:back()
+      local selected_index = segment.selected_index
+      context:delete_current_selection()
+      segment.selected_index = selected_index
+      return true
     end
     return false
   end
@@ -60,6 +93,7 @@ local processor = {}
 function processor.init(env)
   local config = env.engine.schema.config
   env.key_binder_list = rime_api_helper:get_config_item_value(config, env.name_space .. "/bindings")
+  env.mem = Memory(env.engine,env.engine.schema)
 end
 
 function processor.func(key, env)

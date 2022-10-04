@@ -51,8 +51,7 @@ engine:
     - reverse_lookup_translator         # ※ 反查翻譯器，用另一種編碼方案查碼
     - script_translator                 # ※ 腳本翻譯器，用於拼音、粵拼等等基於音節表的輸入方案●此項可加載多個實例，後接@+翻譯器名〔如：pinyin、jyutping等〕
   filters: # 四、這批組件過濾翻譯的結果
-    - simplifier                      # ※ 繁簡轉換
-    - uniquifier                      # ※ 過濾重複的候選字，有可能來自繁簡轉換
+    __include: ext_filters:/patch/filters
 
 speller:
   # alphabet: zyxwvutsrqponmlkjihgfedcba
@@ -110,14 +109,18 @@ recognizer:
 grammar: # 语法模型
   language: zh-hant-t-essay-bgw
 
-__patch:
+__patch: # 顺序有讲究
   - patch/my_common:/patch
   - patch/my_matcher:/patch
-  - patch/my_easy_en:/patch        # 英文
+  - patch/my_easy_en:/patch        # 英文（需放在debug后）
   - symbols:/patch                 # 符号
   - patch/my_symbols:/patch        # 符号扩展
+  - patch/my_user_dict:/patch      # 查询用户字典
   - patch/my_punctuator:/patch     # 标点
+  - patch/my_code:/patch           # 输入编码处理（多音字扩展）
   - patch/my_charset:/patch        # 字符集
-  - patch/my_debug:/patch          # 候选词详细信息
   - patch/my_key_binder:/patch     # 快捷键
   - patch/my_emoji:/patch          # emoji
+  - patch/my_uniquifier:/patch     # 去重。【放最后】
+  - patch/my_prompt:/patch
+  - patch/my_debug:/patch          # 候选词详细信息

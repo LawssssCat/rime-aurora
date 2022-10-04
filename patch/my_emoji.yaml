@@ -1,17 +1,11 @@
+# 关于 emoji 列表
 patch:
-  # engine/translators/@next: lua_translator@my_emoji_translator
-  engine/filters/+:
-    - simplifier@emoji_suggestion     # emoji表情
-    - simplifier@kemoji_suggestion    # 颜表情
-  # emoji，按 F4 选择是否打开
-  emoji_suggestion:
-    opencc_config: emoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
-    # option_name: emoji_suggestion # 对应 switches 中的 name
-    tips: all # 字符转换范围
-  # 颜表情
-  kemoji_suggestion:
-    opencc_config: kemoji.json # 位于 %rime_dir%/opencc/ 的字符转换配置文件
-    # option_name: kemoji_suggestion # 对应 switches 中的 name
-    tips: all # 字符转换范围
-    # comment_format:
-    #   - xform/&@_/ /
+  engine/segmentors/@after 0: lua_segmentor@my_emoji_segmentor
+  engine/filters/@next: lua_filter@my_emoji_filter@my_emoji
+  engine/processors/@before 0: lua_processor@my_emoji_processor
+  my_emoji:
+    opencc_config:
+      - emoji.json
+      - kemoji.json
+      - symbol.json
+    excluded_types: ["history"]
