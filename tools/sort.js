@@ -38,6 +38,7 @@ runOpencc([
   'emoji_category.yml',
   'emoji_word.yml',
   'emoji_2021t.yml',
+  'emoji_getemoji.yml'
 ], 
 'emoji_all.txt');
 // kemoji 颜表情
