@@ -156,7 +156,9 @@
 >
 >其内容[已经被 librime 添加进项目编译](https://github.com/rime/librime/blob/master/.github/workflows/release-ci.yml#L21)，会随著输入法版本发布，[不需再额外安装](https://github.com/hchunhui/librime-lua/issues/41)。
 >
->但由于代码需要测试，官网下载最新版的输入法版本所包含的 [librime-lua 插件版本会偏旧](https://github.com/hchunhui/librime-lua/issues/43)，本方案许多功能无法实现。因此体验本方案完整功能需要[更新 librime-lua 插件](https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242881504)。
+>但由于代码需要测试，官网下载最新版的输入法版本所包含的 [librime-lua 插件版本会偏旧](https://github.com/hchunhui/librime-lua/issues/43)，本方案许多功能无法实现。
+>
+>**因此体验本方案完整功能需要[更新 librime-lua 插件](https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242881504)。**
 
 ### 步骤三：**重新部署** ⚙
 
@@ -176,7 +178,6 @@
 >
 > + `my_luna_pinyin.dict.yaml`
 > + `my_terra_pinyin.dict.yaml`
-添加了不少的词汇
 
 <div style='clear: both;'></div>
 

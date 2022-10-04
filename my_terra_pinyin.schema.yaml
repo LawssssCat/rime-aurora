@@ -42,16 +42,16 @@ switches:
 
 engine:
   processors:
-    __include: ext_processors:/patch/processors
+    __include: patch/ext_processors:/patch/processors
   segmentors:
-    __include: ext_segmentors:/patch/segmentors
+    __include: patch/ext_segmentors:/patch/segmentors
   translators:
     - punct_translator
     - table_translator@custom_phrase
     - reverse_lookup_translator
     - script_translator
   filters:
-    __include: ext_filters:/patch/filters
+    __include: patch/ext_filters:/patch/filters
 
 speller:
   # &*() 声调
@@ -89,12 +89,12 @@ speller:
     # - 'derive/^(.*)\\$/$1>/'
   __patch:
     algebra/+:
-      __include: ext_speller:/speller/algebra
+      __include: patch/ext_speller:/speller/algebra
 
 translator:
   dictionary: my_terra_pinyin
   contextual_suggestions: true # 是否使用語言模型優化輸出結果〔需配合grammar使用〕
-  __include: ext_translator:/translator
+  __include: patch/ext_translator:/translator
   preedit_format:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/

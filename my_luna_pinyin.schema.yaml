@@ -41,9 +41,9 @@ switches:
 
 engine:
   processors: # 一、這批組件處理各類 ●按鍵 消息
-    __include: ext_processors:/patch/processors
+    __include: patch/ext_processors:/patch/processors
   segmentors: # 二、這批組件識別不同內容類型，將輸入碼分段
-    __include: ext_segmentors:/patch/segmentors
+    __include: patch/ext_segmentors:/patch/segmentors
   translators: # 三、這批組件翻譯特定類型的編碼段爲一組候選文字
     # - echo_translator # ※ 沒有其他候選字時，回顯輸入碼〔輸入碼可以Shift+Enter上屛〕
     - punct_translator                  # ※ 轉換標點符號
@@ -51,7 +51,7 @@ engine:
     - reverse_lookup_translator         # ※ 反查翻譯器，用另一種編碼方案查碼
     - script_translator                 # ※ 腳本翻譯器，用於拼音、粵拼等等基於音節表的輸入方案●此項可加載多個實例，後接@+翻譯器名〔如：pinyin、jyutping等〕
   filters: # 四、這批組件過濾翻譯的結果
-    __include: ext_filters:/patch/filters
+    __include: patch/ext_filters:/patch/filters
 
 speller:
   # alphabet: zyxwvutsrqponmlkjihgfedcba
@@ -67,7 +67,7 @@ speller:
     - xform/^([b-df-hj-np-tv-z])$/$1_/
   __patch:
     algebra/+:
-      __include: ext_speller:/speller/algebra
+      __include: patch/ext_speller:/speller/algebra
 
 translator:
   dictionary: my_luna_pinyin
@@ -76,7 +76,7 @@ translator:
   # max_homophones: 7 # 最大同音簇長度〔需配合grammar使用〕
   # translator/max_homographs: 7 # 最大同形簇長度〔需配合grammar使用〕
   ##################
-  __include: ext_translator:/translator
+  __include: patch/ext_translator:/translator
 
 custom_phrase: # 功能：自定义短语 custom_phrase.txt
   dictionary: ""
