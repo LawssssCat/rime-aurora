@@ -146,13 +146,14 @@ function processor.func(key, env)
     end
   end
   local repr = key:repr()
+  local _repr = string_helper.replace(repr, "KP_", "", true) -- fix: KP_ => 小键盘
   -- 通过数字上屏
-  if(context:has_menu() and string_helper.is_number(repr)) then
+  if(context:has_menu() and string_helper.is_number(_repr)) then
     local flag, segment = get_segment(env)
     if(flag) then
       local schema = env.engine.schema
       local page_size = schema.page_size
-      local num = tonumber(repr)
+      local num = tonumber(_repr)
       if(num>0 and num<=page_size) then
         local selected_index = segment.selected_index -- 下标0开始
         local page = math.ceil((selected_index+1)/page_size)
