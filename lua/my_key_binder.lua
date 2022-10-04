@@ -4,7 +4,7 @@ local ptry = require("tools/ptry")
 local string_helper = require("tools/string_helper")
 
 local handle_run_map = {
-  Page_Up = function(env)  -- 上一页
+  Page_Up = function(key, env)  -- 上一页
     local schema = env.engine.schema
     local composition = env.engine.context.composition
     if(not composition:empty()) then
@@ -15,7 +15,7 @@ local handle_run_map = {
     end
     return false
   end,
-  Page_Down = function(env) -- 下一页
+  Page_Down = function(key, env) -- 下一页
     local schema = env.engine.schema
     local composition = env.engine.context.composition
     if(not composition:empty()) then
@@ -26,7 +26,7 @@ local handle_run_map = {
     end
     return false
   end,
-  select = function(env, action)
+  select = function(key, env, action)
     local context = env.engine.context
     if(not context:has_menu()) then
       context:commit()
@@ -43,7 +43,7 @@ local handle_run_map = {
     end
     return false
   end,
-  delete = function(env)
+  delete = function(key, env)
     local context = env.engine.context
     local composition = context.composition
     local input = context.input
@@ -74,7 +74,7 @@ local handle_run_map = {
     end
     return false
   end,
-  delete_candidate = function(env)
+  delete_candidate = function(key, env)
     local context = env.engine.context
     local composition = context.composition
     if(not composition:empty()) then
@@ -85,6 +85,13 @@ local handle_run_map = {
       return true
     end
     return false
+  end,
+  push_input = function(key, env)
+    local context = env.engine.context
+    local code = key.keycode
+    local ch = utf8.char(code)
+    context:push_input(ch)
+    return true
   end
 }
 
@@ -148,7 +155,7 @@ function processor.func(key, env)
           local _run = action.run
           local handler = handle_run_map[_run]
           if(handler) then
-            local result = handler(env, action)
+            local result = handler(key, env, action)
             if(not (result == false)) then
               match_key = true
             end
