@@ -112,7 +112,7 @@ function processor.func(key, env)
     else
       -- 操作
       local repr = key:repr()
-      if("Escape"==repr or "BackSpace"==repr) then
+      if("Escape"==repr or "BackSpace"==repr or "Left" == repr) then
         -- 删除
         local index = mode_opencc_previous_cand.index
         reset_mode_opencc(env)
