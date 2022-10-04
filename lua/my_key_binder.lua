@@ -1,7 +1,20 @@
+-- ------------------------
+-- 快捷键相关功能
+-- ------------------------
+
 local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local ptry = require("tools/ptry")
 local string_helper = require("tools/string_helper")
+
+-- ----------------------------
+-- 功能 run 列表
+--[[
+  @return 
+    ture  run 成功，接收 keyEvent
+    false run 失败，匹配其他功能
+]]
+-- ----------------------------
 
 local handle_run_map = {
   Page_Up = function(key, env)  -- 上一页
@@ -95,6 +108,67 @@ local handle_run_map = {
   end
 }
 
+-- -----------------------------
+-- 匹配『事件』列表
+--[[
+  @return
+    true  交给下一个匹配。最后一个 true 代表匹配成功
+    false 匹配失败
+]]
+-- -----------------------------
+
+local key_binder_matching_chains = {
+  function(key, env, index, action) -- accept
+    if(action.accept == key:repr()) then
+      return true
+    end
+    return false
+  end,
+  function(key, env, index, action) -- when
+    local context = env.engine.context
+    local _when = action.when
+    if(_when) then
+      if(_when == "always") then
+        return true
+      end
+      if(_when == "has_menu") then
+        if(context:has_menu()) then
+          return true
+        end
+        return false
+      end
+      if(_when == "composing") then
+        if(context:is_composing()) then
+          return true
+        end
+        return false
+      end
+      error(string.format("unknow action when \"%s\"", _when))
+    end
+    return true
+  end,
+  function(key, env, index, action) -- option
+    local context = env.engine.context
+    local _option = action.option
+    if(_option) then
+      return context:get_option(_option)
+    end
+    return true
+  end,
+  -- 【 action 放最后】
+  function(key, env, index, action) -- action
+    -- send
+    local _run = action.run
+    local handler = handle_run_map[_run]
+    if(handler) then
+      return handler(key, env, action)
+    end
+    error(string.format("unknow action run \"%s\"", _run))
+  end
+}
+
+-- ======================================= processor
+
 local processor = {}
 
 function processor.init(env)
@@ -104,73 +178,35 @@ function processor.init(env)
 end
 
 function processor.func(key, env)
-  local context = env.engine.context
-
-  -- editor
   local match_key = false
   if(env.key_binder_list) then
-    for index, action in pairs(env.key_binder_list) do 
-      ptry(function() -- accept
-        if(action.accept == key:repr()) then
-          return true
-        end
-      end)
-      ._then(function(result) -- when
-        if(result) then
-          local _when = action.when
-          local _match = false
-          if(_when == "always") then
-            _match = true
-            return true
-          end
-          if(_when == "has_menu") then
-            _match = true
-            if(context:has_menu()) then
-              return true
-            end
-          end
-          if(_when == "composing") then
-            _match = true
-            if(context:is_composing()) then
-              return true
-            end
-          end
-          if(not _match) then
-            error(string.format("unknow action when \"%s\"", _when))
+    local status_index = 0
+    local status_action = nil
+    ptry(function()
+      -- 匹配配置
+      for index, action in pairs(env.key_binder_list) do 
+        status_index = index
+        status_action = action
+        local flag_match = false
+        -- 匹配配置项目
+        for jndex, match in pairs(key_binder_matching_chains) do
+          flag_match = match(key, env, index, action)
+          if(not flag_match) then
+            break
           end
         end
-        return false
-      end)
-      ._then(function(result) -- option
-        if(result) then
-          local _option = action.option
-          return not _option -- 没有设置 option 则直接下一步
-            or context:get_option(_option)
+        -- 匹配配置 - 成功
+        if(flag_match) then
+          match_key = true
+          break
         end
-        return false
-      end)
-      ._then(function(result) -- action
-        if(result) then
-          -- send
-          local _run = action.run
-          local handler = handle_run_map[_run]
-          if(handler) then
-            local result = handler(key, env, action)
-            if(not (result == false)) then
-              match_key = true
-            end
-            return
-          end
-          error(string.format("unknow action run \"%s\"", _run))
-        end
-      end)
-      ._catch(function(err) -- error
-        match_key = false
-        logger.error(err, action)
-      end)
-    end
+      end
+    end)
+    ._catch(function(err) -- error
+      match_key = false
+      logger.error(err, status_index, status_action)
+    end)
   end
-
   if(match_key) then
     return rime_api_helper.processor_return_kAccepted
   else
