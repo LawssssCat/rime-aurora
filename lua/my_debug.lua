@@ -26,6 +26,17 @@ local function get_segment(env)
   return nil
 end
 
+-- 时间 信息
+local time_start = nil
+local function set_time_start()
+  time_start = os.clock()
+end
+local function get_time_duration()
+  local time_end = os.clock()
+  local duration = time_end - time_start
+  return duration -- 毫秒
+end
+
 -- 标签 信息
 local function get_msg_tags(env)
   local segment = get_segment(env)
@@ -87,6 +98,7 @@ function processor.func(key, env)
     end
     return rime_api_helper.processor_return_kNoop
   end
+  set_time_start() -- 计时开始 ⏳
   if(context:is_composing()) then
     local prompts = {}
     -- 标签
@@ -108,6 +120,10 @@ function filter.init(env)
 end
 
 local function show_candidate_info(input, env)
+  local context = env.engine.context
+  -- 时间间隔 processor => filter
+  local p_2_f_duartion = get_time_duration() -- 计时结束 ⏳
+  rime_api_helper:add_prompt_map(context, "debug_duration", string.format("⏱️:%0.4fs", p_2_f_duartion))
   for cand in input:iter() do
     -- 整理 info
     local info = {
