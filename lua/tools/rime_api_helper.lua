@@ -150,6 +150,9 @@ function helper:add_prompt_map(context, key, msg)
   prompt_map[key] = msg
   update_property_prompt_map(context, "add")
 end
+function helper:get_prompt_map_item(key)
+  return prompt_map[key]
+end
 function helper:get_prompt_map()
   return prompt_map
 end

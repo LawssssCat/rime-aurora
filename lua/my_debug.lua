@@ -93,7 +93,7 @@ end
 function processor.func(key, env)
   local context = env.engine.context
   if(not is_option_open(env)) then
-    if(key:release()) then
+    if(key:release() and rime_api_helper:get_prompt_map_item("debug")) then
       rime_api_helper:clear_prompt_map(context, "debug")
     end
     return rime_api_helper.processor_return_kNoop
@@ -120,10 +120,6 @@ function filter.init(env)
 end
 
 local function show_candidate_info(input, env)
-  local context = env.engine.context
-  -- 时间间隔 processor => filter
-  local p_2_f_duartion = get_time_duration() -- 计时结束 ⏳
-  rime_api_helper:add_prompt_map(context, "debug_duration", string.format("⏱️:%0.4fs", p_2_f_duartion))
   for cand in input:iter() do
     -- 整理 info
     local info = {
@@ -140,12 +136,18 @@ local function show_candidate_info(input, env)
 end
 
 function filter.func(input, env)
+  local context = env.engine.context
   if not is_option_open(env) then
+    if(rime_api_helper:get_prompt_map_item("duration")) then
+      rime_api_helper:clear_prompt_map(context, "duration")
+    end
     for cand in input:iter() do
       yield(cand)
     end
     return
   end
+  -- 时间间隔 processor => filter
+  rime_api_helper:add_prompt_map(context, "duration", string.format("⏱️:%0.4fs", get_time_duration())) -- 计时结束 ⏳
   show_candidate_info(input, env)
 end
 
