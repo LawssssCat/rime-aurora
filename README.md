@@ -99,6 +99,8 @@
 
     ![输入法调试快捷键预览gif](./.github/assets/preview-debug-preview-compress.gif)
 
+    ![输入法调试快捷键预览png](./.github/assets/preview-debug-preview.png)
+
 1.  网站提示
 
     ![网站提示预览](./.github/assets/preview-url.png)
