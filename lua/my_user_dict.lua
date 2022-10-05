@@ -15,6 +15,9 @@ local function get_tags(env)
       table.insert(tags, tag)
     end
   end
+  function tags:empty()
+    return #self == 0
+  end
   function tags:include(tag)
     for i, t in pairs(self) do
       if(tag == t) then
@@ -69,7 +72,8 @@ function translator.init(env)
   env.mem = Memory(env.engine,env.engine.schema)  --  ns= "translator"
   env.notifiers = {
     context.commit_notifier:connect(function(ctx)
-      if(get_tags(env):include_one(env.excluded_tags)) then -- 不记录
+      local tags = get_tags(env)
+      if(tags:empty() or tags:include_one(env.excluded_tags)) then -- 不记录
         return
       end
       local commit_text = ctx:get_commit_text()

@@ -26,6 +26,17 @@ local function get_segment(env)
   return nil
 end
 
+-- 时间 信息
+local time_start = nil
+local function set_time_start()
+  time_start = os.clock()
+end
+local function get_time_duration()
+  local time_end = os.clock()
+  local duration = time_end - time_start
+  return duration -- 毫秒
+end
+
 -- 标签 信息
 local function get_msg_tags(env)
   local segment = get_segment(env)
@@ -82,11 +93,12 @@ end
 function processor.func(key, env)
   local context = env.engine.context
   if(not is_option_open(env)) then
-    if(key:release()) then
+    if(key:release() and rime_api_helper:get_prompt_map_item("debug")) then
       rime_api_helper:clear_prompt_map(context, "debug")
     end
     return rime_api_helper.processor_return_kNoop
   end
+  set_time_start() -- 计时开始 ⏳
   if(context:is_composing()) then
     local prompts = {}
     -- 标签
@@ -124,12 +136,18 @@ local function show_candidate_info(input, env)
 end
 
 function filter.func(input, env)
+  local context = env.engine.context
   if not is_option_open(env) then
+    if(rime_api_helper:get_prompt_map_item("duration")) then
+      rime_api_helper:clear_prompt_map(context, "duration")
+    end
     for cand in input:iter() do
       yield(cand)
     end
     return
   end
+  -- 时间间隔 processor => filter
+  rime_api_helper:add_prompt_map(context, "duration", string.format("⏱️:%0.4fs", get_time_duration())) -- 计时结束 ⏳
   show_candidate_info(input, env)
 end
 

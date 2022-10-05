@@ -321,9 +321,13 @@ function segmentor.func(segmentation, env)
     segmentation:add_segment(seg)
   end
   if(mode_opencc) then
-    rime_api_helper:add_prompt_map(context, "emoji", "⚙(表情~\"Esc\"退出)")
+    if(not rime_api_helper:get_prompt_map_item("emoji")) then -- 减少调用 property 次数
+      rime_api_helper:add_prompt_map(context, "emoji", "⚙(表情~\"Esc\"退出)")
+    end
   else
-    rime_api_helper:clear_prompt_map(context, "emoji")
+    if(rime_api_helper:get_prompt_map_item("emoji")) then -- 减少调用 property 次数
+      rime_api_helper:clear_prompt_map(context, "emoji")
+    end
   end
   return true
 end

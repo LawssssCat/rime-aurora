@@ -99,6 +99,8 @@
 
     ![输入法调试快捷键预览gif](./.github/assets/preview-debug-preview-compress.gif)
 
+    ![输入法调试快捷键预览png](./.github/assets/preview-debug-preview.png)
+
 1.  网站提示
 
     ![网站提示预览](./.github/assets/preview-url.png)
@@ -317,6 +319,7 @@ bash tools/tailLog.sh
 > 输入无限制/大量无规则输入导致卡顿<br>
 > <https://github.com/rime/librime/issues/510><br>
 > <https://github.com/rime/weasel/issues/733><br>
+> <https://github.com/rime/librime/issues/544><br>
 >  2022年09月09日<br>
 >  添加加输入限制lua脚本
 > - [ ] 2022年09月07日<br>
