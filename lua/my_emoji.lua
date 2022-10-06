@@ -1,6 +1,7 @@
 local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
+local ptry = require("tools/ptry")
 
 local tag_emoji = "emoji"
 
@@ -224,8 +225,13 @@ end
 local function init_opencc_list(config_name_arr)
   local list = {}
   for i, config_name in pairs(config_name_arr) do
-    local opencc = Opencc(config_name)
-    table.insert(list, opencc)
+    ptry(function()
+      local opencc = Opencc(config_name)
+      table.insert(list, opencc)
+    end)
+    ._catch(function(err)
+      logger.error(err, i, config_name, config_name_arr)
+    end)
   end
   return list
 end
