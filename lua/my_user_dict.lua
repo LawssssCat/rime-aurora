@@ -38,7 +38,7 @@ local function get_tags(env)
 end
 
 local function get_syllabify_text_list(text, env)
-  text = string_helper.replace(text, "'", " ", true) -- ji‘suan => ji suan
+  text = string_helper.replace(text, "'", " ", true) -- ji'suan => ji suan
   local arr = string_syllabify.syllabify(text, true)
   local flag = true
   for i,t in pairs(arr) do
@@ -63,6 +63,20 @@ local function to_english(text)
   return text
 end
 
+local function split_last_cand(ctx, script_text)
+  local cand = ctx:get_selected_candidate()
+  if(cand and cand.preedit) then
+    local preedit = cand.preedit
+    if(preedit and #preedit>0) then
+      local _s, _e = string.find(script_text, preedit, 1, true)
+      if(_e == #script_text) then
+        script_text = string.sub(script_text, 1, _s-1) .. " " .. preedit
+      end
+    end
+  end
+  return script_text
+end
+
 -- 输入进入用户字典
 function translator.init(env)
   local context = env.engine.context
@@ -84,6 +98,7 @@ function translator.init(env)
         local script_text = ctx:get_script_text()
         local syllabify_text_list = nil
         if(is_english(commit_text)) then
+          -- english
           syllabify_text_list = {
             script_text,
             commit_text,
@@ -92,7 +107,8 @@ function translator.init(env)
           }
           syllabify_text_list = table_helper.arr_remove_duplication(syllabify_text_list)
         else
-          syllabify_text_list = get_syllabify_text_list(script_text, env)
+          -- others
+          syllabify_text_list = get_syllabify_text_list(split_last_cand(ctx, script_text), env)
         end
         for i, text in pairs(syllabify_text_list) do
           e.custom_code = text

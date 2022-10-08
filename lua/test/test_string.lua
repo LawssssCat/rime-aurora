@@ -67,6 +67,7 @@ end
 
 -- 字符串正则
 function M:test_gsub()
+  lu.assertEquals(string.gsub("abc", "", "1"), "1a1b1c1")
   lu.assertEquals(string.gsub("abcdefg123321", "%w", "1"), "1111111111111")
   lu.assertEquals(string.gsub("banana", "(a)(n)", "%2%1"), "bnanaa" )
   lu.assertEquals(string.gsub("gu(n", "u[\\(]", "ǔ"), "gǔn" )
@@ -79,6 +80,9 @@ function M:test_replace()
   lu.assertEquals(string_helper.replace("banana", "(a)(n)", "%2%1", true), "banana") -- 不用正则匹配，不用正则替换
   lu.assertEquals(string_helper.replace("banana", "an", "%2%1", true), "b%2%1%2%1a")
   lu.assertEquals(string_helper.replace("aa bb", " ", "", true), "aabb")
+  lu.assertError(string_helper.replace("aa bb", nil, "", true), "aa bb")
+  lu.assertError(string_helper.replace("aa bb", "", "1", true), "1a1a1 1b1b1")
+  -- lu.assertEquals(string_helper.replace("aa bb", "", "", true), "aabb")
 end
 
 function M:test_split()
