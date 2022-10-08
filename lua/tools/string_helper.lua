@@ -98,6 +98,8 @@ end
   @return 成功返回替换后的字符串，失败返回源字符串
 ]]
 function helper.replace(s, pattern, repl, pain)
+  if(not pattern) then  return s end
+  if(pattern == "") then return string.gsub(s, "", repl) end -- fix: 死循环
   pain = pain or false
   local i,j = string.find(s, pattern, 1, pain)
   if i and j then
