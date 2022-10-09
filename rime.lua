@@ -18,18 +18,69 @@ Wiki：https://github.com/hchunhui/librime-lua/wiki/Scripting
 -- ------------------------------------------------------------------------------------------------------------
 
 require = require("tools/ext_require")() -- 【全局定义】扩展require以获取请求文件所相对路径的文件
+local null = require("tools/null")
+local ptry = require("tools/ptry")
+local string_helper = require("tools/string_helper")
+
+-- 异常 + stack info
+local function throw_error(...)
+  local msg = string_helper.join({null(...)}, ", ")
+  local trace_info = debug.traceback("------------- debug.traceback ---------------", 2)
+  error(msg.."\n"..trace_info)
+end
+
+-- lua 层面捕获 lua 异常
+local function run_safety(func)
+  if(not func) then return nil end
+  return function(...)
+    local args = {...}
+    local result = nil
+    ptry(function()
+      result = {func(table.unpack(args))}
+    end)
+    ._catch(function(err)
+      throw_error(err, table.unpack(args))
+    end)
+    return table.unpack(result)
+  end
+end
+
+-- 规范化全局变量
+local function wrap_component(component_func)
+  if(not component_func) then return nil end
+  local init = nil
+  local func = nil
+  local fini = nil
+  local t = type(component_func)
+  if(t == "function") then
+    func = component_func
+  elseif(t == "table") then
+    init = component_func.init
+    func = component_func.func
+    fini = component_func.fini
+  else
+    throw_error("error component type.", module_name, component_name, t)
+  end
+  return {
+    init = run_safety(init),
+    func = run_safety(func),
+    fini = run_safety(fini),
+  }
+end
 
 --[[ 提供模块名，自动注册全部 component
   {module_name}_{component}
   e.g. my_symbols_processor
 ]]
-local component_names = {
+local component_name_suffix = {
   "processor", "segmentor", "translator", "filter"
 }
 local function register(module_name)
   local module = require(module_name)
-  for _, name in pairs(component_names) do
-    _G[module_name .. "_" .. name] = module[name]
+  for _, suffix in pairs(component_name_suffix) do
+    local component_name = module_name .. "_" .. suffix
+    local component_func = module[suffix]
+    _G[component_name] = wrap_component(component_func)
   end
 end
 
