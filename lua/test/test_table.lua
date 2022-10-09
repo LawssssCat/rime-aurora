@@ -11,6 +11,22 @@ function M:test_equal()
   lu.assertTrue((function() return my_table_id, "return_1", "return_2" end)() == my_table_id) -- 多个返回值，取第一个与 “==” 做比较
 end
 
+function M:test_null()
+  local a = function(...)
+    return ...
+  end
+  local ra = {a(1,nil,3)}
+  lu.assertEquals(ra, {1,nil, 3})
+  lu.assertEquals(#ra, 3)
+  local b = function(...)
+    local qq = {...}
+    return table.unpack(qq)
+  end
+  local rb = {b(1,nil,3)}
+  lu.assertEquals(rb, {1,nil, 3})
+  lu.assertEquals(#rb, 3)
+end
+
 function M:test_remove()
   local my_table = {"hello", "world"}
   lu.assertEquals(table.remove(my_table, 1), "hello")
@@ -48,6 +64,8 @@ function M:test_len()
 end
 
 function M:test_unpack()
+  lu.assertError(table.unpack, nil)
+  lu.assertEquals({table.unpack({})}, {})
   lu.assertEquals({table.unpack({1,2,3})}, {1, 2, 3})
   lu.assertEquals({table.unpack({1,2,nil,3})}, {1, 2, nil, 3})
   lu.assertEquals({table.unpack({1,2,nil,3,b="q",4})}, {1, 2, nil, 3, 4})
