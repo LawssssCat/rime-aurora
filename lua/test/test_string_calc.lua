@@ -13,11 +13,10 @@ function M:test_split()
   {"1", "+", "222", "-", "(", "3","*","4","/","59999","^","6",")","%","7"})
 end
 
-function M:test_infix_to_postfix()
-end
-
 function M:test_calc()
   -- normal
+  lu.assertEquals(tonumber("1.1"), 1.1)
+  lu.assertEquals(string_calc.calc("1.1"), 1.1)
   lu.assertEquals(string_calc.calc("1+2"), 3)
   lu.assertEquals(string_calc.calc("1-2"), -1)
   lu.assertEquals(string_calc.calc("21*2"), 42)
