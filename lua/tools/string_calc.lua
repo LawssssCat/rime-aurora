@@ -133,7 +133,7 @@ return {
   infix_to_postfix=infix_to_postfix,
   calc=function(str)
     -- “整体”拆分成“单独”item（中缀）
-    local infix = string_helper.pick(str, {"%d+", "[+%-*/^@%%()]"})
+    local infix = string_helper.pick(str, {"[%d.]+", "[+%-*/^@%%()]"})
     -- 中缀转后缀
     local postfix = infix_to_postfix(infix)
     local result = calc(postfix)
