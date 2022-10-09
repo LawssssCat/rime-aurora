@@ -21,6 +21,7 @@ require = require("tools/ext_require")() -- 【全局定义】扩展require以�
 local null = require("tools/null")
 local ptry = require("tools/ptry")
 local string_helper = require("tools/string_helper")
+local rime_api_helper = require("tools/rime_api_helper")
 
 -- 异常 + stack info
 local function throw_error(...)
@@ -30,23 +31,30 @@ local function throw_error(...)
 end
 
 -- lua 层面捕获 lua 异常
-local function run_safety(func)
+local function run_safety(func, component_name, function_name)
   if(not func) then return nil end
   return function(...)
     local args = {...}
+    local clock_start = os.clock()
     local result = nil
     ptry(function()
       result = {func(table.unpack(args))}
     end)
     ._catch(function(err)
-      throw_error(err, table.unpack(args))
+      throw_error(err, result, table.unpack(args))
     end)
+    local clock_end = os.clock()
+    rime_api_helper:add_component_run_info({
+      component_name = component_name,
+      function_name = function_name,
+      run_duration = clock_end-clock_start,
+    })
     return table.unpack(result)
   end
 end
 
 -- 规范化全局变量
-local function wrap_component(component_func)
+local function wrap_component(component_func, component_name)
   if(not component_func) then return nil end
   local init = nil
   local func = nil
@@ -62,9 +70,9 @@ local function wrap_component(component_func)
     throw_error("error component type.", module_name, component_name, t)
   end
   return {
-    init = run_safety(init),
-    func = run_safety(func),
-    fini = run_safety(fini),
+    init = run_safety(init, component_name, "init"),
+    func = run_safety(func, component_name, "func"),
+    fini = run_safety(fini, component_name, "fini"),
   }
 end
 
@@ -80,7 +88,7 @@ local function register(module_name)
   for _, suffix in pairs(component_name_suffix) do
     local component_name = module_name .. "_" .. suffix
     local component_func = module[suffix]
-    _G[component_name] = wrap_component(component_func)
+    _G[component_name] = wrap_component(component_func, component_name)
   end
 end
 
@@ -138,7 +146,9 @@ register("my_time")
 
 register("my_version")
 
-register("my_history")
+register("my_history") -- 历史上屏情况
+
+register("my_component") -- 组件运行情况
 
 register("my_url")
 

@@ -8,4 +8,4 @@ patch:
       - emoji.json
       - kemoji.json
       - symbol.json
-    excluded_types: ["history"]
+    excluded_types: ["history", "component"]
