@@ -85,6 +85,8 @@
     - [x] 输入 "/rq"、"/sj"、"/xq" 可显示当前系统时间
     - [x] 输入 "/history" 可显示输入历史
     - [x] 输入 "/version" 可显示版本信息
+    - [x] 输入 "/component" 可显示 lua component 运行状态（调试用）<br>
+        ![动态候选词-component预览png](./.github/assets/preview-dynamic_cand-component.png)
     - [x] 输入 "/=[0-9+-*/^%()]" 可计算数学表达式，如：“`/=1+1`” => 2
     - [ ] 输入 "/ascii" 可打印 ascii 表
     - [ ] 输入 "/table" 可打印不同格式的表格框架
