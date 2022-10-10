@@ -27,6 +27,30 @@ function M:test_null()
   lu.assertEquals(#rb, 3)
 end
 
+function M:test_init()
+  local t = {
+    a = 1,
+    b = 2,
+  }
+  t["c"]  = t["a"]
+  lu.assertEquals(t, {a=1,b=2,c=1})
+end
+
+function M:test_func()
+  local t = {
+    f = function()
+      return "1"
+    end
+  }
+  t.f2 = function()
+    return "2"
+  end
+  local f = t["f"]
+  local f2 = t["f2"]
+  lu.assertEquals(type(f), "function")
+  lu.assertEquals(type(f2), "function")  
+end
+
 function M:test_remove()
   local my_table = {"hello", "world"}
   lu.assertEquals(table.remove(my_table, 1), "hello")
