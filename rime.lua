@@ -88,16 +88,34 @@ local component_name_suffix = {
 }
 local function register(module_name)
   local module = require(module_name)
-  for i, suffix in pairs(component_name_suffix) do
-    local component_name = module_name .. "_" .. suffix
-    local component_func = module[suffix]
-    local component_type = suffix
-    ptry(function()
-      _G[component_name] = wrap_component(component_type, component_func, component_name)
-    end)
-    ._catch(function(err)
-      throw_error(err, i, component_type, component_func, component_name)
-    end)
+  local t = type(module)
+  if(t=="function" or (t=="table" and type(module.func)=="function")) then
+    throw_error(string_helper.join({
+[[error require("]],module_name,[[") return type "function".
+please change the return to be a "table". 
+excepted:
+{
+  filter=<function>, -- key can be "processor", "segmentor", "translator", "filter"
+  or
+  filter={init=<function>,func=<function>,fini=<function>},
+  ...
+}
+actual:
+]], module}, ""))
+  elseif(t == "table") then
+    for i, suffix in pairs(component_name_suffix) do
+      local component_name = module_name .. "_" .. suffix
+      local component_func = module[suffix]
+      local component_type = suffix
+      ptry(function()
+        _G[component_name] = wrap_component(component_type, component_func, component_name)
+      end)
+      ._catch(function(err)
+        throw_error(err, i, component_type, component_func, component_name)
+      end)
+    end
+  else
+    throw_error("error require(\""..module_name.."\") return type \""..t.."\".")
   end
 end
 
@@ -174,7 +192,7 @@ register("my_prompt")
 -- （不需要lua也能实现）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/reverse.lua
 -- 详见 `lua/reverse.lua`
-py_comment_filter = require("my_reverse")
+register("my_reverse")
 
 -- 【功能】：use wildcard to search code
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/expand_translator.lua
