@@ -12,6 +12,12 @@ function M:test_tonumber()
   lu.assertEquals(tonumber(nil), nil)
 end
 
+function M:test_count()
+  local c = 999999999999999999999999999999999
+  lu.assertEquals(c+1, c)
+  lu.assertEquals(math.max(c*0.0001, c),c)
+end
+
 function M:test_boolean()
   lu.assertEquals(not 0, false)
   lu.assertEquals(not 1, false)

@@ -94,4 +94,6 @@ end
  - init: 指向初始化函数
  - func: 指向实际函数
 --]]
-return { init = init, func = filter }
+return {
+   filter = { init = init, func = filter }
+}
