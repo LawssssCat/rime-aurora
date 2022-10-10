@@ -54,26 +54,29 @@ local function run_safety(func, component_name, function_name)
 end
 
 -- 规范化全局变量
-local function wrap_component(component_func, component_name)
+local function wrap_component(component_type, component_func, component_name)
   if(not component_func) then return nil end
-  local init = nil
-  local func = nil
-  local fini = nil
   local t = type(component_func)
   if(t == "function") then
-    func = component_func
+    return run_safety(component_func, component_name, "func")
   elseif(t == "table") then
-    init = component_func.init
-    func = component_func.func
-    fini = component_func.fini
-  else
-    throw_error("error component type.", module_name, component_name, t)
+    if(component_type=="processor" or component_type=="segmentor" or component_type=="translator") then
+      return {
+        init = run_safety(component_func.init, component_name, "init"),
+        func = run_safety(component_func.func, component_name, "func"),
+        fini = run_safety(component_func.fini, component_name, "fini"),
+      }
+    elseif(component_type=="filter") then
+      return {
+        init = run_safety(component_func.init, component_name, "init"),
+        func = run_safety(component_func.func, component_name, "func"),
+        fini = run_safety(component_func.fini, component_name, "fini"),
+        tags_match = run_safety(component_func.tags_match, component_name, "tags_match"),
+      }
+    end
+    throw_error("error component_type value.", component_func, t, component_type, component_name)
   end
-  return {
-    init = run_safety(init, component_name, "init"),
-    func = run_safety(func, component_name, "func"),
-    fini = run_safety(fini, component_name, "fini"),
-  }
+  throw_error("error component_func type.", component_func, t, component_type, component_name)
 end
 
 --[[ 提供模块名，自动注册全部 component
@@ -85,10 +88,16 @@ local component_name_suffix = {
 }
 local function register(module_name)
   local module = require(module_name)
-  for _, suffix in pairs(component_name_suffix) do
+  for i, suffix in pairs(component_name_suffix) do
     local component_name = module_name .. "_" .. suffix
     local component_func = module[suffix]
-    _G[component_name] = wrap_component(component_func, component_name)
+    local component_type = suffix
+    ptry(function()
+      _G[component_name] = wrap_component(component_type, component_func, component_name)
+    end)
+    ._catch(function(err)
+      throw_error(err, i, component_type, component_func, component_name)
+    end)
   end
 end
 
