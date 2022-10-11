@@ -107,7 +107,7 @@ recognizer:
     reverse_lookup: "`[a-z]*'?$"
 
 grammar: # 语法模型
-  language: zh-hant-t-essay-bgw
+  language: zh-hant-t-essay-bgc
 
 __patch: # 顺序有讲究
   - patch/my_common:/patch

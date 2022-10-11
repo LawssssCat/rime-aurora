@@ -16,11 +16,6 @@ version: "2022.09.03"
 sort: by_weight
 # use_preset_vocabulary: true
 import_tables:
-  - dict/easy_en_a # 基础词汇
-  - dict/easy_en_b # 基础词汇
-  # - dict/easy_en_super_one
-  # - dict/easy_en_super_two
-  - dict/easy_en_super2_one
-  - dict/easy_en_super2_two
-  # - dict/easy_en_comment
-...
+  - dict/easy_en_word # 基础词汇（不加的话，输入英文会卡）
+  - dict/easy_en_comment
+..

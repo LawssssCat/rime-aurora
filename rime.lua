@@ -192,7 +192,7 @@ register("my_prompt")
 -- （不需要lua也能实现）
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/reverse.lua
 -- 详见 `lua/reverse.lua`
-register("my_reverse")
+-- register("my_reverse")
 
 -- 【功能】：use wildcard to search code
 -- 详见 https://github.com/hchunhui/librime-lua/blob/master/sample/lua/expand_translator.lua

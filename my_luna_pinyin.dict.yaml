@@ -49,50 +49,20 @@ use_preset_vocabulary: true
 
 import_tables:
   - luna_pinyin
-  - dict/luna_pinyin.essay
-  - dict/luna_pinyin.anime               # 动漫
-  - dict/luna_pinyin.basis               # 基础扩充包
-  # - dict/luna_pinyin.biaoqing            # 颜文字
+  - dict/luna_pinyin.basis               # 基础词汇
   - dict/luna_pinyin.chat                # 对话（常用）
-  - dict/luna_pinyin.chengyusuyu         # 成语/术语
   - dict/luna_pinyin.classical           # 古文
   - dict/luna_pinyin.cn_en               # 中英字母混用
-  - dict/luna_pinyin.comprehensive       # 综合
   - dict/luna_pinyin.computer            # 计算机
-  - dict/luna_pinyin.game                # 游戏
+  - dict/luna_pinyin.entertainment       # 娱乐
+  - dict/luna_pinyin.essay
   - dict/luna_pinyin.gd                  # 粤语
-  - dict/luna_pinyin.hanyu               # 汉语
-  - dict/luna_pinyin.history             # 历史
-  - dict/luna_pinyin.idiom               # 习语
-  - dict/luna_pinyin.kaifa               # 开发
   - dict/luna_pinyin.mingxing            # 明星
-  - dict/luna_pinyin.moba                # moba游戏
-  - dict/luna_pinyin.movie               # 电影
-  - dict/luna_pinyin.music               # 音乐
   - dict/luna_pinyin.name                # 名字
   - dict/luna_pinyin.net                 # 网络热词
   - dict/luna_pinyin.place               # 地点
-  - dict/luna_pinyin.poetry              # 诗歌
   - dict/luna_pinyin.popular             # 网络热词
   - dict/luna_pinyin.shopping            # 购物
-  - dict/luna_pinyin.sougou              # 搜狗词库
-  - dict/luna_pinyin.user                # 实用词汇
-  - dict/luna_pinyin.website             # 网站
-  - dict/luna_pinyin.xiandaihanyu        # 现代汉语（常用）
   - dict/luna_pinyin.stack               # 堆叠词（如：焱）
-  # - dict/ocm_mixin_jp                    # 日語（平假名+片假名）
-  # - dict/phrases.jp_hk                   # 日語 「平假名」「片假名」 詞彙
-  # - dict/phrases.jp_hkkreduce            # 日文含有「漢字」之詞彙
-  # - dict/ocm_mixin_kr_hnc                # 韓語 HNC 鍵位碼表
-  # - dict/ocm_mixin_kr                    # 韓文（洋蔥形碼鍵位）
-  # - dict/phrases.kr                      # 3萬 韓語詞庫
-  # - dict/ocm_mixin_la                    # 拉丁+音標字母（洋蔥形碼鍵位）
-  # - dict/phrases.cht                     # 超齊字典檔                               （要编译很长时间）
-  # - dict/phrases.en_l_w                  # 拉丁英語補充詞庫 1                        （要编译很长时间）
-  # - dict/phrases.en_o_w                  # 拉丁英語補充詞庫 2
-  # - dict/phrases.en_u_w                  # 拉丁英語補充詞庫 3                        （要编译很长时间）
-  # - dict/phrases.la_eu_w                 # 歐洲帶調
-  # - dict/phrases.la_py_w                 # 漢拼語音
-  # - dict/terra_pinyin_onion_add
-  # - dict/terra_pinyin_onion              # 地球拼音 10萬                             （要编译很长时间，建议睡前开启编译）
+  - dict/luna_pinyin.website             # 网站
 ...
