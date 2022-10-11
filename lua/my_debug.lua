@@ -116,23 +116,26 @@ end
 local filter = {}
 
 function filter.init(env)
+  local config = env.engine.schema.config
   env.debug_comment_pattern = "『{dynamic_type}:{type}|🏆{quality}』" -- 当 weasel 为前端时，内容过长（或者换行）可能导致闪退（同时关闭父应用...）。 issue https://github.com/rime/home/issues/1129
-end
-
-local function show_candidate_info(input, env)
-  for cand in input:iter() do
-    -- 整理 info
-    local info = {
-      dynamic_type = cand:get_dynamic_type(),
-      type = cand.type,
-      _start = cand._start,
-      _end = cand._end,
-      preedit = cand.preedit,
-      quality = string.format("%6.4f", cand.quality),
-    }
-    local comment = cand.comment .. string_helper.format(env.debug_comment_pattern, info)
-    yield(ShadowCandidate(cand, cand.type, cand.text, comment))
-  end
+  -- 获取排除类型
+  env.excluded_types = (function()
+    local types = rime_api_helper:get_config_item_value(config, env.name_space .. "/excluded_types")
+    if(not types) then
+      types = {}
+    elseif(type(types) == "string") then
+      types = {types}
+    end
+    function types:include(text)
+      for i,t in pairs(self) do
+        if(text == t) then
+          return true
+        end
+      end
+      return false
+    end
+    return types
+  end)()
 end
 
 function filter.func(input, env)
@@ -148,7 +151,23 @@ function filter.func(input, env)
   end
   -- 时间间隔 processor => filter
   rime_api_helper:add_prompt_map(context, "duration", string.format("⏱️:%0.4fs", get_time_duration())) -- 计时结束 ⏳
-  show_candidate_info(input, env)
+  for cand in input:iter() do
+    if(env.excluded_types:include(cand.type)) then
+      yield(cand)
+    else
+      -- 整理 info
+      local info = {
+        dynamic_type = cand:get_dynamic_type(),
+        type = cand.type,
+        _start = cand._start,
+        _end = cand._end,
+        preedit = cand.preedit,
+        quality = string.format("%6.4f", cand.quality),
+      }
+      local comment = cand.comment .. string_helper.format(env.debug_comment_pattern, info)
+      yield(ShadowCandidate(cand, cand.type, cand.text, comment))
+    end
+  end
 end
 
 return {

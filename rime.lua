@@ -30,6 +30,19 @@ local function throw_error(...)
   error(msg.."\n"..trace_info)
 end
 
+local function get_env(args)
+  if(args and type(args)=="table") then
+    local env = nil
+    for i,v in pairs(args) do
+      env = v
+    end
+    if(env and type(env)=="table" and env.engine) then
+      return env
+    end
+  end
+  return nil
+end
+
 -- lua 层面捕获 lua 异常
 local function run_safety(func, component_name, function_name)
   if(not func) then return nil end
@@ -41,13 +54,14 @@ local function run_safety(func, component_name, function_name)
       result = {func(table.unpack(args))}
     end)
     ._catch(function(err)
-      throw_error(err, result, table.unpack(args))
+      throw_error("error: ", err, "\nresult: ", result, "\nargs:", table.unpack(args))
     end)
     local clock_end = os.clock()
     rime_api_helper:add_component_run_info({
       component_name = component_name,
       function_name = function_name,
       run_duration = clock_end-clock_start,
+      env = get_env(args)
     })
     return table.unpack(result)
   end

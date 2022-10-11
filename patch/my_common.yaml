@@ -6,6 +6,3 @@ patch:
   # recognizer/patterns/uppercase: "^$" 
   # recognizer/patterns/email: ""
   ###########################################################################
-  #
-  simplifier/+:
-    tips: char # 設定是否提示轉換前的字，可塡 none 〔或不塡〕、 char 〔僅對單字有效〕、 all

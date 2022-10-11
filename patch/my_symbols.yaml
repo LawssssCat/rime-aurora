@@ -13,11 +13,9 @@ patch:
     opencc_config: back_mark_ocm.json
     show_in_comment: true
     tags: [ abc, symbals ] # fix: 不包含 punct
-    excluded_types:
-      - "history"
-      - "user_phrase"
-      - "my_user_dict" # 否则 dynamic type 转换为 shadow candidate，无法记录用户字典
     tips: char
+    excluded_types:
+      __include: patch/ext_filters:/patch/simplifier/excluded_types
     comment_format:
       - xform/^/  /
       - xform/@/ /
