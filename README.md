@@ -1,6 +1,8 @@
-# 电脑 rime 极光方案（朙月拼音、地球拼音）
+# 电脑 rime 极光方案（朙月拼音）
 
-本项目作用于[rime 输入法](https://rime.im/)（Weasel），对原方案（朙月拼音、地球拼音）进行修改补充。
+本项目作用于[rime 输入法](https://rime.im/)（Weasel），对原方案（朙月拼音）进行修改补充。
+
+配置入口： `my_luna_pinyin.schema.yaml`
 
 该方案沿用“用户目录”结构，有如下两种文件：
 
@@ -47,9 +49,13 @@
 └─ LICENSE              MIT
 ```
 
+> ⚠️ 注意
+>
+> `/font` 目录、`/librime-lua` 目录分别在 `font`、`librime-lua` 分支中。
+
 ## 内容说明
 
-基于“地球拼音”修改，添加配色、英文、符号&表情、一些lua脚本。
+基于“朙月拼音”修改，添加配色、英文、符号&表情、一些lua脚本。
 
 1. 配色 “凝光紫x申布伦黄”
     
@@ -124,7 +130,6 @@
 1. 选词 - `shift` - 开启纯英文模式 💡
 1. 选词 - `shift+↩️（回车）` 上屏右侧提示信息 💡
 1. 选词 - `shift+⬆️（上）` 或 `shift+⬇️（下）` - 翻页 💡
-1. 选词 - `shift + <num 7~0>` - 设置四声（ā á ă à）（仅地球拼音支持）
 1. 选词 - `shift + 🆑（Delete：小键盘删除键）` - 删除选词的用户字典记录 💡
 
 ## 安装方法
@@ -147,7 +152,7 @@
 
 ### 步骤二：**更新 librime-lua** 📄
 
-准备 rime.dll （从`/librime-lua`中取备份文件，或者下载[最新版本](https://github.com/hchunhui/librime-lua/actions)），然后将 rime.dll 文件覆盖到 weasel 安装目录下，即可。
+准备 rime.dll （从分支 `librime-lua` 的 `/librime-lua` 目录中取备份文件，或者下载[最新版本](https://github.com/hchunhui/librime-lua/actions)），然后将 rime.dll 文件覆盖到 weasel 安装目录下，即可。
 
 > 相关资料
 > 
@@ -185,29 +190,11 @@
 
 <div style='clear: both;'></div>
 
-## 方案说明
-
-编写了两个方案：（个人）地球拼音、（个人）朙月拼音
-
-1. （个人）地球拼音
-
-    + 配置入口：`my_terra_pinyin.schema.yaml`
-    +  以 `terra_pinyin` 作为基础码表
-    + 显示音调（e.g. 朙月 ming2 yue4 => míng yuè）
-    
-    + `shift + <num 7~0>` 转换音调
-
-2. （个人）朙月拼音
-
-    + 配置入口： `my_luna_pinyin.schema.yaml`
-    + 以 `luna_pinyin` 作为基础码表
-    + 忽略音调
-
 ## 字体说明
 
 默认使用系统字体，可能出现字大小不一的的情况。
 
-可以根据 `font` 目录的 [文档](./font/README.md) 设置字体。
+可以根据 `/font` 目录（分支 `font` 中下载）的 [文档](./font/README.md) 设置字体。
 
 ## 其他
 
