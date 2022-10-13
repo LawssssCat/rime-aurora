@@ -97,6 +97,27 @@ local function is_need_show(text, entry)
   return false
 end
 
+local function adjust_syllabify(syllabify_list, commit_text, env)
+  local words = string_helper.split(commit_text, "")
+  -- 排除长度不一致的
+  if(#syllabify_list > 0) then
+    local patterns = {}
+    for i = 1,#words do
+      table.insert(patterns, "%g+") -- 非空格
+    end
+    local pattern = "^"..table.concat(patterns, " ").."$"
+    local index = 1
+    while(index <= #syllabify_list) do
+      local w = syllabify_list[index]
+      if(not string.match(w, pattern)) then
+        table.remove(syllabify_list, index)
+      else
+        index = index + 1
+      end
+    end
+  end
+end
+
 -- =============================================== translator
 
 local translator = {}
@@ -115,6 +136,9 @@ function translator.init(env)
         return
       end
       local commit_text = ctx:get_commit_text()
+      if(not commit_text) then
+        return
+      end
       if(commit_text) then
         local e = DictEntry()
         e.text = commit_text
@@ -133,6 +157,7 @@ function translator.init(env)
         else
           -- others
           syllabify_text_list = get_syllabify_text_list(split_last_cand(ctx, script_text), env)
+          adjust_syllabify(syllabify_text_list, commit_text, env)
         end
         for i, text in pairs(syllabify_text_list) do
           e.custom_code = text

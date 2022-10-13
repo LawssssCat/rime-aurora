@@ -89,6 +89,8 @@ function M:test_split()
   lu.assertEquals(string_helper.split("1 2  3   4    ", "%s+"), {"1","2","3","4",""})
   local str = "version"
   lu.assertEquals(string_helper.split(str, ""), {"v", "e", "r", "s", "i", "o", "n"})
+  lu.assertEquals(string_helper.split(str, nil), {"version"})
+  lu.assertEquals(string_helper.split("你好啊", ""), {"你", "好", "啊"})
   local t = ""
   local t_list = {}
   for i, v in pairs(string_helper.split(str, "")) do 
@@ -266,6 +268,7 @@ function M:test_match_patterns_g() -- %g 表示任何除空白符外的可打印
       lu.assertEquals({i, string.match(c, "[%g%s]+")}, {i, c})
     end
   end
+  lu.assertEquals(string.match("AA BB", "^%g+ %g+$")~=nil, true)
 end
 function M:test_match_patterns_p() -- %p 表示所有标点符号。
   local str = "`~!@#$%^&*()_+-={}|[]\\;':\",./<>?"

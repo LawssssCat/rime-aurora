@@ -10,6 +10,13 @@ local ptry = require("tools/ptry")
 
 -- 字符串分割
 function helper.split(str, delimiter)
+  if(delimiter=="") then
+    local words = {}
+    for _, c in utf8.codes(str) do 
+      table.insert(words, utf8.char(c))
+    end
+    return words
+  end
   return split.split(str, delimiter)
 end
 
