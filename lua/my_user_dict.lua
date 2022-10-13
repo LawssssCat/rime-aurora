@@ -4,8 +4,6 @@ local string_helper = require("tools/string_helper")
 local table_helper = require("tools/table_helper")
 local string_syllabify = require("tools/string_syllabify")
 
-local translator = {}
-
 local function get_tags(env)
   local composition =  env.engine.context.composition
   local segment = not composition:empty() and composition:back()
@@ -77,6 +75,32 @@ local function split_last_cand(ctx, script_text)
   return script_text
 end
 
+local function is_need_show(text, entry)
+  -- 你、ni、
+  local remaining_code_length	= entry.remaining_code_length	
+  if(remaining_code_length == 0) then
+    return true
+  end
+  local comment = entry.comment
+  if(not comment) then
+    return true
+  end
+  -- 你、n、~i
+  -- 你好、ni h、~ao
+  if(string.match(comment, "^~%g+$")) then
+    return true
+  end
+  -- 你好、ni、~ hao
+  if(string.match(comment, "^~ %g+$")) then
+    return true
+  end
+  return false
+end
+
+-- =============================================== translator
+
+local translator = {}
+
 -- 输入进入用户字典
 function translator.init(env)
   local context = env.engine.context
@@ -138,13 +162,15 @@ function translator.func(input, seg, env)
     mem:user_lookup(text, true)
     for entry in mem:iter_user() do
       local remaining_code_length = entry.remaining_code_length or 0
-      local phrase = Phrase(mem, "my_user_dict", seg._start, seg._end, entry)
-      local cand = phrase:toCandidate()
-      cand.quality = math.exp(entry.weight) + -- 计算权重
-        env.initial_quality + 
-        (remaining_code_length * -0.3) + 
-        (0.1 * entry.commit_count)
-      yield(cand)
+      if(is_need_show(text, entry)) then
+        local phrase = Phrase(mem, "my_user_dict", seg._start, seg._end, entry)
+        local cand = phrase:toCandidate()
+        cand.quality = math.exp(entry.weight) + -- 计算权重
+          env.initial_quality + 
+          (remaining_code_length * -0.3) + 
+          (0.1 * entry.commit_count)
+        yield(cand)
+      end
     end
   end
 end

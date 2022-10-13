@@ -188,6 +188,20 @@ function M:test_match()
   lu.assertEquals(not string.match("sfasfsdf", "qqqqqqqq"), true)
   lu.assertEquals(not string.match("aaaaaaaaa", "a"), false)
   lu.assertEquals(string.match("sfasfsdf", "qqqqqqqqqq") ~= nil, false)
+  local pattern = "^~%g+$"
+  lu.assertEquals(string.match("~a", pattern) ~= nil, true)
+  lu.assertEquals(string.match("~a ", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~a abc", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~a abca sdfs", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~ abc", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~ abc asdfsdf", pattern) ~= nil, false)
+  local pattern = "^~ %g+$"
+  lu.assertEquals(string.match("~a", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~a ", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~a abc", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~a abc asdfsdf", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~ abc", pattern) ~= nil, true)
+  lu.assertEquals(string.match("~ abc safsdf", pattern) ~= nil, false)
   -- 其他
   local env = {
     wildcard = "*"
