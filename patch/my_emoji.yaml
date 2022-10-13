@@ -1,0 +1,11 @@
+# 关于 emoji 列表
+patch:
+  engine/segmentors/@after 0: lua_segmentor@my_emoji_segmentor
+  engine/filters/@next: lua_filter@my_emoji_filter@my_emoji
+  engine/processors/@before 0: lua_processor@my_emoji_processor
+  my_emoji:
+    opencc_config:
+      - emoji.json
+      - kemoji.json
+      - symbol.json
+    excluded_types: ["history", "component"]

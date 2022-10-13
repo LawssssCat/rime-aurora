@@ -1,0 +1,23 @@
+patch:
+  engine/segmentors/@before 0: lua_segmentor@my_matcher_segmentor # 模仿 matter
+  engine/processors/@after 0: lua_processor@my_matcher_processor # 模仿 recognizer
+  # 正则语法（扩展）：
+  # - "qq{abc}?bb" ==运行时，被翻译成==> "qq(a|ab|abc)?bb"
+  recognizer/patterns/+:
+    date: "^/(r{i}?q{i}?|da{ta}?)$"     # 日期
+    week: "^/(x{ing}?q{i}?|we{ek}?)$"   # 星期
+    time: "^/(s{hi}?j{ian}?|ti{me}?)$"  # 时间
+    calc: "^/=[0-9+\\-*/@^%().]*$"      # 计算
+    version: "^/ver{sion}?$"            # 版本
+    history: "^/his{tory}?$"            # 历史（上屏信息）
+    component: "^/comp{onent}?$"        # 组件（运行情况）
+    url: "^([^/]+[.]|https?:|ftp[.:]|mailto:|file:)[^ ]*$"
+  engine/translators/@after 0: lua_translator@my_calc_translator
+  engine/translators/@after 1: lua_translator@my_time_translator
+  engine/translators/@after 2: lua_translator@my_version_translator
+  engine/translators/@after 3: lua_translator@my_history_translator
+  engine/translators/@after 4: lua_translator@my_url_translator
+  engine/translators/@after 5: lua_translator@my_component_translator
+  my_history_translator: 
+    history_num_max: 50
+    excluded_types: ["punct"]

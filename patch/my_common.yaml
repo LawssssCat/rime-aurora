@@ -1,0 +1,8 @@
+patch:
+  menu/page_size: 6
+  ###########################################################################
+  # 修改默认的 pattern
+  # recognizer/patterns/email: "" 
+  # recognizer/patterns/uppercase: "^$" 
+  # recognizer/patterns/email: ""
+  ###########################################################################

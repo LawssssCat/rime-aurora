@@ -1,0 +1,8 @@
+patch:
+  engine/processors/@next: lua_processor@my_prompt_processor
+  my_prompt_processor:
+    order: # 展示的次序
+      - debug           # 信息 tags, page 
+      - easy_en         # 提示 纯英文模式
+      - emoji           # 提示 emoji 模式
+      - duration        # 信息 用时

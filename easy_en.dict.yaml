@@ -1,0 +1,21 @@
+# Rime dictionary
+# mim: set ts=8 sw=8 noet:
+# encoding: utf-8
+#
+# easy_en - Easy English
+#
+# BlindingDark <blindingdark@outlook.com>
+#
+# Easy English
+#
+
+---
+name: easy_en
+version: "2022.09.03"
+# sort: original #by_weight
+sort: by_weight
+# use_preset_vocabulary: true
+import_tables:
+  - dict/easy_en_word # 基础词汇（不加的话，输入英文会卡）
+  - dict/easy_en_comment
+..

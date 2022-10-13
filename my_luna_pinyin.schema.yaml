@@ -1,0 +1,129 @@
+# luna_pinyin.custom.yaml
+#
+# 部署位置：
+# ~/.config/ibus/rime  (Linux)
+# ~/Library/Rime  (Mac OS)
+# %APPDATA%\Rime  (Windows)
+#
+# 於重新部署後生效
+#
+#
+# 配置含义：
+# https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md
+#
+
+schema:
+  schema_id: my_luna_pinyin
+  name: （个人）朙月拼音
+  version: "0.24"
+  author:
+    - 佛振 <chen.sst@gmail.com>
+    - 骆言 <lawsssscat@163.com>
+    - 『洋蔥』
+  description: |
+    Rime 預設的拼音輸入方案。
+    參考以下作品而創作：
+      * CC-CEDICT
+      * Android open source project
+      * Chewing - 新酷音
+      * opencc - 開放中文轉換
+      * LoganJC 的方案 - https://github.com/LoganJC/rime-setting
+      * “洋蔥” 方案 - https://github.com/oniondelta/Onion_Rime_Files
+  dependencies: # 觸發更新製作 bin。 See issue https://github.com/rime/home/issues/1134#issuecomment-1236345551
+    - luna_pinyin
+    - stroke
+
+switches:
+  - name: full_shape                # 2
+    states: [ 半角, 全角 ]
+  - name: simplification            # 3
+    states: [ 漢字, 汉字 ]
+
+engine:
+  processors: # 一、這批組件處理各類 ●按鍵 消息
+    __include: patch/ext_processors:/patch/processors
+  segmentors: # 二、這批組件識別不同內容類型，將輸入碼分段
+    __include: patch/ext_segmentors:/patch/segmentors
+  translators: # 三、這批組件翻譯特定類型的編碼段爲一組候選文字
+    # - echo_translator # ※ 沒有其他候選字時，回顯輸入碼〔輸入碼可以Shift+Enter上屛〕
+    - punct_translator                  # ※ 轉換標點符號
+    - table_translator@custom_phrase    #翻譯_打過的字-優先出●碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案，此項可加載多個實例，後接@+翻譯器名〔如：cangjie、wubi等〕
+    - reverse_lookup_translator         # ※ 反查翻譯器，用另一種編碼方案查碼
+    - script_translator                 # ※ 腳本翻譯器，用於拼音、粵拼等等基於音節表的輸入方案●此項可加載多個實例，後接@+翻譯器名〔如：pinyin、jyutping等〕
+  filters: # 四、這批組件過濾翻譯的結果
+    __include: patch/ext_filters:/patch/filters
+
+simplifier:
+  __include: patch/ext_filters:/patch/simplifier
+
+speller:
+  # alphabet: zyxwvutsrqponmlkjihgfedcba
+  # alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA # 英文
+  # _,./ 符号
+  alphabet: zyxwvutsrqponmlkjihgfedcba # 定义 speller 可以处理的字母
+  initials: zyxwvutsrqponmlkjihgfedcba # 定义 speller 接收处理的编码的头字母
+  delimiter: " '"
+  algebra: # 【朙月拼音】模糊音定製模板 来源：https://gist.github.com/lotem/2320943
+    - erase/^xx$/                      # 第一行保留
+    # 改寫拼寫運算，使得含西文的詞彙（位於 luna_pinyin.cn_en.dict.yaml 中）不影響簡拼功能（注意，此功能只適用於朙月拼音系列方案，不適用於各類雙拼方案）
+    # 本條補靪只在「小狼毫 0.9.30」、「鼠鬚管 0.9.25 」、「Rime-1.2」及更高的版本中起作用。
+    - xform/^([b-df-hj-np-tv-z])$/$1_/
+  __patch:
+    algebra/+:
+      __include: patch/ext_speller:/speller/algebra
+
+translator:
+  dictionary: my_luna_pinyin
+  ##################
+  contextual_suggestions: true # 是否使用語言模型優化輸出結果〔需配合grammar使用〕
+  # max_homophones: 7 # 最大同音簇長度〔需配合grammar使用〕
+  # translator/max_homographs: 7 # 最大同形簇長度〔需配合grammar使用〕
+  ##################
+  __include: patch/ext_translator:/translator
+
+custom_phrase: # 功能：自定义短语 custom_phrase.txt
+  dictionary: ""
+  user_dict: custom_phrase
+  db_class: stabledb
+  # enable_completion: false
+  # enable_sentence: false
+  initial_quality: 1
+
+reverse_lookup: # 功能：五笔反查拼音，以 ` 符号开头
+  tag: reverse_lookup
+  dictionary: stroke
+  prefix: "`"
+  suffix: "'"
+  tips: 〔筆畫〕
+  preedit_format: # 上屛碼自定義
+    - xlit/hspnz/一丨丿丶乙/
+
+punctuator:
+  import_preset: default
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  import_preset: default
+  patterns:
+    reverse_lookup: "`[a-z]*'?$"
+
+grammar: # 语法模型
+  language: zh-hant-t-essay-bgc
+
+__patch: # 顺序有讲究
+  - patch/my_common:/patch
+  - patch/my_matcher:/patch
+  - patch/my_easy_en:/patch        # 英文（需放在debug后）
+  - symbols:/patch                 # 符号
+  - patch/my_symbols:/patch        # 符号扩展
+  - patch/my_user_dict:/patch      # 查询用户字典
+  - patch/my_punctuator:/patch     # 标点
+  - patch/my_code:/patch           # 输入编码处理（多音字扩展）
+  - patch/my_charset:/patch        # 字符集
+  - patch/my_key_binder:/patch     # 快捷键
+  - patch/my_emoji:/patch          # emoji
+  - patch/my_uniquifier:/patch     # 去重。【放最后】
+  - patch/my_prompt:/patch
+  - patch/my_debug:/patch          # 候选词详细信息

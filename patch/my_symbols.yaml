@@ -1,0 +1,22 @@
+patch:
+  ##########################################################
+  # 得到 “punctuator/symbols” 中的符号候选词
+  engine/translators/@next: lua_translator@my_symbols_translator
+  engine/segmentors/@after 0: lua_segmentor@my_symbols_segmentor
+  recognizer/patterns/+:
+    symbals: "^/[0-9a-zA-Z]+$" # fix: 选择数字，如： "/1" # fix: 无候选词自动select，如："/emj" => "/e‸mj"
+    punct: "^$" # fix: symbols 的候选词中 type 为 punct 问题。（导致无法区分 punct 和 symbals，从而无法进一步处理）
+  ##########################################################
+  # 符号含义标注
+  engine/filters/@after 1: simplifier@back_mark # 後方標註
+  back_mark:
+    opencc_config: back_mark_ocm.json
+    show_in_comment: true
+    tags: [ abc, symbals ] # fix: 不包含 punct
+    tips: char
+    excluded_types:
+      __include: patch/ext_filters:/patch/simplifier/excluded_types
+    comment_format:
+      - xform/^/  /
+      - xform/@/ /
+  

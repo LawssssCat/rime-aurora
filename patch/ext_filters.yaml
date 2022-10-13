@@ -1,0 +1,13 @@
+patch:
+  filters:
+    - simplifier                     # ※ 繁簡轉換
+    # - lua_filter@my_reverse_filter # 显示更多拼音
+    # - uniquifier                   # ※ 過濾重複的候選字，有可能來自繁簡轉換
+
+  simplifier:
+    tips: char # 設定是否提示轉換前的字，可塡 none 〔或不塡〕、 char 〔僅對單字有效〕、 all
+    excluded_types:
+      - "history"
+      - "user_phrase"
+      - "component"
+      - "my_user_dict" # 否则 dynamic type 转换为 shadow candidate，无法记录用户字典

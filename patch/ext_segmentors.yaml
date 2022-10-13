@@ -1,0 +1,10 @@
+patch:
+  segmentors:
+    ##########################
+    # matcher 由 my_matcher_segmentor 代替
+    # - matcher
+    ##########################
+    - abc_segmentor # tags: abc
+    # - punct_segmentor # 改用 lua_segmentor@my_punct_segmentor
+    - lua_segmentor@my_punct_segmentor # tags: punct . simplify and expand "punct_segmentor"
+    - fallback_segmentor # 【必须添加】标识其他未标识的段落（不添加会有异常 prompt）
