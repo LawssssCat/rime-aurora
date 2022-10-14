@@ -90,6 +90,18 @@ local function add_prompts(prompts, msg_error, flag, msg)
   end
 end
 
+function processor.init()
+  -- 检查版本
+  local version_expect = rime_api_helper:get_version_need()
+  local version_actual = rime_api_helper:get_rime_lua_version()
+  if(version_expect > version_actual) then
+    error(string_helper.join({
+      string.format("Obsolete librime-lua api (expected: %s, acutal: %s).", version_expect, version_actual), 
+      "Please update \"rime.dll\" file.(latest backup: https://github.com/LawssssCat/rime-aurora/releases)",
+    }, " "))
+  end
+end
+
 function processor.func(key, env)
   local context = env.engine.context
   if(not is_option_open(env)) then
