@@ -9,9 +9,28 @@ local option_name = "ascii_mode"
 local pure_filter = {}
 
 function pure_filter.init(env)
+  local context = env.engine.context
+  env.notifiers = {
+    context.option_update_notifier:connect(function(ctx, name)
+      if(name == option_name) then
+        if(context:get_option(option_name)) then
+          if(not rime_api_helper:get_prompt_map_item("easy_en")) then -- 减少调用 property 次数
+            rime_api_helper:add_prompt_map(context, "easy_en", "⚙(纯英文~\"Shift\"开/关)")
+          end
+        else
+          if(rime_api_helper:get_prompt_map_item("easy_en")) then
+            rime_api_helper:clear_prompt_map(context, "easy_en")
+          end
+        end
+      end
+    end),
+  }
 end
 
 function pure_filter.fini(env)
+  for i, n in pairs(env.notifiers) do
+    n:disconnect()
+  end
 end
 
 local function yield_raw_input(env)
@@ -24,7 +43,8 @@ local function yield_raw_input(env)
 end
 
 function pure_filter.func(input, env)
-  if(env.option_ascii_mode) then
+  local context = env.engine.context
+  if(context:get_option(option_name)) then
     yield_raw_input(env)
     for cand in input:iter() do
       if(string_helper.is_ascii_visible_string(cand.text)) then -- ascii visible
@@ -40,18 +60,6 @@ function pure_filter.func(input, env)
 end
 
 function pure_filter.tags_match(seg, env)
-  local context = env.engine.context
-  env.option_ascii_mode = context:get_option(option_name)
-
-  if(env.option_ascii_mode) then
-    if(not rime_api_helper:get_prompt_map_item("easy_en")) then -- 减少调用 property 次数
-      rime_api_helper:add_prompt_map(context, "easy_en", "⚙(纯英文~\"Shift\"开/关)")
-    end
-  else
-    if(rime_api_helper:get_prompt_map_item("easy_en")) then
-      rime_api_helper:clear_prompt_map(context, "easy_en")
-    end
-  end
   return true
 end
 
