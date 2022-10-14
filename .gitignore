@@ -1,7 +1,7 @@
 /build
 /temp
-# /sync
+/sync
 /*.userdb
 /node_modules
 /user.yaml
-/sync
+/installation.yaml

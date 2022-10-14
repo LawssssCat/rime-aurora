@@ -33,7 +33,13 @@ end
 -- the version of librime-lua (https://github.com/hchunhui/librime-lua): librime插件，引导lua代码的执行
 function helper:get_rime_lua_version() -- 版本规则参考：https://github.com/shewer/librime-lua-script
   local ver
-  if LevelDb then
+  if rime_api and rime_api.regex_search then
+    ver = 188
+  elseif rime_api and rime_api.regex_match then
+    ver = 187
+  elseif log then
+    ver = 180
+  elseif LevelDb then
     ver = 177
   elseif Opencc then
     ver = 147
@@ -51,6 +57,10 @@ function helper:get_rime_lua_version() -- 版本规则参考：https://github.co
     ver= 79
   end
   return ver
+end
+
+function helper:get_version_need()
+  return 187
 end
 
 function helper:get_version_info()
