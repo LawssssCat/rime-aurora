@@ -239,7 +239,7 @@ local function run_opencc_list_convert_word(env, text)
   local opencc_list = env.opencc_list
   local result = {}
   for i, opencc_db in pairs(opencc_list) do
-    local arr = opencc_db:convert_word(text)
+    local arr = opencc_db:convert_word(text) or {}
     for i,v in pairs(arr) do
       table.insert(result, v)
     end

@@ -2,6 +2,7 @@
 /temp
 /sync
 /*.userdb
+/*.userdb.old
 /node_modules
 /user.yaml
 /installation.yaml

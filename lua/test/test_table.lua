@@ -25,6 +25,13 @@ function M:test_null()
   local rb = {b(1,nil,3)}
   lu.assertEquals(rb, {1,nil, 3})
   lu.assertEquals(#rb, 3)
+  -- =============
+  local flag = false
+  local table = {}
+  if(table) then
+    flag = true
+  end
+  lu.assertEquals(flag, true)
 end
 
 function M:test_init()

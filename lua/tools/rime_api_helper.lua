@@ -60,7 +60,7 @@ function helper:get_rime_lua_version() -- 版本规则参考：https://github.co
 end
 
 function helper:get_version_need()
-  return 187
+  return 188
 end
 
 function helper:get_version_info()
@@ -88,10 +88,12 @@ local function _get_config_item_value(config_item)
     -- issue https://github.com/hchunhui/librime-lua/issues/193
     local config_list = config_item:get_list()
     local result_list = {}
-    for i = 1, config_list.size do
-      local result_config_item = config_list:get_at(i-1) -- 下标 0 开始
-      local result_item = _get_config_item_value(result_config_item)
-      table.insert(result_list, result_item)
+    if(config_list) then
+      for i = 1, config_list.size do
+        local result_config_item = config_list:get_at(i-1) -- 下标 0 开始
+        local result_item = _get_config_item_value(result_config_item)
+        table.insert(result_list, result_item)
+      end
     end
     return result_list
   end
@@ -255,7 +257,7 @@ helper.processor_return_kNoop = 2 -- 字符不上屏，交给下一个 processor
 -- regex - boot.Regex from c++
 -- ============================================================ 
 function helper:regex_match(text, pattern)
-  local result = rime_api.regex_match(text , pattern)
+  local result = rime_api.regex_search(text , pattern)
   return result
 end
 
