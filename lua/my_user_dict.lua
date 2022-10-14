@@ -3,8 +3,7 @@ local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
 local table_helper = require("tools/table_helper")
 local string_syllabify = require("tools/string_syllabify")
-
-local translator = {}
+local LinkedList = require("tools/collection/linked_list")
 
 local function get_tags(env)
   local composition =  env.engine.context.composition
@@ -77,6 +76,67 @@ local function split_last_cand(ctx, script_text)
   return script_text
 end
 
+local function is_need_show(text, entry)
+  -- 你、ni、
+  local remaining_code_length	= entry.remaining_code_length	
+  if(remaining_code_length == 0) then
+    return true
+  end
+  local comment = entry.comment
+  if(not comment) then
+    return true
+  end
+  -- 你、n、~i
+  -- 你好、ni h、~ao
+  if(string.match(comment, "^~%g+$")) then
+    return true
+  end
+  -- 你好、ni、~ hao
+  if(string.match(comment, "^~ %g+$")) then
+    return true
+  end
+  return false
+end
+
+local function adjust_syllabify(syllabify_list, commit_text, env)
+  local words = string_helper.split(commit_text, "")
+  -- 排除长度不一致的
+  if(#syllabify_list > 0) then
+    local patterns = {}
+    for i = 1,#words do
+      table.insert(patterns, "%g+") -- 非空格
+    end
+    local pattern = "^"..table.concat(patterns, " ").."$"
+    local index = 1
+    while(index <= #syllabify_list) do
+      local w = syllabify_list[index]
+      if(not string.match(w, pattern)) then
+        table.remove(syllabify_list, index)
+      else
+        index = index + 1
+      end
+    end
+  end
+end
+
+local function calc_quality(entry, env)
+  local remaining_code_length = entry.remaining_code_length or 0
+  local quality = env.initial_quality + math.exp(entry.weight) -- 计算权重
+  if(remaining_code_length>0) then
+    local exp_count = math.exp(entry.commit_count / 100)
+    exp_count = exp_count>1 and exp_count or 1
+    quality = quality + (-1 / exp_count)
+  else
+    quality = quality + (entry.commit_count / 100)
+  end
+  -- logger.warn("==============", entry.text, entry.custom_code, entry.comment, quality)
+  return quality
+end
+
+-- =============================================== translator
+
+local translator = {}
+
 -- 输入进入用户字典
 function translator.init(env)
   local context = env.engine.context
@@ -91,6 +151,9 @@ function translator.init(env)
         return
       end
       local commit_text = ctx:get_commit_text()
+      if(not commit_text) then
+        return
+      end
       if(commit_text) then
         local e = DictEntry()
         e.text = commit_text
@@ -109,6 +172,7 @@ function translator.init(env)
         else
           -- others
           syllabify_text_list = get_syllabify_text_list(split_last_cand(ctx, script_text), env)
+          adjust_syllabify(syllabify_text_list, commit_text, env)
         end
         for i, text in pairs(syllabify_text_list) do
           e.custom_code = text
@@ -133,19 +197,26 @@ function translator.func(input, seg, env)
   -- 分词
   local syllabify_text_list = get_syllabify_text_list(input_activing, env)
   -- 查库
+  local cand_list = LinkedList()
   local mem = env.mem
   for i, text in pairs(syllabify_text_list) do
     mem:user_lookup(text, true)
     for entry in mem:iter_user() do
-      local remaining_code_length = entry.remaining_code_length or 0
-      local phrase = Phrase(mem, "my_user_dict", seg._start, seg._end, entry)
-      local cand = phrase:toCandidate()
-      cand.quality = math.exp(entry.weight) + -- 计算权重
-        env.initial_quality + 
-        (remaining_code_length * -0.3) + 
-        (0.1 * entry.commit_count)
-      yield(cand)
+      if(is_need_show(text, entry)) then
+        local phrase = Phrase(mem, "my_user_dict", seg._start, seg._end, entry)
+        local cand = phrase:toCandidate()
+        cand.quality = calc_quality(entry, env)
+        cand_list:add(cand)
+        -- yield(cand)
+      end
     end
+  end
+  -- 排序
+  cand_list:sort(function(a,b) return a.quality>b.quality end)
+  -- yield
+  for iter in cand_list:iter() do
+    local cand = iter.value
+    yield(cand)
   end
 end
 

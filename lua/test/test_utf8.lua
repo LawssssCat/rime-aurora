@@ -24,6 +24,15 @@ function M:test_equal()
   -- ----------------
 end
 
+function M:test_split()
+  local text = "你好呀"
+  local words = {}
+  for _, c in utf8.codes(text) do 
+    table.insert(words, utf8.char(c))
+  end
+  lu.assertEquals(words, {"你","好","呀"})
+end
+
 function M:test_codepoint()
   lu.assertEquals(utf8.codepoint("👂🏽", 1), 128066)
   lu.assertEquals(utf8.codepoint("👂🏽", 5), 127997)

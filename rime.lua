@@ -54,7 +54,26 @@ local function run_safety(func, component_name, function_name)
       result = {func(table.unpack(args))}
     end)
     ._catch(function(err)
-      throw_error("error: ", err, "\nresult: ", result, "\nargs:", table.unpack(args))
+      local input = ""
+      ptry(function()
+        local env = get_env(args)
+        if(env) then
+          local context = env.engine.context
+          input = context.input
+        end
+      end)
+      ._catch(function(frr)
+        input = input .. " [fail to get env! \""..frr.."\"]"
+      end)
+      throw_error(string_helper.join({
+        string_helper.join({"error:("..type(err)..")", err}, " "),
+        string_helper.join({"duration: ", string.format("%04fms", os.clock()-clock_start)}, " "),
+        string_helper.join({"component:", component_name}, " "),
+        string_helper.join({"function:", function_name}, " "),
+        string_helper.join({"result:", result}, " "),
+        string_helper.join({"args:", args}, " "),
+        string_helper.join({"input:", input}, " "),
+      }, "\n"))
     end)
     local clock_end = os.clock()
     rime_api_helper:add_component_run_info({

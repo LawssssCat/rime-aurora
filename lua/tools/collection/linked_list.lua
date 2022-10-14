@@ -173,4 +173,31 @@ function LinkedList:iter()
   return iter.next, iter
 end
 
+function LinkedList:sort(compare_func)
+  if(type(compare_func)~="function") then error("error type of arguments #1 \""..type(compare_func).."\". it should be \"function\".") end
+  if(self:Size()<2) then return end
+  local node_one = self.head.next
+  local node_end = self.tail.prev
+  local node_cur = node_one
+  while(node_one~=node_end) do
+    local node_a = node_cur
+    local node_b = node_cur.next
+    local a = node_a.data
+    local b = node_b.data
+    if(compare_func(a, b)) then
+      -- do nothing ...
+      -- node_a.data = a
+      -- node_b.data = b
+    else
+      node_a.data = b
+      node_b.data = a
+    end
+    node_cur = node_cur.next
+    if(node_cur==node_end) then
+      node_end = node_end.prev
+      node_cur = node_one
+    end
+  end
+end
+
 return LinkedList

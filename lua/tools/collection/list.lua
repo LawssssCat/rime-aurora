@@ -141,4 +141,8 @@ function List:iter()
   return iter.next, iter
 end
 
+function List:sort(compare_func)
+  error_not_define()
+end
+
 return List

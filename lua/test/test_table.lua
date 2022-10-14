@@ -55,6 +55,11 @@ function M:test_remove()
   local my_table = {"hello", "world"}
   lu.assertEquals(table.remove(my_table, 1), "hello")
   lu.assertEquals(my_table, {"world"})
+  lu.assertEquals(#my_table, 1)
+  local my_table = {"hello", "world","!"}
+  lu.assertEquals(table.remove(my_table, 2), "world")
+  lu.assertEquals(my_table, {"hello", "!"})
+  lu.assertEquals(#my_table, 2)
   -------------------------
   -- remove 会影响遍历
   local my_table = {"hello", "world"}
