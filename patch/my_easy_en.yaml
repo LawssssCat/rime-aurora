@@ -1,28 +1,22 @@
 # 英文提示
 patch:
-  engine/translators/@after 0: table_translator@easy_en          # 英文
-  engine/filters/@after 0: reverse_lookup_filter@e_reverse_lookup # 显示英文解释
-  engine/filters/@after 1: lua_filter@my_easy_en_filter           # 纯英文模式
+  # engine/translators/@after 0: table_translator@easy_en          # 英文
+  engine/translators/@after 0: lua_translator@my_easy_en_translator
+  engine/filters/@after 0: lua_filter@my_easy_en_filter           # 纯英文模式
+  # engine/filters/@after 1: reverse_lookup_filter@e_reverse_lookup # 显示英文解释
   schema/dependencies/+:
     - easy_en
     - easy_en_comment
 
   recognizer/patterns/+:
     easy_en: "^[a-zA-Z]+$"
+    uppercase: "^[A-Z][a-zA-Z]*$"
 
-  easy_en:
+  my_easy_en_translator:
     dictionary: easy_en
     enable_completion: true # 是否启用英文输入联想补全
-    enable_sentence: false # 混输时不出现带有图案（太极/陰陽魚符号 “☯️” ）的英文
     initial_quality: -1 # 英文候选词的位置, 数值越大越靠前
-    # sentence_over_completion: true
-    # initial_quality: -0.618 
-    # initial_quality: 1 
-    spelling_hints: 9
-    tips: 〔英文〕
     tag: easy_en
-    # comment_format:
-      # - xform/^.+$//
 
   e_reverse_lookup:
     tags: [ easy_en ]

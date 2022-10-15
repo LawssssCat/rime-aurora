@@ -97,6 +97,8 @@ function M:test_len()
   lu.assertEquals(#{nil}, 0) -- 0000000000000000 -- 当没有其他 item 时，不包括 nil
   lu.assertEquals(#{1,2,3,nil,4,5,6}, 7)         -- 当有其他 item 时，包括 nil
   lu.assertEquals(#{1,2,3,nil,4,5,6,a="a",7}, 8)
+  local t = {a="123"}
+  lu.assertEquals(#t.a, 3)
 end
 
 function M:test_unpack()
