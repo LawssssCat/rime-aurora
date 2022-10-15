@@ -43,6 +43,14 @@ function M:test_init()
   lu.assertEquals(t, {a=1,b=2,c=1})
 end
 
+function M:test_helper_merge_array()
+  local a = {1,2,3}
+  local b = {"a","b", "c"}
+  table_helper.merge_array(a,b)
+  lu.assertEquals(a, {1,2,3})
+  lu.assertEquals(b, {"a", "b", "c",1,2,3})
+end
+
 function M:test_func()
   local t = {
     f = function()
