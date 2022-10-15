@@ -15,7 +15,7 @@
 # 词（出现注释）去重
 # cat ./dict/easy_en_* | . ./tools/uniq_easy_en_word.sh | grep -v "⌗" > ./dict/easy_en_word.dict.yaml1
 
-cat $1 | sort -k1 |
+cat $1 | sort -t $'\x09' -k 1,1 |
 grep -E "^[^-.#]" | 
 grep -v -P "^[\d\w]+:.*" | 
 awk -F "	" '

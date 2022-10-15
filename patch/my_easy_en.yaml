@@ -5,6 +5,7 @@ patch:
   engine/filters/@after 1: lua_filter@my_easy_en_filter           # 纯英文模式
   schema/dependencies/+:
     - easy_en
+    - easy_en_comment
 
   recognizer/patterns/+:
     easy_en: "^[a-zA-Z]+$"
@@ -14,6 +15,7 @@ patch:
     enable_completion: true # 是否启用英文输入联想补全
     enable_sentence: false # 混输时不出现带有图案（太极/陰陽魚符号 “☯️” ）的英文
     initial_quality: -1 # 英文候选词的位置, 数值越大越靠前
+    # sentence_over_completion: true
     # initial_quality: -0.618 
     # initial_quality: 1 
     spelling_hints: 9
@@ -25,7 +27,7 @@ patch:
   e_reverse_lookup:
     tags: [ easy_en ]
     overwrite_comment: true
-    dictionary: easy_en
+    dictionary: easy_en_comment
     comment_format:
       #####################################################
       #
