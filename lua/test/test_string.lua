@@ -91,6 +91,8 @@ function M:test_split()
   lu.assertEquals(string_helper.split(str, ""), {"v", "e", "r", "s", "i", "o", "n"})
   lu.assertEquals(string_helper.split(str, nil), {"version"})
   lu.assertEquals(string_helper.split("你好啊", ""), {"你", "好", "啊"})
+  lu.assertEquals(string_helper.split("beau*ful", "*"), {"beau", "ful"})
+  lu.assertEquals(string_helper.split("beau*", "*"), {"beau", ""})
   local t = ""
   local t_list = {}
   for i, v in pairs(string_helper.split(str, "")) do 
@@ -357,8 +359,9 @@ end
 function M:test_find()
   local pattern_01 = "^[a-zA-Z]*$"
   -- 找不到
-  lu.assertFalse(string.find("1", pattern_01), nil)
+  lu.assertFalse(string.find("1", pattern_01))
   lu.assertEquals(string.find("1", pattern_01))
+  lu.assertEquals(string.find("1", pattern_01), nil)
   lu.assertEquals({string.find("1", pattern_01)}, {})
   lu.assertEquals({string.find("/abc", "^/[0-9a-zA-Z]*$")}, {1, 4})
   lu.assertEquals({string.find("/abc", "^/[0-9a-zA-Z]*$", 1)}, {1, 4})
