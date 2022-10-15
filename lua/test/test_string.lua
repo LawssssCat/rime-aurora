@@ -135,18 +135,29 @@ end
 
 -- 截取（字节）
 function M:test_sub()
-  lu.assertEquals(string_helper.sub("abc", 1, 1), "a")
-  lu.assertEquals(string_helper.sub("abc", 1, 2), "ab")
-  lu.assertEquals(string_helper.sub("abc", 2, 1), "")
+  lu.assertEquals(string.sub("abc", 1, 1), "a")
+  lu.assertEquals(string.sub("abc", 1, 2), "ab")
+  lu.assertEquals(string.sub("abc", 2, 1), "")
+  lu.assertEquals(string.sub("abc", 4, 4), "")
 end
 
 -- 截取（utf8）
 function M:test_helper_sub()
+  lu.assertEquals(string_helper.sub("abc", 1, 1), "a")
+  lu.assertEquals(string_helper.sub("abc", 1, 2), "ab")
+  lu.assertEquals(string_helper.sub("abc", 2, 1), "")
   lu.assertEquals(string_helper.sub("你好", 1, 2), "你好")
   lu.assertEquals(string_helper.sub("你好", 1, 1), "你")
   lu.assertEquals(string_helper.sub("你好", 2, 2), "好")
   lu.assertError(string_helper.sub, "你好", 1, 3) -- 下标异常
   lu.assertError(string_helper.sub, "你好", 3) -- 下标异常
+end
+
+function M:test_lower()
+  lu.assertEquals(string.lower("abc"), "abc")
+  lu.assertEquals(string.lower("Abc"), "abc")
+  lu.assertEquals(string.lower("aBc"), "abc")
+  lu.assertEquals(string.lower("ABC"), "abc")
 end
 
 -- 匹配(第一个) => 返回匹配字符串

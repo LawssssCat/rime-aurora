@@ -315,7 +315,11 @@ function helper:add_component_run_info(info)
   local duration_lst = run_duration
   component_info[duration_lst_key] = duration_lst
   -- 时间太长警告
-  if(run_duration>0.1) then
+  local warn_duartion = 0.1
+  if("init"==function_name) then -- 初始化时间给长亿点
+    warn_duartion = 0.3
+  end
+  if(run_duration>warn_duartion) then
     local input = ""
     if(env) then
       local context = env.engine.context
