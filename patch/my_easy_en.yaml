@@ -1,8 +1,8 @@
 # 英文提示
 patch:
   # engine/translators/@after 0: table_translator@easy_en          # 英文
-  engine/translators/@after 0: lua_translator@my_easy_en_translator
-  engine/filters/@after 0: lua_filter@my_easy_en_filter           # 纯英文模式
+  engine/translators/@after 0: lua_translator@my_easy_en_translator # 英文拼写/注释提示
+  engine/filters/@after 0: lua_filter@my_easy_en_pure_filter           # 纯英文模式
   # engine/filters/@after 1: reverse_lookup_filter@e_reverse_lookup # 显示英文解释
   schema/dependencies/+:
     - easy_en
@@ -14,14 +14,10 @@ patch:
 
   my_easy_en_translator:
     dictionary: easy_en
+    dictionary_comment: easy_en_comment
     enable_completion: true # 是否启用英文输入联想补全
     initial_quality: -1 # 英文候选词的位置, 数值越大越靠前
     tag: easy_en
-
-  e_reverse_lookup:
-    tags: [ easy_en ]
-    overwrite_comment: true
-    dictionary: easy_en_comment
     comment_format:
       #####################################################
       #
@@ -43,5 +39,5 @@ patch:
       - xform/^([^﹝])/ $1/
       - xform/^([^﹙])/ $1/
       # - xform/^((?:[\0-\x7F\xC2-\xFD][\x80-\xBF]*){17}).+$/$1 ……《略》/ # 增加字数可能导致闪退
-      - xform/^((?:[\x01-\x7f]|[\xc0-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}){30}).+$/$1... / # 增加字数可能导致闪退
+      - xform/^((?:[\x01-\x7f]|[\xc0-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}){50}).+$/$1... / # 增加字数可能导致闪退
       #####################################################

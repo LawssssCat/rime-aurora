@@ -16,21 +16,33 @@ function translator.init(env)
   env.config_initial_quality = config:get_int(env.name_space .. "/initial_quality"); if(env.config_initial_quality==nil) then env.config_initial_quality = 0 end
   env.config_tag = config:get_string(env.name_space .. "/tag") or "easy_en"
   env.config_dictionary = config:get_string(env.name_space .. "/dictionary") or "easy_en"
-  env.mem = Memory(env.engine, Schema(env.config_dictionary))
+  env.config_dictionary_comment = config:get_string(env.name_space.."/dictionary_comment") or "easy_en_comment"
+  env.config_comment_format = config:get_list(env.name_space .. "/comment_format")
+  -- text
+  env.db_mem = Memory(env.engine, Schema(env.config_dictionary))
+  -- comment
+  env.db_rev = ReverseDb("build/"..env.config_dictionary_comment..".reverse.bin")
+  -- comment preedit
+  env.format = Projection()
+  if(not env.format:load(env.config_comment_format)) then
+    logger.warn("fail to load \"dictionary_comment\"", env)
+  end
   env.init_ok = true
 end
 
 function translator.func(input, seg, env)
-  if(env.init_ok~=true) then logger.warn("Fail to init easy_en component!", env); return end
+  if(env.init_ok~=true) then logger.warn("Fail to init \""..env.name_space.."\" component!", env); return end
   if(seg:has_tag(env.config_tag)) then
     local input_waiting = string.sub(input, seg._start+1, seg._end)
     if(not input_waiting) then logger.warn("input waiting nothing.", input, seg._start, seg._end); return end
-    local mem = env.mem
+    local mem = env.db_mem
     local pattern = string.lower(input_waiting)
     if(mem:dict_lookup(pattern, env.config_enable_completion, 0)) then
       for entry in mem:iter_dict() do
         local text = string_helper.replace(entry.text, "^"..pattern, input_waiting)
-        local cand = Candidate(cand_type, seg.start, seg._end, text, entry.comment)
+        local text_comment = env.db_rev:lookup(entry.text) or ""
+        local text_comment_preedit = env.format:apply(text_comment) or ""
+        local cand = Candidate(cand_type, seg.start, seg._end, text, entry.comment.." "..text_comment_preedit)
         cand.quality = env.config_initial_quality
         yield(cand)
       end
@@ -38,7 +50,7 @@ function translator.func(input, seg, env)
   end
 end
 
--- =============================================================== filter
+-- =============================================================== pure_filter
 
 local pure_filter = {}
 
@@ -107,6 +119,8 @@ function pure_filter.tags_match(seg, env)
 end
 
 return {
-  filter = pure_filter,
+  -- ====== 纯英文模式
+  pure_filter = pure_filter,
+  -- ===== 英文注释
   translator = translator,
 }
