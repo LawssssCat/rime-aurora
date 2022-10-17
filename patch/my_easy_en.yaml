@@ -9,8 +9,8 @@ patch:
     - easy_en_comment
 
   recognizer/patterns/+:
-    easy_en: "^[a-zA-Z]+$"
-    uppercase: "^[A-Z][a-zA-Z]*$"
+    easy_en:   "^(?![*])[a-zA-Z*]+$"
+    uppercase: "^[A-Z][a-zA-Z*]*$"
 
   my_easy_en_translator:
     dictionary: easy_en
