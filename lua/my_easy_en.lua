@@ -45,8 +45,7 @@ function EasyHandler:yield()
   local seg = self.seg
   local env = self.env
   local mem = env.db_mem
-  local pattern = self:get_pattern()
-  if(not mem:dict_lookup(pattern, env.config_enable_completion, 0)) then return end
+  if(not self:load()) then return end
   for entry in mem:iter_dict() do
     if(self:is_yield(entry)) then
       -- text
@@ -61,6 +60,12 @@ function EasyHandler:yield()
       yield(cand)
     end
   end
+end
+function EasyHandler:load()
+  local env = self.env
+  local mem = env.db_mem
+  local pattern = self:get_pattern()
+  return mem:dict_lookup(pattern, env.config_enable_completion, 0);
 end
 function EasyHandler:is_yield(entry) return true end
 function EasyHandler:get_pattern()
@@ -83,6 +88,15 @@ end
   handler: 处理 * 号
 ]]
 local GessHandler = EasyHandler:extend()
+function GessHandler:load()
+  local env = self.env
+  local mem = env.db_mem
+  local pattern = self:get_pattern()
+  if(not pattern or #pattern<2) then
+    return mem:dict_lookup(pattern, env.config_enable_completion, 100);  
+  end
+  return mem:dict_lookup(pattern, env.config_enable_completion, 0);
+end
 function GessHandler:get_pattern()
   local pattern = self.pattern
   if(not pattern) then
