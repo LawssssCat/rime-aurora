@@ -79,7 +79,7 @@ function GessHandler:load()
   local mem = env.db_mem
   local pattern = self:get_pattern()
   if(not pattern or #pattern<2) then
-    return mem:dict_lookup(pattern, env.config_enable_completion, 10000);  
+    return mem:dict_lookup(pattern, env.config_enable_completion, env.config_fuzzy_match_limit); -- 看情况设置，多了会卡
   end
   return mem:dict_lookup(pattern, env.config_enable_completion, 0);
 end
@@ -141,11 +141,12 @@ local translator = {}
 function translator.init(env)
   local config = env.engine.schema.config
   env.config_enable_completion = config:get_bool(env.name_space .. "/enable_completion")==true and true or false
-  env.config_initial_quality = config:get_int(env.name_space .. "/initial_quality"); if(env.config_initial_quality==nil) then env.config_initial_quality = 0 end
+  env.config_initial_quality = config:get_int(env.name_space .. "/initial_quality") or 0
   env.config_tag = config:get_string(env.name_space .. "/tag") or "easy_en"
   env.config_dictionary = config:get_string(env.name_space .. "/dictionary") or "easy_en"
   env.config_dictionary_comment = config:get_string(env.name_space.."/dictionary_comment") or "easy_en_comment"
   env.config_comment_format = config:get_list(env.name_space .. "/comment_format")
+  env.config_fuzzy_match_limit = config:get_int(env.name_space .. "/fuzzy_match_limit") or 1000
   -- text
   env.db_mem = Memory(env.engine, Schema(env.config_dictionary))
   -- comment
