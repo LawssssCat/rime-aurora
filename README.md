@@ -128,7 +128,23 @@
 1. 选词 - `shift+⬆️（上）` 或 `shift+⬇️（下）` - 翻页 💡
 1. 选词 - `shift + 🆑（Delete：小键盘删除键）` - 删除选词的用户字典记录 💡
 
-## 安装方法
+## 安装方法（脚本安装）
+
+1. 关闭输入法 “退出算法服务”
+
+2. 执行脚本（需要：安装了git、配置了bash、指定输入法的“安装目录”、“用户目录”）
+
+    ```bash
+    # 指定输入法的“安装目录”（自行更改）
+    path_installation="E:\Program Files (x86)\Rime\weasel-0.14.3"
+    # 指定输入法的“用户目录”（自行更改）
+    path_userdata="C:\Users\lawsssscat\AppData\Roaming\Rime"
+    bash install.sh $path_installation $path_userdata
+    ```
+
+3. 开启输入法 & “重新部属” 
+
+## 安装方法（手动安装）
 
 ### 步骤一：拷贝文件到“用户文件夹📁”
 
@@ -148,22 +164,23 @@
 
 ### 步骤二：**更新 librime-lua** 📄
 
-准备 rime.dll （从本项目的 [release](https://github.com/LawssssCat/rime-aurora/releases) 中下载备份，或者到 librime-lua 项目下载[最新版本](https://github.com/hchunhui/librime-lua/actions)），然后将 rime.dll 文件覆盖到 weasel 安装目录下，即可。
+准备 rime.dll （从本项目的 [release](https://github.com/LawssssCat/rime-aurora/releases/latest) 中下载备份，或者到 librime-lua 项目下载[最新版本](https://github.com/hchunhui/librime-lua/actions)），然后将 rime.dll 文件覆盖到 weasel 安装目录下，即可。
 
-> 相关资料
-> 
-> + wiki <https://github.com/hchunhui/librime-lua/wiki#installation>
-> + issue <https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242955543>
+（如果提示 rime.dll 正在使用，先关闭输入法 “退出算法服务”）
 
 > ⚠️ 说明
 >
 >[librime-lua 插件](https://github.com/hchunhui/librime-lua)提供了输入法程序运行时执行 lua 脚本功能。
 >
->其内容[已经被 librime 添加进项目编译](https://github.com/rime/librime/blob/master/.github/workflows/release-ci.yml#L21)，会随著输入法版本发布，[不需再额外安装](https://github.com/hchunhui/librime-lua/issues/41)。
+>librime-lua 插件 [已经被 librime 添加进项目编译](https://github.com/rime/librime/blob/master/.github/workflows/release-ci.yml#L21)，但所包含的 [librime-lua 插件版本会偏旧](https://github.com/hchunhui/librime-lua/issues/43)。
 >
->但由于代码需要测试，官网下载最新版的输入法版本所包含的 [librime-lua 插件版本会偏旧](https://github.com/hchunhui/librime-lua/issues/43)，本方案许多功能无法实现。
->
->**因此体验本方案完整功能需要[更新 librime-lua 插件](https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242881504)。**
+> 🌟 **因此体验本方案完整功能需要 [更新 librime-lua 插件](https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242881504)。**
+
+> 💡 相关资料
+> 
+> + issue 内置 <https://github.com/hchunhui/librime-lua/issues/41>
+> + wiki api <https://github.com/hchunhui/librime-lua/wiki#installation>
+> + issue 调试 <https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242955543>
 
 ### 步骤三：**重新部署** ⚙
 
@@ -328,7 +345,7 @@ bash tools/tailLog.sh
 > prompt 随 caret 移动问题<br>
 > <https://github.com/rime/weasel/issues/775>
 > - [x] 2022年09月30日<br>
-> emoji 太多类似的，影响正常候选词。<br>（喧宾夺主）<br>
+> emoji 太多类似的，影响正常候选词。<br>
 >  2022年10月04日<br>
 >  增加子菜单功能。（emoji显示再子菜单）
 
