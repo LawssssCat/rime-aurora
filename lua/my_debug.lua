@@ -131,23 +131,7 @@ function filter.init(env)
   local config = env.engine.schema.config
   env.debug_comment_pattern = "『{dynamic_type}:{type}|🏆{quality}』" -- 当 weasel 为前端时，内容过长（或者换行）可能导致闪退（同时关闭父应用...）。 issue https://github.com/rime/home/issues/1129
   -- 获取排除类型
-  env.excluded_types = (function()
-    local types = rime_api_helper:get_config_item_value(config, env.name_space .. "/excluded_types")
-    if(not types) then
-      types = {}
-    elseif(type(types) == "string") then
-      types = {types}
-    end
-    function types:include(text)
-      for i,t in pairs(self) do
-        if(text == t) then
-          return true
-        end
-      end
-      return false
-    end
-    return types
-  end)()
+  env.excluded_types = rime_api_helper:get_config_item_value(config, env.name_space .. "/excluded_types") or {}
 end
 
 function filter.func(input, env)
@@ -162,9 +146,10 @@ function filter.func(input, env)
     return
   end
   -- 时间间隔 processor => filter
+  local excluded_types = env.excluded_types
   rime_api_helper:add_prompt_map(context, "duration", string.format("⏱️:%0.4fs", get_time_duration())) -- 计时结束 ⏳
   for cand in input:iter() do
-    if(env.excluded_types:include(cand.type)) then
+    if(rime_api_helper:is_candidate_in_types(cand, excluded_types)) then
       yield(cand)
     else
       -- 整理 info

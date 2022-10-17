@@ -246,6 +246,36 @@ function helper:page_prev(segment, page_size)
 end
 
 -- ============================================================ 
+-- candidate
+-- ============================================================ 
+
+--[[
+  candidate 的 type 是否有任何一个在
+  types 中 存在
+]]
+function helper:is_candidate_in_types(cand, types)
+  local cs = cand:get_genuines()
+  for i, t in pairs(types) do
+    for j, c in pairs(cs) do 
+      if(c.type == t) then
+        return true
+      end
+    end
+  end
+  return false
+end
+
+function helper:is_candidate_in_type(cand, type)
+  local cs = cand:get_genuines()
+  for i,c in pairs(cs) do
+    if(c.type == type) then
+      return true
+    end
+  end
+  return false
+end
+
+-- ============================================================ 
 -- processor
 -- ============================================================ 
 

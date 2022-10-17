@@ -224,7 +224,7 @@ function pure_filter.func(input, env)
   if(context:get_option(option_name)) then
     local first = false
     for cand in input:iter() do
-      if(cand.type==cand_type or string_helper.is_ascii_visible_string(cand.text)) then
+      if(rime_api_helper:is_candidate_in_type(cand, cand_type) or string_helper.is_ascii_visible_string(cand.text)) then
         if(not first) then
           first = true
           local text = context.input
