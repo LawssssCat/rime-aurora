@@ -70,7 +70,9 @@
 
     ![输入法英文（纯英文模式）预览](./.github/assets/preview-easy_en-pure.png)
 
-    todo 优化 https://github.com/shewer/librime-lua-script/issues/5
+    输入 “`*`” 进行 “模糊匹配”
+
+    ![输入法英文（模糊匹配）预览](./.github/assets/preview-easy_en-fuzzy.png)
 
 3. 子列表展示：emoji 表情 & 颜表情
 
@@ -332,7 +334,7 @@ bash tools/tailLog.sh
 
 > 待优化问题：
 >
-> - [ ] 英文大写不提示小写信息
+> - [x] 英文大写不提示小写信息
 > - [x] 网址提示 <br>
 > => 用户字典记录输入的网址，再次输入提示
 > - [ ] 提示未完整 symbols 候选词、并显示各分类含义

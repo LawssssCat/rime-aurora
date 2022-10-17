@@ -105,6 +105,9 @@ local handle_run_map = {
     local ch = utf8.char(code)
     context:push_input(ch)
     return true
+  end,
+  reject = function(key, env)
+    return false, rime_api_helper.processor_return_kRejected
   end
 }
 
@@ -178,7 +181,7 @@ function processor.init(env)
 end
 
 function processor.func(key, env)
-  local match_key = false
+  local match_key = rime_api_helper.processor_return_kNoop
   if(env.key_binder_list) then
     local status_index = 0
     local status_action = nil
@@ -187,31 +190,38 @@ function processor.func(key, env)
       for index, action in pairs(env.key_binder_list) do 
         status_index = index
         status_action = action
-        local flag_match = false
+        local continue = false
+        local flag = nil
         -- 匹配配置项目
         for jndex, match in pairs(key_binder_matching_chains) do
-          flag_match = match(key, env, index, action)
-          if(not flag_match) then
-            break
+          continue, flag = match(key, env, index, action)
+          if(not continue) then
+            if(flag==nil) then
+              -- match_key = rime_api_helper.processor_return_kNoop
+              break
+            else
+              match_key = flag
+              return
+            end
           end
         end
         -- 匹配配置 - 成功
-        if(flag_match) then
-          match_key = true
+        if(continue) then
+          if(flag==nil) then
+            match_key = rime_api_helper.processor_return_kAccepted
+          else
+            match_key = flag
+          end
           break
         end
       end
     end)
     ._catch(function(err) -- error
-      match_key = false
+      match_key = rime_api_helper.processor_return_kNoop
       logger.error(err, status_index, status_action)
     end)
   end
-  if(match_key) then
-    return rime_api_helper.processor_return_kAccepted
-  else
-    return rime_api_helper.processor_return_kNoop
-  end
+  return match_key
 end
 
 return {
