@@ -62,6 +62,12 @@ local function to_english(text)
   return text
 end
 
+--[[
+  script_text "ni haoma"
+  cand.preedit "ma"
+  =>
+  return "ni hao ma"
+]]
 local function split_last_cand(ctx, script_text)
   local cand = ctx:get_selected_candidate()
   if(cand and cand.preedit) then
@@ -133,6 +139,21 @@ local function calc_quality(entry, env)
   return quality
 end
 
+-- 处理 注释
+local comment_handlers = {
+  function(entry)
+    return false
+  end
+}
+local function comment_handlers_add(func)
+  local t = type(func)
+  if(t=="function") then
+    table.insert(comment_handlers, func)
+  else
+    logger.error("fail to add comment_handlers func for error type of args#1 \""..t.."\".")
+  end
+end
+
 -- =============================================== translator
 
 local translator = {}
@@ -154,30 +175,28 @@ function translator.init(env)
       if(not commit_text) then
         return
       end
-      if(commit_text) then
-        local e = DictEntry()
-        e.text = commit_text
-        -- e.weight = 10
-        local script_text = ctx:get_script_text()
-        local syllabify_text_list = nil
-        if(is_english(commit_text)) then
-          -- english
-          syllabify_text_list = {
-            script_text,
-            commit_text,
-            to_english(commit_text),
-            to_english(script_text),
-          }
-          syllabify_text_list = table_helper.arr_remove_duplication(syllabify_text_list)
-        else
-          -- others
-          syllabify_text_list = get_syllabify_text_list(split_last_cand(ctx, script_text), env)
-          adjust_syllabify(syllabify_text_list, commit_text, env)
-        end
-        for i, text in pairs(syllabify_text_list) do
-          e.custom_code = text
-          env.mem:update_userdict(e,1,"") -- do nothing to userdict
-        end
+      local e = DictEntry()
+      e.text = commit_text
+      -- e.weight = 10
+      local script_text = ctx:get_script_text()
+      local syllabify_text_list = nil
+      if(is_english(commit_text)) then
+        -- english
+        syllabify_text_list = {
+          script_text,
+          commit_text,
+          to_english(commit_text),
+          to_english(script_text),
+        }
+        syllabify_text_list = table_helper.arr_remove_duplication(syllabify_text_list)
+      else
+        -- others
+        syllabify_text_list = get_syllabify_text_list(split_last_cand(ctx, script_text), env)
+        adjust_syllabify(syllabify_text_list, commit_text, env)
+      end
+      for i, text in pairs(syllabify_text_list) do
+        e.custom_code = text
+        env.mem:update_userdict(e,1,"") -- do nothing to userdict
       end
     end),
   }
@@ -204,9 +223,15 @@ function translator.func(input, seg, env)
     for entry in mem:iter_user() do
       if(is_need_show(text, entry)) then
         local phrase = Phrase(mem, "my_user_dict", seg._start, seg._end, entry)
-        local cand = phrase:toCandidate()
-        cand.quality = calc_quality(entry, env)
-        cand_list:add(cand)
+        phrase.quality = calc_quality(entry, env)
+        for i, h in pairs(comment_handlers) do
+          local flag, comment = h(entry)
+          if(flag) then
+            phrase.comment = phrase.comment .. " " .. comment
+            break
+          end
+        end
+        cand_list:add(phrase:toCandidate())
         -- yield(cand)
       end
     end
@@ -221,5 +246,6 @@ function translator.func(input, seg, env)
 end
 
 return {
-  translator = translator
+  translator = translator,
+  comment_handlers_add = comment_handlers_add,
 }

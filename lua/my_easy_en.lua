@@ -2,34 +2,21 @@ local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
 local Object = require("tools/classic")
+local comment_handlers_add = require("my_user_dict").comment_handlers_add
 
 local option_name = "ascii_mode"
 
 local cand_type = "easy_en"
 
--- =============================================================== translator
+-- =================================== methods
 
-local translator = {}
-
-function translator.init(env)
-  local config = env.engine.schema.config
-  env.config_enable_completion = config:get_bool(env.name_space .. "/enable_completion")==true and true or false
-  env.config_initial_quality = config:get_int(env.name_space .. "/initial_quality"); if(env.config_initial_quality==nil) then env.config_initial_quality = 0 end
-  env.config_tag = config:get_string(env.name_space .. "/tag") or "easy_en"
-  env.config_dictionary = config:get_string(env.name_space .. "/dictionary") or "easy_en"
-  env.config_dictionary_comment = config:get_string(env.name_space.."/dictionary_comment") or "easy_en_comment"
-  env.config_comment_format = config:get_list(env.name_space .. "/comment_format")
-  -- text
-  env.db_mem = Memory(env.engine, Schema(env.config_dictionary))
-  -- comment
-  env.db_rev = ReverseDb("build/"..env.config_dictionary_comment..".reverse.bin")
-  -- comment preedit
-  env.format = Projection()
-  if(not env.format:load(env.config_comment_format)) then
-    logger.warn("fail to load \"dictionary_comment\"", env)
-  end
-  env.init_ok = true
+local function get_comment(text, env)
+  local text_comment = env.db_rev:lookup(text) or ""
+  local text_comment_preedit = env.format:apply(text_comment) or ""
+  return text_comment_preedit
 end
+
+-- =================================== Handlers => 输入（input） 生成 候选词（candidate）
 
 --[[
   handler: 【默认】 翻译英文
@@ -51,8 +38,7 @@ function EasyHandler:yield()
       -- text
       local text = self:get_candidate_text(entry)
       -- comment
-      local text_comment = env.db_rev:lookup(entry.text) or ""
-      local text_comment_preedit = env.format:apply(text_comment) or ""
+      local text_comment_preedit = get_comment(entry.text, env)
       -- candidate
       local cand = Candidate(cand_type, seg.start, seg._end, text, entry.comment.." "..text_comment_preedit)
       cand.quality = env.config_initial_quality
@@ -93,7 +79,7 @@ function GessHandler:load()
   local mem = env.db_mem
   local pattern = self:get_pattern()
   if(not pattern or #pattern<2) then
-    return mem:dict_lookup(pattern, env.config_enable_completion, 100);  
+    return mem:dict_lookup(pattern, env.config_enable_completion, 10000);  
   end
   return mem:dict_lookup(pattern, env.config_enable_completion, 0);
 end
@@ -146,6 +132,42 @@ function GessHandler:get_candidate_text(entry)
     index = s+#part_raw
   end
   return text
+end
+
+-- =============================================================== translator
+
+local translator = {}
+
+function translator.init(env)
+  local config = env.engine.schema.config
+  env.config_enable_completion = config:get_bool(env.name_space .. "/enable_completion")==true and true or false
+  env.config_initial_quality = config:get_int(env.name_space .. "/initial_quality"); if(env.config_initial_quality==nil) then env.config_initial_quality = 0 end
+  env.config_tag = config:get_string(env.name_space .. "/tag") or "easy_en"
+  env.config_dictionary = config:get_string(env.name_space .. "/dictionary") or "easy_en"
+  env.config_dictionary_comment = config:get_string(env.name_space.."/dictionary_comment") or "easy_en_comment"
+  env.config_comment_format = config:get_list(env.name_space .. "/comment_format")
+  -- text
+  env.db_mem = Memory(env.engine, Schema(env.config_dictionary))
+  -- comment
+  env.db_rev = ReverseDb("build/"..env.config_dictionary_comment..".reverse.bin")
+  -- comment preedit
+  env.format = Projection()
+  if(not env.format:load(env.config_comment_format)) then
+    logger.warn("fail to load \"dictionary_comment\"", env)
+  end
+  -- 注册用户字典的comment处理器
+  comment_handlers_add(function(entry)
+    local text = entry.text
+    text = string.lower(text)
+    if(string_helper.is_ascii_visible_string(text)) then
+      local text_comment_preedit = get_comment(text, env)
+      if(text_comment_preedit and #text_comment_preedit>0) then
+        return true, text_comment_preedit
+      end
+    end
+    return false
+  end)
+  env.init_ok = true
 end
 
 function translator.func(input, seg, env)
