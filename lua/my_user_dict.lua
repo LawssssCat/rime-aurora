@@ -180,6 +180,8 @@ end
 
 -- =============================================== translator
 
+local mem = nil
+
 local translator = {}
 
 -- 输入进入用户字典
@@ -188,7 +190,10 @@ function translator.init(env)
   local config = env.engine.schema.config
   env.initial_quality = config:get_string(env.name_space .."/initial_quality") or 0
   env.excluded_tags = rime_api_helper:get_config_item_value(config, env.name_space .."/excluded_tags") or {}
-  env.mem = Memory(env.engine,env.engine.schema)  --  ns= "translator"
+  env.mem = mem or (function()
+    mem = Memory(env.engine, env.engine.schema)
+    return mem
+  end)()
   env.notifiers = {
     context.commit_notifier:connect(function(ctx)
       local tags = get_tags(env)

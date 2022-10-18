@@ -149,6 +149,10 @@ end
 
 -- =============================================================== translator
 
+-- 初始化引用
+local db_mem = nil
+local db_rev = nil
+local format = nil
 local user_dict_comment_handler = nil
 local user_dict_syllabify_handler = nil
 
@@ -164,14 +168,23 @@ function translator.init(env)
   env.config_comment_format = config:get_list(env.name_space .. "/comment_format")
   env.config_fuzzy_match_limit = config:get_int(env.name_space .. "/fuzzy_match_limit") or 1000
   -- text
-  env.db_mem = Memory(env.engine, Schema(env.config_dictionary))
+  env.db_mem = db_mem or (function()
+    db_mem = Memory(env.engine, Schema(env.config_dictionary))
+    return db_mem
+  end)()
   -- comment
-  env.db_rev = ReverseDb("build/"..env.config_dictionary_comment..".reverse.bin")
+  env.db_rev = db_rev or (function()
+    db_rev = ReverseDb("build/"..env.config_dictionary_comment..".reverse.bin")
+    return db_rev
+  end)()
   -- comment preedit
-  env.format = Projection()
-  if(not env.format:load(env.config_comment_format)) then
-    logger.warn("fail to load \"dictionary_comment\"", env)
-  end
+  env.format = format or (function()
+    format = Projection()
+    if(not format:load(env.config_comment_format)) then
+      logger.warn("fail to load \"dictionary_comment\"", env)
+    end
+    return format
+  end)()
   -- 注册用户字典的注释（comment）处理器
   if(not user_dict_comment_handler) then
     user_dict_comment_handler = function(entry)
@@ -228,18 +241,22 @@ local pure_filter = {}
 
 function pure_filter.init(env)
   local context = env.engine.context
+  local func_01 = function(ctx)
+    if(ctx:get_option(option_name)) then
+      if(not rime_api_helper:get_prompt_map_item("easy_en")) then -- 减少调用 property 次数
+        rime_api_helper:add_prompt_map(ctx, "easy_en", "⚙(纯英文~\"Shift\"开/关)")
+      end
+    else
+      if(rime_api_helper:get_prompt_map_item("easy_en")) then
+        rime_api_helper:clear_prompt_map(ctx, "easy_en")
+      end
+    end
+  end
+  func_01(context)
   env.notifiers = {
     context.option_update_notifier:connect(function(ctx, name)
       if(name == option_name) then
-        if(context:get_option(option_name)) then
-          if(not rime_api_helper:get_prompt_map_item("easy_en")) then -- 减少调用 property 次数
-            rime_api_helper:add_prompt_map(context, "easy_en", "⚙(纯英文~\"Shift\"开/关)")
-          end
-        else
-          if(rime_api_helper:get_prompt_map_item("easy_en")) then
-            rime_api_helper:clear_prompt_map(context, "easy_en")
-          end
-        end
+        func_01(ctx)
       end
     end),
   }

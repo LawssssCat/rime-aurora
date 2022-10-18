@@ -195,12 +195,17 @@ local key_binder_matching_chains = {
 
 -- ======================================= processor
 
+local mem = nil
+
 local processor = {}
 
 function processor.init(env)
   local config = env.engine.schema.config
   env.key_binder_list = rime_api_helper:get_config_item_value(config, env.name_space .. "/bindings")
-  env.mem = Memory(env.engine,env.engine.schema)
+  env.mem = mem or (function()
+    mem = Memory(env.engine, env.engine.schema)
+    return mem
+  end)()
 end
 
 function processor.func(key, env)
