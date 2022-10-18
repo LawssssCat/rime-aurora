@@ -17,6 +17,28 @@ local string_helper = require("tools/string_helper")
 -- ----------------------------
 
 local handle_run_map = {
+  select_previous = function(key, env) -- 选择上一个候选词
+    local context = env.engine.context
+    local composition = context.composition
+    if(not composition:empty()) then
+      local segment = composition:back()
+      local index = segment.selected_index
+      segment.selected_index = segment.selected_index - 1
+      return true
+    end
+    return false
+  end,
+  select_next = function(key, env) -- 选择下一个候选词
+    local context = env.engine.context
+    local composition = context.composition
+    if(not composition:empty()) then
+      local segment = composition:back()
+      local index = segment.selected_index
+      segment.selected_index = segment.selected_index + 1
+      return true
+    end
+    return false
+  end,
   Page_Up = function(key, env)  -- 上一页
     local schema = env.engine.schema
     local composition = env.engine.context.composition
@@ -122,6 +144,7 @@ local handle_run_map = {
 
 local key_binder_matching_chains = {
   function(key, env, index, action) -- accept
+    -- logger.warn(key:repr())
     if(action.accept == key:repr()) then
       return true
     end
