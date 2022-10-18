@@ -61,6 +61,10 @@ local mode_opencc_allow_keys = {
   "Shift+Down",
   "space"
 }
+for i=1,9 do -- 数字
+  table.insert(mode_opencc_allow_keys, tostring(i))
+  table.insert(mode_opencc_allow_keys, "KP_"..tostring(i)) -- 小键盘
+end
 function mode_opencc_allow_keys:include(repr)
   for i,k in pairs(self) do
     if(k == repr) then
@@ -106,6 +110,7 @@ end
 
 function processor.func(key, env)
   local context = env.engine.context
+  -- logger.warn(key:repr())
   if(mode_opencc) then
     if(not context:has_menu()) then
       reset_mode_opencc(env)
