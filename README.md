@@ -191,16 +191,7 @@
 
 > ⚠️ 注意
 >
-> 『第一次』部署需要不少时间（大概10min），因为引用了大量的 dict 码表<br>
->（需要编译成 `build/*.table.bin` 文件）
->
-> 可以选择减少编译的 dict 码表，以缩短编译时间：
->
-> 打开下述文件，将 `import_tables` 中不需要的码表注释掉即可<br>
-> （注释：行首添加 "`#`" 符号）
->
-> + `my_luna_pinyin.dict.yaml`
-> + `my_terra_pinyin.dict.yaml`
+> 『第一次』部署大概需要等待几分钟。
 
 <div style='clear: both;'></div>
 
