@@ -99,9 +99,9 @@ local function is_need_show(text, entry)
     return true
   end
   -- 你好、ni、~ hao
-  if(string.match(comment, "^~ %g+$")) then
-    return true
-  end
+  -- if(string.match(comment, "^~ %g+$")) then -- 预测候选词
+  --   return true
+  -- end
   return false
 end
 
