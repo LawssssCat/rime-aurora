@@ -217,6 +217,12 @@ function M:test_match()
   lu.assertEquals(string.match("~a abc asdfsdf", pattern) ~= nil, false)
   lu.assertEquals(string.match("~ abc", pattern) ~= nil, true)
   lu.assertEquals(string.match("~ abc safsdf", pattern) ~= nil, false)
+  local pattern = "^~(%g+)[ ]*"
+  lu.assertEquals(string.match("~ abc safsdf", pattern), nil)
+  lu.assertEquals(string.match("safsdf", pattern), nil)
+  lu.assertEquals(string.match("", pattern), nil)
+  lu.assertEquals(string.match("~abc safsdf", pattern), "abc")
+  lu.assertEquals(string.match("~abcsafsdf", pattern), "abcsafsdf")
   -- 其他
   local env = {
     wildcard = "*"
