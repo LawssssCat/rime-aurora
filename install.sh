@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -ex
+
 echo "参数校验🔎"
 if [ -z $1 ]; then
     echo "请输入参数 \$1 以指定输入法的“安装目录”。"
@@ -19,11 +23,16 @@ fi
 path_userdata=$2
 owner=LawssssCat
 repo=rime-aurora
+
+rime_dll="rime.dll"
+rime_dll_sha256sum_v1_3="01a16cba29bd02277a06298a8d3e75e764f91a983a43fd86fda01f81e11eb8cb  ${rime_dll}"
+rime_dll_sha256sum="${rime_dll_sha256sum=${rime_dll_sha256sum_v1_3}}"
+
 echo "拷贝文件到“用户文件夹📁”"
 cd ${path_userdata}
 git clone https://github.com/LawssssCat/rime-aurora.git -b master --depth=1 ./${repo}
 if [ ! -d ./${repo} ]; then
-    echo "fail tp clone repo."
+    echo "fail clone repo."
     exit 1
 fi
 cp ./${repo}/dict                ./ -r
@@ -34,16 +43,20 @@ cp ./${repo}/*.yaml              ./
 cp ./${repo}/rime.lua            ./
 cp ./${repo}/*.gram              ./
 cp ./${repo}/custom_phrase.txt   ./
+
 echo "更新 librime-lua 📄"
 rime_url=`curl -s https://api.github.com/repos/${owner}/${repo}/releases/latest | grep browser_download_url | grep rime.dll | cut -f4 -d "\""`
 # rime_name=`echo ${rime_url} | cut -d "/" -f9`
-echo "download .. ${rime_url}"
-curl -LJ ${rime_url} -o rime.dll
+curl -LJ ${rime_url} -o "${rime_dll}"
 if [ ! -f rime.dll ]; then
+    echo "fail download ${rime_dll}"
     exit 1
 fi
-dll_raw=$path_installation/rime.dll
+echo "${rime_dll_sha256sum}" | shasum -a 256 -c
+dll_raw=${path_installation}/${rime_dll}
 if [ -f $dll_raw ]; then 
-    mv $dll_raw $dll_raw.bak
+    dll_raw_new="${dll_raw}.bak"
+    mv $dll_raw ${dll_raw_new}
+    echo "move old \"${rime_dll}\" to \"${dll_raw_new}\""
 fi
-mv rime.dll $path_installation/
+mv ${rime_dll} ${path_installation}/

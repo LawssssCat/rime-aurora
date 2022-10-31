@@ -149,7 +149,7 @@
     path_installation="E:\Program Files (x86)\Rime\weasel-0.14.3"
     # 指定输入法的“用户目录”（自行更改）
     path_userdata="C:\Users\lawsssscat\AppData\Roaming\Rime"
-    bash install.sh $path_installation $path_userdata
+    bash install.sh "$path_installation" "$path_userdata"
     ```
 
 3. 开启输入法 & “重新部属” 
