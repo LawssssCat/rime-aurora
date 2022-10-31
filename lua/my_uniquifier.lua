@@ -7,23 +7,7 @@ local filter = {}
 function filter.init(env)
   local config = env.engine.schema.config
   -- 获取排除类型
-  env.excluded_types = (function()
-    local types = rime_api_helper:get_config_item_value(config, env.name_space .. "/excluded_types")
-    if(not types) then
-      types = {}
-    elseif(type(types) == "string") then
-      types = {types}
-    end
-    function types:include(text)
-      for i,t in pairs(self) do
-        if(text == t) then
-          return true
-        end
-      end
-      return false
-    end
-    return types
-  end)()
+  env.excluded_types = rime_api_helper:get_config_item_value(config, env.name_space .. "/excluded_types") or {}
 end
 
 --[[
@@ -40,11 +24,12 @@ end
   1. cand 的 type 没有被改为 “simplified”
 ]]
 function filter.func(input, env)
+  local excluded_types = env.excluded_types
   local map = {}
   for cand in input:iter() do
     local text = cand.text
     local prev = map[text]
-    if(env.excluded_types:include(cand.type)) then
+    if(rime_api_helper:is_candidate_in_types(cand, excluded_types)) then
       -- 排除
       yield(cand)
     elseif(not prev) then

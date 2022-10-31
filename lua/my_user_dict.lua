@@ -36,30 +36,18 @@ local function get_tags(env)
   return tags
 end
 
-local function get_syllabify_text_list(text, env)
+local function split_by_syllabify(text, env)
   text = string_helper.replace(text, "'", " ", true) -- ji'suan => ji suan
   local arr = string_syllabify.syllabify(text, true)
-  local flag = true
-  for i,t in pairs(arr) do
-    if(t == text) then
-      flag = false
-      break
-    end
-  end
-  if(flag) then
-    table.insert(arr, text)
-  end
+  -- insert script text
+  local text_script = text
+  table.insert(arr, text_script)
+  -- insert no blank text ( use: emoji easy_en )
+  local text_no_blank = string_helper.replace(text, " ", "", true)
+  table.insert(arr, text_no_blank)
+  -- remove duplicate
+  arr = table_helper.arr_remove_duplication(arr)
   return arr
-end
-
-local function is_english(text)
-  return string_helper.is_ascii_visible_string(text)
-end
-
-local function to_english(text)
-  text = string_helper.replace(text, " ", "", true)
-  text = string_helper.replace(text, "-", "", true)
-  return text
 end
 
 --[[
@@ -69,6 +57,7 @@ end
   return "ni hao ma"
 ]]
 local function split_last_cand(ctx, script_text)
+  script_text = script_text or ""
   local cand = ctx:get_selected_candidate()
   if(cand and cand.preedit) then
     local preedit = cand.preedit
@@ -78,8 +67,20 @@ local function split_last_cand(ctx, script_text)
         script_text = string.sub(script_text, 1, _s-1) .. " " .. preedit
       end
     end
+    local comment = cand.comment 
+    if(comment and #comment>0) then -- ~o others...........
+      local remain = string.match(comment, "^~(%g+)[ ]*") -- ~o => o
+      if(remain) then
+        script_text  = script_text .. remain
+      end
+    end
   end
   return script_text
+end
+
+local function get_syllabify_text_list(commit_text, script_text, ctx, env)
+  local syllabify_text_list = split_by_syllabify(split_last_cand(ctx, script_text), env) or {}
+  return syllabify_text_list
 end
 
 local function is_need_show(text, entry)
@@ -112,7 +113,7 @@ local function adjust_syllabify(syllabify_list, commit_text, env)
     for i = 1,#words do
       table.insert(patterns, "%g+") -- 非空格
     end
-    local pattern = "^"..table.concat(patterns, " ").."$"
+    local pattern = "^"..table.concat(patterns, " ").."$" -- "^%g+ %g+ ...... %g+$"
     local index = 1
     while(index <= #syllabify_list) do
       local w = syllabify_list[index]
@@ -135,10 +136,15 @@ local function calc_quality(entry, env)
   else
     quality = quality + (entry.commit_count / 100)
   end
-  -- logger.warn("==============", entry.text, entry.custom_code, entry.comment, quality)
   return quality
 end
 
+-- -----------------------
+-- handlers
+-- 外部注册的处理器
+-- -----------------------
+
+-- comment handlers
 -- 处理 注释
 local comment_handlers = {
   function(entry)
@@ -151,6 +157,24 @@ local function comment_handlers_add(func)
     table.insert(comment_handlers, func)
   else
     logger.error("fail to add comment_handlers func for error type of args#1 \""..t.."\".")
+  end
+end
+
+-- syllabify handlers
+-- 处理 分词
+local syllabify_handlers = LinkedList()
+syllabify_handlers:add(function(commit_text, script_text, ctx, env) -- others 默认处理
+  -- others
+  local syllabify_text_list = get_syllabify_text_list(commit_text, script_text, ctx, env)
+  adjust_syllabify(syllabify_text_list, commit_text, env)
+  return true, syllabify_text_list
+end)
+local function syllabify_handlers_add(func)
+  local t = type(func)
+  if(t=="function") then
+    syllabify_handlers:add_at(1, func)
+  else
+    logger.error("fail to add syllabify_handlers func for error type of args#1 \""..t.."\".")
   end
 end
 
@@ -175,25 +199,22 @@ function translator.init(env)
       if(not commit_text) then
         return
       end
+      -- 构建
       local e = DictEntry()
       e.text = commit_text
       -- e.weight = 10
       local script_text = ctx:get_script_text()
+      -- 分词
       local syllabify_text_list = nil
-      if(is_english(commit_text)) then
-        -- english
-        syllabify_text_list = {
-          script_text,
-          commit_text,
-          to_english(commit_text),
-          to_english(script_text),
-        }
-        syllabify_text_list = table_helper.arr_remove_duplication(syllabify_text_list)
-      else
-        -- others
-        syllabify_text_list = get_syllabify_text_list(split_last_cand(ctx, script_text), env)
-        adjust_syllabify(syllabify_text_list, commit_text, env)
+      for iter in syllabify_handlers:iter() do
+        local handler = iter.value
+        local flag,  res_2 = handler(commit_text, script_text, ctx, env)
+        if(flag) then
+          syllabify_text_list = res_2
+          break
+        end
       end
+      -- 存词
       for i, text in pairs(syllabify_text_list) do
         e.custom_code = text
         env.mem:update_userdict(e,1,"") -- do nothing to userdict
@@ -214,7 +235,7 @@ function translator.func(input, seg, env)
   local confirmed_pos = segmentation and segmentation:get_confirmed_position()
   local input_activing = string.sub(context.input, confirmed_pos+1)
   -- 分词
-  local syllabify_text_list = get_syllabify_text_list(input_activing, env)
+  local syllabify_text_list = split_by_syllabify(input_activing, env) or {}
   -- 查库
   local cand_list = LinkedList()
   local mem = env.mem
@@ -248,4 +269,8 @@ end
 return {
   translator = translator,
   comment_handlers_add = comment_handlers_add,
+  syllabify_handlers_add = syllabify_handlers_add,
+  -- 暂时没必要开放
+  -- get_syllabify_text_list = get_syllabify_text_list,
+  -- adjust_syllabify = adjust_syllabify,
 }

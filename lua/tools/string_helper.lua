@@ -8,6 +8,18 @@ local split = require("tools/split")
 local inspect = require("tools/inspect")
 local ptry = require("tools/ptry")
 
+function helper.empty(str)
+  return not str or str==""
+end
+
+function helper.trim(str)
+  if(str) then
+    str = string.gsub(str, "^%s+", "")
+    str = string.gsub(str, "%s+$", "")
+  end
+  return str
+end
+
 -- 字符串分割
 function helper.split(str, delimiter)
   if(delimiter=="") then
@@ -58,6 +70,17 @@ function helper.pick(str, patterns)
   return r
 end
 
+function helper.tostring(value)
+  local vt = type(value)
+  if(vt == "string") then
+    return value
+  elseif(vt == "table" and value.__tostring) then
+    return value:__tostring()
+  else
+    return inspect(value)
+  end
+end
+
 -- 字符串连接
 function helper.join(arr, delimiter)
   if(not arr) then error("can't join \"nil\"") end
@@ -65,11 +88,7 @@ function helper.join(arr, delimiter)
   local temp = {}
   for index, value in pairs(arr) do
     value = null(value)
-    if(type(value)=="string") then
-      table.insert(temp, value)
-    else
-      table.insert(temp, inspect(value))
-    end
+    table.insert(temp, helper.tostring(value))
   end
   return table.concat(temp, delimiter)
 end
@@ -141,7 +160,7 @@ function helper.format(pattern, info)
   local result = pattern
   for key, value in pairs(info) do
     local replace_key = "{" .. key .. "}"
-    local replace_value = type(value) == "string" and value or inspect(value)
+    local replace_value = helper.tostring(value)
     result = helper.replace(result, replace_key, replace_value)
   end
   return result

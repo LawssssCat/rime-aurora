@@ -119,8 +119,12 @@ end
 
 function M:test_insert()
   local t = {}
-  table.insert(t, nil)
+  local r = table.insert(t, nil)
   lu.assertEquals(t, {})
+  lu.assertEquals(r, nil)
+  local r = table.insert(t, nil)
+  lu.assertEquals(t, {})
+  lu.assertEquals(r, nil)
 end
 
 function M:test_for()

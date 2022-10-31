@@ -1,8 +1,11 @@
 local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 local string_helper = require("tools/string_helper")
+local table_helper = require("tools/table_helper")
 local Object = require("tools/classic")
-local comment_handlers_add = require("my_user_dict").comment_handlers_add
+local my_user_dict = require("my_user_dict")
+local comment_handlers_add = my_user_dict.comment_handlers_add
+local syllabify_handlers_add = my_user_dict.syllabify_handlers_add
 
 local option_name = "ascii_mode"
 
@@ -14,6 +17,16 @@ local function get_comment(text, env)
   local text_comment = env.db_rev:lookup(text) or ""
   local text_comment_preedit = env.format:apply(text_comment) or ""
   return text_comment_preedit
+end
+
+local function is_english(text)
+  return string_helper.is_ascii_visible_string(text)
+end
+
+local function to_english(text)
+  text = string_helper.replace(text, " ", "", true)
+  text = string_helper.replace(text, "-", "", true)
+  return text
 end
 
 -- =================================== Handlers => 输入（input） 生成 候选词（candidate）
@@ -136,6 +149,9 @@ end
 
 -- =============================================================== translator
 
+local user_dict_comment_handler = nil
+local user_dict_syllabify_handler = nil
+
 local translator = {}
 
 function translator.init(env)
@@ -156,18 +172,39 @@ function translator.init(env)
   if(not env.format:load(env.config_comment_format)) then
     logger.warn("fail to load \"dictionary_comment\"", env)
   end
-  -- 注册用户字典的comment处理器
-  comment_handlers_add(function(entry)
-    local text = entry.text
-    text = string.lower(text)
-    if(string_helper.is_ascii_visible_string(text)) then
-      local text_comment_preedit = get_comment(text, env)
-      if(text_comment_preedit and #text_comment_preedit>0) then
-        return true, text_comment_preedit
+  -- 注册用户字典的注释（comment）处理器
+  if(not user_dict_comment_handler) then
+    user_dict_comment_handler = function(entry)
+      local text = entry.text
+      text = string.lower(text)
+      if(string_helper.is_ascii_visible_string(text)) then
+        local text_comment_preedit = get_comment(text, env)
+        if(text_comment_preedit and #text_comment_preedit>0) then
+          return true, text_comment_preedit
+        end
       end
+      return false
     end
-    return false
-  end)
+    comment_handlers_add(user_dict_comment_handler)
+  end
+  -- 注册用户字典的分词（syllabify）处理器
+  if(not user_dict_syllabify_handler) then
+    user_dict_syllabify_handler = function(commit_text, script_text, ctx, env)
+      if(is_english(commit_text)) then
+        -- english
+        local syllabify_text_list = {
+          script_text,
+          commit_text,
+          to_english(commit_text),
+          to_english(script_text),
+        }
+        syllabify_text_list = table_helper.arr_remove_duplication(syllabify_text_list)
+        return true, syllabify_text_list
+      end
+      return false
+    end
+    syllabify_handlers_add(user_dict_syllabify_handler)
+  end
   env.init_ok = true
 end
 
@@ -224,7 +261,7 @@ function pure_filter.func(input, env)
   if(context:get_option(option_name)) then
     local first = false
     for cand in input:iter() do
-      if(cand.type==cand_type or string_helper.is_ascii_visible_string(cand.text)) then
+      if(rime_api_helper:is_candidate_in_type(cand, cand_type) or string_helper.is_ascii_visible_string(cand.text)) then
         if(not first) then
           first = true
           local text = context.input

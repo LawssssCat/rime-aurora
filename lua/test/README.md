@@ -1,11 +1,11 @@
 单元测试
 
-在 `/lua` 目录下执行 `lua test/init.lua` 或在 `/` 目录下执行 `npm run test` 即可运行单元测试
+在 `/lua` 目录下执行 `lua test/init.lua` 或在 `/` 目录下执行 `bash run.sh test` 即可运行单元测试
 
 运行结果（大致）如下：
 
 ```bash
-C:\Users\lawsssscat\AppData\Roaming\Rime>npm run test
+C:\Users\lawsssscat\AppData\Roaming\Rime>bash run.sh test
 
 > rime@1.0.0 test
 > cd lua && lua test/init.lua -v && cd ..

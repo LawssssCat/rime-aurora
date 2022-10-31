@@ -61,6 +61,10 @@ local mode_opencc_allow_keys = {
   "Shift+Down",
   "space"
 }
+for i=1,9 do -- 数字
+  table.insert(mode_opencc_allow_keys, tostring(i))
+  table.insert(mode_opencc_allow_keys, "KP_"..tostring(i)) -- 小键盘
+end
 function mode_opencc_allow_keys:include(repr)
   for i,k in pairs(self) do
     if(k == repr) then
@@ -106,6 +110,7 @@ end
 
 function processor.func(key, env)
   local context = env.engine.context
+  -- logger.warn(key:repr())
   if(mode_opencc) then
     if(not context:has_menu()) then
       reset_mode_opencc(env)
@@ -162,7 +167,7 @@ function processor.func(key, env)
         local commit_index = (page-1)*page_size + num - 1 -- 下标0开始
         local cand = segment:get_candidate_at(commit_index)
         if(cand) then
-          if(cand.type == type_emoji_tip) then -- -------------------------- 选择emoji事件
+          if(rime_api_helper:is_candidate_in_type(cand, type_emoji_tip)) then -- -------------------------- 选择emoji事件
             segment.selected_index = commit_index
             open_mode_opencc(env)
             context:refresh_non_confirmed_composition()
@@ -176,7 +181,7 @@ function processor.func(key, env)
   if("space" == repr) then
     if(context:has_menu()) then -- ----------------------------------------- 选择emoji事件
       local cand = context:get_selected_candidate()
-      if(cand.type == type_emoji_tip) then
+      if(rime_api_helper:is_candidate_in_type(cand, type_emoji_tip)) then
         open_mode_opencc(env)
         context:refresh_non_confirmed_composition()
         return rime_api_helper.processor_return_kAccepted
@@ -255,23 +260,7 @@ local filter = {}
 
 function filter.init(env)
   local config = env.engine.schema.config
-  env.excluded_types = (function()
-    local excluded_types = rime_api_helper:get_config_item_value(config, env.name_space .. "/excluded_types")
-    if(not excluded_types) then
-      excluded_types = {}
-    elseif(type(excluded_types) == "string") then
-      excluded_types = {excluded_types}
-    end
-    function excluded_types:include(cand_type)
-      for i,t in pairs(self) do
-        if(t == cand_type) then
-          return true
-        end
-      end
-      return false
-    end
-    return excluded_types
-  end)()
+  env.excluded_types = rime_api_helper:get_config_item_value(config, env.name_space .. "/excluded_types") or {}
   local opencc_config = (function()
     local opencc_config = rime_api_helper:get_config_item_value(config, env.name_space .. "/opencc_config")
     if(not opencc_config) then
@@ -301,7 +290,7 @@ function filter.func(input, env)
   local excluded_types = env.excluded_types
   for cand in input:iter() do
     yield(cand)
-    if(not excluded_types:include(cand.type)) then
+    if(not rime_api_helper:is_candidate_in_types(cand, excluded_types)) then
       -- 表情提示
       local text = cand.text
       local arr = uniquifyuniquify(run_opencc_list_convert_word(env, text), text)

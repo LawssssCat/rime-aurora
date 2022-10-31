@@ -128,6 +128,29 @@ ld !]])
 } !]])
 end
 
+function M:test_compare() -- unicode ?
+  lu.assertEquals("a">"a", false)
+  lu.assertEquals("a"=="a", true)
+  lu.assertEquals("a"<"b", true)
+  lu.assertEquals("a1">"a", true)
+  lu.assertEquals("a1b">"a1", true) -- more long, more big when same suffix
+  lu.assertEquals("aa"<"az", true)  -- follow the order of [1-9A-Za-z] when same length
+  lu.assertEquals("a1"<"aA", true)
+  lu.assertEquals("aa">"aA", true)
+  lu.assertEquals("a"<"你", true)
+end
+
+function M:test_trim()
+  lu.assertEquals(string_helper.trim(" 12 3 "), "12 3")
+  lu.assertEquals(string_helper.trim("    12  3    "), "12  3")
+  lu.assertEquals(string_helper.trim("    123"), "123")
+  lu.assertEquals(string_helper.trim("123     "), "123")
+  lu.assertEquals(string_helper.trim("123"), "123")
+  lu.assertEquals(string_helper.trim(""), "")
+  lu.assertEquals(string_helper.trim("    "), "")
+  lu.assertEquals(string_helper.trim(nil), nil)
+end
+
 function M:test_utf8len()
   lu.assertEquals(string_helper.len("123"), 3)
   lu.assertEquals(string_helper.len("123你"), 4)
@@ -217,6 +240,12 @@ function M:test_match()
   lu.assertEquals(string.match("~a abc asdfsdf", pattern) ~= nil, false)
   lu.assertEquals(string.match("~ abc", pattern) ~= nil, true)
   lu.assertEquals(string.match("~ abc safsdf", pattern) ~= nil, false)
+  local pattern = "^~(%g+)[ ]*"
+  lu.assertEquals(string.match("~ abc safsdf", pattern), nil)
+  lu.assertEquals(string.match("safsdf", pattern), nil)
+  lu.assertEquals(string.match("", pattern), nil)
+  lu.assertEquals(string.match("~abc safsdf", pattern), "abc")
+  lu.assertEquals(string.match("~abcsafsdf", pattern), "abcsafsdf")
   -- 其他
   local env = {
     wildcard = "*"
