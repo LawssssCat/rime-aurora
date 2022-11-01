@@ -4,15 +4,16 @@ local string_helper = require("tools/string_helper")
 
 local tag_name = "punct"
 
+local option_name = "full_shape"
+
 local segmentor = {}
 
 function segmentor.init(env)
   local context = env.engine.context
   local config = env.engine.schema.config
-  env.notifier_option_full_shape = context.option_update_notifier:connect(function(ctx) -- 监听选项
-    local full_shape_mode = ctx:get_option("full_shape")
+  local func_01 = function(ctx)
     local current_punctuator_map = nil
-    if(full_shape_mode) then
+    if(ctx:get_option(option_name)) then
       -- full_shape
       env.full_shape_map = env.full_shape_map or rime_api_helper:get_config_item_value(config, "punctuator/full_shape")
       current_punctuator_map = env.full_shape_map
@@ -22,6 +23,12 @@ function segmentor.init(env)
       current_punctuator_map = env.half_shape_map
     end
     env.current_punctuator_map = current_punctuator_map
+  end
+  func_01(context)
+  env.notifier_option_full_shape = context.option_update_notifier:connect(function(ctx, name) -- 监听选项
+    if(name == option_name) then
+      func_01(ctx)
+    end
   end)
 end
 

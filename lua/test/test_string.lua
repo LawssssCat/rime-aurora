@@ -89,6 +89,10 @@ function M:test_split()
   lu.assertEquals(string_helper.split("1 2  3   4    ", "%s+"), {"1","2","3","4",""})
   local str = "version"
   lu.assertEquals(string_helper.split(str, ""), {"v", "e", "r", "s", "i", "o", "n"})
+  lu.assertEquals(string_helper.split(str, nil), {"version"})
+  lu.assertEquals(string_helper.split("你好啊", ""), {"你", "好", "啊"})
+  lu.assertEquals(string_helper.split("beau*ful", "*"), {"beau", "ful"})
+  lu.assertEquals(string_helper.split("beau*", "*"), {"beau", ""})
   local t = ""
   local t_list = {}
   for i, v in pairs(string_helper.split(str, "")) do 
@@ -124,6 +128,29 @@ ld !]])
 } !]])
 end
 
+function M:test_compare() -- unicode ?
+  lu.assertEquals("a">"a", false)
+  lu.assertEquals("a"=="a", true)
+  lu.assertEquals("a"<"b", true)
+  lu.assertEquals("a1">"a", true)
+  lu.assertEquals("a1b">"a1", true) -- more long, more big when same suffix
+  lu.assertEquals("aa"<"az", true)  -- follow the order of [1-9A-Za-z] when same length
+  lu.assertEquals("a1"<"aA", true)
+  lu.assertEquals("aa">"aA", true)
+  lu.assertEquals("a"<"你", true)
+end
+
+function M:test_trim()
+  lu.assertEquals(string_helper.trim(" 12 3 "), "12 3")
+  lu.assertEquals(string_helper.trim("    12  3    "), "12  3")
+  lu.assertEquals(string_helper.trim("    123"), "123")
+  lu.assertEquals(string_helper.trim("123     "), "123")
+  lu.assertEquals(string_helper.trim("123"), "123")
+  lu.assertEquals(string_helper.trim(""), "")
+  lu.assertEquals(string_helper.trim("    "), "")
+  lu.assertEquals(string_helper.trim(nil), nil)
+end
+
 function M:test_utf8len()
   lu.assertEquals(string_helper.len("123"), 3)
   lu.assertEquals(string_helper.len("123你"), 4)
@@ -133,18 +160,29 @@ end
 
 -- 截取（字节）
 function M:test_sub()
-  lu.assertEquals(string_helper.sub("abc", 1, 1), "a")
-  lu.assertEquals(string_helper.sub("abc", 1, 2), "ab")
-  lu.assertEquals(string_helper.sub("abc", 2, 1), "")
+  lu.assertEquals(string.sub("abc", 1, 1), "a")
+  lu.assertEquals(string.sub("abc", 1, 2), "ab")
+  lu.assertEquals(string.sub("abc", 2, 1), "")
+  lu.assertEquals(string.sub("abc", 4, 4), "")
 end
 
 -- 截取（utf8）
 function M:test_helper_sub()
+  lu.assertEquals(string_helper.sub("abc", 1, 1), "a")
+  lu.assertEquals(string_helper.sub("abc", 1, 2), "ab")
+  lu.assertEquals(string_helper.sub("abc", 2, 1), "")
   lu.assertEquals(string_helper.sub("你好", 1, 2), "你好")
   lu.assertEquals(string_helper.sub("你好", 1, 1), "你")
   lu.assertEquals(string_helper.sub("你好", 2, 2), "好")
   lu.assertError(string_helper.sub, "你好", 1, 3) -- 下标异常
   lu.assertError(string_helper.sub, "你好", 3) -- 下标异常
+end
+
+function M:test_lower()
+  lu.assertEquals(string.lower("abc"), "abc")
+  lu.assertEquals(string.lower("Abc"), "abc")
+  lu.assertEquals(string.lower("aBc"), "abc")
+  lu.assertEquals(string.lower("ABC"), "abc")
 end
 
 -- 匹配(第一个) => 返回匹配字符串
@@ -188,6 +226,26 @@ function M:test_match()
   lu.assertEquals(not string.match("sfasfsdf", "qqqqqqqq"), true)
   lu.assertEquals(not string.match("aaaaaaaaa", "a"), false)
   lu.assertEquals(string.match("sfasfsdf", "qqqqqqqqqq") ~= nil, false)
+  local pattern = "^~%g+$"
+  lu.assertEquals(string.match("~a", pattern) ~= nil, true)
+  lu.assertEquals(string.match("~a ", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~a abc", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~a abca sdfs", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~ abc", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~ abc asdfsdf", pattern) ~= nil, false)
+  local pattern = "^~ %g+$"
+  lu.assertEquals(string.match("~a", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~a ", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~a abc", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~a abc asdfsdf", pattern) ~= nil, false)
+  lu.assertEquals(string.match("~ abc", pattern) ~= nil, true)
+  lu.assertEquals(string.match("~ abc safsdf", pattern) ~= nil, false)
+  local pattern = "^~(%g+)[ ]*"
+  lu.assertEquals(string.match("~ abc safsdf", pattern), nil)
+  lu.assertEquals(string.match("safsdf", pattern), nil)
+  lu.assertEquals(string.match("", pattern), nil)
+  lu.assertEquals(string.match("~abc safsdf", pattern), "abc")
+  lu.assertEquals(string.match("~abcsafsdf", pattern), "abcsafsdf")
   -- 其他
   local env = {
     wildcard = "*"
@@ -252,6 +310,7 @@ function M:test_match_patterns_g() -- %g 表示任何除空白符外的可打印
       lu.assertEquals({i, string.match(c, "[%g%s]+")}, {i, c})
     end
   end
+  lu.assertEquals(string.match("AA BB", "^%g+ %g+$")~=nil, true)
 end
 function M:test_match_patterns_p() -- %p 表示所有标点符号。
   local str = "`~!@#$%^&*()_+-={}|[]\\;':\",./<>?"
@@ -329,8 +388,9 @@ end
 function M:test_find()
   local pattern_01 = "^[a-zA-Z]*$"
   -- 找不到
-  lu.assertFalse(string.find("1", pattern_01), nil)
+  lu.assertFalse(string.find("1", pattern_01))
   lu.assertEquals(string.find("1", pattern_01))
+  lu.assertEquals(string.find("1", pattern_01), nil)
   lu.assertEquals({string.find("1", pattern_01)}, {})
   lu.assertEquals({string.find("/abc", "^/[0-9a-zA-Z]*$")}, {1, 4})
   lu.assertEquals({string.find("/abc", "^/[0-9a-zA-Z]*$", 1)}, {1, 4})

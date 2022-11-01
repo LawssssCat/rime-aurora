@@ -21,16 +21,18 @@
 │  ├─ ext_*.yaml           🍮补丁：方案会通过`__include`引用其中配置
 │  └─ my_*.yaml            🍮补丁：方案会通过`__patch`引用其中配置
 ├─ /opencc              ⚙提供字符转换、comment功能
-│  ├─ *.txt                字典文件，由`npm run sort`生成，被*.json引用
+│  ├─ *.txt                字典文件，由`bash run.sh sort`生成，被*.json引用
 │  ├─ *.yml                字典源
 │  └─ *.json               字典配置
 ├─ /lua                 ⚙提供功能脚本（运行中、lua）
 │  └─ *.lua                功能脚本，被rime.lua引用
-├─ /tools               ⚙提供功能脚本（运行前、js）
-│  └─ *.lua                功能脚本，靠nodejs运行。实现如opencc字典去重功能
-├─ /.github
 │
 ├─ /dict/*.dict.yaml    📄码表
+│
+├─ /lua/build/*         🛠构建共用脚本
+├─ /tools/*             🛠构建共用脚本
+├─ install.sh           🛠安装脚本
+├─ run.sh               🛠构建脚本
 │
 ├─ *.schema.yaml        💠方案配置文件（✨核心、入口） 
 ├─ *.custom.yaml        🍮补丁：内容会覆盖对应的*.schema.yaml文件
@@ -41,7 +43,6 @@
 ├─ user.yaml            记录当前输入法运行信息（如：部署编号、用户选择）（在每次部署后自动生成）
 ├─ installation.yaml    记录当前输入法安装信息（如：版本、安装时间）
 ├─ custom_phrase.txt    
-├─ .package.json
 ├─ .gitignore
 ├─ README.md
 └─ LICENSE              MIT
@@ -70,7 +71,9 @@
 
     ![输入法英文（纯英文模式）预览](./.github/assets/preview-easy_en-pure.png)
 
-    todo 优化 https://github.com/shewer/librime-lua-script/issues/5
+    输入 “`*`” 进行 “模糊匹配”
+
+    ![输入法英文（模糊匹配）预览](./.github/assets/preview-easy_en-fuzzy.png)
 
 3. 子列表展示：emoji 表情 & 颜表情
 
@@ -117,16 +120,41 @@
 
     https://github.com/rime/librime/issues/568
 
-## 按键说明
+## 快捷键说明
 
-1. 全局 - `F4` - 选择方案和其选项开关
-1. 全局 - `` ` `` -  开启五笔反查模式（横竖撇捺折 => 一丨丿丶乙 => hspnz）
-1. 选词 - `shift` - 开启纯英文模式 💡
-1. 选词 - `shift+↩️（回车）` 上屏右侧提示信息 💡
-1. 选词 - `shift+⬆️（上）` 或 `shift+⬇️（下）` - 翻页 💡
-1. 选词 - `shift + 🆑（Delete：小键盘删除键）` - 删除选词的用户字典记录 💡
+使用场景 | 快捷键 | 功能
+-- | -- | --
+全局 | `F4` | 选择方案和其选项开关
+全局 | `` ` `` |  开启五笔反查模式（横竖撇捺折 => 一丨丿丶乙 => hspnz）
+选词 | `shift + 🆑（Delete：小键盘删除键）` | 💡 删除选词的用户字典记录
+选词 | `shift` | 💡 开启纯英文模式
+选词 | `shift+↩️（回车）` | 💡 上屏右侧提示信息
+选词 | `shift+⬆️（上）` <br> `shift+⬇️（下）` | 💡 翻页
+选词 | `ctrl+j`（下一个候选词） <br> `ctrl+k`（下一个候选词） | 🔥 选词
+选词 | `ctrl+alt+j`（下一页） <br> `ctrl+alt+k`（下一页） | 🔥 翻页
+选词 | `ctrl+h` | 🔥 Backspace（删除最后一个字符）
 
-## 安装方法
+> 💡提示
+>
+> 如果习惯vim的方向操作，可以尝试组合使用 ctrl+j、ctrl+k、ctrl+h 这几个快捷键。
+
+## 安装方法（脚本安装）
+
+1. 关闭输入法 “退出算法服务”
+
+2. 执行脚本（需要：安装了git、配置了bash、指定输入法的“安装目录”、“用户目录”）
+
+    ```bash
+    # 指定输入法的“安装目录”（自行更改）
+    path_installation="E:\Program Files (x86)\Rime\weasel-0.14.3"
+    # 指定输入法的“用户目录”（自行更改）
+    path_userdata="C:\Users\lawsssscat\AppData\Roaming\Rime"
+    bash install.sh "$path_installation" "$path_userdata"
+    ```
+
+3. 开启输入法 & “重新部属” 
+
+## 安装方法（手动安装）
 
 ### 步骤一：拷贝文件到“用户文件夹📁”
 
@@ -146,22 +174,23 @@
 
 ### 步骤二：**更新 librime-lua** 📄
 
-准备 rime.dll （从本项目的 [release](https://github.com/LawssssCat/rime-aurora/releases) 中下载备份，或者到 librime-lua 项目下载[最新版本](https://github.com/hchunhui/librime-lua/actions)），然后将 rime.dll 文件覆盖到 weasel 安装目录下，即可。
+准备 rime.dll （从本项目的 [release](https://github.com/LawssssCat/rime-aurora/releases/latest) 中下载备份，或者到 librime-lua 项目下载[最新版本](https://github.com/hchunhui/librime-lua/actions)），然后将 rime.dll 文件覆盖到 weasel 安装目录下，即可。
 
-> 相关资料
-> 
-> + wiki <https://github.com/hchunhui/librime-lua/wiki#installation>
-> + issue <https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242955543>
+（如果提示 rime.dll 正在使用，先关闭输入法 “退出算法服务”）
 
 > ⚠️ 说明
 >
 >[librime-lua 插件](https://github.com/hchunhui/librime-lua)提供了输入法程序运行时执行 lua 脚本功能。
 >
->其内容[已经被 librime 添加进项目编译](https://github.com/rime/librime/blob/master/.github/workflows/release-ci.yml#L21)，会随著输入法版本发布，[不需再额外安装](https://github.com/hchunhui/librime-lua/issues/41)。
+>librime-lua 插件 [已经被 librime 添加进项目编译](https://github.com/rime/librime/blob/master/.github/workflows/release-ci.yml#L21)，但所包含的 [librime-lua 插件版本会偏旧](https://github.com/hchunhui/librime-lua/issues/43)。
 >
->但由于代码需要测试，官网下载最新版的输入法版本所包含的 [librime-lua 插件版本会偏旧](https://github.com/hchunhui/librime-lua/issues/43)，本方案许多功能无法实现。
->
->**因此体验本方案完整功能需要[更新 librime-lua 插件](https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242881504)。**
+> 🌟 **因此体验本方案完整功能需要 [更新 librime-lua 插件](https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242881504)。**
+
+> 💡 相关资料
+> 
+> + issue 内置 <https://github.com/hchunhui/librime-lua/issues/41>
+> + wiki api <https://github.com/hchunhui/librime-lua/wiki#installation>
+> + issue 调试 <https://github.com/hchunhui/librime-lua/issues/43#issuecomment-1242955543>
 
 ### 步骤三：**重新部署** ⚙
 
@@ -171,16 +200,7 @@
 
 > ⚠️ 注意
 >
-> 『第一次』部署需要不少时间（大概10min），因为引用了大量的 dict 码表<br>
->（需要编译成 `build/*.table.bin` 文件）
->
-> 可以选择减少编译的 dict 码表，以缩短编译时间：
->
-> 打开下述文件，将 `import_tables` 中不需要的码表注释掉即可<br>
-> （注释：行首添加 "`#`" 符号）
->
-> + `my_luna_pinyin.dict.yaml`
-> + `my_terra_pinyin.dict.yaml`
+> 『第一次』部署大概需要等待几分钟。
 
 <div style='clear: both;'></div>
 
@@ -206,13 +226,13 @@
 ### opencc 词汇去重
 
 ```bash
-npm run sort
+bash run.sh sort
 ```
 
 ### 单元测试
 
 ```bash
-npm run test
+bash run.sh test
 ```
 
 ### 查看日志
@@ -220,7 +240,7 @@ npm run test
 <https://github.com/hchunhui/librime-lua/issues/129>
 
 ```bash
-npm run log
+bash run.sh log
 # 或者
 bash tools/tailLog.sh
 ```
@@ -326,13 +346,13 @@ bash tools/tailLog.sh
 > prompt 随 caret 移动问题<br>
 > <https://github.com/rime/weasel/issues/775>
 > - [x] 2022年09月30日<br>
-> emoji 太多类似的，影响正常候选词。<br>（喧宾夺主）<br>
+> emoji 太多类似的，影响正常候选词。<br>
 >  2022年10月04日<br>
 >  增加子菜单功能。（emoji显示再子菜单）
 
 > 待优化问题：
 >
-> - [ ] 英文大写不提示小写信息
+> - [x] 英文大写不提示小写信息
 > - [x] 网址提示 <br>
 > => 用户字典记录输入的网址，再次输入提示
 > - [ ] 提示未完整 symbols 候选词、并显示各分类含义

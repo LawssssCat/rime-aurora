@@ -1,0 +1,18 @@
+# Rime dictionary
+# mim: set ts=8 sw=8 noet:
+# encoding: utf-8
+#
+# 英文注释
+#
+# 修改日志：
+# 1. lawsssscat <lawsssscat@163.com> 抽离英文注释为单独文件
+#
+
+---
+name: easy_en_comment
+version: "2022.09.03"
+sort: original #by_weight
+use_preset_vocabulary: false # 是否引入「八股文」〔含字詞頻、詞庫〕
+import_tables:
+  - dict/easy_en_comment
+..

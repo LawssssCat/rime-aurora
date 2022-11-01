@@ -25,6 +25,13 @@ function M:test_null()
   local rb = {b(1,nil,3)}
   lu.assertEquals(rb, {1,nil, 3})
   lu.assertEquals(#rb, 3)
+  -- =============
+  local flag = false
+  local table = {}
+  if(table) then
+    flag = true
+  end
+  lu.assertEquals(flag, true)
 end
 
 function M:test_init()
@@ -34,6 +41,14 @@ function M:test_init()
   }
   t["c"]  = t["a"]
   lu.assertEquals(t, {a=1,b=2,c=1})
+end
+
+function M:test_helper_merge_array()
+  local a = {1,2,3}
+  local b = {"a","b", "c"}
+  table_helper.merge_array(a,b)
+  lu.assertEquals(a, {1,2,3})
+  lu.assertEquals(b, {"a", "b", "c",1,2,3})
 end
 
 function M:test_func()
@@ -55,6 +70,11 @@ function M:test_remove()
   local my_table = {"hello", "world"}
   lu.assertEquals(table.remove(my_table, 1), "hello")
   lu.assertEquals(my_table, {"world"})
+  lu.assertEquals(#my_table, 1)
+  local my_table = {"hello", "world","!"}
+  lu.assertEquals(table.remove(my_table, 2), "world")
+  lu.assertEquals(my_table, {"hello", "!"})
+  lu.assertEquals(#my_table, 2)
   -------------------------
   -- remove 会影响遍历
   local my_table = {"hello", "world"}
@@ -85,6 +105,8 @@ function M:test_len()
   lu.assertEquals(#{nil}, 0) -- 0000000000000000 -- 当没有其他 item 时，不包括 nil
   lu.assertEquals(#{1,2,3,nil,4,5,6}, 7)         -- 当有其他 item 时，包括 nil
   lu.assertEquals(#{1,2,3,nil,4,5,6,a="a",7}, 8)
+  local t = {a="123"}
+  lu.assertEquals(#t.a, 3)
 end
 
 function M:test_unpack()
@@ -97,8 +119,12 @@ end
 
 function M:test_insert()
   local t = {}
-  table.insert(t, nil)
+  local r = table.insert(t, nil)
   lu.assertEquals(t, {})
+  lu.assertEquals(r, nil)
+  local r = table.insert(t, nil)
+  lu.assertEquals(t, {})
+  lu.assertEquals(r, nil)
 end
 
 function M:test_for()

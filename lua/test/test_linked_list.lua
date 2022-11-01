@@ -133,4 +133,17 @@ function M:test_tostring()
   lu.assertEquals(tostring(list), "[1,2,3]")
 end
 
+function M:test_sort()
+  local list = LinkedList({})
+  list:sort(function(a,b) return a<b end)
+  lu.assertEquals(tostring(list), "[]")
+  local list = LinkedList({0})
+  list:sort(function(a,b) return a<b end)
+  lu.assertEquals(tostring(list), "[0]")
+  local list = LinkedList({2,1,3, 0})
+  list:sort(function(a,b) return a<b end)
+  lu.assertEquals(tostring(list), "[0,1,2,3]")
+  lu.assertErrorMsgMatches(".* error type of arguments #1 .*", list.sort, nil)
+end
+
 return M

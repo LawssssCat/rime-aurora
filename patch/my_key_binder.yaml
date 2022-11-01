@@ -150,9 +150,13 @@ patch:
     # run: 脚本名 => 定义在 lua 代码 handle_run_map 中
     bindings:
       - {when: has_menu, accept: "Shift+Delete", run: delete_candidate} # shift+回车 输出comment内容
-      - {when: composing, accept: "BackSpace", run: delete} # 翻页时，shift+↑ 上一页
+      - {when: composing, accept: "BackSpace", run: delete}
       - {when: has_menu, accept: "Shift+Up", run: Page_Up} # 翻页时，shift+↑ 上一页
       - {when: has_menu, accept: "Shift+Down", run: Page_Down} # 翻页时，shift+↓ 下一页
+      - {when: has_menu, accept: "Control+Alt+k", run: Page_Up}
+      - {when: has_menu, accept: "Control+Alt+j", run: Page_Down}
+      - {when: has_menu, accept: "Control+k", run: select_previous}
+      - {when: has_menu, accept: "Control+j", run: select_next}
       - { # fix: “纯英文状态” 按空格不上屏问题
         when: composing, 
         option: "ascii_mode",

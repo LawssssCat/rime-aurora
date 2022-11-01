@@ -2,6 +2,14 @@ assert(lu, "请通过 test/init.lua 运行本测试用例")
 
 local M = {}
 
+function M:test_define()
+  local a = nil
+  local b = (function() a=1 end)()
+  lu.assertEquals(b, nil)
+  local b = (function() a=1; return a end)()
+  lu.assertEquals(b, 1)
+end
+
 function M:test_type() 
   -- nil
   lu.assertEquals(type(nil), "nil")

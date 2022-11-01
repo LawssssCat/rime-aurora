@@ -14,27 +14,11 @@ local history_list = CycleList(20)
 function translator.init(env)
   local config = env.engine.schema.config
   local history_num_max = rime_api_helper:get_config_item_value(config, env.name_space .. "/history_num_max")
-  local excluded_types = (function()
-    local types = rime_api_helper:get_config_item_value(config, env.name_space .. "/excluded_types")
-    if(not types) then
-      types = {}
-    elseif(type(types) == "string") then
-      types = {types}
-    end
-    function types:contain(type)
-      for i, t in pairs(self) do
-        if(t == type) then
-          return true
-        end
-      end
-      return false
-    end
-    return types
-  end)()
+  local excluded_types = rime_api_helper:get_config_item_value(config, env.name_space .. "/excluded_types") or {}
   history_list:set_max_size(history_num_max)
   env.notifier_commit_history = env.engine.context.commit_notifier:connect(function(ctx)
     local cand = ctx:get_selected_candidate()
-    if(cand and not excluded_types:contain(cand.type))
+    if(cand and not rime_api_helper:is_candidate_in_types(cand, excluded_types))
     then
       history_list:add({
         text = cand.text,

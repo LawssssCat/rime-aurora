@@ -17,6 +17,28 @@ local string_helper = require("tools/string_helper")
 -- ----------------------------
 
 local handle_run_map = {
+  select_previous = function(key, env) -- 选择上一个候选词
+    local context = env.engine.context
+    local composition = context.composition
+    if(not composition:empty()) then
+      local segment = composition:back()
+      local index = segment.selected_index
+      segment.selected_index = segment.selected_index - 1
+      return true
+    end
+    return false
+  end,
+  select_next = function(key, env) -- 选择下一个候选词
+    local context = env.engine.context
+    local composition = context.composition
+    if(not composition:empty()) then
+      local segment = composition:back()
+      local index = segment.selected_index
+      segment.selected_index = segment.selected_index + 1
+      return true
+    end
+    return false
+  end,
   Page_Up = function(key, env)  -- 上一页
     local schema = env.engine.schema
     local composition = env.engine.context.composition
@@ -105,6 +127,9 @@ local handle_run_map = {
     local ch = utf8.char(code)
     context:push_input(ch)
     return true
+  end,
+  reject = function(key, env)
+    return false, rime_api_helper.processor_return_kRejected
   end
 }
 
@@ -119,6 +144,7 @@ local handle_run_map = {
 
 local key_binder_matching_chains = {
   function(key, env, index, action) -- accept
+    -- logger.warn(key:repr())
     if(action.accept == key:repr()) then
       return true
     end
@@ -169,16 +195,21 @@ local key_binder_matching_chains = {
 
 -- ======================================= processor
 
+local mem = nil
+
 local processor = {}
 
 function processor.init(env)
   local config = env.engine.schema.config
   env.key_binder_list = rime_api_helper:get_config_item_value(config, env.name_space .. "/bindings")
-  env.mem = Memory(env.engine,env.engine.schema)
+  env.mem = mem or (function()
+    mem = Memory(env.engine, env.engine.schema)
+    return mem
+  end)()
 end
 
 function processor.func(key, env)
-  local match_key = false
+  local match_key = rime_api_helper.processor_return_kNoop
   if(env.key_binder_list) then
     local status_index = 0
     local status_action = nil
@@ -187,31 +218,38 @@ function processor.func(key, env)
       for index, action in pairs(env.key_binder_list) do 
         status_index = index
         status_action = action
-        local flag_match = false
+        local continue = false
+        local flag = nil
         -- 匹配配置项目
         for jndex, match in pairs(key_binder_matching_chains) do
-          flag_match = match(key, env, index, action)
-          if(not flag_match) then
-            break
+          continue, flag = match(key, env, index, action)
+          if(not continue) then
+            if(flag==nil) then
+              -- match_key = rime_api_helper.processor_return_kNoop
+              break
+            else
+              match_key = flag
+              return
+            end
           end
         end
         -- 匹配配置 - 成功
-        if(flag_match) then
-          match_key = true
+        if(continue) then
+          if(flag==nil) then
+            match_key = rime_api_helper.processor_return_kAccepted
+          else
+            match_key = flag
+          end
           break
         end
       end
     end)
     ._catch(function(err) -- error
-      match_key = false
+      match_key = rime_api_helper.processor_return_kNoop
       logger.error(err, status_index, status_action)
     end)
   end
-  if(match_key) then
-    return rime_api_helper.processor_return_kAccepted
-  else
-    return rime_api_helper.processor_return_kNoop
-  end
+  return match_key
 end
 
 return {

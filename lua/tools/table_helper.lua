@@ -12,4 +12,10 @@ function helper.arr_remove_duplication(arr)
   return rs
 end
 
+function helper.merge_array(source, distance)
+  for k,v in pairs(source) do
+    table.insert(distance,v)
+  end
+end
+
 return helper
