@@ -78,7 +78,21 @@ local handle_run_map = {
     end
     return false
   end,
-  delete = function(key, env)
+  cancel = function(key, env) -- 如果有选中的内容，清除选中（reopen）；如果没有选中内容，清除输入
+    local context = env.engine.context
+    local composition = context.composition
+    if(not composition:empty()) then
+      local segmentation = composition:toSegmentation()
+      local confirmed_pos = segmentation and segmentation:get_confirmed_position() or 0
+      if(confirmed_pos>0) then
+        context:reopen_previous_selection()
+        return true
+      end
+      context.input = ""
+      return true
+    end
+  end,
+  delete = function(key, env) -- 删除输入的最后一个词
     local context = env.engine.context
     local composition = context.composition
     local input = context.input
@@ -109,7 +123,7 @@ local handle_run_map = {
     end
     return false
   end,
-  delete_candidate = function(key, env)
+  delete_candidate = function(key, env) -- 删除候选词的 user_dict 记录
     local context = env.engine.context
     local composition = context.composition
     if(not composition:empty()) then

@@ -151,6 +151,7 @@ patch:
     bindings:
       - {when: has_menu, accept: "Shift+Delete", run: delete_candidate} # shift+回车 输出comment内容
       - {when: composing, accept: "BackSpace", run: delete}
+      - {when: composing, accept: "Escape", run: cancel}
       - {when: has_menu, accept: "Shift+Up", run: Page_Up} # 翻页时，shift+↑ 上一页
       - {when: has_menu, accept: "Shift+Down", run: Page_Down} # 翻页时，shift+↓ 下一页
       - {when: has_menu, accept: "Control+Alt+k", run: Page_Up}
