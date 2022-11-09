@@ -146,8 +146,13 @@ patch:
   # 保持在 ascii 前
   engine/processors/@before 0: lua_processor@my_key_binder_processor@my_key_binder
   my_key_binder:
-    # when: always => 任何时候
+    # when: 
+    # + always => 任何时候
+    # + composing => 有输入框的时候
+    # + not_composing => 没有输入框的时候
+    # + has_menu => 有候选词的时候
     # run: 脚本名 => 定义在 lua 代码 handle_run_map 中
+    # + 删除最后的输入字符
     bindings:
       - {when: has_menu, accept: "Shift+Delete", run: delete_candidate} # shift+回车 输出comment内容
       - {when: composing, accept: "BackSpace", run: delete}
@@ -169,6 +174,7 @@ patch:
       - {when: has_menu, option: "ascii_mode", accept: "equal", run: Page_Down}
       - {when: has_menu, option: "ascii_mode", accept: "minus", run: Page_Up}
       ##########################
+      - {when: not_composing, accept: "apostrophe", run: reject} # 只有 ' 时直接上屏
   key_binder/bindings/+:
     - {when: has_menu, accept: "Shift+comma", send: Page_Up } # “shift+,” 上页
     - {when: has_menu, accept: "Shift+period", send: Page_Down } # "shift+." 下页
