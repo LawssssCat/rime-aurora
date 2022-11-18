@@ -183,6 +183,12 @@ local key_binder_matching_chains = {
         end
         return false
       end
+      if(_when == "not_composing") then
+        if(context:is_composing()) then
+          return false
+        end
+        return true
+      end
       error(string.format("unknow action when \"%s\"", _when))
     end
     return true
