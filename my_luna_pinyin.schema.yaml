@@ -112,7 +112,7 @@ recognizer:
 grammar: # 语法模型
   language: zh-hant-t-essay-bgc
 
-__patch: # 顺序有讲究
+__patch: # 按功能独立封装，但顺序有讲究
   - patch/my_common:/patch
   - patch/my_matcher:/patch
   - patch/my_easy_en:/patch        # 英文（需放在debug后）
