@@ -105,9 +105,19 @@ end
   @param j 结束
 ]]
 function helper.sub(s,i,j)
-  i=utf8.offset(s,i)
-  j=utf8.offset(s,j+1)-1
-  return string.sub(s,i,j)
+  local len = utf8.len(s)
+  local res = nil
+  if(len<=j) then
+    i=utf8.offset(s,i)
+    res = string.sub(s, i)
+  elseif(len<i) then
+    res = ""
+  else
+    i=utf8.offset(s,i)
+    j=utf8.offset(s,j+1)-1
+    res = string.sub(s,i,j)
+  end
+  return res
 end
 
 --[[

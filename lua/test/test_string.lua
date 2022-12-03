@@ -158,24 +158,29 @@ function M:test_utf8len()
   lu.assertEquals(string_helper.len(" 𩧱2"), 3) -- extcjk
 end
 
+local function test_sub_common(func) 
+  lu.assertEquals(func("abc", 1, 1), "a")
+  lu.assertEquals(func("abc", 1, 2), "ab")
+  lu.assertEquals(func("abc", 1, 3), "abc")
+  lu.assertEquals(func("abc", 1, 4), "abc")
+  lu.assertEquals(func("abc", 2, 3), "bc")
+  lu.assertEquals(func("abc", 3, 4), "c")
+  lu.assertEquals(func("abc", 4, 5), "")
+end
+
 -- 截取（字节）
 function M:test_sub()
-  lu.assertEquals(string.sub("abc", 1, 1), "a")
-  lu.assertEquals(string.sub("abc", 1, 2), "ab")
-  lu.assertEquals(string.sub("abc", 2, 1), "")
-  lu.assertEquals(string.sub("abc", 4, 4), "")
+  test_sub_common(string.sub)
 end
 
 -- 截取（utf8）
 function M:test_helper_sub()
-  lu.assertEquals(string_helper.sub("abc", 1, 1), "a")
-  lu.assertEquals(string_helper.sub("abc", 1, 2), "ab")
-  lu.assertEquals(string_helper.sub("abc", 2, 1), "")
+  test_sub_common(string_helper.sub)
   lu.assertEquals(string_helper.sub("你好", 1, 2), "你好")
   lu.assertEquals(string_helper.sub("你好", 1, 1), "你")
   lu.assertEquals(string_helper.sub("你好", 2, 2), "好")
-  lu.assertError(string_helper.sub, "你好", 1, 3) -- 下标异常
-  lu.assertError(string_helper.sub, "你好", 3) -- 下标异常
+  -- lu.assertError(string_helper.sub, "你好", 1, 3) -- 下标异常
+  -- lu.assertError(string_helper.sub, "你好", 3) -- 下标异常
 end
 
 function M:test_lower()

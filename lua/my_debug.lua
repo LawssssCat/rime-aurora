@@ -76,6 +76,17 @@ local function get_msg_page(env)
   return false
 end
 
+-- 防闪退判断。 weasel issue https://github.com/rime/home/issues/1129
+local function get_safety_comment(str_raw, str_ext)
+  local max_len = 70
+  local max_str_raw_len = max_len - string_helper.len(str_ext)
+  local str_new = string_helper.sub(str_raw, 1, max_str_raw_len)
+  if(str_new ~= str_raw) then
+    str_new = str_new .. "..."
+  end
+  return str_new .. str_ext
+end
+
 -- ----------------
 -- processor
 -- ----------------
@@ -148,6 +159,7 @@ function filter.func(input, env)
   -- 时间间隔 processor => filter
   local excluded_types = env.excluded_types
   rime_api_helper:add_prompt_map(context, "duration", string.format("⏱️:%0.4fs", get_time_duration())) -- 计时结束 ⏳
+  -- ⚠️最终插入Candidate调试信息
   for cand in input:iter() do
     if(rime_api_helper:is_candidate_in_types(cand, excluded_types)) then
       yield(cand)
@@ -161,7 +173,7 @@ function filter.func(input, env)
         preedit = cand.preedit,
         quality = string.format("%6.4f", cand.quality),
       }
-      local comment = cand.comment .. string_helper.format(env.debug_comment_pattern, info)
+      local comment = get_safety_comment(cand.comment, string_helper.format(env.debug_comment_pattern, info))
       yield(ShadowCandidate(cand, cand.type, cand.text, comment))
     end
   end
