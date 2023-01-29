@@ -23,7 +23,9 @@ local handle_run_map = {
     if(not composition:empty()) then
       local segment = composition:back()
       local index = segment.selected_index
-      segment.selected_index = segment.selected_index - 1
+      if(index > 0) then
+        segment.selected_index = index - 1
+      end
       return true
     end
     return false
